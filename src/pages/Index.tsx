@@ -1,11 +1,26 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React, { useState } from 'react';
+import { Sidebar } from '@/components/Sidebar';
+import { Header } from '@/components/Header';
+import { ChatInterface } from '@/components/ChatInterface';
 
 const Index = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+    <div className="h-screen w-full flex overflow-hidden">
+      {isSidebarOpen && <Sidebar />}
+      
+      <div className="flex-1 flex flex-col h-full bg-gray-50/50">
+        <Header 
+          title="Home" 
+          showBackButton={false}
+        />
+        
+        <ChatInterface 
+          userName="John"
+          className="flex-1"
+        />
       </div>
     </div>
   );
