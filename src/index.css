@@ -91,61 +91,61 @@
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 222.2 47% 5%; /* Darker background */
     --foreground: 210 40% 98%;
 
-    --card: 222.2 84% 4.9%;
+    --card: 222.2 47% 7%; /* Darker card bg */
     --card-foreground: 210 40% 98%;
 
-    --popover: 222.2 84% 4.9%;
+    --popover: 222.2 47% 5%; /* Darker popover */
     --popover-foreground: 210 40% 98%;
 
     --primary: 263 70% 58%;
     --primary-foreground: 210 40% 98%;
-    --primary-muted: 263 50% 30%;
+    --primary-muted: 263 55% 25%; /* Adjusted primary muted */
     --primary-hover: 263 70% 65%;
 
-    --secondary: 217.2 32.6% 17.5%;
+    --secondary: 217.2 32.6% 12%; /* Darker secondary */
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 217.2 32.6% 12%; /* Darker muted */
+    --muted-foreground: 215 20.2% 75%; /* Lighter muted foreground */
 
-    --accent: 217.2 32.6% 17.5%;
+    --accent: 217.2 32.6% 12%; /* Darker accent */
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
+    --border: 217.2 32.6% 15%; /* Darker border */
+    --input: 217.2 32.6% 15%; /* Darker input */
     --ring: 212.7 26.8% 83.9%;
     
-    --sidebar-background: 240 5.9% 10%;
+    --sidebar-background: 240 10% 8%; /* Darker sidebar */
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 263 70% 58%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent: 240 7% 13%; /* Darker sidebar accent */
     --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-border: 240 7% 13%; /* Darker sidebar border */
     --sidebar-ring: 217.2 91.2% 59.8%;
 
-    --canvas-background: 222.2 84% 4.9%;
+    --canvas-background: 222.2 47% 7%; /* Darker canvas */
     --canvas-foreground: 210 40% 98%;
-    --canvas-border: 217.2 32.6% 17.5%;
+    --canvas-border: 217.2 32.6% 15%; /* Darker canvas border */
 
-    --backdrop-background: 240 10% 3.9%;
+    --backdrop-background: 240 10% 3.9%; /* Darker backdrop */
     --backdrop-foreground: 0 0% 98%;
 
-    --surface-background: 222.2 84% 4.9%;
+    --surface-background: 222.2 47% 7%; /* Darker surface */
     --surface-foreground: 210 40% 98%;
-    --surface-hover: 217.2 32.6% 17.5%;
-    --surface-border: 217.2 32.6% 17.5%;
+    --surface-hover: 217.2 32.6% 12%; /* Darker surface hover */
+    --surface-border: 217.2 32.6% 15%; /* Darker surface border */
 
     --interactive-background: 263 70% 58%;
     --interactive-foreground: 0 0% 98%;
     --interactive-hover: 263 70% 65%;
-    --interactive-muted: 263 50% 30%;
+    --interactive-muted: 263 55% 25%; /* Adjusted interactive muted */
   }
 }
 
@@ -207,3 +207,4 @@ body {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
+
