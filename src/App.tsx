@@ -14,6 +14,7 @@ import Modals from "./pages/Modals";
 import Brand from "./pages/Brand";
 import Chatbox from "./pages/Chatbox";
 import Layout from "./pages/Layout";
+import Navigation from "./pages/Navigation";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +35,7 @@ function App() {
             <Route path="/brand" element={<Brand />} />
             <Route path="/chatbox" element={<Chatbox />} />
             <Route path="/layout" element={<Layout />} />
+            <Route path="/navigation" element={<Navigation />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

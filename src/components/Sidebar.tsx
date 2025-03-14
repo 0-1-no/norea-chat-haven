@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Search, Plus, ChevronDown, ChevronRight, Users, Folders, MessageCircle, PanelLeft, User, LogOut, Sun, Moon, Layers } from 'lucide-react';
+import { Search, Plus, ChevronDown, ChevronRight, Users, Folders, MessageCircle, PanelLeft, User, LogOut, Sun, Moon, Layers, Navigation } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -153,6 +153,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ onToggle }) => {
           <SidebarItem 
             title="Modaler"
             to="/modals" 
+          />
+          <SidebarItem 
+            title="Navigasjon"
+            to="/navigation" 
           />
           <SidebarItem 
             title="Brand"
