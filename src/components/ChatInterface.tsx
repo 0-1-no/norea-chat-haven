@@ -70,8 +70,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
                   text={prompt.text}
                   icon={prompt.icon as any}
                   onClick={() => handleSendMessage(prompt.text)}
-                  className="animate-slide-up"
-                  style={{ animationDelay: `${index * 50}ms` }}
+                  className={`animate-slide-up delay-${index * 50}`}
                 />
               ))}
             </div>

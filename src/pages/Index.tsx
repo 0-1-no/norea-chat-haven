@@ -14,30 +14,36 @@ const Index = () => {
   };
 
   return (
-    <div className="h-screen w-full flex overflow-hidden">
+    <div className="h-screen w-full flex overflow-hidden bg-gray-100">
+      {/* Backdrop - the main background */}
+      
+      {/* Sidebar component */}
       {isSidebarOpen && <Sidebar onToggle={toggleSidebar} />}
       
-      <div className="flex-1 flex flex-col h-full bg-gray-50/50">
-        {!isSidebarOpen && (
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            className="absolute top-4 left-4 z-10"
-            onClick={toggleSidebar}
-          >
-            <PanelLeft className="h-5 w-5" />
-          </Button>
-        )}
-        
-        <Header 
-          title="Home" 
-          showBackButton={false}
-        />
-        
-        <ChatInterface 
-          userName="John"
-          className="flex-1"
-        />
+      {/* Canvas - where main content is rendered */}
+      <div className="flex-1 p-4 flex items-center justify-center">
+        <div className="w-full h-full max-w-6xl bg-white rounded-xl shadow-sm flex flex-col overflow-hidden">
+          {!isSidebarOpen && (
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="absolute top-4 left-4 z-10"
+              onClick={toggleSidebar}
+            >
+              <PanelLeft className="h-5 w-5" />
+            </Button>
+          )}
+          
+          <Header 
+            title="Home" 
+            showBackButton={false}
+          />
+          
+          <ChatInterface 
+            userName="John"
+            className="flex-1"
+          />
+        </div>
       </div>
     </div>
   );
