@@ -1,7 +1,11 @@
-
 import React, { useState } from 'react';
-import { Search, Plus, ChevronDown, ChevronRight, Users, Folders, MessageCircle } from 'lucide-react';
+import { Search, Plus, ChevronDown, ChevronRight, Users, Folders, MessageCircle, PanelLeft } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
+
+type SidebarProps = {
+  onToggle?: () => void;
+};
 
 type SidebarItemProps = {
   title: string;
@@ -65,7 +69,7 @@ const SidebarSection: React.FC<SidebarSectionProps> = ({
   );
 };
 
-export const Sidebar: React.FC = () => {
+export const Sidebar: React.FC<SidebarProps> = ({ onToggle }) => {
   const [activeChat, setActiveChat] = useState<string | null>("Understanding quantum computing");
 
   const recentChats = [
@@ -78,8 +82,11 @@ export const Sidebar: React.FC = () => {
 
   return (
     <div className="h-screen w-60 bg-sidebar border-r border-gray-200 flex flex-col pt-4 animate-fade-in">
-      <div className="px-4 mb-4">
+      <div className="px-4 mb-4 flex justify-between items-center">
         <h1 className="text-xl font-semibold text-gray-900">Norea</h1>
+        <Button variant="ghost" size="icon" onClick={onToggle} className="h-8 w-8">
+          <PanelLeft className="h-4 w-4" />
+        </Button>
       </div>
       
       <div className="px-3 mb-3">
