@@ -162,6 +162,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ onToggle }) => {
             title="Chatbox"
             to="/chatbox" 
           />
+          <SidebarItem 
+            title="Layout"
+            to="/layout" 
+          />
         </SidebarSection>
         
         <SidebarSection 

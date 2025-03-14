@@ -13,6 +13,7 @@ import InputFields from "./pages/InputFields";
 import Modals from "./pages/Modals";
 import Brand from "./pages/Brand";
 import Chatbox from "./pages/Chatbox";
+import Layout from "./pages/Layout";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ function App() {
             <Route path="/modals" element={<Modals />} />
             <Route path="/brand" element={<Brand />} />
             <Route path="/chatbox" element={<Chatbox />} />
+            <Route path="/layout" element={<Layout />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
