@@ -9,6 +9,8 @@ import NotFound from "./pages/NotFound";
 import ComponentLibrary from "./pages/ComponentLibrary";
 import Cards from "./pages/Cards";
 import DesignTokens from "./pages/DesignTokens";
+import InputFields from "./pages/InputFields";
+import Modals from "./pages/Modals";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +26,8 @@ function App() {
             <Route path="/components" element={<ComponentLibrary />} />
             <Route path="/cards" element={<Cards />} />
             <Route path="/design-tokens" element={<DesignTokens />} />
+            <Route path="/input-fields" element={<InputFields />} />
+            <Route path="/modals" element={<Modals />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
