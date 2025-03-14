@@ -1,10 +1,10 @@
-
 import React, { useState } from 'react';
-import { Search, Plus, ChevronDown, ChevronRight, Users, Folders, MessageCircle, PanelLeft, User, LogOut, Sun, Moon } from 'lucide-react';
+import { Search, Plus, ChevronDown, ChevronRight, Users, Folders, MessageCircle, PanelLeft, User, LogOut, Sun, Moon, Layers } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useTheme } from 'next-themes';
+import { Link } from 'react-router-dom';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,10 +21,11 @@ type SidebarItemProps = {
   date?: string;
   isActive?: boolean;
   onClick?: () => void;
+  to?: string;
 };
 
-const SidebarItem: React.FC<SidebarItemProps> = ({ title, date, isActive, onClick }) => {
-  return (
+const SidebarItem: React.FC<SidebarItemProps> = ({ title, date, isActive, onClick, to }) => {
+  const content = (
     <div
       className={cn(
         "px-3 py-2 rounded-lg text-sm flex justify-between items-center cursor-pointer transition-colors duration-200",
@@ -38,6 +39,12 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ title, date, isActive, onClic
       {date && <span className="text-xs text-gray-400 whitespace-nowrap">{date}</span>}
     </div>
   );
+
+  if (to) {
+    return <Link to={to}>{content}</Link>;
+  }
+
+  return content;
 };
 
 type SidebarSectionProps = {
@@ -123,6 +130,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ onToggle }) => {
         
         <SidebarSection title="Karakterer" icon={<Users className="w-4 h-4 text-gray-500" />}>
           {/* Characters content would go here */}
+        </SidebarSection>
+        
+        <SidebarSection title="Komponenter" icon={<Layers className="w-4 h-4 text-gray-500" />}>
+          <SidebarItem 
+            title="Komponentbibliotek"
+            to="/components" 
+          />
         </SidebarSection>
         
         <SidebarSection 

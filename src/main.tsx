@@ -7,7 +7,7 @@ import { ThemeProvider } from 'next-themes';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} enableColorScheme={true} storageKey="ui-theme" suppressHydrationWarning>
+    <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} enableColorScheme={true} storageKey="ui-theme">
       <App />
     </ThemeProvider>
   </React.StrictMode>,
