@@ -14,14 +14,17 @@ const Index = () => {
 
   return (
     <div className="h-screen w-full flex overflow-hidden">
+      {/* Sidebar with conditional rendering */}
       {isSidebarOpen && <Sidebar onToggle={toggleSidebar} />}
       
+      {/* Main content area - always full height and proper positioning */}
       <div className="flex-1 flex flex-col h-full bg-gray-50/50">
         <Header 
           title="Home" 
           showBackButton={false}
         />
         
+        {/* Toggle button only shows when sidebar is closed */}
         {!isSidebarOpen && (
           <button 
             onClick={toggleSidebar}
