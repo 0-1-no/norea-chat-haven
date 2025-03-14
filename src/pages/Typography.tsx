@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Sidebar } from '@/components/Sidebar';
 import { Header } from '@/components/Header';
@@ -68,7 +67,7 @@ const Typography = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold mb-4">Grunnprinsipper</h2>
+              <h2 className="text-2xl font-semibold">Grunnprinsipper</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-3">
                   <h3 className="text-lg font-medium">Lesbarhet og klarhet</h3>
@@ -250,8 +249,8 @@ const Typography = () => {
 {`// Eksempel på kodeblokk
 function calculateQuantumState(qubits) {
   return qubits.map(q => q.superposition ? 
-    Math.sqrt(0.5) * |0⟩ + Math.sqrt(0.5) * |1⟩ : 
-    |0⟩
+    Math.sqrt(0.5) * "|0⟩" + Math.sqrt(0.5) * "|1⟩" : 
+    "|0⟩"
   );
 }`}
                     </pre>
@@ -272,7 +271,7 @@ function calculateQuantumState(qubits) {
               
               <div className="mt-6 bg-muted p-6 rounded-lg space-y-6">
                 <div>
-                  <h3 className="text-lg font-medium mb-3">Mobile enheter (< 640px)</h3>
+                  <h3 className="text-lg font-medium mb-3">Mobile enheter (&lt; 640px)</h3>
                   <div className="bg-background p-4 rounded-md">
                     <p className="text-sm">
                       • Mindre skriftstørrelser: Overskrifter er 10-15% mindre
