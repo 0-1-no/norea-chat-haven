@@ -8,7 +8,7 @@ export const SidebarContent: React.FC = () => {
   const [activeChat, setActiveChat] = useState<string | null>("Forstå kvantedatabehandling");
   
   const recentChats = [
-    { id: "1", title: "Forstå kvantedatabehandling", date: "10. mar" },
+    { id: "1", title: "Forstå kvantedatabehandling", date: "10. mar", to: "/chat-demo" },
     { id: "2", title: "Analyser salgsdata", date: "9. mar" },
     { id: "3", title: "Planlegg europeisk ferie", date: "7. mar" },
     { id: "4", title: "Essay om klimaendringer", date: "5. mar" },
@@ -75,6 +75,7 @@ export const SidebarContent: React.FC = () => {
             date={chat.date}
             isActive={activeChat === chat.title}
             onClick={() => setActiveChat(chat.title)}
+            to={chat.to}
           />
         ))}
       </SidebarSection>
