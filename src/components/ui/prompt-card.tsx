@@ -1,18 +1,22 @@
 
 import React from 'react';
-import { MessageSquare, Settings, FileText, Mail } from 'lucide-react';
+import { MessageSquare, Settings, FileText, Mail, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export type PromptCardProps = {
   text: string;
+  title?: string;
   icon?: 'chat' | 'settings' | 'document' | 'email';
+  iconPosition?: 'left' | 'right';
   onClick?: () => void;
   className?: string;
 };
 
 export const PromptCard: React.FC<PromptCardProps> = ({ 
   text, 
+  title,
   icon = 'chat',
+  iconPosition = 'left',
   onClick, 
   className 
 }) => {
@@ -30,21 +34,33 @@ export const PromptCard: React.FC<PromptCardProps> = ({
     }
   };
 
+  const IconComponent = getIcon();
+
   return (
     <div 
       className={cn(
         "bg-surface border border-surface-border rounded-lg p-4 flex items-center gap-3 cursor-pointer",
         "hover:border-primary hover:bg-surface-hover hover:shadow-surface-md transition-all duration-200",
-        "active:bg-surface-hover/90 active:scale-[0.99] active:shadow-surface-sm",
-        "animate-slide-up",
         className
       )}
       onClick={onClick}
     >
-      <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center flex-shrink-0 group-hover:bg-primary/10">
-        {getIcon()}
+      {iconPosition === 'left' && (
+        <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center flex-shrink-0">
+          {IconComponent}
+        </div>
+      )}
+      
+      <div className="flex-1">
+        {title && <h4 className="font-medium text-sm mb-1">{title}</h4>}
+        <p className="text-sm text-surface-foreground">{text}</p>
       </div>
-      <p className="text-sm text-surface-foreground flex-1">{text}</p>
+      
+      {iconPosition === 'right' && (
+        <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center flex-shrink-0">
+          {IconComponent}
+        </div>
+      )}
     </div>
   );
 };
