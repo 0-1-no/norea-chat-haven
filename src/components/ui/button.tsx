@@ -26,10 +26,10 @@ const buttonVariants = cva(
         sm: "h-9 rounded-md px-3",
         lg: "h-11 rounded-md px-8",
         icon: "h-10 w-10",
-        auto: "h-auto px-4 py-2", // New size variant for content-driven height
+        auto: "h-auto px-4 py-2", // Content-driven height
       },
       fullWidth: {
-        true: "w-full",
+        true: "w-full max-w-full", // Added max-width to ensure button doesn't overflow
         false: "w-auto",
       },
     },

@@ -13,7 +13,7 @@ export const SidebarProfile: React.FC = () => {
   const { setTheme, theme } = useTheme();
   
   return (
-    <div className="mt-auto border-t border-sidebar-border p-3 sticky bottom-0 bg-sidebar z-10">
+    <div className="mt-auto border-t border-sidebar-border p-3 sticky bottom-0 bg-sidebar z-50">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <div className="flex items-center gap-3 cursor-pointer hover:bg-sidebar-accent p-2 rounded-lg transition-colors">
