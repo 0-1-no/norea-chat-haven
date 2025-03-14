@@ -37,7 +37,6 @@ export const PromptCard: React.FC<PromptCardProps> = ({
       className={cn(
         "bg-white border border-gray-200 rounded-xl p-4 flex items-center gap-3 cursor-pointer",
         "hover:border-gray-300 hover:shadow-sm transition-all duration-200",
-        "animate-slide-up",
         className
       )}
       onClick={onClick}

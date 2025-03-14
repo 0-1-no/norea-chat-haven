@@ -18,7 +18,7 @@ const Index = () => {
       {isSidebarOpen && <Sidebar onToggle={toggleSidebar} />}
       
       {/* Main content area - always full height and proper positioning */}
-      <div className="flex-1 flex flex-col h-full bg-gray-50/50">
+      <div className="flex-1 flex flex-col h-full bg-white">
         <Header 
           title="Home" 
           showBackButton={false}
@@ -37,7 +37,7 @@ const Index = () => {
         
         <ChatInterface 
           userName="John"
-          className="flex-1"
+          className="flex-1 overflow-auto"
         />
       </div>
     </div>
