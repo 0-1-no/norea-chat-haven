@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -190,4 +189,21 @@
   .interactive-element {
     @apply bg-interactive text-interactive-foreground hover:bg-interactive-hover transition-colors;
   }
+}
+
+/* Sikre at dark mode-overgangene er smidige */
+.dark body {
+  color-scheme: dark;
+}
+
+/* Sikre at light mode-overgangene er smidige */
+body {
+  color-scheme: light;
+}
+
+/* Legg til en overgang for smidige overganger mellom temaer */
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }

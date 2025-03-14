@@ -54,7 +54,7 @@ const Index = () => {
           )}
           
           <Header 
-            title="Home" 
+            title="Hjem" 
             showBackButton={false}
           />
           
