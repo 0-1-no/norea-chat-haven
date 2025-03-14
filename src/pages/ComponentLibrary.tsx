@@ -3,7 +3,6 @@ import React from 'react';
 import { Sidebar } from '@/components/Sidebar';
 import { Header } from '@/components/Header';
 import { Button } from '@/components/ui/button';
-import { PromptCard } from '@/components/ui/prompt-card';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { 
   AlertCircle, ArrowLeft, ArrowRight, Check, ChevronDown, ChevronRight, 
@@ -137,61 +136,6 @@ const ComponentLibrary = () => {
                     <Button variant="outline">
                       Filters <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
-                  </div>
-                </div>
-              </div>
-            </section>
-            
-            {/* PromptCard Component */}
-            <section>
-              <h2 className="text-2xl font-semibold mb-4">PromptCard</h2>
-              
-              <div className="space-y-6 max-w-md">
-                <div>
-                  <h3 className="text-sm font-medium text-muted-foreground mb-2">Normal</h3>
-                  <PromptCard 
-                    text="Skriv en to-do liste for et personlig prosjekt eller oppgave" 
-                    icon="document"
-                  />
-                </div>
-                
-                <div>
-                  <h3 className="text-sm font-medium text-muted-foreground mb-2">Hover</h3>
-                  <PromptCard 
-                    className="border-primary bg-surface-hover shadow-surface-md pointer-events-none"
-                    text="Generer et e-postsvar til et jobbtilbud" 
-                    icon="email"
-                  />
-                </div>
-                
-                <h3 className="text-lg font-medium mt-6 mb-2">Varianter</h3>
-                
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="text-sm text-muted-foreground mb-2">Med ikon til venstre (standard)</h4>
-                    <PromptCard 
-                      text="Skriv en to-do liste for et personlig prosjekt eller oppgave" 
-                      icon="document"
-                      iconPosition="left"
-                    />
-                  </div>
-                  
-                  <div>
-                    <h4 className="text-sm text-muted-foreground mb-2">Med ikon til høyre</h4>
-                    <PromptCard 
-                      text="Oppsummer denne artikkelen eller teksten for meg i ett avsnitt" 
-                      icon="document"
-                      iconPosition="right"
-                    />
-                  </div>
-                  
-                  <div>
-                    <h4 className="text-sm text-muted-foreground mb-2">Med tittel og tekst over flere linjer</h4>
-                    <PromptCard 
-                      title="Artikkelsammendrag"
-                      text="Ta en lang artikkel eller nyhetsartikkel og lag et konsist sammendrag som fremhever nøkkelpunktene og hovedkonklusjonene, samtidig som du bevarer den viktigste informasjonen." 
-                      icon="document"
-                    />
                   </div>
                 </div>
               </div>

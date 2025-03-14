@@ -8,6 +8,7 @@ export type PromptCardProps = {
   title?: string;
   icon?: 'chat' | 'settings' | 'document' | 'email';
   iconPosition?: 'left' | 'right';
+  hideIcon?: boolean;
   onClick?: () => void;
   className?: string;
 };
@@ -17,6 +18,7 @@ export const PromptCard: React.FC<PromptCardProps> = ({
   title,
   icon = 'chat',
   iconPosition = 'left',
+  hideIcon = false,
   onClick, 
   className 
 }) => {
@@ -45,7 +47,7 @@ export const PromptCard: React.FC<PromptCardProps> = ({
       )}
       onClick={onClick}
     >
-      {iconPosition === 'left' && (
+      {!hideIcon && iconPosition === 'left' && (
         <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center flex-shrink-0">
           {IconComponent}
         </div>
@@ -56,7 +58,7 @@ export const PromptCard: React.FC<PromptCardProps> = ({
         <p className="text-sm text-surface-foreground">{text}</p>
       </div>
       
-      {iconPosition === 'right' && (
+      {!hideIcon && iconPosition === 'right' && (
         <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center flex-shrink-0">
           {IconComponent}
         </div>

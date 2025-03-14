@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Search, Plus, ChevronDown, ChevronRight, Users, Folders, MessageCircle, PanelLeft, User, LogOut, Sun, Moon, Layers } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -136,6 +137,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ onToggle }) => {
           <SidebarItem 
             title="Komponentbibliotek"
             to="/components" 
+          />
+          <SidebarItem 
+            title="Kortkomponenter"
+            to="/cards" 
           />
         </SidebarSection>
         
