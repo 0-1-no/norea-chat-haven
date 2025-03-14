@@ -7,6 +7,7 @@ import { ImageCard } from '@/components/ui/image-card';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { PanelLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Tag } from '@/components/ui/tag';
 
 const Cards = () => {
   const isMobile = useIsMobile();
@@ -81,6 +82,15 @@ const Cards = () => {
                     icon="email"
                   />
                 </div>
+
+                <div>
+                  <h3 className="text-sm font-medium text-muted-foreground mb-2">Brand Variant</h3>
+                  <PromptCard 
+                    text="Lag en markedsføringsplan for nye produkter" 
+                    icon="document"
+                    variant="brand"
+                  />
+                </div>
                 
                 <h3 className="text-lg font-medium mt-6 mb-2">Varianter</h3>
                 
@@ -118,6 +128,38 @@ const Cards = () => {
                       text="Dette er et eksempel på et kort uten ikon, som kun viser tekst"
                       hideIcon={true}
                     />
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Tag Component */}
+            <section>
+              <h2 className="text-2xl font-semibold mb-4">Tags</h2>
+              
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-sm font-medium text-muted-foreground mb-2">Varianter</h3>
+                  <div className="flex flex-wrap gap-3">
+                    <Tag text="Standard" />
+                    <Tag text="Outline" variant="outline" />
+                    <Tag text="Brand" variant="brand" />
+                  </div>
+                </div>
+                
+                <div>
+                  <h3 className="text-sm font-medium text-muted-foreground mb-2">Størrelser</h3>
+                  <div className="flex flex-wrap gap-3 items-center">
+                    <Tag text="Small" size="sm" />
+                    <Tag text="Medium" size="md" />
+                  </div>
+                </div>
+                
+                <div>
+                  <h3 className="text-sm font-medium text-muted-foreground mb-2">Med remove knapp</h3>
+                  <div className="flex flex-wrap gap-3">
+                    <Tag text="Removable" onRemove={() => {}} />
+                    <Tag text="Brand removable" variant="brand" onRemove={() => {}} />
                   </div>
                 </div>
               </div>

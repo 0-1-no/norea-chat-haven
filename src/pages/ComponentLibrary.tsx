@@ -4,6 +4,7 @@ import { Sidebar } from '@/components/Sidebar';
 import { Header } from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { Tag } from '@/components/ui/tag';
 import { 
   AlertCircle, ArrowLeft, ArrowRight, Check, ChevronDown, ChevronRight, 
   FileText, Folders, Mail, MessageCircle, MessageSquare, Moon, PanelLeft, 
@@ -137,6 +138,48 @@ const ComponentLibrary = () => {
                       Filters <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <h4 className="text-sm text-muted-foreground mb-2">Default Primary</h4>
+                    <Button variant="default">
+                      Primary Button
+                    </Button>
+                  </div>
+                  
+                  <div>
+                    <h4 className="text-sm text-muted-foreground mb-2">Brand Gradient</h4>
+                    <Button variant="brand">
+                      Brand Button <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </section>
+            
+            {/* Tags Component */}
+            <section>
+              <h2 className="text-2xl font-semibold mb-4">Tags</h2>
+              
+              <div className="space-y-4">
+                <h3 className="text-lg font-medium">Varianter</h3>
+                <div className="flex flex-wrap gap-3">
+                  <Tag text="Default" />
+                  <Tag text="Outline" variant="outline" />
+                  <Tag text="Brand" variant="brand" />
+                </div>
+
+                <h3 className="text-lg font-medium mt-4">Størrelser</h3>
+                <div className="flex flex-wrap gap-3 items-center">
+                  <Tag text="Small" size="sm" />
+                  <Tag text="Medium" size="md" />
+                </div>
+
+                <h3 className="text-lg font-medium mt-4">Med remove knapp</h3>
+                <div className="flex flex-wrap gap-3">
+                  <Tag text="Removable" onRemove={() => {}} />
+                  <Tag text="Brand removable" variant="brand" onRemove={() => {}} />
                 </div>
               </div>
             </section>

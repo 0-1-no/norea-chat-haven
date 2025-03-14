@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import ComponentLibrary from "./pages/ComponentLibrary";
 import Cards from "./pages/Cards";
+import DesignTokens from "./pages/DesignTokens";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ function App() {
             <Route path="/" element={<Index />} />
             <Route path="/components" element={<ComponentLibrary />} />
             <Route path="/cards" element={<Cards />} />
+            <Route path="/design-tokens" element={<DesignTokens />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

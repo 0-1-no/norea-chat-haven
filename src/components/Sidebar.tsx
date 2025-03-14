@@ -133,7 +133,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onToggle }) => {
           {/* Characters content would go here */}
         </SidebarSection>
         
-        <SidebarSection title="Komponenter" icon={<Layers className="w-4 h-4 text-gray-500" />}>
+        <SidebarSection title="Design System" icon={<Layers className="w-4 h-4 text-gray-500" />}>
           <SidebarItem 
             title="Komponentbibliotek"
             to="/components" 
@@ -141,6 +141,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ onToggle }) => {
           <SidebarItem 
             title="Kortkomponenter"
             to="/cards" 
+          />
+          <SidebarItem 
+            title="Design Tokens"
+            to="/design-tokens" 
           />
         </SidebarSection>
         
