@@ -18,7 +18,6 @@ interface MessageProps {
 export const Message: React.FC<MessageProps> = ({
   content,
   role,
-  timestamp,
   className,
 }) => {
   const [showActions, setShowActions] = useState(false);
@@ -59,10 +58,10 @@ export const Message: React.FC<MessageProps> = ({
   return (
     <div 
       className={cn(
-        "px-4 py-3 rounded-lg mb-4 relative group",
+        "rounded-lg mb-4 relative group",
         role === 'user' 
-          ? "bg-gray-100 text-foreground" 
-          : "bg-background text-foreground",
+          ? "bg-gray-100 text-foreground ml-auto px-4 py-3 max-w-[66%]" 
+          : "bg-background text-foreground mr-auto px-5 py-4",
         className
       )}
       onMouseEnter={() => setShowActions(true)}
@@ -75,12 +74,6 @@ export const Message: React.FC<MessageProps> = ({
           <p>{content}</p>
         )}
       </div>
-      
-      {timestamp && (
-        <div className="mt-1">
-          <span className="text-xs text-muted-foreground">{timestamp}</span>
-        </div>
-      )}
       
       {showActions && (
         <div className="absolute -bottom-3 right-4 flex bg-background shadow-md rounded-full border border-border opacity-0 group-hover:opacity-100 transition-opacity">

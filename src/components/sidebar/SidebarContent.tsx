@@ -39,6 +39,10 @@ export const SidebarContent: React.FC = () => {
           to="/design-tokens" 
         />
         <SidebarItem 
+          title="Typography"
+          to="/typography" 
+        />
+        <SidebarItem 
           title="Input felter"
           to="/input-fields" 
         />

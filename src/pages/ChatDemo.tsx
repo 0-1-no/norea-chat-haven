@@ -23,57 +23,47 @@ const ChatDemo = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  // Sample conversation data
+  // Sample conversation data - removed timestamps as requested
   const conversation = [
     {
       role: 'user' as const,
-      content: 'Hei, kan du forklare meg hva kvantedatabehandling er?',
-      timestamp: '10:24'
+      content: 'Hei, kan du forklare meg hva kvantedatabehandling er?'
     },
     {
       role: 'ai' as const,
-      content: 'Kvantedatabehandling er behandling av data som bruker kvantefysikkens prinsipper for å utføre beregninger. Dette involverer bruk av kvantebit (qubits) i stedet for vanlige binære bits.',
-      timestamp: '10:24'
+      content: 'Kvantedatabehandling er behandling av data som bruker kvantefysikkens prinsipper for å utføre beregninger. Dette involverer bruk av kvantebit (qubits) i stedet for vanlige binære bits.'
     },
     {
       role: 'user' as const,
-      content: 'Hvordan fungerer qubits?',
-      timestamp: '10:25'
+      content: 'Hvordan fungerer qubits?'
     },
     {
       role: 'ai' as const,
-      content: 'Qubits er grunnleggende enheter i kvantedatabehandling, og de fungerer fundamentalt annerledes enn klassiske bits.\n\n## Hovedegenskaper ved qubits\n\n1. **Superposisjon**: I motsetning til klassiske bits som kan være enten 0 eller 1, kan qubits eksistere i en "superposisjon" av begge tilstander samtidig. Dette betyr at en qubit kan representere både 0 og 1 på samme tid, med ulike sannsynligheter.\n\n2. **Sammenfiltring (Entanglement)**: Qubits kan være "sammenfiltret", noe som betyr at tilstanden til én qubit er direkte avhengig av tilstanden til en annen, uansett avstand mellom dem. Dette er en svært kraftig egenskap som ikke eksisterer i klassisk databehandling.\n\n3. **Målinger endrer tilstanden**: Når man måler en qubit, kollapser superposisjonen til én av de klassiske tilstandene (0 eller 1). Før måling eksisterer qubit i en probabilistisk tilstand.\n\n```\n|ψ⟩ = α|0⟩ + β|1⟩\n```\n\nDer |ψ⟩ representerer qubit-tilstanden, og α og β er komplekse tall som bestemmer sannsynligheten for å måle henholdsvis 0 eller 1.',
-      timestamp: '10:26'
+      content: 'Qubits er grunnleggende enheter i kvantedatabehandling, og de fungerer fundamentalt annerledes enn klassiske bits.\n\n## Hovedegenskaper ved qubits\n\n1. **Superposisjon**: I motsetning til klassiske bits som kan være enten 0 eller 1, kan qubits eksistere i en "superposisjon" av begge tilstander samtidig. Dette betyr at en qubit kan representere både 0 og 1 på samme tid, med ulike sannsynligheter.\n\n2. **Sammenfiltring (Entanglement)**: Qubits kan være "sammenfiltret", noe som betyr at tilstanden til én qubit er direkte avhengig av tilstanden til en annen, uansett avstand mellom dem. Dette er en svært kraftig egenskap som ikke eksisterer i klassisk databehandling.\n\n3. **Målinger endrer tilstanden**: Når man måler en qubit, kollapser superposisjonen til én av de klassiske tilstandene (0 eller 1). Før måling eksisterer qubit i en probabilistisk tilstand.\n\n```\n|ψ⟩ = α|0⟩ + β|1⟩\n```\n\nDer |ψ⟩ representerer qubit-tilstanden, og α og β er komplekse tall som bestemmer sannsynligheten for å måle henholdsvis 0 eller 1.'
     },
     {
       role: 'user' as const,
-      content: 'Fantastisk! Hvilke praktiske anvendelser har dette?',
-      timestamp: '10:28'
+      content: 'Fantastisk! Hvilke praktiske anvendelser har dette?'
     },
     {
       role: 'ai' as const,
-      content: 'Kvantedatabehandling har flere potensielle praktiske anvendelser, selv om mange fortsatt er under utvikling:',
-      timestamp: '10:29'
+      content: 'Kvantedatabehandling har flere potensielle praktiske anvendelser, selv om mange fortsatt er under utvikling:'
     },
     {
       role: 'user' as const,
-      content: 'Kan du gi meg noen konkrete eksempler?',
-      timestamp: '10:30'
+      content: 'Kan du gi meg noen konkrete eksempler?'
     },
     {
       role: 'ai' as const,
-      content: '## Praktiske anvendelser av kvantedatabehandling\n\n1. **Kryptografi og sikkerhet**:\n   - Kvantekryptografi tilbyr teoretisk ubrytelig kryptering\n   - Shors algoritme kan potensielt knekke dagens vanlige krypteringssystemer\n   - Post-kvantum kryptografi utvikles for å motstå kvanteangrep\n\n2. **Materialvitenskap og kjemi**:\n   - Simulering av molekyler og materialer på kvantenivå\n   - Utvikling av nye medisiner og materialer\n   - Optimalisering av kjemiske reaksjoner\n\n3. **Maskinlæring og AI**:\n   - Kvante-maskinlæring kan potensielt løse komplekse problemer raskere\n   - Mønstergjenkjenning i enormt store datasett\n   - Kvantenevralt nettverk for avansert klassifisering\n\n4. **Finansiell modellering**:\n   - Porteføljeoptimalisering\n   - Risikanalyse\n   - Monte Carlo-simuleringer for markedsprediksjon\n\n5. **Logistikk og optimalisering**:\n   - Løsning av komplekse ruteproblemer\n   - Forsyningskjedeoptimalisering\n   - Trafikkflytmodellering\n\nDet er viktig å merke seg at mange av disse anvendelsene fortsatt er i forsknings- eller tidlig utviklingsfase, men potensialet for transformativ innvirkning er betydelig.',
-      timestamp: '10:31'
+      content: '## Praktiske anvendelser av kvantedatabehandling\n\n1. **Kryptografi og sikkerhet**:\n   - Kvantekryptografi tilbyr teoretisk ubrytelig kryptering\n   - Shors algoritme kan potensielt knekke dagens vanlige krypteringssystemer\n   - Post-kvantum kryptografi utvikles for å motstå kvanteangrep\n\n2. **Materialvitenskap og kjemi**:\n   - Simulering av molekyler og materialer på kvantenivå\n   - Utvikling av nye medisiner og materialer\n   - Optimalisering av kjemiske reaksjoner\n\n3. **Maskinlæring og AI**:\n   - Kvante-maskinlæring kan potensielt løse komplekse problemer raskere\n   - Mønstergjenkjenning i enormt store datasett\n   - Kvantenevralt nettverk for avansert klassifisering\n\n4. **Finansiell modellering**:\n   - Porteføljeoptimalisering\n   - Risikanalyse\n   - Monte Carlo-simuleringer for markedsprediksjon\n\n5. **Logistikk og optimalisering**:\n   - Løsning av komplekse ruteproblemer\n   - Forsyningskjedeoptimalisering\n   - Trafikkflytmodellering\n\nDet er viktig å merke seg at mange av disse anvendelsene fortsatt er i forsknings- eller tidlig utviklingsfase, men potensialet for transformativ innvirkning er betydelig.'
     },
     {
       role: 'user' as const,
-      content: 'Takk for grundig forklaring!',
-      timestamp: '10:32'
+      content: 'Takk for grundig forklaring!'
     },
     {
       role: 'ai' as const,
-      content: 'Bare hyggelig! Er det noe mer du lurer på om kvantedatabehandling eller relaterte emner?',
-      timestamp: '10:32'
+      content: 'Bare hyggelig! Er det noe mer du lurer på om kvantedatabehandling eller relaterte emner?'
     }
   ];
 
@@ -134,7 +124,6 @@ const ChatDemo = () => {
                   key={index}
                   role={message.role}
                   content={message.content}
-                  timestamp={message.timestamp}
                   className="max-w-3xl mx-auto"
                 />
               ))}

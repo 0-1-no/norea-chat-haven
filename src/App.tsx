@@ -16,6 +16,7 @@ import Chatbox from "./pages/Chatbox";
 import Layout from "./pages/Layout";
 import Navigation from "./pages/Navigation";
 import ChatDemo from "./pages/ChatDemo";
+import Typography from "./pages/Typography";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +39,7 @@ function App() {
             <Route path="/layout" element={<Layout />} />
             <Route path="/navigation" element={<Navigation />} />
             <Route path="/chat-demo" element={<ChatDemo />} />
+            <Route path="/typography" element={<Typography />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
