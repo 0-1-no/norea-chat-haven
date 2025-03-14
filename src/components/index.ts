@@ -1,6 +1,12 @@
 
 // Re-export all components for easier imports
 export * from './Sidebar';
+export * from './sidebar/SidebarItem';
+export * from './sidebar/SidebarSection';
+export * from './sidebar/SidebarProfile';
+export * from './sidebar/SidebarSearch';
+export * from './sidebar/SidebarNewChat';
+export * from './sidebar/SidebarContent';
 export * from './Header';
 export * from './MessageInput';
 export * from './SearchInput';
