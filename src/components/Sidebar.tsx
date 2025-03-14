@@ -16,9 +16,9 @@ type SidebarProps = {
 
 export const Sidebar: React.FC<SidebarProps> = ({ onToggle }) => {
   return (
-    <div className="h-screen w-60 bg-sidebar border-r border-gray-200 flex flex-col pt-4 animate-fade-in">
+    <div className="h-screen w-60 bg-sidebar border-r border-sidebar-border flex flex-col pt-4 animate-fade-in">
       <div className="px-4 mb-4 flex justify-between items-center">
-        <h1 className="text-xl font-semibold text-gray-900">Norea</h1>
+        <h1 className="text-xl font-semibold text-sidebar-foreground">Norea</h1>
         <Button variant="ghost" size="icon" onClick={onToggle} className="h-8 w-8">
           <PanelLeft className="h-4 w-4" />
         </Button>
