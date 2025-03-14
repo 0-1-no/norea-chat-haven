@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react';
-import { Search, Plus, ChevronDown, ChevronRight, Users, Folders, MessageCircle } from 'lucide-react';
+import { Search, Plus, ChevronDown, ChevronRight, Users, Folders, MessageCircle, ChevronLeftSquare, PanelLeft } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 type SidebarItemProps = {
@@ -65,7 +64,11 @@ const SidebarSection: React.FC<SidebarSectionProps> = ({
   );
 };
 
-export const Sidebar: React.FC = () => {
+interface SidebarProps {
+  onToggle?: () => void;
+}
+
+export const Sidebar: React.FC<SidebarProps> = ({ onToggle }) => {
   const [activeChat, setActiveChat] = useState<string | null>("Understanding quantum computing");
 
   const recentChats = [
@@ -77,7 +80,17 @@ export const Sidebar: React.FC = () => {
   ];
 
   return (
-    <div className="h-screen w-60 bg-sidebar border-r border-gray-200 flex flex-col pt-4 animate-fade-in">
+    <div className="h-screen w-60 bg-sidebar border-r border-gray-200 flex flex-col pt-4 animate-fade-in relative">
+      <div className="absolute -right-10 top-4">
+        <button 
+          onClick={onToggle}
+          className="p-2 rounded-md bg-white border border-gray-200 shadow-sm hover:bg-gray-50 transition-all"
+          aria-label="Toggle sidebar"
+        >
+          <PanelLeft className="w-4 h-4 text-gray-600" />
+        </button>
+      </div>
+      
       <div className="px-4 mb-4">
         <h1 className="text-xl font-semibold text-gray-900">Norea</h1>
       </div>

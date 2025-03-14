@@ -8,13 +8,15 @@ type PromptCardProps = {
   icon?: 'chat' | 'settings' | 'document' | 'email';
   onClick?: () => void;
   className?: string;
+  style?: React.CSSProperties;
 };
 
 export const PromptCard: React.FC<PromptCardProps> = ({ 
   text, 
   icon = 'chat',
   onClick, 
-  className 
+  className,
+  style
 }) => {
   const getIcon = () => {
     switch (icon) {
@@ -39,6 +41,7 @@ export const PromptCard: React.FC<PromptCardProps> = ({
         className
       )}
       onClick={onClick}
+      style={style}
     >
       <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
         {getIcon()}
