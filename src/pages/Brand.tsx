@@ -57,11 +57,11 @@ const Brand = () => {
               <div className="text-3xl font-bold text-gray-900">Norea</div>
             </div>
             
-            <div className="bg-norea-purple p-8 rounded-lg shadow flex items-center justify-center">
+            <div className="bg-purple-700 p-8 rounded-lg shadow flex items-center justify-center">
               <div className="text-3xl font-bold text-white">Norea</div>
             </div>
             
-            <div className="bg-gradient-to-r from-norea-purple to-norea-light-purple p-8 rounded-lg shadow flex items-center justify-center">
+            <div className="bg-gradient-to-r from-purple-700 to-purple-400 p-8 rounded-lg shadow flex items-center justify-center">
               <div className="text-3xl font-bold text-white">Norea</div>
             </div>
           </div>
@@ -78,7 +78,7 @@ const Brand = () => {
           <div className="flex items-center justify-center py-16">
             <div 
               ref={orbRef}
-              className="w-32 h-32 rounded-full bg-gradient-to-br from-norea-light-purple to-norea-purple relative"
+              className="w-32 h-32 rounded-full bg-gradient-to-br from-purple-400 to-purple-700 relative"
               style={{
                 transition: "box-shadow 0.5s ease, transform 0.5s ease"
               }}
