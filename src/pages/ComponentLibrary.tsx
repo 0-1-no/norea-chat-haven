@@ -104,32 +104,62 @@ const ComponentLibrary = () => {
                 <div>
                   <h3 className="text-lg font-medium mb-2">Standard Knapp</h3>
                   <div className="flex flex-wrap gap-4">
-                    <Button>Standard Knapp</Button>
-                    <Button className="hover:bg-primary/90">Hover Knapp</Button>
-                    <Button className="active:bg-primary/80">Active Knapp</Button>
+                    <div className="space-y-2">
+                      <div className="text-sm text-muted-foreground">Normal</div>
+                      <Button>Standard Knapp</Button>
+                    </div>
+                    <div className="space-y-2">
+                      <div className="text-sm text-muted-foreground">Hover</div>
+                      <Button className="hover:bg-primary/90 pointer-events-none ring-2 ring-primary/30">Hover Knapp</Button>
+                    </div>
+                    <div className="space-y-2">
+                      <div className="text-sm text-muted-foreground">Active</div>
+                      <Button className="active:bg-primary/80 pointer-events-none bg-primary/80 transform scale-[0.98]">Active Knapp</Button>
+                    </div>
                   </div>
                 </div>
 
                 <div>
                   <h3 className="text-lg font-medium mb-2">Knapp med ikoner</h3>
                   <div className="flex flex-wrap gap-4">
-                    <Button>
-                      <ArrowRight className="mr-2 h-4 w-4" /> Høyre Ikon
-                    </Button>
-                    <Button>
-                      Venstre Ikon <ArrowLeft className="ml-2 h-4 w-4" />
-                    </Button>
+                    <div className="space-y-2">
+                      <div className="text-sm text-muted-foreground">Med ikon til høyre</div>
+                      <Button>
+                        <ArrowRight className="mr-2 h-4 w-4" /> Høyre Ikon
+                      </Button>
+                    </div>
+                    <div className="space-y-2">
+                      <div className="text-sm text-muted-foreground">Med ikon til venstre</div>
+                      <Button>
+                        Venstre Ikon <ArrowLeft className="ml-2 h-4 w-4" />
+                      </Button>
+                    </div>
                   </div>
                 </div>
 
                 <div>
                   <h3 className="text-lg font-medium mb-2">Knapp varianter</h3>
                   <div className="flex flex-wrap gap-4">
-                    <Button variant="default">Default</Button>
-                    <Button variant="secondary">Secondary</Button>
-                    <Button variant="outline">Outline</Button>
-                    <Button variant="ghost">Ghost</Button>
-                    <Button variant="link">Link</Button>
+                    <div className="space-y-2">
+                      <div className="text-sm text-muted-foreground">Default</div>
+                      <Button variant="default">Default</Button>
+                    </div>
+                    <div className="space-y-2">
+                      <div className="text-sm text-muted-foreground">Secondary</div>
+                      <Button variant="secondary">Secondary</Button>
+                    </div>
+                    <div className="space-y-2">
+                      <div className="text-sm text-muted-foreground">Outline</div>
+                      <Button variant="outline">Outline</Button>
+                    </div>
+                    <div className="space-y-2">
+                      <div className="text-sm text-muted-foreground">Ghost</div>
+                      <Button variant="ghost">Ghost</Button>
+                    </div>
+                    <div className="space-y-2">
+                      <div className="text-sm text-muted-foreground">Link</div>
+                      <Button variant="link">Link</Button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -138,22 +168,35 @@ const ComponentLibrary = () => {
             <div>
               <h2 className="text-2xl font-semibold mb-4">PromptCard</h2>
               <div className="space-y-4 max-w-md">
-                <PromptCard 
-                  text="Skriv en to-do liste for et personlig prosjekt eller oppgave" 
-                  icon="document"
-                />
-                <PromptCard 
-                  text="Generer et e-postsvar til et jobbtilbud" 
-                  icon="email"
-                />
-                <PromptCard 
-                  text="Oppsummer denne artikkelen eller teksten for meg i ett avsnitt" 
-                  icon="document"
-                />
-                <PromptCard 
-                  text="Hvordan fungerer AI i en teknisk sammenheng" 
-                  icon="settings"
-                />
+                <div className="border p-4 rounded-lg space-y-4 bg-surface-hover/20">
+                  <h3 className="text-lg font-medium">Normal Tilstand</h3>
+                  <PromptCard 
+                    text="Skriv en to-do liste for et personlig prosjekt eller oppgave" 
+                    icon="document"
+                  />
+                </div>
+                
+                <div className="border p-4 rounded-lg space-y-4 bg-surface-hover/20">
+                  <h3 className="text-lg font-medium">Hover Tilstand</h3>
+                  <div className="pointer-events-none">
+                    <PromptCard 
+                      className="hover:border-primary hover:bg-surface-hover hover:shadow-surface-md"
+                      text="Generer et e-postsvar til et jobbtilbud" 
+                      icon="email"
+                    />
+                  </div>
+                </div>
+                
+                <div className="border p-4 rounded-lg space-y-4 bg-surface-hover/20">
+                  <h3 className="text-lg font-medium">Active Tilstand</h3>
+                  <div className="pointer-events-none">
+                    <PromptCard 
+                      className="border-primary bg-surface-hover/90 shadow-surface-sm transform scale-[0.99]"
+                      text="Oppsummer denne artikkelen eller teksten for meg i ett avsnitt" 
+                      icon="document"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
 
