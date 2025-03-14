@@ -1,10 +1,83 @@
-# Welcome to your Lovable project
+
+# Norea Chat Application
 
 ## Project info
 
 **URL**: https://lovable.dev/projects/f6979301-ada4-4942-9325-ae2a93cbefcd
 
-## How can I edit this code?
+## Layout Architecture
+
+The Norea Chat application follows a well-defined layout architecture consisting of three main areas:
+
+### 1. Backdrop
+- Serves as the global background surface for the entire application
+- Uses a subtle light gray background in light mode (dark mode available)
+- Provides visual contrast for the other layout elements
+
+### 2. Sidebar
+- Contains navigation, recent chats, and user profile information
+- Collapsible for maximizing screen real estate
+- Adapts for mobile: overlay behavior rather than pushing content
+- Automatically collapses on mobile viewport by default
+
+### 3. Canvas
+- Main content area where the chat interface is rendered
+- Elevated above the backdrop with subtle shadows and borders on desktop
+- Takes full width on mobile devices without borders or rounded edges
+- Contains the header, chat messages, and input components
+
+## Design System
+
+The application uses a comprehensive design system built on tokens, implemented through CSS variables and Tailwind CSS:
+
+### Color Tokens
+- Primary colors: Purple theme with various shades
+- Surface colors: For different UI elements (backdrop, canvas, sidebar)
+- Interactive colors: For buttons and interactive elements
+- Semantic colors: For status indicators (destructive, muted, etc.)
+
+### Spacing Tokens
+- Content spacing: Small (0.75rem), Medium (1.25rem), Large (2rem)
+- Component-specific spacing using Tailwind's built-in scale
+
+### Typography
+- Font sizes controlled via Tailwind's built-in scale
+- Consistent text styles across components
+
+### Shadows and Effects
+- Multiple levels of shadows to create depth
+- Surface shadows: Small, Medium, Large
+
+### Animations
+- Fade-in, Slide-up, Pulse effects
+- Consistent timing for transitions
+
+## Responsive Design
+
+The application is fully responsive across all device sizes:
+
+### Breakpoints
+- Mobile: < 768px
+- Tablet: 768px - 1024px
+- Desktop: > 1024px
+- Max content width: 1400px
+
+### Mobile Adaptations
+- Sidebar becomes an overlay that can be toggled
+- Canvas takes full width without borders/rounded corners
+- Sidebar is collapsed by default
+- Touch-friendly tap targets
+
+### Tablet Adaptations
+- Similar to desktop but with adjusted spacing
+- Maintains sidebar with toggle capability
+
+### Desktop Experience
+- Full layout with sidebar visible by default
+- Canvas with consistent padding and rounded corners
+- Maximum width constraint for optimal readability
+
+## How to use this project
 
 There are several ways of editing your application.
 
@@ -36,34 +109,12 @@ npm i
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## Technologies Used
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with .
+This project is built with:
 
 - Vite
 - TypeScript
 - React
 - shadcn-ui
 - Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/f6979301-ada4-4942-9325-ae2a93cbefcd) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)

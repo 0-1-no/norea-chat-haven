@@ -14,8 +14,19 @@ export default {
 			center: true,
 			padding: '2rem',
 			screens: {
+				'sm': '640px',
+				'md': '768px',
+				'lg': '1024px',
+				'xl': '1280px',
 				'2xl': '1400px'
 			}
+		},
+		screens: {
+			'sm': '640px',
+			'md': '768px',
+			'lg': '1024px',
+			'xl': '1280px',
+			'2xl': '1400px',
 		},
 		extend: {
 			colors: {
@@ -100,6 +111,9 @@ export default {
 				'surface-sm': 'var(--surface-shadow-sm)',
 				'surface-md': 'var(--surface-shadow-md)',
 				'surface-lg': 'var(--surface-shadow-lg)',
+			},
+			maxWidth: {
+				'canvas': '1400px',
 			},
 			keyframes: {
 				'accordion-down': {

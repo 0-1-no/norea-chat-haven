@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Search, Plus, ChevronDown, ChevronRight, Users, Folders, MessageCircle, PanelLeft } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 type SidebarProps = {
   onToggle?: () => void;
@@ -71,6 +72,7 @@ const SidebarSection: React.FC<SidebarSectionProps> = ({
 
 export const Sidebar: React.FC<SidebarProps> = ({ onToggle }) => {
   const [activeChat, setActiveChat] = useState<string | null>("Understanding quantum computing");
+  const isMobile = useIsMobile();
 
   const recentChats = [
     { id: "1", title: "Understanding quantum computing", date: "Mar 10" },
