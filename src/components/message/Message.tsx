@@ -11,7 +11,6 @@ export type MessageRole = 'user' | 'ai';
 interface MessageProps {
   content: string;
   role: MessageRole;
-  timestamp?: string;
   className?: string;
 }
 
@@ -60,18 +59,21 @@ export const Message: React.FC<MessageProps> = ({
       className={cn(
         "rounded-lg mb-4 relative group",
         role === 'user' 
-          ? "bg-gray-100 text-foreground ml-auto px-4 py-3 max-w-[66%]" 
-          : "bg-background text-foreground mr-auto px-5 py-4",
+          ? "bg-gray-100 text-foreground ml-auto px-4 py-3 max-w-[66%] text-right" 
+          : "bg-background text-foreground mr-auto px-5 py-4 prose-headings:font-semibold prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg prose-h4:text-base prose-p:leading-relaxed prose-p:mb-4 prose-ul:pl-6 prose-ol:pl-6 prose-li:mb-2 prose-pre:bg-gray-50 prose-pre:p-3 prose-pre:rounded prose-pre:border prose-pre:text-sm prose-pre:font-mono",
         className
       )}
       onMouseEnter={() => setShowActions(true)}
       onMouseLeave={() => setShowActions(false)}
     >
-      <div className="prose prose-sm max-w-none">
+      <div className={cn(
+        "max-w-none",
+        role === 'ai' ? "prose prose-sm" : ""
+      )}>
         {role === 'ai' ? (
           <ReactMarkdown>{content}</ReactMarkdown>
         ) : (
-          <p>{content}</p>
+          <p className="text-right leading-relaxed">{content}</p>
         )}
       </div>
       
