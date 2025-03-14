@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -27,7 +26,9 @@ export default {
 				foreground: 'hsl(var(--foreground))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
+					foreground: 'hsl(var(--primary-foreground))',
+					muted: 'hsl(var(--primary-muted))',
+					hover: 'hsl(var(--primary-hover))',
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
@@ -63,19 +64,42 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				norea: {
-					purple: '#7C3AED',
-					'light-purple': '#8B5CF6',
-					'dark-purple': '#6D28D9',
-					'light-gray': '#F7F7F8',
-					'hover-gray': '#EAEAEB',
-					'icon-gray': '#9CA3AF'
-				}
+				canvas: {
+					DEFAULT: 'hsl(var(--canvas-background))',
+					foreground: 'hsl(var(--canvas-foreground))',
+					border: 'hsl(var(--canvas-border))',
+				},
+				backdrop: {
+					DEFAULT: 'hsl(var(--backdrop-background))',
+					foreground: 'hsl(var(--backdrop-foreground))',
+				},
+				surface: {
+					DEFAULT: 'hsl(var(--surface-background))',
+					foreground: 'hsl(var(--surface-foreground))',
+					hover: 'hsl(var(--surface-hover))',
+					border: 'hsl(var(--surface-border))',
+				},
+				interactive: {
+					DEFAULT: 'hsl(var(--interactive-background))',
+					foreground: 'hsl(var(--interactive-foreground))',
+					hover: 'hsl(var(--interactive-hover))',
+					muted: 'hsl(var(--interactive-muted))',
+				},
 			},
 			borderRadius: {
-				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+				lg: 'var(--radius-lg)',
+				md: 'var(--radius-md)',
+				sm: 'var(--radius-sm)',
+			},
+			spacing: {
+				'content-sm': 'var(--content-spacing-sm)',
+				'content-md': 'var(--content-spacing-md)',
+				'content-lg': 'var(--content-spacing-lg)',
+			},
+			boxShadow: {
+				'surface-sm': 'var(--surface-shadow-sm)',
+				'surface-md': 'var(--surface-shadow-md)',
+				'surface-lg': 'var(--surface-shadow-lg)',
 			},
 			keyframes: {
 				'accordion-down': {

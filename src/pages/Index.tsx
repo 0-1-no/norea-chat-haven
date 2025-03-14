@@ -14,15 +14,13 @@ const Index = () => {
   };
 
   return (
-    <div className="h-screen w-full flex overflow-hidden bg-gray-100">
-      {/* Backdrop - the main background */}
-      
+    <div className="h-screen w-full flex overflow-hidden bg-backdrop">
       {/* Sidebar component */}
       {isSidebarOpen && <Sidebar onToggle={toggleSidebar} />}
       
       {/* Canvas - where main content is rendered */}
-      <div className="flex-1 p-4 flex items-center justify-center">
-        <div className="w-full h-full max-w-6xl bg-white rounded-xl shadow-sm flex flex-col overflow-hidden">
+      <div className="flex-1 p-content-md flex items-center justify-center">
+        <div className="w-full h-full max-w-6xl bg-canvas rounded-lg border border-canvas-border shadow-surface-sm flex flex-col overflow-hidden">
           {!isSidebarOpen && (
             <Button 
               variant="ghost" 

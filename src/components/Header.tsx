@@ -24,30 +24,30 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <div className={cn(
-      "h-14 border-b border-gray-200 px-4 flex items-center justify-between animate-fade-in",
+      "h-14 border-b border-surface-border px-4 flex items-center justify-between animate-fade-in",
       className
     )}>
       <div className="flex items-center gap-3">
         {showBackButton && (
           <button 
             onClick={onBackClick}
-            className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
+            className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-hover transition-colors"
           >
-            <ArrowLeft className="w-5 h-5 text-gray-600" />
+            <ArrowLeft className="w-5 h-5 text-surface-foreground" />
           </button>
         )}
-        <h2 className="text-lg font-medium text-gray-900">{title}</h2>
+        <h2 className="text-lg font-medium text-surface-foreground">{title}</h2>
       </div>
       
       <div className="flex items-center gap-4">
-        <span className="text-sm text-gray-500">{formattedTime}</span>
+        <span className="text-sm text-muted-foreground">{formattedTime}</span>
         
-        <button className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors">
-          <Settings className="w-5 h-5 text-gray-600" />
+        <button className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-hover transition-colors">
+          <Settings className="w-5 h-5 text-surface-foreground" />
         </button>
         
-        <button className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors">
-          <User className="w-5 h-5 text-gray-600" />
+        <button className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-hover transition-colors">
+          <User className="w-5 h-5 text-surface-foreground" />
         </button>
       </div>
     </div>
