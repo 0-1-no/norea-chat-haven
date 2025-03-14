@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { RefreshCw } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { PromptCard } from './PromptCard';
+import { PromptCard } from '@/components/ui/prompt-card';
 import { MessageInput } from './MessageInput';
 
 type ChatInterfaceProps = {

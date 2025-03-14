@@ -5,6 +5,7 @@ export * from './Header';
 export * from './MessageInput';
 export * from './SearchInput';
 export * from './FormField';
+export * from './ChatInterface';
 export * from './ui/button';
 export * from './ui/prompt-card';
 export * from './ui/image-card';

@@ -11,6 +11,8 @@ import Cards from "./pages/Cards";
 import DesignTokens from "./pages/DesignTokens";
 import InputFields from "./pages/InputFields";
 import Modals from "./pages/Modals";
+import Brand from "./pages/Brand";
+import Chatbox from "./pages/Chatbox";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +30,8 @@ function App() {
             <Route path="/design-tokens" element={<DesignTokens />} />
             <Route path="/input-fields" element={<InputFields />} />
             <Route path="/modals" element={<Modals />} />
+            <Route path="/brand" element={<Brand />} />
+            <Route path="/chatbox" element={<Chatbox />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

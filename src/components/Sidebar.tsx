@@ -146,6 +146,22 @@ export const Sidebar: React.FC<SidebarProps> = ({ onToggle }) => {
             title="Design Tokens"
             to="/design-tokens" 
           />
+          <SidebarItem 
+            title="Input felter"
+            to="/input-fields" 
+          />
+          <SidebarItem 
+            title="Modaler"
+            to="/modals" 
+          />
+          <SidebarItem 
+            title="Brand"
+            to="/brand" 
+          />
+          <SidebarItem 
+            title="Chatbox"
+            to="/chatbox" 
+          />
         </SidebarSection>
         
         <SidebarSection 
