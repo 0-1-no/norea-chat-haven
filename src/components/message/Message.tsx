@@ -59,44 +59,28 @@ export const Message: React.FC<MessageProps> = ({
   return (
     <div 
       className={cn(
-        "px-4 py-5 rounded-lg mb-4 relative group",
+        "px-4 py-3 rounded-lg mb-4 relative group",
         role === 'user' 
-          ? "bg-primary/10 border border-primary/20" 
-          : "bg-background border border-border",
+          ? "bg-gray-100 text-foreground" 
+          : "bg-background text-foreground",
         className
       )}
       onMouseEnter={() => setShowActions(true)}
       onMouseLeave={() => setShowActions(false)}
     >
-      <div className="flex items-start gap-3">
-        <div className={cn(
-          "w-8 h-8 rounded-full flex items-center justify-center shrink-0",
-          role === 'user' 
-            ? "bg-primary text-primary-foreground" 
-            : "bg-gray-100 text-gray-700"
-        )}>
-          {role === 'user' ? 'JD' : 'AI'}
-        </div>
-        
-        <div className="flex-1 min-w-0">
-          <div className="flex justify-between items-center mb-1">
-            <p className="font-medium text-sm">
-              {role === 'user' ? 'John Doe' : 'Norea AI'}
-            </p>
-            {timestamp && (
-              <span className="text-xs text-muted-foreground">{timestamp}</span>
-            )}
-          </div>
-          
-          <div className="prose prose-sm max-w-none text-foreground">
-            {role === 'ai' ? (
-              <ReactMarkdown>{content}</ReactMarkdown>
-            ) : (
-              <p>{content}</p>
-            )}
-          </div>
-        </div>
+      <div className="prose prose-sm max-w-none">
+        {role === 'ai' ? (
+          <ReactMarkdown>{content}</ReactMarkdown>
+        ) : (
+          <p>{content}</p>
+        )}
       </div>
+      
+      {timestamp && (
+        <div className="mt-1">
+          <span className="text-xs text-muted-foreground">{timestamp}</span>
+        </div>
+      )}
       
       {showActions && (
         <div className="absolute -bottom-3 right-4 flex bg-background shadow-md rounded-full border border-border opacity-0 group-hover:opacity-100 transition-opacity">
