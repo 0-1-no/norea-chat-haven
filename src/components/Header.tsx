@@ -44,7 +44,8 @@ export const Header: React.FC<HeaderProps> = ({
             <ArrowLeft className="w-5 h-5 text-surface-foreground" />
           </button>
         ) : (
-          <div className="w-8" /> {/* Empty placeholder to maintain layout */}
+          // Empty placeholder to maintain layout
+          <div className="w-8" />
         )}
       </div>
       
