@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { ArrowLeft, Settings, PanelLeft } from 'lucide-react';
+import { Settings, PanelLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
@@ -27,6 +27,7 @@ export const Header: React.FC<HeaderProps> = ({
       className
     )}>
       <div className="w-8">
+        {/* Only show PanelLeft in header when sidebar is collapsed */}
         {!sidebarOpen && toggleSidebar ? (
           <Button 
             variant="ghost" 
@@ -36,13 +37,6 @@ export const Header: React.FC<HeaderProps> = ({
           >
             <PanelLeft className="w-5 h-5 text-surface-foreground" />
           </Button>
-        ) : showBackButton ? (
-          <button 
-            onClick={onBackClick}
-            className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-hover transition-colors"
-          >
-            <ArrowLeft className="w-5 h-5 text-surface-foreground" />
-          </button>
         ) : (
           // Empty placeholder to maintain layout
           <div className="w-8" />
