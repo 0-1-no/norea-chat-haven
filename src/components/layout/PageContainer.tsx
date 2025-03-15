@@ -8,12 +8,14 @@ interface PageContainerProps {
   children: React.ReactNode;
   title: string;
   showBackButton?: boolean;
+  description?: string; // Added description prop to support Rooms page
 }
 
 export const PageContainer: React.FC<PageContainerProps> = ({ 
   children, 
   title,
-  showBackButton = false
+  showBackButton = false,
+  description
 }) => {
   const isMobile = useIsMobile();
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(!isMobile);
@@ -55,9 +57,14 @@ export const PageContainer: React.FC<PageContainerProps> = ({
             toggleSidebar={toggleSidebar}
           />
           
-          {/* Invisible container to limit content width to 1400px */}
+          {/* Content Area - container to limit content width to 1400px with padding */}
           <div className="flex-1 overflow-y-auto flex justify-center">
-            <div className="w-full max-w-canvas flex flex-col">
+            <div className="w-full max-w-canvas px-4 sm:px-6 py-4 flex flex-col content-area">
+              {description && (
+                <div className="mb-4">
+                  <p className="text-muted-foreground">{description}</p>
+                </div>
+              )}
               {children}
             </div>
           </div>

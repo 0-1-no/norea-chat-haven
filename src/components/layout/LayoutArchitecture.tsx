@@ -8,10 +8,10 @@ export const LayoutArchitecture: React.FC = () => {
     <section className="space-y-4">
       <h2 className="text-2xl font-semibold">Layout Architecture</h2>
       <p className="text-muted-foreground">
-        The Norea application follows a three-layer layout structure that provides a consistent user experience.
+        The Norea application follows a four-layer layout structure that provides a consistent user experience.
       </p>
       
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
         <Card>
           <CardContent className="pt-6">
             <h3 className="text-lg font-medium mb-2">Backdrop</h3>
@@ -45,8 +45,20 @@ export const LayoutArchitecture: React.FC = () => {
               <span className="text-canvas-foreground">Canvas Layer</span>
             </div>
             <p className="text-sm text-muted-foreground">
-              The canvas is the main content area of the application. It uses <code className="bg-muted px-1 py-0.5 rounded text-xs">--canvas-background</code> and
+              The canvas is the main content area frame of the application. It uses <code className="bg-muted px-1 py-0.5 rounded text-xs">--canvas-background</code> and
               <code className="bg-muted px-1 py-0.5 rounded text-xs">--canvas-foreground</code> tokens.
+            </p>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardContent className="pt-6">
+            <h3 className="text-lg font-medium mb-2">Content Area</h3>
+            <div className="h-32 bg-surface rounded-md flex items-center justify-center border border-surface-border mb-4">
+              <span className="text-surface-foreground">Content Area</span>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              The content area is the innermost container that holds the actual page content. It has a maximum width of 1400px and includes padding to ensure content doesn't touch the edges. This creates a consistent reading experience across all pages.
             </p>
           </CardContent>
         </Card>

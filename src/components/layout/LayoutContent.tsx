@@ -7,7 +7,7 @@ import { DeveloperGuidelines } from './DeveloperGuidelines';
 
 export const LayoutContent: React.FC = () => {
   return (
-    <div className="container max-w-6xl py-10 space-y-10">
+    <div className="space-y-10">
       <div className="space-y-2">
         <h1 className="text-3xl font-bold">Layout Structure</h1>
         <p className="text-muted-foreground">

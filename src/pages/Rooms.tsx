@@ -74,11 +74,13 @@ const Rooms = () => {
   ];
 
   return (
-    <PageContainer title="Rom" description="Alle rom du har tilgang til">
+    <PageContainer 
+      title="Rom" 
+      description="Arbeidsområder for prosjekter, team og personlige rom"
+    >
       <div className="flex justify-between items-center mb-6">
         <div>
           <h1 className="text-2xl font-bold">Dine rom</h1>
-          <p className="text-muted-foreground">Arbeidsområder for prosjekter, team og personlige rom</p>
         </div>
         <Button className="flex items-center gap-2">
           <Plus className="w-4 h-4" />
