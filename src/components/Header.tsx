@@ -28,7 +28,7 @@ export const Header: React.FC<HeaderProps> = ({
     )}>
       <div className="w-8">
         {/* Only show PanelLeft in header when sidebar is collapsed */}
-        {!sidebarOpen && toggleSidebar ? (
+        {toggleSidebar && !sidebarOpen ? (
           <Button 
             variant="ghost" 
             size="icon" 
