@@ -23,7 +23,7 @@ const ChatDemo = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  // Sample conversation data with better typography
+  // Improved conversation data with better structure for readability
   const conversation = [
     {
       role: 'user' as const,
@@ -111,14 +111,15 @@ const ChatDemo = () => {
           
           <div className="flex-1 overflow-hidden flex flex-col">
             <div className="flex-1 overflow-y-auto p-6" ref={chatContainerRef}>
-              {conversation.map((message, index) => (
-                <Message
-                  key={index}
-                  role={message.role}
-                  content={message.content}
-                  className="max-w-3xl mx-auto"
-                />
-              ))}
+              <div className="max-w-3xl mx-auto space-y-2">
+                {conversation.map((message, index) => (
+                  <Message
+                    key={index}
+                    role={message.role}
+                    content={message.content}
+                  />
+                ))}
+              </div>
             </div>
             
             <div className="p-4 border-t border-border">

@@ -57,24 +57,30 @@ export const Message: React.FC<MessageProps> = ({
   return (
     <div 
       className={cn(
-        "rounded-lg mb-6 relative group", // Increased bottom margin for better spacing
+        "rounded-lg mb-8 relative group", // Increased bottom margin for better spacing
         role === 'user' 
-          ? "bg-gray-100 text-foreground ml-auto px-4 py-3 w-fit max-w-[66%] text-right" // Using w-fit for dynamic width based on content
-          : "bg-background text-foreground mr-auto px-5 py-4 w-fit max-w-[85%]", // Increased max-width for AI messages
+          ? "bg-gray-100 text-foreground ml-auto w-fit max-w-[66%] text-right" // Using ml-auto to push to right
+          : "bg-background text-foreground mr-auto w-fit max-w-[85%]", // Using mr-auto to push to left
         className
       )}
       onMouseEnter={() => setShowActions(true)}
       onMouseLeave={() => setShowActions(false)}
     >
+      {/* Content wrapper with proper padding */}
       <div className={cn(
-        "max-w-none",
-        role === 'ai' ? "prose prose-sm prose-headings:font-semibold prose-headings:mt-6 prose-headings:mb-3 prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg prose-h4:text-base prose-p:leading-relaxed prose-p:mb-4 prose-ul:pl-6 prose-ol:pl-6 prose-li:mb-2 prose-li:leading-relaxed prose-pre:bg-gray-50 prose-pre:p-3 prose-pre:rounded prose-pre:border prose-pre:text-sm prose-pre:font-mono prose-strong:font-semibold" : ""
+        role === 'user' ? "px-5 py-4" : "px-6 py-5", // More padding for AI messages
       )}>
-        {role === 'ai' ? (
-          <ReactMarkdown>{content}</ReactMarkdown>
-        ) : (
-          <p className="text-right leading-relaxed">{content}</p>
-        )}
+        <div className={cn(
+          role === 'ai' 
+            ? "prose prose-headings:mt-6 prose-headings:mb-3 prose-p:my-4 prose-p:leading-relaxed prose-ul:my-4 prose-ol:my-4 prose-li:my-2 prose-li:leading-relaxed" 
+            : ""
+        )}>
+          {role === 'ai' ? (
+            <ReactMarkdown className="space-y-4">{content}</ReactMarkdown>
+          ) : (
+            <p className="text-right leading-relaxed">{content}</p>
+          )}
+        </div>
       </div>
       
       {showActions && (
