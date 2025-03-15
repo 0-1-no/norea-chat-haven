@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Separator } from '@/components/ui/separator';
 import { PageContainer } from '@/components/layout/PageContainer';
@@ -203,11 +204,12 @@ function calculateQuantumState(qubits) {
     "|0⟩"
   );
 }`}
-                </pre>
-                <p className="mt-3 text-sm">
-                  Kodeblokker bruker monospace font med litt mindre tekststørrelse (14px) og 
-                  har tydelig visuell differensiering fra vanlig tekst.
-                </p>
+                  </pre>
+                  <p className="mt-3 text-sm">
+                    Kodeblokker bruker monospace font med litt mindre tekststørrelse (14px) og 
+                    har tydelig visuell differensiering fra vanlig tekst.
+                  </p>
+                </div>
               </div>
             </div>
           </section>
