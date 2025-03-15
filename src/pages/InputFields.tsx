@@ -1,158 +1,148 @@
-
 import React from 'react';
-import { Sidebar } from '@/components/Sidebar';
-import { Header } from '@/components/Header';
-import { SearchInput } from '@/components/SearchInput';
-import { FormField } from '@/components/FormField';
-import { useIsMobile } from '@/hooks/use-mobile';
-import { PanelLeft } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { MessageInput } from '@/components/MessageInput';
-import { Switch } from '@/components/ui/switch';
-import { Label } from '@/components/ui/label';
+import { PageContainer } from '@/components/layout/PageContainer';
+import { Separator } from "@/components/ui/separator";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { InputOTP } from "@/components/ui/input-otp";
+import { Button } from "@/components/ui/button";
+import { Mail, Lock } from "lucide-react";
 
 const InputFields = () => {
-  const isMobile = useIsMobile();
-  const [isSidebarOpen, setIsSidebarOpen] = React.useState(!isMobile);
-
-  React.useEffect(() => {
-    setIsSidebarOpen(!isMobile);
-  }, [isMobile]);
-
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
-
   return (
-    <div className="h-screen w-full flex overflow-hidden bg-backdrop">
-      {/* Sidebar component */}
-      <div className={`
-        ${isMobile ? 'fixed z-50 transition-transform duration-300 ease-in-out' : ''}
-        ${(isMobile && !isSidebarOpen) ? '-translate-x-full' : 'translate-x-0'}
-      `}>
-        {isSidebarOpen && <Sidebar onToggle={toggleSidebar} />}
-      </div>
-      
-      {/* Canvas */}
-      <div className="flex-1 md:p-content-md flex items-center justify-center">
-        <div className={`
-          w-full h-full 
-          max-w-canvas 
-          bg-canvas 
-          md:rounded-lg 
-          md:border md:border-canvas-border 
-          md:shadow-surface-sm 
-          flex flex-col 
-          overflow-hidden
-        `}>
-          {!isSidebarOpen && (
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className="absolute top-4 left-4 z-10"
-              onClick={toggleSidebar}
-            >
-              <PanelLeft className="h-5 w-5" />
-            </Button>
-          )}
-          
-          <Header 
-            title="Input Felter" 
-            showBackButton={true}
-          />
-          
-          <div className="flex-1 overflow-y-auto p-6 space-y-8">
-            {/* Search Input */}
-            <section>
-              <h2 className="text-2xl font-semibold mb-4">Søkefelt</h2>
-              <div className="grid grid-cols-1 gap-6 max-w-xl">
-                <div className="space-y-2">
-                  <h3 className="text-sm font-medium text-muted-foreground">Standard</h3>
-                  <SearchInput placeholder="Søk etter noe..." />
-                  <p className="text-sm text-muted-foreground mt-2">
-                    Søkefeltet har normal, focus, og fyllt tilstand (med X for å tømme).
-                  </p>
-                </div>
+    <PageContainer title="Input Fields" showBackButton={false}>
+      <div className="container max-w-6xl py-10 space-y-10">
+        <div className="space-y-2">
+          <h1 className="text-3xl font-bold">Input Fields</h1>
+          <p className="text-muted-foreground">
+            Examples of different input fields in the Norea design system.
+          </p>
+        </div>
+
+        <Separator />
+
+        <div className="space-y-8">
+          <section className="space-y-4">
+            <h2 className="text-2xl font-semibold">Standard Inputs</h2>
+            <p className="text-muted-foreground">
+              Basic text input fields for various data types.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <Label htmlFor="email">Email</Label>
+                <Input type="email" id="email" placeholder="Email address" />
               </div>
-            </section>
 
-            {/* Text Input */}
-            <section>
-              <h2 className="text-2xl font-semibold mb-4">Input felter</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl">
-                <div className="space-y-2">
-                  <h3 className="text-sm font-medium text-muted-foreground">Standard</h3>
-                  <Input placeholder="Skriv noe her..." />
-                  <p className="text-sm text-muted-foreground mt-2">
-                    Standardfeltet har normal, hover, focus, og disabled tilstand.
-                  </p>
-                </div>
+              <div className="space-y-2">
+                <Label htmlFor="password">Password</Label>
+                <Input type="password" id="password" placeholder="Password" />
+              </div>
+            </div>
+          </section>
 
-                <div className="space-y-2">
-                  <h3 className="text-sm font-medium text-muted-foreground">Med label</h3>
-                  <FormField 
-                    label="Brukernavn" 
-                    placeholder="john.doe" 
-                    helperText="Brukernavnet må være unikt"
-                  />
-                </div>
+          <Separator />
 
-                <div className="space-y-2">
-                  <h3 className="text-sm font-medium text-muted-foreground">Med validering</h3>
-                  <FormField 
-                    label="E-post" 
-                    type="email" 
-                    placeholder="john@example.com" 
-                    required
-                    error="E-post adressen er ikke gyldig"
-                  />
-                </div>
+          <section className="space-y-4">
+            <h2 className="text-2xl font-semibold">Textarea</h2>
+            <p className="text-muted-foreground">
+              A multi-line text input control.
+            </p>
 
-                <div className="space-y-2">
-                  <h3 className="text-sm font-medium text-muted-foreground">Tekstområde</h3>
-                  <FormField 
-                    label="Beskrivelse" 
-                    type="textarea" 
-                    placeholder="Skriv en beskrivelse her..."
+            <div className="space-y-2">
+              <Label htmlFor="description">Description</Label>
+              <Textarea id="description" placeholder="Enter a description" />
+            </div>
+          </section>
+
+          <Separator />
+
+          <section className="space-y-4">
+            <h2 className="text-2xl font-semibold">OTP Input</h2>
+            <p className="text-muted-foreground">
+              One-Time Password input field for authentication.
+            </p>
+
+            <div className="space-y-2">
+              <Label htmlFor="otp">OTP Code</Label>
+              <InputOTP length={6} id="otp" />
+            </div>
+          </section>
+
+          <Separator />
+
+          <section className="space-y-4">
+            <h2 className="text-2xl font-semibold">Input with Icons</h2>
+            <p className="text-muted-foreground">
+              Input fields with leading icons for enhanced context.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <Label htmlFor="email-with-icon">Email</Label>
+                <div className="relative">
+                  <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                  <Input
+                    type="email"
+                    id="email-with-icon"
+                    placeholder="Email address"
+                    className="pl-10"
                   />
                 </div>
               </div>
-            </section>
 
-            {/* Message Input */}
-            <section>
-              <h2 className="text-2xl font-semibold mb-4">Meldingsinput</h2>
-              <div className="grid grid-cols-1 gap-6 max-w-xl">
-                <div className="space-y-2">
-                  <h3 className="text-sm font-medium text-muted-foreground">Chat input</h3>
-                  <MessageInput placeholder="Spør om noe..." />
-                  <p className="text-sm text-muted-foreground mt-2">
-                    Meldingsinput er optimalisert for chatgrensesnitt med send-knapp og tellerfunksjonalitet.
-                  </p>
+              <div className="space-y-2">
+                <Label htmlFor="password-with-icon">Password</Label>
+                <div className="relative">
+                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                  <Input
+                    type="password"
+                    id="password-with-icon"
+                    placeholder="Password"
+                    className="pl-10"
+                  />
                 </div>
               </div>
-            </section>
+            </div>
+          </section>
 
-            {/* Toggle/Switch */}
-            <section>
-              <h2 className="text-2xl font-semibold mb-4">Toggle/Switch</h2>
-              <div className="grid grid-cols-1 gap-6 max-w-xl">
-                <div className="space-y-4">
-                  <div className="flex items-center space-x-2">
-                    <Switch id="airplane-mode" />
-                    <Label htmlFor="airplane-mode">Flymodus</Label>
-                  </div>
-                  <p className="text-sm text-muted-foreground">
-                    Switch har av/på tilstand samt hover og disabled states.
-                  </p>
-                </div>
+          <Separator />
+
+          <section className="space-y-4">
+            <h2 className="text-2xl font-semibold">Disabled Input</h2>
+            <p className="text-muted-foreground">
+              A disabled input field that cannot be edited.
+            </p>
+
+            <div className="space-y-2">
+              <Label htmlFor="disabled-input">Disabled Input</Label>
+              <Input id="disabled-input" placeholder="This is disabled" disabled />
+            </div>
+          </section>
+
+          <Separator />
+
+          <section className="space-y-4">
+            <h2 className="text-2xl font-semibold">Validation States</h2>
+            <p className="text-muted-foreground">
+              Input fields with different validation states.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <Label htmlFor="valid-input">Valid Input</Label>
+                <Input type="text" id="valid-input" placeholder="Valid input" className="border-green-500" />
               </div>
-            </section>
-          </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="invalid-input">Invalid Input</Label>
+                <Input type="text" id="invalid-input" placeholder="Invalid input" className="border-red-500" />
+              </div>
+            </div>
+          </section>
         </div>
       </div>
-    </div>
+    </PageContainer>
   );
 };
 
