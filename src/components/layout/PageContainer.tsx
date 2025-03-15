@@ -1,7 +1,5 @@
 
 import React from 'react';
-import { Button } from '@/components/ui/button';
-import { PanelLeft } from 'lucide-react';
 import { Header } from '@/components/Header';
 import { Sidebar } from '@/components/Sidebar';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -51,20 +49,11 @@ export const PageContainer: React.FC<PageContainerProps> = ({
           flex flex-col 
           overflow-hidden
         `}>
-          {!isSidebarOpen && (
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className="absolute top-4 left-4 z-10"
-              onClick={toggleSidebar}
-            >
-              <PanelLeft className="h-5 w-5" />
-            </Button>
-          )}
-          
           <Header 
             title={title}
             showBackButton={showBackButton}
+            sidebarOpen={isSidebarOpen}
+            toggleSidebar={toggleSidebar}
           />
           
           <div className="flex-1 overflow-y-auto">
