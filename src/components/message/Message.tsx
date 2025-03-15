@@ -57,10 +57,10 @@ export const Message: React.FC<MessageProps> = ({
   return (
     <div 
       className={cn(
-        "rounded-lg mb-4 relative group",
+        "rounded-lg mb-6 relative group", // Increased bottom margin for better spacing
         role === 'user' 
-          ? "bg-gray-100 text-foreground ml-auto px-4 py-3 max-w-[66%] text-right" 
-          : "bg-background text-foreground mr-auto px-5 py-4 prose-headings:font-semibold prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg prose-h4:text-base prose-p:leading-relaxed prose-p:mb-4 prose-ul:pl-6 prose-ol:pl-6 prose-li:mb-2 prose-pre:bg-gray-50 prose-pre:p-3 prose-pre:rounded prose-pre:border prose-pre:text-sm prose-pre:font-mono",
+          ? "bg-gray-100 text-foreground ml-auto px-4 py-3 w-fit max-w-[66%] text-right" // Using w-fit for dynamic width based on content
+          : "bg-background text-foreground mr-auto px-5 py-4 w-fit max-w-[85%]", // Increased max-width for AI messages
         className
       )}
       onMouseEnter={() => setShowActions(true)}
@@ -68,7 +68,7 @@ export const Message: React.FC<MessageProps> = ({
     >
       <div className={cn(
         "max-w-none",
-        role === 'ai' ? "prose prose-sm" : ""
+        role === 'ai' ? "prose prose-sm prose-headings:font-semibold prose-headings:mt-6 prose-headings:mb-3 prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg prose-h4:text-base prose-p:leading-relaxed prose-p:mb-4 prose-ul:pl-6 prose-ol:pl-6 prose-li:mb-2 prose-li:leading-relaxed prose-pre:bg-gray-50 prose-pre:p-3 prose-pre:rounded prose-pre:border prose-pre:text-sm prose-pre:font-mono prose-strong:font-semibold" : ""
       )}>
         {role === 'ai' ? (
           <ReactMarkdown>{content}</ReactMarkdown>
