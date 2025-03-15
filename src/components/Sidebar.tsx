@@ -9,6 +9,7 @@ import { SidebarProfile } from './sidebar/SidebarProfile';
 import { SidebarSearch } from './sidebar/SidebarSearch';
 import { SidebarNewChat } from './sidebar/SidebarNewChat';
 import { SidebarContent } from './sidebar/SidebarContent';
+import { Link } from 'react-router-dom';
 
 type SidebarProps = {
   onToggle?: () => void;
@@ -18,7 +19,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ onToggle }) => {
   return (
     <div className="h-screen w-60 bg-sidebar border-r border-sidebar-border flex flex-col pt-4 animate-fade-in">
       <div className="px-4 mb-4 flex justify-between items-center">
-        <h1 className="text-xl font-semibold text-sidebar-foreground">Norea</h1>
+        <Link to="/">
+          <h1 className="text-xl font-semibold text-sidebar-foreground hover:text-sidebar-accent-foreground transition-colors">Norea</h1>
+        </Link>
         {onToggle && (
           <Button
             variant="ghost"
