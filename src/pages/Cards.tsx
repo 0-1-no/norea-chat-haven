@@ -8,7 +8,7 @@ import { Tag } from '@/components/ui/tag';
 const Cards = () => {
   return (
     <PageContainer title="Kortkomponenter" showBackButton={true}>
-      <div className="p-6 space-y-8">
+      <div className="space-y-8">
         {/* PromptCard Component */}
         <section>
           <h2 className="text-2xl font-semibold mb-4">PromptCard</h2>
