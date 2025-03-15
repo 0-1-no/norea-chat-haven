@@ -39,7 +39,7 @@ const InputFields = () => {
             <div className="space-y-4">
               <h3 className="text-xl font-medium">Required Input</h3>
               <div className="space-y-2">
-                <Label htmlFor="required-input" required>Required Input</Label>
+                <Label htmlFor="required-input">Required Input <span className="text-destructive">*</span></Label>
                 <Input id="required-input" placeholder="Must fill..." required />
               </div>
             </div>
@@ -86,17 +86,17 @@ const InputFields = () => {
           <div className="w-full max-w-md space-y-4">
             <FormField
               label="Email"
-              id="email"
               type="email"
               placeholder="Email address"
               required
+              helperText="We'll never share your email"
             />
             <FormField
               label="Password"
-              id="password"
               type="password"
               placeholder="Enter password"
               required
+              helperText="Your password should be secure"
             />
           </div>
         </section>
