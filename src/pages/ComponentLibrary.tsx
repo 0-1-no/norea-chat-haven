@@ -37,7 +37,7 @@ const ComponentLibrary = () => {
 
   return (
     <PageContainer title="Komponentbibliotek" showBackButton={true}>
-      <div className="p-6 space-y-8">
+      <div className="space-y-8">
         {/* Button Component */}
         <section>
           <h2 className="text-2xl font-semibold mb-4">Knapp</h2>
