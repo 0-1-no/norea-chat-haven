@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Separator } from "@/components/ui/separator";
 import { Home, User, Building2, Users, CreditCard } from 'lucide-react';
@@ -24,7 +25,7 @@ import {
 
 const Navigation = () => {
   const navigationContent = (
-    <div className="container max-w-6xl py-10 space-y-10">
+    <div className="space-y-10">
       <div className="space-y-2">
         <h1 className="text-3xl font-bold">Navigasjon</h1>
         <p className="text-muted-foreground">

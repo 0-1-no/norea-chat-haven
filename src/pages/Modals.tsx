@@ -57,7 +57,7 @@ import {
 const Modals = () => {
   return (
     <PageContainer title="Modaler" showBackButton={true}>
-      <div className="flex-1 overflow-y-auto p-6 space-y-8">
+      <div className="space-y-8">
         {/* Dropdown Menu */}
         <section>
           <h2 className="text-2xl font-semibold mb-4">Dropdown Menu</h2>

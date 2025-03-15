@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Separator } from "@/components/ui/separator";
 import { MessageInput } from "@/components/MessageInput";
@@ -8,7 +7,7 @@ import { PageContainer } from '@/components/layout/PageContainer';
 const Chatbox = () => {
   return (
     <PageContainer title="Chatbox" showBackButton={false}>
-      <div className="container max-w-6xl py-10 space-y-10">
+      <div className="space-y-10">
         <div className="space-y-2">
           <h1 className="text-3xl font-bold">Chatbox</h1>
           <p className="text-muted-foreground">

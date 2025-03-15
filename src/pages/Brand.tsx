@@ -1,4 +1,3 @@
-
 import React, { useRef, useEffect } from 'react';
 import { Separator } from "@/components/ui/separator";
 import { PageContainer } from '@/components/layout/PageContainer';
@@ -37,7 +36,7 @@ const Brand = () => {
 
   return (
     <PageContainer title="Brand" showBackButton={false}>
-      <div className="container max-w-6xl py-10 space-y-10">
+      <div className="space-y-10">
         <div className="space-y-2">
           <h1 className="text-3xl font-bold">Brand</h1>
           <p className="text-muted-foreground">

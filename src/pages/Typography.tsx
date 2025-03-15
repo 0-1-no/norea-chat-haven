@@ -5,7 +5,7 @@ import { PageContainer } from '@/components/layout/PageContainer';
 const Typography = () => {
   return (
     <PageContainer title="Typografi" showBackButton={true}>
-      <div className="flex-1 overflow-y-auto p-6 space-y-8 max-w-4xl mx-auto">
+      <div className="space-y-8 max-w-4xl mx-auto">
         <section>
           <h1 className="text-3xl font-semibold mb-2">Typografi for Norea AI</h1>
           <p className="text-lg text-muted-foreground mb-6">

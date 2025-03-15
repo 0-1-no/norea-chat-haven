@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { PageContainer } from '@/components/layout/PageContainer';
 import { Tag } from '@/components/ui/tag';
@@ -50,7 +49,7 @@ const DesignTokens = () => {
 
   return (
     <PageContainer title="Design Tokens" showBackButton={true}>
-      <div className="p-6 space-y-8">
+      <div className="space-y-8">
         {/* Colors */}
         <section>
           <h2 className="text-2xl font-semibold mb-4">Colors</h2>
