@@ -38,7 +38,7 @@ export const PageContainer: React.FC<PageContainerProps> = ({
       </div>
       
       {/* Canvas - where main content is rendered with padding on desktop */}
-      <div className="flex-1 md:p-4 lg:p-6 xl:p-15 flex items-center justify-center">
+      <div className="flex-1 p-2 flex items-center justify-center">
         <div className={`
           w-full h-full 
           bg-canvas 
