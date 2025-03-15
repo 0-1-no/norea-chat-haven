@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Folders, Users, Layers, MessageCircle } from 'lucide-react';
+import { Folders, Users, Layers, MessageCircle, LayoutDashboard } from 'lucide-react';
 import { SidebarSection } from './SidebarSection';
 import { SidebarItem } from './SidebarItem';
 
@@ -17,8 +17,11 @@ export const SidebarContent: React.FC = () => {
 
   return (
     <div className="flex-1 overflow-y-auto scrollbar-hidden space-y-2 px-1">
-      <SidebarSection title="Prosjekter" icon={<Folders className="w-4 h-4 text-gray-500" />}>
-        {/* Projects content would go here */}
+      <SidebarSection title="Rom" icon={<LayoutDashboard className="w-4 h-4 text-gray-500" />}>
+        <SidebarItem 
+          title="Alle rom" 
+          to="/rooms"
+        />
       </SidebarSection>
       
       <SidebarSection title="Karakterer" icon={<Users className="w-4 h-4 text-gray-500" />}>
