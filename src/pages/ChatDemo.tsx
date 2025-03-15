@@ -111,13 +111,14 @@ const ChatDemo = () => {
           
           <div className="flex-1 overflow-hidden flex flex-col">
             <div className="flex-1 overflow-y-auto p-6" ref={chatContainerRef}>
-              <div className="max-w-3xl mx-auto space-y-2">
+              <div className="max-w-3xl mx-auto">
                 {conversation.map((message, index) => (
-                  <Message
-                    key={index}
-                    role={message.role}
-                    content={message.content}
-                  />
+                  <div key={index} className="mb-6 after:content-[''] after:clear-both after:table">
+                    <Message
+                      role={message.role}
+                      content={message.content}
+                    />
+                  </div>
                 ))}
               </div>
             </div>

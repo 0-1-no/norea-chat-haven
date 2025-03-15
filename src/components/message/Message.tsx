@@ -57,10 +57,10 @@ export const Message: React.FC<MessageProps> = ({
   return (
     <div 
       className={cn(
-        "rounded-lg mb-8 relative group", // Increased bottom margin for better spacing
+        "rounded-lg mb-8 relative",
         role === 'user' 
-          ? "bg-gray-100 text-foreground ml-auto w-fit max-w-[66%] text-right" // Using ml-auto to push to right
-          : "bg-background text-foreground mr-auto w-fit max-w-[85%]", // Using mr-auto to push to left
+          ? "bg-gray-100 text-foreground float-right clear-both max-w-[66%]" // Float right to actually make it align right
+          : "bg-background text-foreground float-left clear-both max-w-[85%]", // Float left for AI messages
         className
       )}
       onMouseEnter={() => setShowActions(true)}
@@ -72,11 +72,11 @@ export const Message: React.FC<MessageProps> = ({
       )}>
         <div className={cn(
           role === 'ai' 
-            ? "prose prose-headings:mt-6 prose-headings:mb-3 prose-p:my-4 prose-p:leading-relaxed prose-ul:my-4 prose-ol:my-4 prose-li:my-2 prose-li:leading-relaxed" 
+            ? "prose prose-headings:mt-6 prose-headings:mb-3 prose-p:my-4 prose-p:leading-relaxed prose-ul:my-4 prose-ol:my-4 prose-li:my-2 prose-li:leading-relaxed prose-pre:bg-gray-50 prose-pre:p-3 prose-pre:rounded" 
             : ""
         )}>
           {role === 'ai' ? (
-            <ReactMarkdown className="space-y-4">{content}</ReactMarkdown>
+            <ReactMarkdown>{content}</ReactMarkdown>
           ) : (
             <p className="text-right leading-relaxed">{content}</p>
           )}
