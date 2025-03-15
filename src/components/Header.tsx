@@ -3,6 +3,8 @@ import React from 'react';
 import { Settings, PanelLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { Popover, PopoverTrigger } from '@/components/ui/popover';
+import { ThemeSettings } from '@/components/ui/theme-settings';
 
 type HeaderProps = {
   title: string;
@@ -46,9 +48,14 @@ export const Header: React.FC<HeaderProps> = ({
       <h2 className="text-lg font-medium text-surface-foreground">{title}</h2>
       
       <div className="w-8">
-        <button className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-hover transition-colors">
-          <Settings className="w-5 h-5 text-surface-foreground" />
-        </button>
+        <Popover>
+          <PopoverTrigger asChild>
+            <button className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-hover transition-colors">
+              <Settings className="w-5 h-5 text-surface-foreground" />
+            </button>
+          </PopoverTrigger>
+          <ThemeSettings mode="popover" />
+        </Popover>
       </div>
     </div>
   );
