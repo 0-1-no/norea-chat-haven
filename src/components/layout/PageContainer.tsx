@@ -37,11 +37,10 @@ export const PageContainer: React.FC<PageContainerProps> = ({
         {isSidebarOpen && <Sidebar onToggle={toggleSidebar} />}
       </div>
       
-      {/* Canvas - where main content is rendered */}
-      <div className="flex-1 md:p-content-md flex items-center justify-center">
+      {/* Canvas - where main content is rendered with padding on desktop */}
+      <div className="flex-1 md:p-4 lg:p-6 xl:p-15 flex items-center justify-center">
         <div className={`
           w-full h-full 
-          max-w-canvas 
           bg-canvas 
           md:rounded-lg 
           md:border md:border-canvas-border 
@@ -56,8 +55,11 @@ export const PageContainer: React.FC<PageContainerProps> = ({
             toggleSidebar={toggleSidebar}
           />
           
-          <div className="flex-1 overflow-y-auto">
-            {children}
+          {/* Invisible container to limit content width to 1400px */}
+          <div className="flex-1 overflow-y-auto flex justify-center">
+            <div className="w-full max-w-canvas flex flex-col">
+              {children}
+            </div>
           </div>
         </div>
       </div>
