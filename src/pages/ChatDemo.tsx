@@ -1,27 +1,11 @@
 
 import React, { useRef, useEffect } from 'react';
-import { Separator } from "@/components/ui/separator";
+import { PageContainer } from '@/components/layout/PageContainer';
 import { MessageInput } from "@/components/MessageInput";
-import { Sidebar } from '@/components/Sidebar';
-import { Header } from '@/components/Header';
 import { Message } from '@/components/message/Message';
-import { useIsMobile } from '@/hooks/use-mobile';
-import { Button } from '@/components/ui/button';
-import { PanelLeft } from 'lucide-react';
 
 const ChatDemo = () => {
-  const isMobile = useIsMobile();
-  const [isSidebarOpen, setIsSidebarOpen] = React.useState(!isMobile);
   const chatContainerRef = useRef<HTMLDivElement>(null);
-
-  // Update sidebar state when screen size changes
-  React.useEffect(() => {
-    setIsSidebarOpen(!isMobile);
-  }, [isMobile]);
-
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
 
   // Improved conversation data with better structure for readability
   const conversation = [
@@ -56,68 +40,30 @@ const ChatDemo = () => {
   };
 
   return (
-    <div className="h-screen w-full flex overflow-hidden bg-backdrop">
-      {/* Sidebar component - positioned as overlay on mobile */}
-      <div className={`
-        ${isMobile ? 'fixed z-50 transition-transform duration-300 ease-in-out' : ''}
-        ${(isMobile && !isSidebarOpen) ? '-translate-x-full' : 'translate-x-0'}
-      `}>
-        {isSidebarOpen && <Sidebar onToggle={toggleSidebar} />}
-      </div>
-      
-      {/* Canvas - where main content is rendered */}
-      <div className="flex-1 md:p-content-md flex items-center justify-center">
-        <div className={`
-          w-full h-full 
-          max-w-canvas 
-          bg-canvas 
-          md:rounded-lg 
-          md:border md:border-canvas-border 
-          md:shadow-surface-sm 
-          flex flex-col 
-          overflow-hidden
-        `}>
-          {!isSidebarOpen && (
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className="absolute top-4 left-4 z-10"
-              onClick={toggleSidebar}
-            >
-              <PanelLeft className="h-5 w-5" />
-            </Button>
-          )}
-          
-          <Header 
-            title="Forstå kvantedatabehandling" 
-            showBackButton={true}
-          />
-          
-          <div className="flex-1 overflow-hidden flex flex-col">
-            <div className="flex-1 overflow-y-auto p-6" ref={chatContainerRef}>
-              <div className="max-w-3xl mx-auto">
-                {conversation.map((message, index) => (
-                  <div key={index} className="mb-6 after:content-[''] after:clear-both after:table">
-                    <Message
-                      role={message.role}
-                      content={message.content}
-                    />
-                  </div>
-                ))}
+    <PageContainer title="Forstå kvantedatabehandling" showBackButton={true}>
+      <div className="flex-1 overflow-hidden flex flex-col">
+        <div className="flex-1 overflow-y-auto p-6" ref={chatContainerRef}>
+          <div className="max-w-3xl mx-auto">
+            {conversation.map((message, index) => (
+              <div key={index} className="mb-6 after:content-[''] after:clear-both after:table">
+                <Message
+                  role={message.role}
+                  content={message.content}
+                />
               </div>
-            </div>
-            
-            <div className="p-4 border-t border-border">
-              <MessageInput 
-                onSendMessage={handleSendMessage}
-                className="max-w-3xl mx-auto"
-                placeholder="Send en melding..."
-              />
-            </div>
+            ))}
           </div>
         </div>
+        
+        <div className="p-4 border-t border-border">
+          <MessageInput 
+            onSendMessage={handleSendMessage}
+            className="max-w-3xl mx-auto"
+            placeholder="Send en melding..."
+          />
+        </div>
       </div>
-    </div>
+    </PageContainer>
   );
 };
 

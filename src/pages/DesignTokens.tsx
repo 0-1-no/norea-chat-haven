@@ -1,25 +1,9 @@
 
 import React from 'react';
-import { Sidebar } from '@/components/Sidebar';
-import { Header } from '@/components/Header';
-import { Button } from '@/components/ui/button';
-import { useIsMobile } from '@/hooks/use-mobile';
-import { PanelLeft } from 'lucide-react';
+import { PageContainer } from '@/components/layout/PageContainer';
 import { Tag } from '@/components/ui/tag';
 
 const DesignTokens = () => {
-  const isMobile = useIsMobile();
-  const [isSidebarOpen, setIsSidebarOpen] = React.useState(!isMobile);
-
-  // Update sidebar state when screen size changes
-  React.useEffect(() => {
-    setIsSidebarOpen(!isMobile);
-  }, [isMobile]);
-
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
-
   // Color tokens from our design system
   const colorTokens = [
     { name: '--background', value: 'hsl(0 0% 100%)', dark: 'hsl(222.2 47% 5%)' },
@@ -65,182 +49,144 @@ const DesignTokens = () => {
   ];
 
   return (
-    <div className="h-screen w-full flex overflow-hidden bg-backdrop">
-      {/* Sidebar component */}
-      <div className={`
-        ${isMobile ? 'fixed z-50 transition-transform duration-300 ease-in-out' : ''}
-        ${(isMobile && !isSidebarOpen) ? '-translate-x-full' : 'translate-x-0'}
-      `}>
-        {isSidebarOpen && <Sidebar onToggle={toggleSidebar} />}
-      </div>
-      
-      {/* Canvas */}
-      <div className="flex-1 md:p-content-md flex items-center justify-center">
-        <div className={`
-          w-full h-full 
-          max-w-canvas 
-          bg-canvas 
-          md:rounded-lg 
-          md:border md:border-canvas-border 
-          md:shadow-surface-sm 
-          flex flex-col 
-          overflow-hidden
-        `}>
-          {!isSidebarOpen && (
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className="absolute top-4 left-4 z-10"
-              onClick={toggleSidebar}
-            >
-              <PanelLeft className="h-5 w-5" />
-            </Button>
-          )}
-          
-          <Header 
-            title="Design Tokens" 
-            showBackButton={true}
-          />
-          
-          <div className="flex-1 overflow-y-auto p-6 space-y-8">
-            {/* Colors */}
-            <section>
-              <h2 className="text-2xl font-semibold mb-4">Colors</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="text-lg font-medium mb-3">Light Mode</h3>
-                  <div className="space-y-3">
-                    {colorTokens.map((token) => (
-                      <div key={token.name} className="flex items-center gap-3">
-                        <div 
-                          className="w-10 h-10 rounded-md border border-border shadow-sm" 
-                          style={{ backgroundColor: token.value }}
-                        />
-                        <div>
-                          <p className="text-sm font-medium">{token.name}</p>
-                          <p className="text-xs text-muted-foreground">{token.value}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                
-                <div>
-                  <h3 className="text-lg font-medium mb-3">Dark Mode</h3>
-                  <div className="space-y-3">
-                    {colorTokens.map((token) => (
-                      <div key={token.name + '-dark'} className="flex items-center gap-3">
-                        <div 
-                          className="w-10 h-10 rounded-md border border-border shadow-sm" 
-                          style={{ backgroundColor: token.dark }}
-                        />
-                        <div>
-                          <p className="text-sm font-medium">{token.name}</p>
-                          <p className="text-xs text-muted-foreground">{token.dark}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* Border Radius */}
-            <section>
-              <h2 className="text-2xl font-semibold mb-4">Border Radius</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                {radiusTokens.map((token) => (
-                  <div key={token.name} className="border border-border p-4 rounded-lg">
+    <PageContainer title="Design Tokens" showBackButton={true}>
+      <div className="p-6 space-y-8">
+        {/* Colors */}
+        <section>
+          <h2 className="text-2xl font-semibold mb-4">Colors</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <h3 className="text-lg font-medium mb-3">Light Mode</h3>
+              <div className="space-y-3">
+                {colorTokens.map((token) => (
+                  <div key={token.name} className="flex items-center gap-3">
                     <div 
-                      className="w-full h-20 bg-primary mb-3 border border-border" 
-                      style={{ borderRadius: token.value }}
+                      className="w-10 h-10 rounded-md border border-border shadow-sm" 
+                      style={{ backgroundColor: token.value }}
                     />
-                    <p className="text-sm font-medium">{token.name}</p>
-                    <p className="text-xs text-muted-foreground">{token.value}</p>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            {/* Spacing */}
-            <section>
-              <h2 className="text-2xl font-semibold mb-4">Content Spacing</h2>
-              <div className="space-y-4">
-                {spacingTokens.map((token) => (
-                  <div key={token.name} className="border border-border p-4 rounded-lg">
-                    <div className="flex gap-2 items-center mb-2">
+                    <div>
                       <p className="text-sm font-medium">{token.name}</p>
                       <p className="text-xs text-muted-foreground">{token.value}</p>
                     </div>
-                    <div className="bg-secondary p-2 rounded-md">
-                      <div 
-                        className="w-full h-8 bg-primary"
-                        style={{ padding: token.value }}
-                      >
-                        <div className="w-full h-full bg-primary-muted rounded-md"></div>
-                      </div>
-                    </div>
                   </div>
                 ))}
               </div>
-            </section>
-
-            {/* Shadows */}
-            <section>
-              <h2 className="text-2xl font-semibold mb-4">Shadows</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                {shadowTokens.map((token) => (
-                  <div key={token.name} className="p-4 rounded-lg">
+            </div>
+            
+            <div>
+              <h3 className="text-lg font-medium mb-3">Dark Mode</h3>
+              <div className="space-y-3">
+                {colorTokens.map((token) => (
+                  <div key={token.name + '-dark'} className="flex items-center gap-3">
                     <div 
-                      className="w-full h-24 bg-surface border border-surface-border rounded-lg mb-3" 
-                      style={{ boxShadow: token.value }}
+                      className="w-10 h-10 rounded-md border border-border shadow-sm" 
+                      style={{ backgroundColor: token.dark }}
                     />
-                    <p className="text-sm font-medium">{token.name}</p>
-                    <p className="text-xs text-muted-foreground truncate">{token.value}</p>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            {/* Breakpoints */}
-            <section>
-              <h2 className="text-2xl font-semibold mb-4">Viewport Breakpoints</h2>
-              <div className="space-y-2">
-                {breakpointTokens.map((token) => (
-                  <div key={token.name} className="flex justify-between items-center p-3 border border-border rounded-lg">
                     <div>
-                      <span className="text-sm font-medium mr-2">{token.name}</span>
-                      <span className="text-xs text-muted-foreground">({token.value})</span>
+                      <p className="text-sm font-medium">{token.name}</p>
+                      <p className="text-xs text-muted-foreground">{token.dark}</p>
                     </div>
-                    <Tag text={token.value} variant="outline" size="sm" />
                   </div>
                 ))}
               </div>
-            </section>
+            </div>
+          </div>
+        </section>
 
-            {/* Animation */}
-            <section>
-              <h2 className="text-2xl font-semibold mb-4">Animation Tokens</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="border border-border p-4 rounded-lg">
-                  <p className="text-sm font-medium mb-2">fade-in</p>
-                  <div className="h-16 bg-secondary rounded-lg flex items-center justify-center overflow-hidden">
-                    <div className="animate-fade-in w-16 h-16 bg-primary rounded-md"></div>
-                  </div>
+        {/* Border Radius */}
+        <section>
+          <h2 className="text-2xl font-semibold mb-4">Border Radius</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {radiusTokens.map((token) => (
+              <div key={token.name} className="border border-border p-4 rounded-lg">
+                <div 
+                  className="w-full h-20 bg-primary mb-3 border border-border" 
+                  style={{ borderRadius: token.value }}
+                />
+                <p className="text-sm font-medium">{token.name}</p>
+                <p className="text-xs text-muted-foreground">{token.value}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Spacing */}
+        <section>
+          <h2 className="text-2xl font-semibold mb-4">Content Spacing</h2>
+          <div className="space-y-4">
+            {spacingTokens.map((token) => (
+              <div key={token.name} className="border border-border p-4 rounded-lg">
+                <div className="flex gap-2 items-center mb-2">
+                  <p className="text-sm font-medium">{token.name}</p>
+                  <p className="text-xs text-muted-foreground">{token.value}</p>
                 </div>
-                
-                <div className="border border-border p-4 rounded-lg">
-                  <p className="text-sm font-medium mb-2">slide-up</p>
-                  <div className="h-16 bg-secondary rounded-lg flex items-center justify-center overflow-hidden">
-                    <div className="animate-slide-up w-16 h-16 bg-primary rounded-md"></div>
+                <div className="bg-secondary p-2 rounded-md">
+                  <div 
+                    className="w-full h-8 bg-primary"
+                    style={{ padding: token.value }}
+                  >
+                    <div className="w-full h-full bg-primary-muted rounded-md"></div>
                   </div>
                 </div>
               </div>
-            </section>
+            ))}
           </div>
-        </div>
+        </section>
+
+        {/* Shadows */}
+        <section>
+          <h2 className="text-2xl font-semibold mb-4">Shadows</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {shadowTokens.map((token) => (
+              <div key={token.name} className="p-4 rounded-lg">
+                <div 
+                  className="w-full h-24 bg-surface border border-surface-border rounded-lg mb-3" 
+                  style={{ boxShadow: token.value }}
+                />
+                <p className="text-sm font-medium">{token.name}</p>
+                <p className="text-xs text-muted-foreground truncate">{token.value}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Breakpoints */}
+        <section>
+          <h2 className="text-2xl font-semibold mb-4">Viewport Breakpoints</h2>
+          <div className="space-y-2">
+            {breakpointTokens.map((token) => (
+              <div key={token.name} className="flex justify-between items-center p-3 border border-border rounded-lg">
+                <div>
+                  <span className="text-sm font-medium mr-2">{token.name}</span>
+                  <span className="text-xs text-muted-foreground">({token.value})</span>
+                </div>
+                <Tag text={token.value} variant="outline" size="sm" />
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Animation */}
+        <section>
+          <h2 className="text-2xl font-semibold mb-4">Animation Tokens</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="border border-border p-4 rounded-lg">
+              <p className="text-sm font-medium mb-2">fade-in</p>
+              <div className="h-16 bg-secondary rounded-lg flex items-center justify-center overflow-hidden">
+                <div className="animate-fade-in w-16 h-16 bg-primary rounded-md"></div>
+              </div>
+            </div>
+            
+            <div className="border border-border p-4 rounded-lg">
+              <p className="text-sm font-medium mb-2">slide-up</p>
+              <div className="h-16 bg-secondary rounded-lg flex items-center justify-center overflow-hidden">
+                <div className="animate-slide-up w-16 h-16 bg-primary rounded-md"></div>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
-    </div>
+    </PageContainer>
   );
 };
 
