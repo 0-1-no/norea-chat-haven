@@ -5,6 +5,7 @@ import { MoodCard } from '@/components/ui/mood-card';
 import { Separator } from '@/components/ui/separator';
 import { SearchInput } from '@/components/SearchInput';
 import { Button } from '@/components/ui/button';
+import { CharacterCard } from '@/components/ui/character-card';
 import { 
   Flame, 
   Star, 
@@ -138,7 +139,12 @@ const CharacterSection = ({
             key={index}
             className="group transition-all duration-300 hover:-translate-y-1"
           >
-            <CharacterCard character={character} />
+            <CharacterCard 
+              character={{
+                id: character.id || character.name.toLowerCase().replace(/\s+/g, '-'),
+                ...character
+              }} 
+            />
           </div>
         ))}
       </div>
@@ -151,6 +157,7 @@ const Characters = () => {
   
   const trendingCharacters = [
     {
+      id: "nova",
       name: "Nova",
       description: "Kvantedatafysiker fra år 2183. Utforsker parallelle universer og hjelper med komplekse vitenskapelige spørsmål.",
       image: "https://images.unsplash.com/photo-1639474576517-e0a165ae7551?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
@@ -189,6 +196,7 @@ const Characters = () => {
   
   const focusCharacters = [
     {
+      id: "kosmisk-hype",
       name: "Kosmisk Hype",
       description: "Trendy, energisk og alltid oppdatert på de nyeste kulturelle trendene. Hun gjør det ukjente kjent.",
       image: "https://images.unsplash.com/photo-1526510747491-58f928ec870f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
@@ -227,6 +235,7 @@ const Characters = () => {
   
   const featuredCharacters = [
     {
+      id: "sokrates",
       name: "Sokrates",
       description: "Den klassiske filosofen bringer tidløs visdom til vår tid. Utfordrer antagelser med sin sokrtaiske metode.",
       image: "https://images.unsplash.com/photo-1623461487986-9400110de28e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
@@ -265,6 +274,7 @@ const Characters = () => {
   
   const newCharacters = [
     {
+      id: "finansradgiveren",
       name: "Finansrådgiveren",
       description: "Praktiske råd om personlig økonomi, investeringer og økonomisk planlegging for hverdagsmennesker.",
       image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
@@ -272,6 +282,7 @@ const Characters = () => {
       conversations: 47382
     },
     {
+      id: "eventyrfortelleren",
       name: "Eventyrfortelleren",
       description: "Skaper unike historier basert på dine ideer. Perfekt for foreldre og lærere som trenger nye fortellinger.",
       image: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
@@ -279,6 +290,7 @@ const Characters = () => {
       conversations: 35961
     },
     {
+      id: "den-kreative-musa",
       name: "Den Kreative Musa",
       description: "Inspirasjonskilde for kunstnere, forfattere og designere som står fast i kreative prosesser.",
       image: "https://images.unsplash.com/photo-1513708847817-bbb957be3b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
@@ -286,6 +298,7 @@ const Characters = () => {
       conversations: 29547
     },
     {
+      id: "coach-motivator",
       name: "Coach Motivator",
       description: "Personlig motivator som hjelper deg å oppnå dine mål med praktiske råd og oppmuntring.",
       image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
@@ -293,6 +306,7 @@ const Characters = () => {
       conversations: 52136
     },
     {
+      id: "tv-eksperten",
       name: "TV-Eksperten",
       description: "Filmkritiker og serie-entusiast som kan gi deg perfekte anbefalinger basert på din smak.",
       image: "https://images.unsplash.com/photo-1567427018141-0584cfcbf1b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",

@@ -22,6 +22,7 @@ import EmptyRooms from "./pages/EmptyRooms";
 import RoomView from "./pages/RoomView";
 import CustomRoomView from "./pages/CustomRoomView";
 import Characters from "./pages/Characters";
+import CharacterProfile from "./pages/CharacterProfile";
 
 const queryClient = new QueryClient();
 
@@ -50,6 +51,7 @@ function App() {
             <Route path="/room-view/:roomId" element={<RoomView />} />
             <Route path="/custom-room-view/:roomId" element={<CustomRoomView />} />
             <Route path="/characters" element={<Characters />} />
+            <Route path="/character/:characterId" element={<CharacterProfile />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
