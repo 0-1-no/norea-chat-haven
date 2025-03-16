@@ -29,7 +29,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<DefaultLayout />}>
+        <Route element={<DefaultLayout><Outlet /></DefaultLayout>}>
           <Route index element={<Index />} />
           <Route path="components" element={<ComponentLibrary />} />
           <Route path="cards" element={<Cards />} />
