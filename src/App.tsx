@@ -1,5 +1,5 @@
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
 import DefaultLayout from './layouts/DefaultLayout';
 import Index from './pages/Index';
 import NotFound from './pages/NotFound';

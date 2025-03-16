@@ -1,9 +1,9 @@
-
 import React from 'react';
 import { PageContainer } from '@/components/layout/PageContainer';
 import { WeatherCard } from '@/components/weather/WeatherCard';
 import { Message } from '@/components/message/Message';
 import { Separator } from '@/components/ui/separator';
+import { Cloud, CloudRain } from 'lucide-react';
 
 const WeatherChat = () => {
   // Sample weather data for different scenarios
@@ -72,10 +72,9 @@ const WeatherChat = () => {
           content="Hei! Kan du fortelle meg hvordan været blir de neste 7 dagene i Oslo?"
         />
         
-        <Message 
-          role="assistant"
-          content={
-            <div className="space-y-4">
+        <div className="group rounded-lg mb-8 relative bg-background text-foreground float-left clear-both max-w-[85%]">
+          <div className="px-6 py-5">
+            <div className="prose prose-headings:mt-6 prose-headings:mb-3 prose-p:my-4 prose-p:leading-relaxed">
               <p>Her er værmelding for de neste 7 dagene i Oslo:</p>
               <WeatherCard 
                 currentWeather={weeklyForecastData.currentWeather}
@@ -85,8 +84,8 @@ const WeatherChat = () => {
               />
               <p>Det ser ut til at vi får regn midt i uken, men helgen ser lovende ut med sol og høyere temperaturer. Ta med paraply på onsdag og torsdag!</p>
             </div>
-          }
-        />
+          </div>
+        </div>
 
         <Separator />
 
@@ -95,10 +94,9 @@ const WeatherChat = () => {
           content="Hvordan blir været i helgen? Planlegger grilling på lørdag."
         />
         
-        <Message 
-          role="assistant"
-          content={
-            <div className="space-y-4">
+        <div className="group rounded-lg mb-8 relative bg-background text-foreground float-left clear-both max-w-[85%]">
+          <div className="px-6 py-5">
+            <div className="prose prose-headings:mt-6 prose-headings:mb-3 prose-p:my-4 prose-p:leading-relaxed">
               <p>Helgen ser faktisk perfekt ut for grilling! Her er værmelding for helgen i Oslo:</p>
               <WeatherCard 
                 currentWeather={weekendForecastData.currentWeather}
@@ -108,8 +106,8 @@ const WeatherChat = () => {
               />
               <p>Lørdag blir en flott dag med 24 grader på det varmeste og sol hele dagen. Ideelt for grilling! Søndag ser enda varmere ut, så kanskje det blir mulighet for mer uteaktiviteter?</p>
             </div>
-          }
-        />
+          </div>
+        </div>
 
         <Separator />
 
@@ -118,10 +116,9 @@ const WeatherChat = () => {
           content="Jeg skal være ute hele dagen i morgen. Hvordan er UV-indeksen for de neste timene? Trenger jeg solkrem?"
         />
         
-        <Message 
-          role="assistant"
-          content={
-            <div className="space-y-4">
+        <div className="group rounded-lg mb-8 relative bg-background text-foreground float-left clear-both max-w-[85%]">
+          <div className="px-6 py-5">
+            <div className="prose prose-headings:mt-6 prose-headings:mb-3 prose-p:my-4 prose-p:leading-relaxed">
               <p>UV-indeksen er ganske høy i dag og de neste timene. Her er oversikten:</p>
               <WeatherCard 
                 currentWeather={uvForecastData.currentWeather}
@@ -132,8 +129,8 @@ const WeatherChat = () => {
               />
               <p>Med en UV-indeks på 8-9 de neste timene, anbefaler jeg absolutt å bruke solkrem med høy faktor (minst SPF 30), bruke hatt og solbriller, og søke skygge midt på dagen når UV-strålingen er sterkest. UV-indeksen er klassifisert som "Veldig høy" mellom kl. 12-16, så ta forhåndsregler!</p>
             </div>
-          }
-        />
+          </div>
+        </div>
 
         <Separator />
 
@@ -142,10 +139,9 @@ const WeatherChat = () => {
           content="Takk! En siste ting - hvor mye regn kommer på onsdag? Bør jeg ta med paraply på jobb?"
         />
         
-        <Message 
-          role="assistant"
-          content={
-            <div className="space-y-4">
+        <div className="group rounded-lg mb-8 relative bg-background text-foreground float-left clear-both max-w-[85%]">
+          <div className="px-6 py-5">
+            <div className="prose prose-headings:mt-6 prose-headings:mb-3 prose-p:my-4 prose-p:leading-relaxed">
               <p>Onsdag blir en våt dag med 80% sjanse for nedbør. Her er detaljene:</p>
               <div className="backdrop-blur-xl bg-white/10 rounded-3xl overflow-hidden border border-white/20 shadow-lg p-5 max-w-md mx-auto">
                 <div className="flex items-center justify-between">
@@ -206,8 +202,8 @@ const WeatherChat = () => {
               </div>
               <p>Ja, jeg vil absolutt anbefale å ta med paraply! Det ser ut til at det blir mest regn rundt lunsjtid og tidlig ettermiddag, med opp til 12mm total nedbør gjennom dagen. En god paraply eller regnjakke er nødvendig.</p>
             </div>
-          }
-        />
+          </div>
+        </div>
       </div>
     </PageContainer>
   );
