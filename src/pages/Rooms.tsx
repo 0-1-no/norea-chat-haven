@@ -4,8 +4,11 @@ import { PageContainer } from '@/components/layout/PageContainer';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Plus, Brain, Users, Book, Code, Microscope, Globe, Briefcase, UserCircle } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Rooms = () => {
+  const navigate = useNavigate();
+  
   const rooms = [
     {
       id: '1',
@@ -57,6 +60,10 @@ const Rooms = () => {
     }
   ];
 
+  const handleRoomClick = (roomId: string) => {
+    navigate(`/room-view/${roomId}`);
+  };
+
   return (
     <PageContainer 
       title="Rom" 
@@ -74,16 +81,17 @@ const Rooms = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {rooms.map((room) => (
-          <Card key={room.id} className="overflow-hidden hover:shadow-md transition-shadow duration-300">
+          <Card 
+            key={room.id} 
+            className="overflow-hidden hover:shadow-md transition-shadow duration-300 cursor-pointer"
+            onClick={() => handleRoomClick(room.id)}
+          >
             <div className="p-5">
               <div className="flex mb-4">
                 <div className="bg-muted rounded-md p-2">{room.icon}</div>
               </div>
               <h3 className="font-semibold text-lg mb-1">{room.name}</h3>
-              <p className="text-muted-foreground text-sm mb-4">{room.description}</p>
-              <div className="flex justify-end">
-                <Button variant="ghost" size="sm">Åpne</Button>
-              </div>
+              <p className="text-muted-foreground text-sm">{room.description}</p>
             </div>
           </Card>
         ))}
