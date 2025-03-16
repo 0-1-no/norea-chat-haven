@@ -28,7 +28,3 @@ export * from './layout/ResponsiveBehavior';
 export * from './layout/DeveloperGuidelines';
 export * from './ui/skeleton';
 export * from './ui/separator';
-export * from './ui/slider';
-export * from './ui/scroll-area';
-export * from './ui/carousel';
-
