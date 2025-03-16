@@ -1,11 +1,10 @@
 
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { PageContainer } from '@/components/layout/PageContainer';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { Tag } from '@/components/ui/tag';
 import { MessageSquare, User, Heart, Star, BookOpen, Info, Clock, Coffee, Sparkles } from 'lucide-react';
 
 // Simulert data - dette ville vanligvis komme fra en API
@@ -92,7 +91,9 @@ const CharacterProfile = () => {
         <div className="flex flex-col items-center justify-center py-12">
           <h2 className="text-2xl font-bold mb-4">Denne karakteren finnes ikke</h2>
           <p className="text-muted-foreground mb-8">Karakteren du leter etter kunne ikke finnes.</p>
-          <Button href="/characters">Tilbake til karakteroversikten</Button>
+          <Button asChild>
+            <Link to="/characters">Tilbake til karakteroversikten</Link>
+          </Button>
         </div>
       </PageContainer>
     );
@@ -128,9 +129,9 @@ const CharacterProfile = () => {
               
               <div className="flex flex-wrap gap-2 justify-center md:justify-start mb-6">
                 {character.tags.map((tag, index) => (
-                  <Tag key={index} variant="outline" className="bg-white/10 text-white border-white/20">
+                  <span key={index} className="bg-white/10 text-white border-white/20 border px-2.5 py-0.5 rounded-full text-xs">
                     {tag}
-                  </Tag>
+                  </span>
                 ))}
               </div>
               

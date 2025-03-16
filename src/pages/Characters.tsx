@@ -27,45 +27,6 @@ import {
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-const CharacterCard = ({ 
-  character, 
-  className 
-}: { 
-  character: any, 
-  className?: string 
-}) => {
-  const navigate = useNavigate();
-  
-  return (
-    <Card 
-      className={`overflow-hidden hover:shadow-md transition-shadow duration-300 cursor-pointer ${className}`}
-      onClick={() => console.log(`Navigating to character: ${character.name}`)}
-    >
-      <div className="relative aspect-square overflow-hidden">
-        <img 
-          src={character.image} 
-          alt={character.name} 
-          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105" 
-        />
-        {character.creator && (
-          <div className="absolute bottom-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded-full">
-            Av {character.creator}
-          </div>
-        )}
-      </div>
-      <CardContent className="pt-3 px-4 pb-4">
-        <h3 className="font-semibold text-lg mb-1 line-clamp-1">{character.name}</h3>
-        <p className="text-muted-foreground text-sm line-clamp-2 mb-2">{character.description}</p>
-        
-        <div className="flex items-center text-xs text-muted-foreground mt-1">
-          <MessageSquare className="w-3.5 h-3.5 mr-1" />
-          <span>{(character.conversations || Math.floor(Math.random() * 500)).toLocaleString()}</span>
-        </div>
-      </CardContent>
-    </Card>
-  );
-};
-
 const FeaturedCharacterBanner = () => {
   return (
     <div className="relative w-full bg-gradient-to-r from-blue-900 to-purple-900 rounded-xl overflow-hidden h-[300px] md:h-[400px]">
