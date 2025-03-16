@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Folders, Users, Layers, MessageCircle, LayoutDashboard, Sparkles, UserCircle } from 'lucide-react';
 import { SidebarSection } from './SidebarSection';
@@ -8,12 +7,13 @@ export const SidebarContent: React.FC = () => {
   const [activeChat, setActiveChat] = useState<string | null>("Forstå kvantedatabehandling");
   
   const recentChats = [
-    { id: "1", title: "Forstå kvantedatabehandling", date: "10. mar", to: "/chat-demo" },
+    { id: "1", title: "Enkel chat-demonstrasjon", date: "10. mar", to: "/chat-demo" },
     { id: "2", title: "Minne-demonstrasjon", date: "11. mar", to: "/memory-chat" },
-    { id: "3", title: "Analyser salgsdata", date: "9. mar" },
-    { id: "4", title: "Planlegg europeisk ferie", date: "7. mar" },
-    { id: "5", title: "Essay om klimaendringer", date: "5. mar" },
-    { id: "6", title: "Kodeevaluering: React-komponenter", date: "3. mar" }
+    { id: "3", title: "Vær-demonstrasjon", date: "12. mar", to: "/weather-chat" },
+    { id: "4", title: "Analyser salgsdata", date: "9. mar" },
+    { id: "5", title: "Planlegg europeisk ferie", date: "7. mar" },
+    { id: "6", title: "Essay om klimaendringer", date: "5. mar" },
+    { id: "7", title: "Kodeevaluering: React-komponenter", date: "3. mar" }
   ];
 
   const charactersWithContent = [
