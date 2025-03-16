@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { PageContainer } from '@/components/layout/PageContainer';
 import { Card, CardContent } from '@/components/ui/card';
@@ -6,6 +7,7 @@ import { Separator } from '@/components/ui/separator';
 import { SearchInput } from '@/components/SearchInput';
 import { Button } from '@/components/ui/button';
 import { CharacterCard } from '@/components/ui/character-card';
+import { ProfileCard } from '@/components/ui/profile-card';
 import { 
   Flame, 
   Star, 
@@ -76,12 +78,20 @@ const FeaturedCharacterBanner = () => {
 const CharacterSection = ({ 
   title, 
   icon, 
-  characters 
+  characters,
+  useProfileCard = false
 }: { 
   title: string, 
   icon: React.ReactNode, 
-  characters: any[] 
+  characters: any[],
+  useProfileCard?: boolean
 }) => {
+  const navigate = useNavigate();
+  
+  const handleProfileCardClick = (character: any) => {
+    navigate(`/character/${character.id || character.name.toLowerCase().replace(/\s+/g, '-')}`);
+  };
+  
   return (
     <section className="mb-12">
       <div className="flex items-center justify-between mb-6">
@@ -100,12 +110,25 @@ const CharacterSection = ({
             key={index}
             className="group transition-all duration-300 hover:-translate-y-1"
           >
-            <CharacterCard 
-              character={{
-                id: character.id || character.name.toLowerCase().replace(/\s+/g, '-'),
-                ...character
-              }} 
-            />
+            {useProfileCard ? (
+              <ProfileCard
+                name={character.name}
+                tagline={character.description.substring(0, 60) + "..."}
+                imageSrc={character.image}
+                creatorName={character.creator}
+                backgroundColor={character.backgroundColor || "bg-gradient-to-r from-purple-500 to-indigo-700"}
+                onClick={() => handleProfileCardClick(character)}
+                showChat={true}
+                rotation={index % 2 === 0 ? 1 : -1}
+              />
+            ) : (
+              <CharacterCard 
+                character={{
+                  id: character.id || character.name.toLowerCase().replace(/\s+/g, '-'),
+                  ...character
+                }} 
+              />
+            )}
           </div>
         ))}
       </div>
@@ -296,7 +319,8 @@ const Characters = () => {
         <CharacterSection 
           title="I fokus" 
           icon={<Flame className="w-6 h-6 text-orange-500" />} 
-          characters={focusCharacters} 
+          characters={focusCharacters}
+          useProfileCard={true}
         />
         
         <CharacterSection 

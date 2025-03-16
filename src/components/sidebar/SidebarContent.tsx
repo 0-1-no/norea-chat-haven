@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Folders, Users, Layers, MessageCircle, LayoutDashboard, Sparkles, UserCircle } from 'lucide-react';
 import { SidebarSection } from './SidebarSection';
@@ -13,6 +12,10 @@ export const SidebarContent: React.FC = () => {
     { id: "3", title: "Planlegg europeisk ferie", date: "7. mar" },
     { id: "4", title: "Essay om klimaendringer", date: "5. mar" },
     { id: "5", title: "Kodeevaluering: React-komponenter", date: "3. mar" }
+  ];
+
+  const charactersWithContent = [
+    { id: "dating-coach", title: "Dating Coach", to: "/character/dating-coach" },
   ];
 
   return (
@@ -41,18 +44,13 @@ export const SidebarContent: React.FC = () => {
           title="Alle karakterer" 
           to="/characters"
         />
-        <SidebarItem 
-          title="Dating Coach" 
-          to="/character/dating-coach"
-        />
-        <SidebarItem 
-          title="Kosmisk Hype" 
-          to="/character/kosmisk-hype"
-        />
-        <SidebarItem 
-          title="Sokrates" 
-          to="/character/sokrates"
-        />
+        {charactersWithContent.map((character) => (
+          <SidebarItem 
+            key={character.id}
+            title={character.title} 
+            to={character.to}
+          />
+        ))}
       </SidebarSection>
       
       <SidebarSection title="Design System" icon={<Layers className="w-4 h-4 text-gray-500" />}>
