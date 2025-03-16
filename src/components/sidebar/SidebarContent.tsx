@@ -22,6 +22,10 @@ export const SidebarContent: React.FC = () => {
           title="Alle rom" 
           to="/rooms"
         />
+        <SidebarItem 
+          title="Tom tilstand" 
+          to="/empty-rooms"
+        />
       </SidebarSection>
       
       <SidebarSection title="Karakterer" icon={<Users className="w-4 h-4 text-gray-500" />}>

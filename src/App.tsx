@@ -18,6 +18,7 @@ import Navigation from "./pages/Navigation";
 import ChatDemo from "./pages/ChatDemo";
 import Typography from "./pages/Typography";
 import Rooms from "./pages/Rooms";
+import EmptyRooms from "./pages/EmptyRooms";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,7 @@ function App() {
             <Route path="/chat-demo" element={<ChatDemo />} />
             <Route path="/typography" element={<Typography />} />
             <Route path="/rooms" element={<Rooms />} />
+            <Route path="/empty-rooms" element={<EmptyRooms />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
