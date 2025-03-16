@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -13,7 +13,6 @@ export type ProfileCardProps = {
   backgroundColor?: string;
   className?: string;
   onClick?: () => void;
-  showChat?: boolean;
   stackPosition?: 'front' | 'middle' | 'back';
   rotation?: number;
 };
@@ -28,10 +27,11 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
   backgroundColor = 'bg-gradient-to-r from-red-500 to-red-700',
   className,
   onClick,
-  showChat = true,
   stackPosition = 'front',
   rotation = 0,
 }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  
   const getStackStyles = () => {
     switch (stackPosition) {
       case 'back':
@@ -49,53 +49,52 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
   return (
     <div 
       className={cn(
-        "relative shadow-lg rounded-3xl overflow-hidden w-64 h-96 cursor-pointer transform transition-all duration-300 ease-in-out",
+        "relative shadow-lg rounded-3xl overflow-hidden w-64 h-96 cursor-pointer transform transition-all duration-300 ease-in-out group",
         getStackStyles(),
         customRotation,
         className
       )}
       onClick={onClick}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       <div className={cn("w-full h-full", backgroundColor)}>
+        {/* Top-right arrow indicator */}
+        <div className="absolute top-4 right-4 z-10 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+          <ArrowUpRight className="w-6 h-6 text-white/80 group-hover:text-white" />
+        </div>
+        
         <div className="absolute inset-0 overflow-hidden">
           <img 
             src={imageSrc} 
             alt={name}
-            className="w-full h-full object-cover object-center opacity-80" 
+            className="w-full h-full object-cover object-center opacity-80 transition-transform duration-500 group-hover:scale-105" 
           />
         </div>
         
-        <div className="absolute inset-0 flex flex-col justify-between p-6 text-white">
-          <div>
+        {/* Gradient overlay at the bottom */}
+        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/80 to-transparent" />
+        
+        <div className="absolute inset-0 flex flex-col justify-end p-6 text-white">
+          <div className="z-10">
             <h2 className="text-2xl font-bold drop-shadow-md">{name}</h2>
             {tagline && (
-              <p className="text-sm opacity-90 mt-1">{tagline}</p>
+              <p className="text-sm opacity-90 mt-1 line-clamp-2">{tagline}</p>
             )}
-          </div>
-          
-          <div className="flex items-center justify-between">
+            
             {creatorImageSrc && (
-              <div className="flex items-center">
-                <div className="w-8 h-8 rounded-full overflow-hidden border-2 border-white/30 mr-2">
+              <div className="flex items-center mt-3">
+                <div className="w-6 h-6 rounded-full overflow-hidden border-2 border-white/30 mr-2">
                   <img 
                     src={creatorImageSrc} 
                     alt={creatorName || "Creator"} 
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div>
-                  <p className="text-sm font-medium">{creatorName}</p>
-                  {creatorUsername && (
-                    <p className="text-xs opacity-80">{creatorUsername}</p>
-                  )}
+                <div className="text-xs opacity-80">
+                  {creatorName}
                 </div>
               </div>
-            )}
-            
-            {showChat && (
-              <button className="bg-white text-black font-medium text-sm py-1.5 px-3 rounded-full flex items-center">
-                Chat <ArrowUpRight className="ml-1 w-3.5 h-3.5" />
-              </button>
             )}
           </div>
         </div>

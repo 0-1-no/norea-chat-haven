@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Folders, Users, Layers, MessageCircle, LayoutDashboard, Sparkles, UserCircle } from 'lucide-react';
 import { SidebarSection } from './SidebarSection';
@@ -16,6 +17,7 @@ export const SidebarContent: React.FC = () => {
 
   const charactersWithContent = [
     { id: "dating-coach", title: "Dating Coach", to: "/character/dating-coach" },
+    { id: "kosmisk-hype", title: "Kosmisk Hype", to: "/kosmisk-hype" },
   ];
 
   return (
