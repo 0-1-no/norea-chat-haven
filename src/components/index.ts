@@ -31,3 +31,4 @@ export * from './layout/ResponsiveBehavior';
 export * from './layout/DeveloperGuidelines';
 export * from './ui/skeleton';
 export * from './ui/separator';
+export * from './ui/aspect-ratio';

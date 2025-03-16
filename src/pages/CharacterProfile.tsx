@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { PageContainer } from '@/components/layout/PageContainer';
@@ -6,8 +5,8 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter }
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { MessageSquare, User, Heart, Star, BookOpen, Info, Clock, Coffee, Sparkles } from 'lucide-react';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 
-// Simulert data - dette ville vanligvis komme fra en API
 const getCharacterData = (id: string) => {
   const characters = {
     'dating-coach': {
@@ -100,35 +99,36 @@ const CharacterProfile = () => {
   }
   
   return (
-    <PageContainer title={character.name} showBackButton>
+    <PageContainer title={character?.name} showBackButton>
       <div className="max-w-4xl mx-auto">
-        {/* Hero section */}
         <div className="relative w-full rounded-xl overflow-hidden mb-8">
           <div className="absolute inset-0 bg-gradient-to-r from-purple-900/80 to-blue-900/80 z-10" />
           <div 
             className="absolute inset-0 bg-cover bg-center z-0"
             style={{ 
-              backgroundImage: `url(${character.image})`,
+              backgroundImage: `url(${character?.image})`,
               filter: 'blur(8px) brightness(0.7)',
               transform: 'scale(1.1)'
             }}
           />
           
           <div className="relative z-20 p-8 md:p-12 flex flex-col md:flex-row gap-8 items-center md:items-start">
-            <div className="w-40 h-40 md:w-52 md:h-52 rounded-full overflow-hidden border-4 border-white/20 shadow-xl">
-              <img 
-                src={character.image} 
-                alt={character.name} 
-                className="w-full h-full object-cover"
-              />
+            <div className="w-40 md:w-52 rounded-full overflow-hidden border-4 border-white/20 shadow-xl">
+              <AspectRatio ratio={1 / 1} className="w-full h-full">
+                <img 
+                  src={character?.image} 
+                  alt={character?.name} 
+                  className="w-full h-full object-cover"
+                />
+              </AspectRatio>
             </div>
             
             <div className="flex-1 text-center md:text-left">
-              <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">{character.name}</h1>
-              <p className="text-xl text-white/90 mb-4">{character.tagline}</p>
+              <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">{character?.name}</h1>
+              <p className="text-xl text-white/90 mb-4">{character?.tagline}</p>
               
               <div className="flex flex-wrap gap-2 justify-center md:justify-start mb-6">
-                {character.tags.map((tag, index) => (
+                {character?.tags.map((tag, index) => (
                   <span key={index} className="bg-white/10 text-white border-white/20 border px-2.5 py-0.5 rounded-full text-xs">
                     {tag}
                   </span>
@@ -138,15 +138,15 @@ const CharacterProfile = () => {
               <div className="flex gap-6 justify-center md:justify-start">
                 <div className="flex items-center gap-1 text-white/80">
                   <MessageSquare className="w-4 h-4" />
-                  <span className="text-sm">{character.conversations.toLocaleString()} samtaler</span>
+                  <span className="text-sm">{character?.conversations.toLocaleString()} samtaler</span>
                 </div>
                 <div className="flex items-center gap-1 text-white/80">
                   <Star className="w-4 h-4 text-amber-300" />
-                  <span className="text-sm">{character.rating}/5</span>
+                  <span className="text-sm">{character?.rating}/5</span>
                 </div>
                 <div className="flex items-center gap-1 text-white/80">
                   <Clock className="w-4 h-4" />
-                  <span className="text-sm">Opprettet: {new Date(character.createdAt).toLocaleDateString('nb-NO')}</span>
+                  <span className="text-sm">Opprettet: {character?.createdAt && new Date(character.createdAt).toLocaleDateString('nb-NO')}</span>
                 </div>
               </div>
             </div>
@@ -155,7 +155,7 @@ const CharacterProfile = () => {
           <div className="relative z-20 bg-white/10 backdrop-blur-sm border-t border-white/10 p-4 flex justify-between items-center">
             <div className="flex items-center gap-2">
               <User className="w-4 h-4 text-white/70" />
-              <span className="text-sm text-white/70">Av: {character.creator}</span>
+              <span className="text-sm text-white/70">Av: {character?.creator}</span>
             </div>
             <Button className="bg-purple-600 hover:bg-purple-700 text-white">
               <MessageSquare className="w-4 h-4 mr-2" />
@@ -164,10 +164,8 @@ const CharacterProfile = () => {
           </div>
         </div>
 
-        {/* Main content */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-8">
-            {/* Scene card */}
             <Card>
               <CardHeader className="bg-gradient-to-r from-blue-50 to-purple-50">
                 <div className="flex items-center gap-2">
@@ -176,11 +174,10 @@ const CharacterProfile = () => {
                 </div>
               </CardHeader>
               <CardContent className="pt-6">
-                <p className="text-gray-700 italic">{character.scene}</p>
+                <p className="text-gray-700 italic">{character?.scene}</p>
               </CardContent>
             </Card>
             
-            {/* About card */}
             <Card>
               <CardHeader className="bg-gradient-to-r from-blue-50 to-purple-50">
                 <div className="flex items-center gap-2">
@@ -190,7 +187,7 @@ const CharacterProfile = () => {
               </CardHeader>
               <CardContent className="pt-6">
                 <div className="prose max-w-none">
-                  {character.about.split('\n\n').map((paragraph, index) => (
+                  {character?.about.split('\n\n').map((paragraph, index) => (
                     <div key={index}>
                       {paragraph.includes('•') ? (
                         <ul className="list-disc pl-5 space-y-1">
@@ -209,7 +206,6 @@ const CharacterProfile = () => {
           </div>
           
           <div>
-            {/* Characters card */}
             <Card>
               <CardHeader className="bg-gradient-to-r from-blue-50 to-purple-50">
                 <div className="flex items-center gap-2">
@@ -218,7 +214,7 @@ const CharacterProfile = () => {
                 </div>
               </CardHeader>
               <CardContent className="pt-6">
-                {character.characters.map((char, index) => (
+                {character?.characters.map((char, index) => (
                   <div key={index} className="flex gap-4 items-center mb-4">
                     <div className="w-16 h-16 rounded-full overflow-hidden">
                       <img 
@@ -237,7 +233,6 @@ const CharacterProfile = () => {
               </CardContent>
             </Card>
             
-            {/* Additional info card */}
             <Card className="mt-6">
               <CardHeader className="bg-gradient-to-r from-blue-50 to-purple-50">
                 <div className="flex items-center gap-2">
