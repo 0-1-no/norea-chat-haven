@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 import ReactMarkdown from 'react-markdown';
 import { Button } from '@/components/ui/button';
 import { toast } from '@/hooks/use-toast';
+import { MemoryIndicator } from './MemoryIndicator';
 
 export type MessageRole = 'user' | 'ai';
 
@@ -12,12 +13,17 @@ interface MessageProps {
   content: string;
   role: MessageRole;
   className?: string;
+  memories?: {
+    type: 'retrieve' | 'store';
+    content: string;
+  }[];
 }
 
 export const Message: React.FC<MessageProps> = ({
   content,
   role,
   className,
+  memories
 }) => {
   const [showActions, setShowActions] = useState(false);
 
@@ -66,6 +72,19 @@ export const Message: React.FC<MessageProps> = ({
       onMouseEnter={() => setShowActions(true)}
       onMouseLeave={() => setShowActions(false)}
     >
+      {/* Memory indicators */}
+      {memories && role === 'ai' && (
+        <div className="mb-1">
+          {memories.map((memory, index) => (
+            <MemoryIndicator 
+              key={index}
+              type={memory.type}
+              content={memory.content}
+            />
+          ))}
+        </div>
+      )}
+      
       {/* Content wrapper with proper padding */}
       <div className={cn(
         role === 'user' ? "px-5 py-4" : "px-6 py-5", // More padding for AI messages

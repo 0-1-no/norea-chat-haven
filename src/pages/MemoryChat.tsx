@@ -17,162 +17,185 @@ interface ChatMessage {
 }
 
 const MemoryChat = () => {
-  const [messages, setMessages] = useState<ChatMessage[]>([
+  const chatContainerRef = useRef<HTMLDivElement>(null);
+
+  // Pre-defined conversation that shows memory capabilities
+  const predefinedMessages: ChatMessage[] = [
     {
       id: '1',
       role: 'ai',
-      content: 'Hei! Jeg er din AI-assistent med minne. Jeg kan huske ting fra tidligere i samtalen vår. Prøv å fortelle meg noe om deg selv, eller spør meg om noe, så viser jeg deg hvordan dette fungerer.'
+      content: 'Hei! Jeg er din AI-assistent med minne. Jeg kan huske ting fra tidligere i samtalen vår.'
+    },
+    {
+      id: '2',
+      role: 'user',
+      content: 'Hei! Jeg heter Jonas.'
+    },
+    {
+      id: '3',
+      role: 'ai',
+      content: 'Hyggelig å møte deg, Jonas! Jeg har lagret navnet ditt i minnet mitt, så jeg kan referere til det senere i samtalen.',
+      memories: [
+        {
+          type: 'store',
+          content: 'Brukerens navn er Jonas'
+        }
+      ]
+    },
+    {
+      id: '4',
+      role: 'user',
+      content: 'Jeg jobber som web-utvikler og liker å drive med fjellklatring på fritiden.'
+    },
+    {
+      id: '5',
+      role: 'ai',
+      content: 'Det er interessant å høre at du jobber som web-utvikler og driver med fjellklatring på fritiden! Jeg har lagret denne informasjonen.',
+      memories: [
+        {
+          type: 'store',
+          content: 'Brukeren jobber som web-utvikler'
+        },
+        {
+          type: 'store',
+          content: 'Brukerens hobby er fjellklatring'
+        }
+      ]
+    },
+    {
+      id: '6',
+      role: 'user',
+      content: 'Min favorittfarge er blå.'
+    },
+    {
+      id: '7',
+      role: 'ai',
+      content: 'Blå er en flott farge! Jeg har lagret dette i minnet mitt.',
+      memories: [
+        {
+          type: 'store',
+          content: 'Brukerens favorittfarge er blå'
+        }
+      ]
+    },
+    {
+      id: '8',
+      role: 'user',
+      content: 'Hvor kommer jeg fra?'
+    },
+    {
+      id: '9',
+      role: 'ai',
+      content: 'Du har ikke fortalt meg hvor du kommer fra ennå. Vil du dele det med meg?'
+    },
+    {
+      id: '10',
+      role: 'user',
+      content: 'Jeg kommer fra Bergen.'
+    },
+    {
+      id: '11',
+      role: 'ai',
+      content: 'Takk for at du deler det. Jeg har notert at du kommer fra Bergen, som er en vakker by på vestkysten av Norge.',
+      memories: [
+        {
+          type: 'store',
+          content: 'Brukeren kommer fra Bergen'
+        }
+      ]
+    },
+    {
+      id: '12',
+      role: 'user',
+      content: 'Husker du hva jeg heter?'
+    },
+    {
+      id: '13',
+      role: 'ai',
+      content: 'Selvfølgelig! Du heter Jonas.',
+      memories: [
+        {
+          type: 'retrieve',
+          content: 'Brukerens navn er Jonas'
+        }
+      ]
+    },
+    {
+      id: '14',
+      role: 'user',
+      content: 'Hva jobber jeg med og hva liker jeg å gjøre på fritiden?'
+    },
+    {
+      id: '15',
+      role: 'ai',
+      content: 'Du jobber som web-utvikler, og på fritiden liker du å drive med fjellklatring.',
+      memories: [
+        {
+          type: 'retrieve',
+          content: 'Brukeren jobber som web-utvikler'
+        },
+        {
+          type: 'retrieve',
+          content: 'Brukerens hobby er fjellklatring'
+        }
+      ]
+    },
+    {
+      id: '16',
+      role: 'user',
+      content: 'Kan du oppsummere alt du vet om meg?'
+    },
+    {
+      id: '17',
+      role: 'ai',
+      content: 'Selvfølgelig! Her er det jeg vet om deg:\n\n- Du heter Jonas\n- Du kommer fra Bergen\n- Du jobber som web-utvikler\n- Du liker å drive med fjellklatring på fritiden\n- Din favorittfarge er blå',
+      memories: [
+        {
+          type: 'retrieve',
+          content: 'Brukerens navn er Jonas'
+        },
+        {
+          type: 'retrieve',
+          content: 'Brukeren kommer fra Bergen'
+        },
+        {
+          type: 'retrieve',
+          content: 'Brukeren jobber som web-utvikler'
+        },
+        {
+          type: 'retrieve',
+          content: 'Brukerens hobby er fjellklatring'
+        },
+        {
+          type: 'retrieve',
+          content: 'Brukerens favorittfarge er blå'
+        }
+      ]
     }
-  ]);
-  const chatContainerRef = useRef<HTMLDivElement>(null);
-
-  // Sample user information to "remember"
-  const userMemories = {
-    name: 'Jonas',
-    favoriteColor: 'blå',
-    birthday: '15. mai',
-    hometown: 'Bergen',
-    job: 'web-utvikler',
-    hobby: 'fjellklatring'
-  };
+  ];
 
   // Scroll to bottom when messages are added
   useEffect(() => {
     if (chatContainerRef.current) {
       chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
     }
-  }, [messages]);
-
-  const handleSendMessage = (message: string) => {
-    // Add user message
-    const userMessage: ChatMessage = {
-      id: Date.now().toString(),
-      role: 'user',
-      content: message
-    };
-    
-    setMessages(prev => [...prev, userMessage]);
-    
-    // Generate AI response with simulated memory capabilities
-    setTimeout(() => {
-      const aiResponse = generateAIResponse(message);
-      setMessages(prev => [...prev, aiResponse]);
-    }, 1000);
-  };
-
-  const generateAIResponse = (userMessage: string): ChatMessage => {
-    const lowercaseMessage = userMessage.toLowerCase();
-    const memories = [];
-    let responseContent = '';
-    
-    // Check if user is sharing personal information (simulate storing memory)
-    if (lowercaseMessage.includes('jeg heter') || lowercaseMessage.includes('navnet mitt er')) {
-      memories.push({
-        type: 'store',
-        content: `Brukerens navn er ${lowercaseMessage.includes('jeg heter') ? 
-          lowercaseMessage.split('jeg heter')[1].trim() : 
-          lowercaseMessage.split('navnet mitt er')[1].trim()}`
-      });
-      responseContent = `Hyggelig å møte deg! Jeg har lagret navnet ditt i minnet mitt, så jeg kan referere til det senere i samtalen.`;
-    }
-    else if (lowercaseMessage.includes('favorittfarge') || lowercaseMessage.includes('yndlingsfarge')) {
-      const color = lowercaseMessage.includes('er') ? 
-        lowercaseMessage.split('er')[1].trim() : 
-        lowercaseMessage.split('farge')[1].trim();
-      
-      memories.push({
-        type: 'store',
-        content: `Brukerens favorittfarge er ${color}`
-      });
-      responseContent = `${color} er en flott farge! Jeg har lagret dette i minnet mitt.`;
-    }
-    else if (lowercaseMessage.includes('jobber som') || lowercaseMessage.includes('jeg er')) {
-      const job = lowercaseMessage.includes('jobber som') ? 
-        lowercaseMessage.split('jobber som')[1].trim() : 
-        lowercaseMessage.split('jeg er')[1].trim();
-      
-      memories.push({
-        type: 'store',
-        content: `Brukeren jobber som ${job}`
-      });
-      responseContent = `Interessant å høre at du jobber som ${job}! Jeg har lagret dette i minnet mitt.`;
-    }
-    // Questions that would trigger memory retrieval
-    else if (lowercaseMessage.includes('husker du') || lowercaseMessage.includes('hva heter jeg')) {
-      if (lowercaseMessage.includes('navn') || lowercaseMessage.includes('heter jeg')) {
-        memories.push({
-          type: 'retrieve',
-          content: `Brukerens navn er ${userMemories.name}`
-        });
-        responseContent = `Selvfølgelig! Du heter ${userMemories.name}.`;
-      } 
-      else if (lowercaseMessage.includes('farge')) {
-        memories.push({
-          type: 'retrieve',
-          content: `Brukerens favorittfarge er ${userMemories.favoriteColor}`
-        });
-        responseContent = `Jeg husker at favorittfargen din er ${userMemories.favoriteColor}.`;
-      }
-      else if (lowercaseMessage.includes('jobb') || lowercaseMessage.includes('arbeid')) {
-        memories.push({
-          type: 'retrieve',
-          content: `Brukeren jobber som ${userMemories.job}`
-        });
-        responseContent = `Du fortalte meg at du jobber som ${userMemories.job}.`;
-      }
-      else {
-        // General memory retrieval
-        memories.push({
-          type: 'retrieve',
-          content: `Brukerens navn er ${userMemories.name}, favorittfarge er ${userMemories.favoriteColor}, og jobber som ${userMemories.job}`
-        });
-        responseContent = `Ja, jeg husker flere ting om deg. Du heter ${userMemories.name}, favorittfargen din er ${userMemories.favoriteColor}, og du jobber som ${userMemories.job}.`;
-      }
-    }
-    // Default response if no memory triggers
-    else {
-      responseContent = `Det er interessant! Hvis du forteller meg mer om deg selv, som ditt navn, favorittfarge, eller hva du jobber med, kan jeg huske det for senere. Du kan også spørre meg om jeg husker detaljer om deg.`;
-    }
-    
-    return {
-      id: (Date.now() + 1).toString(),
-      role: 'ai',
-      content: responseContent,
-      memories: memories.length > 0 ? memories : undefined
-    };
-  };
+  }, []);
 
   return (
     <PageContainer title="Minne-demonstrasjon" showBackButton={true}>
       <div className="flex-1 overflow-hidden flex flex-col">
         <div className="flex-1 overflow-y-auto p-6" ref={chatContainerRef}>
           <div className="max-w-3xl mx-auto">
-            {messages.map((message) => (
+            {predefinedMessages.map((message) => (
               <div key={message.id} className="mb-6">
-                {/* Memories shown before AI message */}
-                {message.role === 'ai' && message.memories && message.memories.map((memory, index) => (
-                  <MemoryIndicator 
-                    key={index}
-                    type={memory.type}
-                    content={memory.content}
-                  />
-                ))}
-                
                 <Message
                   role={message.role}
                   content={message.content}
+                  memories={message.memories}
                 />
               </div>
             ))}
           </div>
-        </div>
-        
-        <div className="p-4 border-t border-border">
-          <MessageInput 
-            onSendMessage={handleSendMessage}
-            className="max-w-3xl mx-auto"
-            placeholder="Send en melding..."
-          />
         </div>
       </div>
     </PageContainer>
