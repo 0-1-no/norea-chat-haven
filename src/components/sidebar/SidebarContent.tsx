@@ -9,15 +9,15 @@ export const SidebarContent: React.FC = () => {
   
   const recentChats = [
     { id: "1", title: "Forstå kvantedatabehandling", date: "10. mar", to: "/chat-demo" },
-    { id: "2", title: "Analyser salgsdata", date: "9. mar" },
-    { id: "3", title: "Planlegg europeisk ferie", date: "7. mar" },
-    { id: "4", title: "Essay om klimaendringer", date: "5. mar" },
-    { id: "5", title: "Kodeevaluering: React-komponenter", date: "3. mar" }
+    { id: "2", title: "Minne-demonstrasjon", date: "11. mar", to: "/memory-chat" },
+    { id: "3", title: "Analyser salgsdata", date: "9. mar" },
+    { id: "4", title: "Planlegg europeisk ferie", date: "7. mar" },
+    { id: "5", title: "Essay om klimaendringer", date: "5. mar" },
+    { id: "6", title: "Kodeevaluering: React-komponenter", date: "3. mar" }
   ];
 
   const charactersWithContent = [
     { id: "dating-coach", title: "Dating Coach", to: "/character/dating-coach" },
-    { id: "kosmisk-hype", title: "Kosmisk Hype", to: "/kosmisk-hype" },
   ];
 
   return (

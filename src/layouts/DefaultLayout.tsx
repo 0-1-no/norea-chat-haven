@@ -4,12 +4,18 @@ import { PageContainer } from '@/components/layout/PageContainer';
 
 interface DefaultLayoutProps {
   children: React.ReactNode;
+  title?: string;
+  description?: string;
 }
 
-const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
+const DefaultLayout: React.FC<DefaultLayoutProps> = ({ 
+  children, 
+  title = "Norea", 
+  description = "Din personlige AI-assistent"
+}) => {
   return (
-    <PageContainer title="Kosmisk Hype" description="Trendy, energisk og alltid oppdatert på de nyeste kulturelle trendene">
-      <div className="min-h-screen bg-gradient-to-b from-purple-900 to-indigo-900 text-white">
+    <PageContainer title={title} description={description}>
+      <div className="min-h-screen">
         {children}
       </div>
     </PageContainer>

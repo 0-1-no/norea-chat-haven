@@ -25,7 +25,7 @@ import CustomRoomView from "./pages/CustomRoomView";
 import Characters from "./pages/Characters";
 import CharacterProfile from "./pages/CharacterProfile";
 import DefaultLayout from "./layouts/DefaultLayout";
-import KosmiskHypeProfile from "./pages/KosmiskHypeProfile";
+import MemoryChat from "./pages/MemoryChat";
 
 const queryClient = new QueryClient();
 
@@ -48,6 +48,7 @@ function App() {
             <Route path="/layout" element={<Layout />} />
             <Route path="/navigation" element={<Navigation />} />
             <Route path="/chat-demo" element={<ChatDemo />} />
+            <Route path="/memory-chat" element={<MemoryChat />} />
             <Route path="/typography" element={<Typography />} />
             <Route path="/rooms" element={<Rooms />} />
             <Route path="/empty-rooms" element={<EmptyRooms />} />
@@ -55,13 +56,6 @@ function App() {
             <Route path="/custom-room-view/:roomId" element={<CustomRoomView />} />
             <Route path="/characters" element={<Characters />} />
             <Route path="/character/:characterId" element={<CharacterProfile />} />
-            <Route path="/kosmisk-hype" element={
-              <DefaultLayout>
-                <React.Suspense fallback={<div>Loading...</div>}>
-                  <KosmiskHypeProfile />
-                </React.Suspense>
-              </DefaultLayout>
-            } />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
