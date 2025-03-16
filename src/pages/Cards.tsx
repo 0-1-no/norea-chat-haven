@@ -3,12 +3,78 @@ import React from 'react';
 import { PageContainer } from '@/components/layout/PageContainer';
 import { PromptCard } from '@/components/ui/prompt-card';
 import { ImageCard } from '@/components/ui/image-card';
+import { MoodCard } from '@/components/ui/mood-card';
 import { Tag } from '@/components/ui/tag';
+import { Sparkles, Star, Gem } from 'lucide-react';
 
 const Cards = () => {
   return (
     <PageContainer title="Kortkomponenter" showBackButton={true}>
       <div className="space-y-8">
+        {/* MoodCard Component */}
+        <section>
+          <h2 className="text-2xl font-semibold mb-4">MoodCard</h2>
+          
+          <div className="space-y-6 max-w-3xl">
+            <div>
+              <h3 className="text-sm font-medium text-muted-foreground mb-2">Standard</h3>
+              <MoodCard 
+                title="Mood Board" 
+                subtitle="Visuell inspirasjon"
+                icon={<Sparkles className="w-5 h-5 text-purple-600" />}
+              >
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="aspect-square rounded-lg bg-purple-200"></div>
+                  <div className="aspect-square rounded-lg bg-gradient-to-br from-amber-300 to-orange-400"></div>
+                </div>
+              </MoodCard>
+            </div>
+            
+            <h3 className="text-lg font-medium mt-6 mb-2">Varianter</h3>
+            
+            <div className="space-y-4">
+              <div>
+                <h4 className="text-sm text-muted-foreground mb-2">Alternative farger</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <MoodCard 
+                    title="Prosjekt Ideer" 
+                    subtitle="Kreative tanker"
+                    icon={<Star className="w-5 h-5 text-blue-600" />}
+                    headerColor="bg-blue-50"
+                  >
+                    <p className="text-muted-foreground">Samle innovative ideer for kommende prosjekter her.</p>
+                  </MoodCard>
+                  
+                  <MoodCard 
+                    title="Designtemaer" 
+                    subtitle="Farger og stiler"
+                    icon={<Gem className="w-5 h-5 text-emerald-600" />}
+                    headerColor="bg-emerald-50"
+                  >
+                    <p className="text-muted-foreground">Utforsk temaer og fargepaletter for din neste design.</p>
+                  </MoodCard>
+                </div>
+              </div>
+              
+              <div>
+                <h4 className="text-sm text-muted-foreground mb-2">Med farge-gradert header</h4>
+                <MoodCard 
+                  title="Visuell Inspirasjon" 
+                  subtitle="Kreative referanser"
+                  headerColor="bg-gradient-to-r from-purple-50 to-pink-50"
+                >
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    <div className="aspect-square rounded-lg bg-purple-200"></div>
+                    <div className="aspect-square rounded-lg bg-pink-200"></div>
+                    <div className="aspect-square rounded-lg bg-blue-200"></div>
+                    <div className="aspect-square rounded-lg bg-amber-200"></div>
+                  </div>
+                </MoodCard>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* PromptCard Component */}
         <section>
           <h2 className="text-2xl font-semibold mb-4">PromptCard</h2>

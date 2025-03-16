@@ -15,6 +15,7 @@ export * from './ChatInterface';
 export * from './ui/button';
 export * from './ui/prompt-card';
 export * from './ui/image-card';
+export * from './ui/mood-card';
 export * from './ui/tag';
 export * from './ui/input';
 export * from './ui/textarea';
