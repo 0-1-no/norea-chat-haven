@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export type SidebarItemProps = {
   title: string;
@@ -20,11 +20,17 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({
   to,
   icon
 }) => {
+  const location = useLocation();
+  // Check if this item is active based on current route
+  const isRouteActive = to ? location.pathname === to : false;
+  // Use either explicit isActive prop or determine from route
+  const activeState = isActive !== undefined ? isActive : isRouteActive;
+  
   const content = (
     <div
       className={cn(
         "px-3 py-2 rounded-md text-sm flex justify-between items-center cursor-pointer transition-colors duration-200",
-        isActive 
+        activeState 
           ? "bg-sidebar-accent text-sidebar-accent-foreground font-medium" 
           : "hover:bg-sidebar-accent/50 text-sidebar-foreground"
       )}

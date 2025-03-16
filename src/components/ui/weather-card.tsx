@@ -85,23 +85,23 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({
   const getBackgroundGradient = (type: WeatherType) => {
     switch (type) {
       case 'sunny':
-        return 'bg-gradient-to-br from-blue-400 to-blue-200';
+        return 'dark:from-blue-500 dark:to-blue-300 from-blue-400/80 to-blue-300/80';
       case 'cloudy':
-        return 'bg-gradient-to-br from-gray-300 to-gray-100';
+        return 'dark:from-gray-500 dark:to-gray-300 from-gray-400/80 to-gray-200/80';
       case 'partly-cloudy':
-        return 'bg-gradient-to-br from-blue-300 to-gray-200';
+        return 'dark:from-blue-400 dark:to-gray-300 from-blue-300/80 to-gray-200/80';
       case 'rainy':
-        return 'bg-gradient-to-br from-blue-600 to-blue-400';
+        return 'dark:from-blue-600 dark:to-blue-400 from-blue-500/80 to-blue-300/80';
       case 'snowy':
-        return 'bg-gradient-to-br from-blue-100 to-gray-50';
+        return 'dark:from-blue-200 dark:to-gray-200 from-blue-100/80 to-gray-100/80';
       case 'stormy':
-        return 'bg-gradient-to-br from-gray-700 to-gray-500';
+        return 'dark:from-gray-700 dark:to-gray-500 from-gray-600/80 to-gray-400/80';
       case 'foggy':
-        return 'bg-gradient-to-br from-gray-400 to-gray-200';
+        return 'dark:from-gray-400 dark:to-gray-200 from-gray-300/80 to-gray-100/80';
       case 'drizzle':
-        return 'bg-gradient-to-br from-blue-300 to-gray-300';
+        return 'dark:from-blue-400 dark:to-gray-300 from-blue-300/80 to-gray-200/80';
       default:
-        return 'bg-gradient-to-br from-blue-400 to-blue-200';
+        return 'dark:from-blue-500 dark:to-blue-300 from-blue-400/80 to-blue-300/80';
     }
   };
 
@@ -130,12 +130,15 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({
   return (
     <div 
       className={cn(
-        'rounded-xl overflow-hidden backdrop-blur-lg backdrop-saturate-150 border border-white/20',
+        'rounded-xl overflow-hidden backdrop-blur-lg border shadow-lg',
+        'dark:border-white/20 border-black/5',
+        'bg-gradient-to-br',
         getBackgroundGradient(weatherType),
         className
       )}
       style={{
         background: 'rgba(255, 255, 255, 0.15)',
+        backdropFilter: 'blur(12px)',
         boxShadow: '0 8px 32px rgba(31, 38, 135, 0.1)'
       }}
     >

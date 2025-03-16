@@ -5,17 +5,8 @@ import { SidebarSection } from './SidebarSection';
 import { SidebarItem } from './SidebarItem';
 
 export const SidebarContent: React.FC = () => {
-  const [activeChat, setActiveChat] = useState<string | null>("Forstå kvantedatabehandling");
+  const [activeChat, setActiveChat] = useState<string | null>("Enkel chat-demonstrasjon");
   
-  const recentChats = [
-    { id: "1", title: "Forstå kvantedatabehandling", date: "10. mar", to: "/chat-demo" },
-    { id: "2", title: "Minne-demonstrasjon", date: "11. mar", to: "/memory-chat" },
-  ];
-
-  const charactersWithContent = [
-    { id: "dating-coach", title: "Dating Coach", to: "/character/dating-coach" },
-  ];
-
   return (
     <div className="flex-1 overflow-y-auto scrollbar-hidden space-y-2 px-1">
       <SidebarSection title="Rom" icon={<LayoutDashboard className="w-4 h-4 text-gray-500" />}>
@@ -42,13 +33,10 @@ export const SidebarContent: React.FC = () => {
           title="Alle karakterer" 
           to="/characters"
         />
-        {charactersWithContent.map((character) => (
-          <SidebarItem 
-            key={character.id}
-            title={character.title} 
-            to={character.to}
-          />
-        ))}
+        <SidebarItem 
+          title="Dating Coach" 
+          to="/character/dating-coach"
+        />
       </SidebarSection>
       
       <SidebarSection title="Demoer" icon={<Sparkles className="w-4 h-4 text-gray-500" />}>
@@ -114,16 +102,7 @@ export const SidebarContent: React.FC = () => {
         title="Nylige samtaler" 
         icon={<MessageCircle className="w-4 h-4 text-gray-500" />}
       >
-        {recentChats.map((chat) => (
-          <SidebarItem
-            key={chat.id}
-            title={chat.title}
-            date={chat.date}
-            isActive={activeChat === chat.title}
-            onClick={() => setActiveChat(chat.title)}
-            to={chat.to}
-          />
-        ))}
+        {/* Removed dead links from this section */}
       </SidebarSection>
     </div>
   );

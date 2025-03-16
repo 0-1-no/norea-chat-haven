@@ -4,6 +4,7 @@ import { PageContainer } from '@/components/layout/PageContainer';
 import { MessageInput } from "@/components/MessageInput";
 import { Message } from '@/components/message/Message';
 import { WeatherCard, type ForecastItem, type WeatherType } from '@/components/ui/weather-card';
+import { CloudRain } from 'lucide-react';
 
 const WeatherChat = () => {
   const chatContainerRef = useRef<HTMLDivElement>(null);
@@ -36,29 +37,23 @@ const WeatherChat = () => {
     },
     {
       role: 'ai' as const,
-      content: (
-        <div className="prose prose-slate dark:prose-invert max-w-none">
-          <p>Hei! Her er dagens værmelding for Oslo:</p>
-          <div className="my-4">
-            <WeatherCard 
-              location="Oslo, Norge"
-              currentTemp={23}
-              weatherType="sunny"
-              description="Klar himmel og solskinn"
-              highTemp={24}
-              lowTemp={14}
-              precipitation={0}
-              humidity={45}
-              uvIndex={8}
-              windSpeed={3}
-              displayMode="current"
-              className="max-w-md mx-auto"
-            />
-          </div>
-          <p>Det er strålende sommervær i Oslo i dag med temperaturer opp til 24°C. UV-indeksen er høy, så husk solkrem hvis du skal være ute i lengre perioder.</p>
-        </div>
+      content: 'Hei! Her er dagens værmelding for Oslo:',
+      weatherCard: (
+        <WeatherCard 
+          location="Oslo, Norge"
+          currentTemp={23}
+          weatherType="sunny"
+          description="Klar himmel og solskinn"
+          highTemp={24}
+          lowTemp={14}
+          precipitation={0}
+          humidity={45}
+          uvIndex={8}
+          windSpeed={3}
+          displayMode="current"
+        />
       ),
-      isJsx: true
+      additionalText: "Det er strålende sommervær i Oslo i dag med temperaturer opp til 24°C. UV-indeksen er høy, så husk solkrem hvis du skal være ute i lengre perioder."
     },
     {
       role: 'user' as const,
@@ -66,23 +61,17 @@ const WeatherChat = () => {
     },
     {
       role: 'ai' as const,
-      content: (
-        <div className="prose prose-slate dark:prose-invert max-w-none">
-          <p>Her er værprognosen for Oslo de neste 7 dagene:</p>
-          <div className="my-4">
-            <WeatherCard 
-              location="Oslo, Norge"
-              weatherType="partly-cloudy"
-              description="Varierende skydekke gjennom uken"
-              forecast={weekForecast}
-              displayMode="week"
-              className="max-w-md mx-auto"
-            />
-          </div>
-          <p>Det ser ut til at det fine været vil fortsette i dag og deler av i morgen, men så kommer det en liten værforandring med regn på lørdag. Temperaturen vil holde seg relativt mild med høye verdier mellom 17-24°C.</p>
-        </div>
+      content: 'Her er værprognosen for Oslo de neste 7 dagene:',
+      weatherCard: (
+        <WeatherCard 
+          location="Oslo, Norge"
+          weatherType="partly-cloudy"
+          description="Varierende skydekke gjennom uken"
+          forecast={weekForecast}
+          displayMode="week"
+        />
       ),
-      isJsx: true
+      additionalText: "Det ser ut til at det fine været vil fortsette i dag og deler av i morgen, men så kommer det en liten værforandring med regn på lørdag. Temperaturen vil holde seg relativt mild med høye verdier mellom 17-24°C."
     },
     {
       role: 'user' as const,
@@ -90,23 +79,17 @@ const WeatherChat = () => {
     },
     {
       role: 'ai' as const,
-      content: (
-        <div className="prose prose-slate dark:prose-invert max-w-none">
-          <p>Her er værprognosen for Oslo denne helgen:</p>
-          <div className="my-4">
-            <WeatherCard 
-              location="Oslo, Norge"
-              weatherType="rainy"
-              description="Regn på lørdag, lettere på søndag"
-              forecast={weekForecast}
-              displayMode="weekend"
-              className="max-w-md mx-auto"
-            />
-          </div>
-          <p>Det blir dessverre en våt helg, spesielt på lørdag med høy sannsynlighet for regn. Søndag ser litt bedre ut med lettere duskregn. Temperaturen vil ligge rundt 17-18°C, så det blir relativt mildt til tross for nedbøren.</p>
-        </div>
+      content: 'Her er værprognosen for Oslo denne helgen:',
+      weatherCard: (
+        <WeatherCard 
+          location="Oslo, Norge"
+          weatherType="rainy"
+          description="Regn på lørdag, lettere på søndag"
+          forecast={weekForecast}
+          displayMode="weekend"
+        />
       ),
-      isJsx: true
+      additionalText: "Det blir dessverre en våt helg, spesielt på lørdag med høy sannsynlighet for regn. Søndag ser litt bedre ut med lettere duskregn. Temperaturen vil ligge rundt 17-18°C, så det blir relativt mildt til tross for nedbøren."
     },
     {
       role: 'user' as const,
@@ -114,23 +97,17 @@ const WeatherChat = () => {
     },
     {
       role: 'ai' as const,
-      content: (
-        <div className="prose prose-slate dark:prose-invert max-w-none">
-          <p>Her er UV-indeksen for Oslo de neste 6 timene:</p>
-          <div className="my-4">
-            <WeatherCard 
-              location="Oslo, Norge"
-              weatherType="sunny"
-              description="Høy UV-indeks midt på dagen"
-              forecast={hourlyUvForecast}
-              displayMode="hourly-uv"
-              className="max-w-md mx-auto"
-            />
-          </div>
-          <p>UV-indeksen er høyest mellom kl. 12:00 og 14:00 med verdier opp mot 10, som er svært høyt. Jeg anbefaler å bruke solkrem med høy faktor (30-50 SPF), solbriller og hatt hvis du skal være ute. Prøv å unngå direkte sollys mellom kl. 12:00 og 15:00 hvis mulig.</p>
-        </div>
+      content: 'Her er UV-indeksen for Oslo de neste 6 timene:',
+      weatherCard: (
+        <WeatherCard 
+          location="Oslo, Norge"
+          weatherType="sunny"
+          description="Høy UV-indeks midt på dagen"
+          forecast={hourlyUvForecast}
+          displayMode="hourly-uv"
+        />
       ),
-      isJsx: true
+      additionalText: "UV-indeksen er høyest mellom kl. 12:00 og 14:00 med verdier opp mot 10, som er svært høyt. Jeg anbefaler å bruke solkrem med høy faktor (30-50 SPF), solbriller og hatt hvis du skal være ute. Prøv å unngå direkte sollys mellom kl. 12:00 og 15:00 hvis mulig."
     }
   ];
 
@@ -155,12 +132,16 @@ const WeatherChat = () => {
               <div key={index} className="mb-6 after:content-[''] after:clear-both after:table">
                 {message.role === 'user' ? (
                   <Message
-                    role={message.role}
-                    content={message.content as string}
+                    role="user"
+                    content={message.content}
                   />
                 ) : (
-                  <div className="float-left max-w-[85%] bg-muted rounded-lg p-4">
-                    {'isJsx' in message ? message.content : <p>{message.content}</p>}
+                  <div className="float-left max-w-[85%]">
+                    <p className="text-foreground mb-2">{message.content}</p>
+                    <div className="mb-3">
+                      {'weatherCard' in message && message.weatherCard}
+                    </div>
+                    {'additionalText' in message && <p className="text-foreground mt-2">{message.additionalText}</p>}
                   </div>
                 )}
               </div>
