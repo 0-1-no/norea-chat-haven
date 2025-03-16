@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Folders, Users, Layers, MessageCircle, LayoutDashboard, Sparkles, UserCircle } from 'lucide-react';
+import { Folders, Users, Layers, MessageCircle, LayoutDashboard, Sparkles, UserCircle, CloudRain } from 'lucide-react';
 import { SidebarSection } from './SidebarSection';
 import { SidebarItem } from './SidebarItem';
 
@@ -10,10 +10,6 @@ export const SidebarContent: React.FC = () => {
   const recentChats = [
     { id: "1", title: "Forstå kvantedatabehandling", date: "10. mar", to: "/chat-demo" },
     { id: "2", title: "Minne-demonstrasjon", date: "11. mar", to: "/memory-chat" },
-    { id: "3", title: "Analyser salgsdata", date: "9. mar" },
-    { id: "4", title: "Planlegg europeisk ferie", date: "7. mar" },
-    { id: "5", title: "Essay om klimaendringer", date: "5. mar" },
-    { id: "6", title: "Kodeevaluering: React-komponenter", date: "3. mar" }
   ];
 
   const charactersWithContent = [
@@ -53,6 +49,22 @@ export const SidebarContent: React.FC = () => {
             to={character.to}
           />
         ))}
+      </SidebarSection>
+      
+      <SidebarSection title="Demoer" icon={<Sparkles className="w-4 h-4 text-gray-500" />}>
+        <SidebarItem 
+          title="Enkel chat-demonstrasjon"
+          to="/chat-demo" 
+        />
+        <SidebarItem 
+          title="Minne-demonstrasjon"
+          to="/memory-chat" 
+        />
+        <SidebarItem 
+          title="Vær-demonstrasjon"
+          to="/weather-chat" 
+          icon={<CloudRain className="w-4 h-4" />}
+        />
       </SidebarSection>
       
       <SidebarSection title="Design System" icon={<Layers className="w-4 h-4 text-gray-500" />}>

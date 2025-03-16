@@ -9,6 +9,7 @@ export type SidebarItemProps = {
   isActive?: boolean;
   onClick?: () => void;
   to?: string;
+  icon?: React.ReactNode;
 };
 
 export const SidebarItem: React.FC<SidebarItemProps> = ({ 
@@ -16,7 +17,8 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({
   date, 
   isActive, 
   onClick, 
-  to 
+  to,
+  icon
 }) => {
   const content = (
     <div
@@ -28,7 +30,10 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({
       )}
       onClick={onClick}
     >
-      <span className="truncate pr-2">{title}</span>
+      <span className="truncate pr-2 flex items-center gap-2">
+        {icon && icon}
+        {title}
+      </span>
       {date && <span className="text-xs text-muted-foreground whitespace-nowrap">{date}</span>}
     </div>
   );

@@ -1,0 +1,183 @@
+
+import React, { useRef, useEffect } from 'react';
+import { PageContainer } from '@/components/layout/PageContainer';
+import { MessageInput } from "@/components/MessageInput";
+import { Message } from '@/components/message/Message';
+import { WeatherCard, type ForecastItem, type WeatherType } from '@/components/ui/weather-card';
+
+const WeatherChat = () => {
+  const chatContainerRef = useRef<HTMLDivElement>(null);
+
+  // Mock forecast data
+  const weekForecast: ForecastItem[] = [
+    { day: 'I dag', date: '15. juni', weatherType: 'sunny', highTemp: 24, lowTemp: 14, precipitation: 0, uvIndex: 8, windSpeed: 3 },
+    { day: 'Torsdag', date: '16. juni', weatherType: 'partly-cloudy', highTemp: 22, lowTemp: 13, precipitation: 10, uvIndex: 6, windSpeed: 4 },
+    { day: 'Fredag', date: '17. juni', weatherType: 'cloudy', highTemp: 19, lowTemp: 12, precipitation: 30, uvIndex: 4, windSpeed: 5 },
+    { day: 'Lørdag', date: '18. juni', weatherType: 'rainy', highTemp: 17, lowTemp: 12, precipitation: 80, uvIndex: 2, windSpeed: 6 },
+    { day: 'Søndag', date: '19. juni', weatherType: 'drizzle', highTemp: 18, lowTemp: 13, precipitation: 40, uvIndex: 3, windSpeed: 4 },
+    { day: 'Mandag', date: '20. juni', weatherType: 'partly-cloudy', highTemp: 20, lowTemp: 13, precipitation: 20, uvIndex: 5, windSpeed: 3 },
+    { day: 'Tirsdag', date: '21. juni', weatherType: 'sunny', highTemp: 23, lowTemp: 14, precipitation: 0, uvIndex: 7, windSpeed: 2 },
+  ];
+
+  const hourlyUvForecast: ForecastItem[] = [
+    { time: '12:00', weatherType: 'sunny', uvIndex: 9 },
+    { time: '13:00', weatherType: 'sunny', uvIndex: 10 },
+    { time: '14:00', weatherType: 'sunny', uvIndex: 9 },
+    { time: '15:00', weatherType: 'partly-cloudy', uvIndex: 7 },
+    { time: '16:00', weatherType: 'partly-cloudy', uvIndex: 5 },
+    { time: '17:00', weatherType: 'cloudy', uvIndex: 3 },
+  ];
+
+  // Sample conversation with weather queries
+  const conversation = [
+    {
+      role: 'user' as const,
+      content: 'Hei, hvordan er været i Oslo i dag?'
+    },
+    {
+      role: 'ai' as const,
+      content: (
+        <div className="prose prose-slate dark:prose-invert max-w-none">
+          <p>Hei! Her er dagens værmelding for Oslo:</p>
+          <div className="my-4">
+            <WeatherCard 
+              location="Oslo, Norge"
+              currentTemp={23}
+              weatherType="sunny"
+              description="Klar himmel og solskinn"
+              highTemp={24}
+              lowTemp={14}
+              precipitation={0}
+              humidity={45}
+              uvIndex={8}
+              windSpeed={3}
+              displayMode="current"
+              className="max-w-md mx-auto"
+            />
+          </div>
+          <p>Det er strålende sommervær i Oslo i dag med temperaturer opp til 24°C. UV-indeksen er høy, så husk solkrem hvis du skal være ute i lengre perioder.</p>
+        </div>
+      ),
+      isJsx: true
+    },
+    {
+      role: 'user' as const,
+      content: 'Hvordan blir været de neste 7 dagene?'
+    },
+    {
+      role: 'ai' as const,
+      content: (
+        <div className="prose prose-slate dark:prose-invert max-w-none">
+          <p>Her er værprognosen for Oslo de neste 7 dagene:</p>
+          <div className="my-4">
+            <WeatherCard 
+              location="Oslo, Norge"
+              weatherType="partly-cloudy"
+              description="Varierende skydekke gjennom uken"
+              forecast={weekForecast}
+              displayMode="week"
+              className="max-w-md mx-auto"
+            />
+          </div>
+          <p>Det ser ut til at det fine været vil fortsette i dag og deler av i morgen, men så kommer det en liten værforandring med regn på lørdag. Temperaturen vil holde seg relativt mild med høye verdier mellom 17-24°C.</p>
+        </div>
+      ),
+      isJsx: true
+    },
+    {
+      role: 'user' as const,
+      content: 'Hvordan blir været denne helgen?'
+    },
+    {
+      role: 'ai' as const,
+      content: (
+        <div className="prose prose-slate dark:prose-invert max-w-none">
+          <p>Her er værprognosen for Oslo denne helgen:</p>
+          <div className="my-4">
+            <WeatherCard 
+              location="Oslo, Norge"
+              weatherType="rainy"
+              description="Regn på lørdag, lettere på søndag"
+              forecast={weekForecast}
+              displayMode="weekend"
+              className="max-w-md mx-auto"
+            />
+          </div>
+          <p>Det blir dessverre en våt helg, spesielt på lørdag med høy sannsynlighet for regn. Søndag ser litt bedre ut med lettere duskregn. Temperaturen vil ligge rundt 17-18°C, så det blir relativt mildt til tross for nedbøren.</p>
+        </div>
+      ),
+      isJsx: true
+    },
+    {
+      role: 'user' as const,
+      content: 'Hva er UV-indeksen for de neste 6 timene?'
+    },
+    {
+      role: 'ai' as const,
+      content: (
+        <div className="prose prose-slate dark:prose-invert max-w-none">
+          <p>Her er UV-indeksen for Oslo de neste 6 timene:</p>
+          <div className="my-4">
+            <WeatherCard 
+              location="Oslo, Norge"
+              weatherType="sunny"
+              description="Høy UV-indeks midt på dagen"
+              forecast={hourlyUvForecast}
+              displayMode="hourly-uv"
+              className="max-w-md mx-auto"
+            />
+          </div>
+          <p>UV-indeksen er høyest mellom kl. 12:00 og 14:00 med verdier opp mot 10, som er svært høyt. Jeg anbefaler å bruke solkrem med høy faktor (30-50 SPF), solbriller og hatt hvis du skal være ute. Prøv å unngå direkte sollys mellom kl. 12:00 og 15:00 hvis mulig.</p>
+        </div>
+      ),
+      isJsx: true
+    }
+  ];
+
+  // Scroll to bottom when messages are loaded
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  }, []);
+
+  const handleSendMessage = (message: string) => {
+    console.log("Message sent:", message);
+    // In a real application, this would add the message to the conversation
+  };
+
+  return (
+    <PageContainer title="Vær-demonstrasjon" showBackButton={true}>
+      <div className="flex-1 overflow-hidden flex flex-col">
+        <div className="flex-1 overflow-y-auto p-6" ref={chatContainerRef}>
+          <div className="max-w-3xl mx-auto">
+            {conversation.map((message, index) => (
+              <div key={index} className="mb-6 after:content-[''] after:clear-both after:table">
+                {message.role === 'user' ? (
+                  <Message
+                    role={message.role}
+                    content={message.content as string}
+                  />
+                ) : (
+                  <div className="float-left max-w-[85%] bg-muted rounded-lg p-4">
+                    {'isJsx' in message ? message.content : <p>{message.content}</p>}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        <div className="p-4 border-t border-border">
+          <MessageInput 
+            onSendMessage={handleSendMessage}
+            className="max-w-3xl mx-auto"
+            placeholder="Spør om været..."
+          />
+        </div>
+      </div>
+    </PageContainer>
+  );
+};
+
+export default WeatherChat;

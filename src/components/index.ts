@@ -33,3 +33,5 @@ export * from './ui/skeleton';
 export * from './ui/separator';
 export * from './ui/aspect-ratio';
 export * from './message/MemoryIndicator';
+export * from './ui/weather-card';
+
