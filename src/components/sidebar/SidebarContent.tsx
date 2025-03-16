@@ -1,5 +1,6 @@
+
 import React, { useState } from 'react';
-import { Folders, Users, Layers, MessageCircle, LayoutDashboard, Sparkles } from 'lucide-react';
+import { Folders, Users, Layers, MessageCircle, LayoutDashboard, Sparkles, UserCircle } from 'lucide-react';
 import { SidebarSection } from './SidebarSection';
 import { SidebarItem } from './SidebarItem';
 
@@ -35,8 +36,11 @@ export const SidebarContent: React.FC = () => {
         />
       </SidebarSection>
       
-      <SidebarSection title="Karakterer" icon={<Users className="w-4 h-4 text-gray-500" />}>
-        {/* Characters content would go here */}
+      <SidebarSection title="Karakterer" icon={<UserCircle className="w-4 h-4 text-gray-500" />}>
+        <SidebarItem 
+          title="Alle karakterer" 
+          to="/characters"
+        />
       </SidebarSection>
       
       <SidebarSection title="Design System" icon={<Layers className="w-4 h-4 text-gray-500" />}>
