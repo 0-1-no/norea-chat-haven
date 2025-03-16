@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { PageContainer } from '@/components/layout/PageContainer';
 import { Card, CardContent } from '@/components/ui/card';
@@ -118,7 +117,6 @@ const CharacterSection = ({
                 creatorName={character.creator}
                 backgroundColor={character.backgroundColor || "bg-gradient-to-r from-purple-500 to-indigo-700"}
                 onClick={() => handleProfileCardClick(character)}
-                showChat={true}
                 rotation={index % 2 === 0 ? 1 : -1}
               />
             ) : (
@@ -144,7 +142,7 @@ const Characters = () => {
       id: "nova",
       name: "Nova",
       description: "Kvantedatafysiker fra år 2183. Utforsker parallelle universer og hjelper med komplekse vitenskapelige spørsmål.",
-      image: "https://images.unsplash.com/photo-1639474576517-e0a165ae7551?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+      image: "https://images.unsplash.com/photo-1639474576517-e0a165ae7551?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
       creator: "Quantum Labs",
       conversations: 245729
     },
