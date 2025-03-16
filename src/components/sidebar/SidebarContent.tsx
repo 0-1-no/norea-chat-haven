@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react';
-import { Folders, Users, Layers, MessageCircle, LayoutDashboard } from 'lucide-react';
+import { Folders, Users, Layers, MessageCircle, LayoutDashboard, Sparkles } from 'lucide-react';
 import { SidebarSection } from './SidebarSection';
 import { SidebarItem } from './SidebarItem';
 
@@ -29,6 +28,10 @@ export const SidebarContent: React.FC = () => {
         <SidebarItem 
           title="Romvisning" 
           to="/room-view/1"
+        />
+        <SidebarItem 
+          title="Tilpasset rom" 
+          to="/custom-room-view/1"
         />
       </SidebarSection>
       
