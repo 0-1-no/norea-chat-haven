@@ -1,10 +1,10 @@
-
 import React, { useState } from 'react';
 import { PageContainer } from '@/components/layout/PageContainer';
 import { Card, CardContent } from '@/components/ui/card';
 import { MoodCard } from '@/components/ui/mood-card';
 import { Separator } from '@/components/ui/separator';
 import { SearchInput } from '@/components/SearchInput';
+import { Button } from '@/components/ui/button';
 import { 
   Flame, 
   Star, 
@@ -19,11 +19,13 @@ import {
   Gamepad2, 
   Rocket, 
   MessageSquare,
-  Users
+  Users,
+  TrendingUp,
+  Filter,
+  ChevronRight
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-// Character card component
 const CharacterCard = ({ 
   character, 
   className 
@@ -63,28 +65,45 @@ const CharacterCard = ({
   );
 };
 
-// Featured character banner
 const FeaturedCharacterBanner = () => {
   return (
-    <div className="relative w-full bg-gradient-to-r from-blue-900 to-purple-900 rounded-xl overflow-hidden">
-      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')] opacity-40 bg-cover bg-center" />
+    <div className="relative w-full bg-gradient-to-r from-blue-900 to-purple-900 rounded-xl overflow-hidden h-[300px] md:h-[400px]">
+      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')] opacity-40 bg-cover bg-center transition-transform duration-300 hover:scale-105" />
       
-      <div className="relative z-10 p-6 md:p-8 flex flex-col h-full">
-        <div className="flex-1">
-          <h2 className="text-white text-xl md:text-2xl font-bold mb-2">Hva vil du oppdage i dag?</h2>
-          <p className="text-white/90 text-sm md:text-base max-w-lg">
+      <div className="relative z-10 p-8 md:p-12 flex flex-col h-full justify-between">
+        <div className="flex-1 max-w-2xl">
+          <h2 className="text-white text-3xl md:text-4xl font-bold mb-4">Hva vil du oppdage i dag?</h2>
+          <p className="text-white/90 text-lg md:text-xl max-w-lg mb-6">
             Utforsk kreative universer, lær noe nytt eller bare slapp av med en fascinerende samtale.
           </p>
+          
+          <div className="flex flex-wrap gap-3">
+            <Button variant="secondary" className="bg-white/10 backdrop-blur hover:bg-white/20">
+              <Sparkles className="h-4 w-4 text-amber-300 mr-2" />
+              Utforsk personligheter
+            </Button>
+            <Button variant="secondary" className="bg-white/10 backdrop-blur hover:bg-white/20">
+              <Bot className="h-4 w-4 text-cyan-300 mr-2" />
+              Lag din egen
+            </Button>
+          </div>
         </div>
         
-        <div className="mt-auto flex gap-3">
-          <div className="bg-white/10 backdrop-blur rounded-full px-3 py-1 flex items-center border border-white/20">
-            <Sparkles className="h-4 w-4 text-amber-300 mr-1.5" />
-            <span className="text-white text-sm">Utforsk personligheter</span>
+        <div className="flex gap-4 overflow-x-auto pb-4 mt-8 scrollbar-hidden">
+          <div className="flex-none bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-white/10 w-[200px]">
+            <Users className="h-6 w-6 text-purple-300 mb-2" />
+            <p className="text-white font-medium">500K+</p>
+            <p className="text-white/70 text-sm">Aktive brukere</p>
           </div>
-          <div className="bg-white/10 backdrop-blur rounded-full px-3 py-1 flex items-center border border-white/20">
-            <Bot className="h-4 w-4 text-cyan-300 mr-1.5" />
-            <span className="text-white text-sm">Lag din egen</span>
+          <div className="flex-none bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-white/10 w-[200px]">
+            <MessageSquare className="h-6 w-6 text-green-300 mb-2" />
+            <p className="text-white font-medium">2M+</p>
+            <p className="text-white/70 text-sm">Daglige samtaler</p>
+          </div>
+          <div className="flex-none bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-white/10 w-[200px]">
+            <Star className="h-6 w-6 text-amber-300 mb-2" />
+            <p className="text-white font-medium">4.8/5</p>
+            <p className="text-white/70 text-sm">Gjennomsnittlig rating</p>
           </div>
         </div>
       </div>
@@ -92,7 +111,6 @@ const FeaturedCharacterBanner = () => {
   );
 };
 
-// Character category section
 const CharacterSection = ({ 
   title, 
   icon, 
@@ -103,15 +121,25 @@ const CharacterSection = ({
   characters: any[] 
 }) => {
   return (
-    <section className="mb-8">
-      <div className="flex items-center gap-2 mb-3">
-        <div className="p-1.5 rounded-md bg-muted">{icon}</div>
-        <h2 className="text-xl font-semibold">{title}</h2>
+    <section className="mb-12">
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center gap-3">
+          <div className="p-2 rounded-xl bg-muted">{icon}</div>
+          <h2 className="text-2xl font-semibold">{title}</h2>
+        </div>
+        <Button variant="ghost" className="text-muted-foreground hover:text-primary">
+          Se alle <ChevronRight className="ml-1 h-4 w-4" />
+        </Button>
       </div>
       
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {characters.map((character, index) => (
-          <CharacterCard key={index} character={character} />
+          <div 
+            key={index}
+            className="group transition-all duration-300 hover:-translate-y-1"
+          >
+            <CharacterCard character={character} />
+          </div>
         ))}
       </div>
     </section>
@@ -121,7 +149,6 @@ const CharacterSection = ({
 const Characters = () => {
   const [searchQuery, setSearchQuery] = useState("");
   
-  // Trending characters
   const trendingCharacters = [
     {
       name: "Nova",
@@ -160,7 +187,6 @@ const Characters = () => {
     }
   ];
   
-  // In focus characters
   const focusCharacters = [
     {
       name: "Kosmisk Hype",
@@ -199,7 +225,6 @@ const Characters = () => {
     }
   ];
   
-  // Featured characters
   const featuredCharacters = [
     {
       name: "Sokrates",
@@ -238,7 +263,6 @@ const Characters = () => {
     }
   ];
   
-  // New characters
   const newCharacters = [
     {
       name: "Finansrådgiveren",
@@ -279,51 +303,55 @@ const Characters = () => {
   
   return (
     <PageContainer title="Karakterer" description="Utforsk og snakk med fascinerende digitale personligheter">
-      <div className="mb-6">
+      <div className="mb-8 flex flex-col md:flex-row gap-4 items-center">
         <SearchInput 
           placeholder="Søk etter karakterer..." 
-          className="max-w-xl"
+          className="max-w-xl flex-1"
           onSearch={setSearchQuery}
         />
+        <Button variant="outline" className="w-full md:w-auto">
+          <Filter className="w-4 h-4 mr-2" />
+          Filtrer
+        </Button>
       </div>
       
       <FeaturedCharacterBanner />
       
-      <div className="mt-8 space-y-12">
+      <div className="mt-12 space-y-16">
         <CharacterSection 
           title="I fokus" 
-          icon={<Flame className="w-5 h-5 text-orange-500" />} 
+          icon={<Flame className="w-6 h-6 text-orange-500" />} 
           characters={focusCharacters} 
         />
         
         <CharacterSection 
           title="Trendende" 
-          icon={<Sparkles className="w-5 h-5 text-purple-500" />} 
+          icon={<TrendingUp className="w-6 h-6 text-purple-500" />} 
           characters={trendingCharacters} 
         />
         
         <CharacterSection 
           title="Utvalgte" 
-          icon={<Star className="w-5 h-5 text-amber-500" />} 
+          icon={<Star className="w-6 h-6 text-amber-500" />} 
           characters={featuredCharacters} 
         />
         
         <CharacterSection 
           title="Nye karakterer" 
-          icon={<Rocket className="w-5 h-5 text-blue-500" />} 
+          icon={<Rocket className="w-6 h-6 text-blue-500" />} 
           characters={newCharacters} 
         />
       </div>
       
-      <div className="mt-12">
-        <h2 className="text-xl font-semibold mb-4">Populære kategorier</h2>
+      <div className="mt-16">
+        <h2 className="text-2xl font-semibold mb-6">Populære kategorier</h2>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <MoodCard 
             title="Kunnskap" 
             subtitle="Lær noe nytt"
             icon={<Brain className="w-5 h-5" />}
-            headerColor="bg-blue-50"
+            headerColor="bg-gradient-to-r from-blue-50 to-indigo-50"
           >
             <p className="text-muted-foreground text-sm">Utforsk vitenskapelige, filosofiske og utdanningsmessige karakterer.</p>
           </MoodCard>
@@ -332,7 +360,7 @@ const Characters = () => {
             title="Kreativitet" 
             subtitle="Få inspirasjon"
             icon={<Sparkles className="w-5 h-5" />}
-            headerColor="bg-purple-50"
+            headerColor="bg-gradient-to-r from-purple-50 to-pink-50"
           >
             <p className="text-muted-foreground text-sm">Møt kreative karakterer som kan hjelpe med kunst, skriving og design.</p>
           </MoodCard>
@@ -341,7 +369,7 @@ const Characters = () => {
             title="Underholdning" 
             subtitle="Lek og moro"
             icon={<Gamepad2 className="w-5 h-5" />}
-            headerColor="bg-pink-50"
+            headerColor="bg-gradient-to-r from-pink-50 to-rose-50"
           >
             <p className="text-muted-foreground text-sm">Spill, fiksjon, rollespill og karakterer skapt for underholdning.</p>
           </MoodCard>
@@ -350,7 +378,7 @@ const Characters = () => {
             title="Velvære" 
             subtitle="Personlig utvikling"
             icon={<Heart className="w-5 h-5" />}
-            headerColor="bg-red-50"
+            headerColor="bg-gradient-to-r from-red-50 to-orange-50"
           >
             <p className="text-muted-foreground text-sm">Karakterer fokusert på mental helse, meditasjon og selvhjelp.</p>
           </MoodCard>
