@@ -8,7 +8,7 @@ const Typography = () => {
     <PageContainer title="Typografi" showBackButton={true}>
       <div className="space-y-10">
         <div className="space-y-2">
-          <h1 className="text-3xl font-bold">Typografi for Norea AI</h1>
+          <h1 className="text-3xl font-bold break-words">Typografi for Norea AI</h1>
           <p className="text-muted-foreground">
             Typografiske regler for en lesbar og brukervennlig AI-samtaleopplevelse
           </p>
@@ -44,7 +44,7 @@ const Typography = () => {
               Vi bruker en moderat kontrast i skriftstørrelser for å skape et tydelig hierarki uten å virke påtrengende.
             </p>
             
-            <div className="mt-6 space-y-8 bg-muted p-6 rounded-lg">
+            <div className="mt-6 space-y-8 bg-muted p-4 md:p-6 rounded-lg">
               <div>
                 <h1 className="text-4xl font-bold mb-2">Overskrift nivå 1</h1>
                 <p className="text-sm text-muted-foreground">32px / 40px linjehøyde / Semi-bold</p>
@@ -120,9 +120,9 @@ const Typography = () => {
             </p>
             
             <div className="mt-6 space-y-8">
-              <div className="bg-muted p-6 rounded-lg">
+              <div className="bg-muted p-4 md:p-6 rounded-lg">
                 <h3 className="text-lg font-medium mb-3">Avsnitt og linjeavstand</h3>
-                <div className="bg-background p-4 rounded-md">
+                <div className="bg-background p-3 md:p-4 rounded-md">
                   <p className="mb-4 leading-relaxed">
                     Dette er et eksempel på god linjeavstand (1.5x) som gjør teksten lettere å følge. 
                     Øynene får pusterom mellom linjene, noe som reduserer tretthet ved lesing av lengre tekster.
@@ -135,14 +135,14 @@ const Typography = () => {
                 </div>
               </div>
               
-              <div className="bg-muted p-6 rounded-lg">
+              <div className="bg-muted p-4 md:p-6 rounded-lg">
                 <h3 className="text-lg font-medium mb-3">Strukturell rytme</h3>
-                <div className="bg-background p-4 rounded-md">
+                <div className="bg-background p-3 md:p-4 rounded-md">
                   <h4 className="text-xl font-medium mb-2">Praktiske anvendelser av kvantedatabehandling</h4>
-                  <div className="pl-4 space-y-3">
+                  <div className="pl-2 md:pl-4 space-y-3">
                     <div>
                       <p className="font-medium">Kryptografi og sikkerhet:</p>
-                      <ul className="list-disc list-inside pl-4 space-y-1">
+                      <ul className="list-disc list-inside pl-2 md:pl-4 space-y-1">
                         <li>Kvantekryptografi tilbyr teoretisk ubrytelig kryptering</li>
                         <li>Shors algoritme kan potensielt knekke dagens vanlige krypteringssystemer</li>
                         <li>Post-kvantum kryptografi utvikles for å motstå kvanteangrep</li>
@@ -151,7 +151,7 @@ const Typography = () => {
                     
                     <div>
                       <p className="font-medium">Materialvitenskap og kjemi:</p>
-                      <ul className="list-disc list-inside pl-4 space-y-1">
+                      <ul className="list-disc list-inside pl-2 md:pl-4 space-y-1">
                         <li>Simulering av molekyler og materialer på kvantenivå</li>
                         <li>Utvikling av nye medisiner og materialer</li>
                         <li>Optimalisering av kjemiske reaksjoner</li>

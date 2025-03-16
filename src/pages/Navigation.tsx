@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Separator } from "@/components/ui/separator";
 import { Home, User, Building2, Users, CreditCard } from 'lucide-react';
@@ -27,7 +26,7 @@ const Navigation = () => {
   const navigationContent = (
     <div className="space-y-10">
       <div className="space-y-2">
-        <h1 className="text-3xl font-bold">Navigasjon</h1>
+        <h1 className="text-3xl font-bold break-words">Navigasjon</h1>
         <p className="text-muted-foreground">
           Eksempler på forskjellige navigasjonselementer i Norea design system.
         </p>
@@ -43,29 +42,31 @@ const Navigation = () => {
             Breadcrumbs hjelper brukere å forstå hvor de er i applikasjonens hierarki og navigere tilbake til tidligere nivåer.
           </p>
           
-          <Card>
-            <CardContent className="pt-6">
+          <Card className="overflow-hidden">
+            <CardContent className="p-4 md:p-6">
               <div className="space-y-6">
                 <div>
                   <h3 className="text-sm font-medium mb-2">Standard Breadcrumbs</h3>
-                  <Breadcrumb>
-                    <BreadcrumbList>
-                      <BreadcrumbItem>
-                        <BreadcrumbLink href="/">
-                          <Home className="h-4 w-4 mr-1" />
-                          Hjem
-                        </BreadcrumbLink>
-                      </BreadcrumbItem>
-                      <BreadcrumbSeparator />
-                      <BreadcrumbItem>
-                        <BreadcrumbLink href="#">Prosjekter</BreadcrumbLink>
-                      </BreadcrumbItem>
-                      <BreadcrumbSeparator />
-                      <BreadcrumbItem>
-                        <BreadcrumbPage>Prosjekt Nero</BreadcrumbPage>
-                      </BreadcrumbItem>
-                    </BreadcrumbList>
-                  </Breadcrumb>
+                  <div className="overflow-x-auto pb-2">
+                    <Breadcrumb>
+                      <BreadcrumbList>
+                        <BreadcrumbItem>
+                          <BreadcrumbLink href="/" className="flex items-center">
+                            <Home className="h-4 w-4 mr-1" />
+                            Hjem
+                          </BreadcrumbLink>
+                        </BreadcrumbItem>
+                        <BreadcrumbSeparator />
+                        <BreadcrumbItem>
+                          <BreadcrumbLink href="#">Prosjekter</BreadcrumbLink>
+                        </BreadcrumbItem>
+                        <BreadcrumbSeparator />
+                        <BreadcrumbItem>
+                          <BreadcrumbPage>Prosjekt Nero</BreadcrumbPage>
+                        </BreadcrumbItem>
+                      </BreadcrumbList>
+                    </Breadcrumb>
+                  </div>
                 </div>
               </div>
             </CardContent>
@@ -204,54 +205,58 @@ const Navigation = () => {
           </p>
           
           <Card>
-            <CardContent className="p-6 space-y-8">
+            <CardContent className="p-4 md:p-6 space-y-8">
               <div className="space-y-4">
                 <h3 className="text-base font-medium">Standard Pagination</h3>
-                <Pagination>
-                  <PaginationContent>
-                    <PaginationItem>
-                      <PaginationPrevious href="#" aria-label="Forrige">Forrige</PaginationPrevious>
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink href="#" isActive>1</PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink href="#" className="text-purple-600 font-medium">2</PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink href="#">3</PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationEllipsis />
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink href="#">8</PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink href="#">9</PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink href="#">10</PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationNext href="#" aria-label="Neste">Neste</PaginationNext>
-                    </PaginationItem>
-                  </PaginationContent>
-                </Pagination>
+                <div className="overflow-x-auto pb-2">
+                  <Pagination>
+                    <PaginationContent>
+                      <PaginationItem>
+                        <PaginationPrevious href="#" aria-label="Forrige">Forrige</PaginationPrevious>
+                      </PaginationItem>
+                      <PaginationItem>
+                        <PaginationLink href="#" isActive>1</PaginationLink>
+                      </PaginationItem>
+                      <PaginationItem>
+                        <PaginationLink href="#" className="text-purple-600 font-medium">2</PaginationLink>
+                      </PaginationItem>
+                      <PaginationItem>
+                        <PaginationLink href="#">3</PaginationLink>
+                      </PaginationItem>
+                      <PaginationItem>
+                        <PaginationEllipsis />
+                      </PaginationItem>
+                      <PaginationItem>
+                        <PaginationLink href="#">8</PaginationLink>
+                      </PaginationItem>
+                      <PaginationItem>
+                        <PaginationLink href="#">9</PaginationLink>
+                      </PaginationItem>
+                      <PaginationItem>
+                        <PaginationLink href="#">10</PaginationLink>
+                      </PaginationItem>
+                      <PaginationItem>
+                        <PaginationNext href="#" aria-label="Neste">Neste</PaginationNext>
+                      </PaginationItem>
+                    </PaginationContent>
+                  </Pagination>
+                </div>
               </div>
               
               <div className="space-y-4">
                 <h3 className="text-base font-medium">Forenklet Pagination</h3>
-                <Pagination>
-                  <PaginationContent>
-                    <PaginationItem>
-                      <PaginationPrevious href="#" aria-label="Forrige">Forrige</PaginationPrevious>
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationNext href="#" aria-label="Neste">Neste</PaginationNext>
-                    </PaginationItem>
-                  </PaginationContent>
-                </Pagination>
+                <div className="overflow-x-auto pb-2">
+                  <Pagination>
+                    <PaginationContent>
+                      <PaginationItem>
+                        <PaginationPrevious href="#" aria-label="Forrige">Forrige</PaginationPrevious>
+                      </PaginationItem>
+                      <PaginationItem>
+                        <PaginationNext href="#" aria-label="Neste">Neste</PaginationNext>
+                      </PaginationItem>
+                    </PaginationContent>
+                  </Pagination>
+                </div>
               </div>
             </CardContent>
           </Card>
