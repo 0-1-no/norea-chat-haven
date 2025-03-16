@@ -41,6 +41,18 @@ export const SidebarContent: React.FC = () => {
           title="Alle karakterer" 
           to="/characters"
         />
+        <SidebarItem 
+          title="Dating Coach" 
+          to="/character/dating-coach"
+        />
+        <SidebarItem 
+          title="Kosmisk Hype" 
+          to="/character/kosmisk-hype"
+        />
+        <SidebarItem 
+          title="Sokrates" 
+          to="/character/sokrates"
+        />
       </SidebarSection>
       
       <SidebarSection title="Design System" icon={<Layers className="w-4 h-4 text-gray-500" />}>

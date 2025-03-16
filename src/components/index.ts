@@ -22,6 +22,7 @@ export * from './ui/textarea';
 export * from './ui/label';
 export * from './ui/card';
 export * from './ui/character-card';
+export * from './ui/profile-card';
 export * from './layout/PageContainer';
 export * from './layout/LayoutContent';
 export * from './layout/LayoutArchitecture';
