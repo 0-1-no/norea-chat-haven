@@ -1,6 +1,7 @@
 
-import React, { useState } from 'react';
-import { ArrowRight } from 'lucide-react';
+import React, { useState, useRef, useEffect } from '
+react';
+import { ArrowRight, Paperclip } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ModelSelector } from './ModelSelector';
 
@@ -16,14 +17,23 @@ export const MessageInput: React.FC<MessageInputProps> = ({
   placeholder = "Ask whatever you want..."
 }) => {
   const [message, setMessage] = useState("");
-  const [characterCount, setCharacterCount] = useState(0);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
   const maxCharacterCount = 1000;
+  const maxHeight = 180; // Maximum height for the textarea in pixels
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const text = e.target.value;
     if (text.length <= maxCharacterCount) {
       setMessage(text);
-      setCharacterCount(text.length);
+      
+      // Reset the height to auto to properly calculate the new height
+      if (textareaRef.current) {
+        textareaRef.current.style.height = 'auto';
+        
+        // Set the new height, but cap it at maxHeight
+        const newHeight = Math.min(textareaRef.current.scrollHeight, maxHeight);
+        textareaRef.current.style.height = `${newHeight}px`;
+      }
     }
   };
 
@@ -31,7 +41,10 @@ export const MessageInput: React.FC<MessageInputProps> = ({
     if (message.trim() && onSendMessage) {
       onSendMessage(message);
       setMessage("");
-      setCharacterCount(0);
+      // Reset the textarea height after sending the message
+      if (textareaRef.current) {
+        textareaRef.current.style.height = 'auto';
+      }
     }
   };
 
@@ -42,6 +55,13 @@ export const MessageInput: React.FC<MessageInputProps> = ({
     }
   };
 
+  // Initialize textarea height on mount
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+    }
+  }, []);
+
   return (
     <div className={cn(
       "border border-surface-border rounded-lg p-2 bg-surface animate-slide-up",
@@ -49,13 +69,18 @@ export const MessageInput: React.FC<MessageInputProps> = ({
     )}>
       <div className="flex items-start">
         <textarea
+          ref={textareaRef}
           value={message}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
           rows={1}
           className="flex-1 px-3 py-2 resize-none outline-none text-sm placeholder:text-muted-foreground"
-          style={{ minHeight: '44px', maxHeight: '120px' }}
+          style={{ 
+            minHeight: '44px', 
+            maxHeight: `${maxHeight}px`,
+            overflow: 'auto'
+          }}
         />
       </div>
       
@@ -63,17 +88,23 @@ export const MessageInput: React.FC<MessageInputProps> = ({
         <ModelSelector />
         
         <div className="flex items-center gap-3">
-          <span className="text-xs text-muted-foreground">{characterCount}/{maxCharacterCount}</span>
+          <button 
+            className="flex items-center justify-center w-8 h-8 rounded-full hover:bg-gray-100 transition-colors"
+            title="Legg til vedlegg"
+          >
+            <Paperclip className="w-4 h-4 text-muted-foreground" />
+          </button>
           
           <button 
             className={cn(
-              "w-9 h-9 rounded-full flex items-center justify-center transition-colors",
+              "w-8 h-8 rounded-full flex items-center justify-center transition-colors",
               message.trim() 
                 ? "bg-primary text-primary-foreground hover:bg-primary-hover" 
                 : "bg-muted text-muted-foreground"
             )}
             onClick={handleSendMessage}
             disabled={!message.trim()}
+            title="Send melding"
           >
             <ArrowRight className="w-4 h-4" />
           </button>
@@ -82,3 +113,4 @@ export const MessageInput: React.FC<MessageInputProps> = ({
     </div>
   );
 };
+
