@@ -3,11 +3,12 @@ import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Check, ChevronRight, User } from 'lucide-react';
+import { Check, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { PageContainer } from '@/components/layout/PageContainer';
 
 interface ChatMessage {
   id: string;
@@ -214,64 +215,66 @@ const OnboardingChat: React.FC = () => {
   }, [messages]);
 
   return (
-    <div className="flex flex-col h-screen bg-background">
-      <div className={cn(
-        "sticky top-0 z-10 bg-background/80 backdrop-blur-sm border-b border-border",
-        isMobile ? "py-2" : "py-4"
-      )}>
-        <div className="container max-w-3xl mx-auto px-4">
-          <div className="flex items-center gap-2 mb-2">
-            <h2 className="text-sm font-medium">Oppsett av Norea</h2>
-            <span className="text-sm text-muted-foreground">{Math.round(progress)}%</span>
+    <PageContainer title="Oppstart av Norea" showBackButton={true}>
+      <div className="flex flex-col h-full bg-background">
+        <div className={cn(
+          "sticky top-0 z-10 bg-background/80 backdrop-blur-sm border-b border-border",
+          isMobile ? "py-2" : "py-4"
+        )}>
+          <div className="container max-w-3xl mx-auto px-4">
+            <div className="flex items-center gap-2 mb-2">
+              <h2 className="text-sm font-medium">Oppsett av Norea</h2>
+              <span className="text-sm text-muted-foreground">{Math.round(progress)}%</span>
+            </div>
+            <Progress value={progress} className="h-2" />
           </div>
-          <Progress value={progress} className="h-2" />
         </div>
-      </div>
 
-      <div 
-        ref={chatContainerRef}
-        className="flex-1 overflow-y-auto py-6 px-4 space-y-6"
-      >
-        <div className="container max-w-3xl mx-auto space-y-6">
-          {messages.map((message) => (
-            <div key={message.id} className="space-y-4">
-              <div className={cn(
-                "group rounded-lg mb-8 relative",
-                message.role === 'user' 
-                  ? "bg-gray-100 text-foreground float-right clear-both max-w-[66%]"
-                  : "bg-background text-foreground float-left clear-both max-w-[85%]"
-              )}>
+        <div 
+          ref={chatContainerRef}
+          className="flex-1 overflow-y-auto py-6 px-4 space-y-6"
+        >
+          <div className="container max-w-3xl mx-auto space-y-6">
+            {messages.map((message) => (
+              <div key={message.id} className="space-y-4">
                 <div className={cn(
-                  message.role === 'user' ? "px-5 py-4" : "px-6 py-5",
+                  "group rounded-lg mb-8 relative",
+                  message.role === 'user' 
+                    ? "bg-gray-100 text-foreground float-right clear-both max-w-[66%]"
+                    : "bg-background text-foreground float-left clear-both max-w-[85%]"
                 )}>
                   <div className={cn(
-                    message.role === 'assistant' 
-                      ? "prose prose-headings:mt-6 prose-headings:mb-3 prose-p:my-4 prose-p:leading-relaxed prose-ul:my-4 prose-ol:my-4 prose-li:my-2 prose-li:leading-relaxed prose-pre:bg-gray-50 prose-pre:p-3 prose-pre:rounded prose-strong:font-medium" 
-                      : ""
+                    message.role === 'user' ? "px-5 py-4" : "px-6 py-5",
                   )}>
-                    <p>{message.content}</p>
-                    {message.component && (
-                      <div className="mt-4">
-                        {message.component}
-                      </div>
-                    )}
+                    <div className={cn(
+                      message.role === 'assistant' 
+                        ? "prose prose-headings:mt-6 prose-headings:mb-3 prose-p:my-4 prose-p:leading-relaxed prose-ul:my-4 prose-ol:my-4 prose-li:my-2 prose-li:leading-relaxed prose-pre:bg-gray-50 prose-pre:p-3 prose-pre:rounded prose-strong:font-medium" 
+                        : ""
+                    )}>
+                      <p>{message.content}</p>
+                      {message.component && (
+                        <div className="mt-4">
+                          {message.component}
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-          
-          {isTyping && (
-            <div className="animate-pulse flex items-center gap-2 text-sm text-muted-foreground">
-              <span>Norea skriver</span>
-              <span className="animate-bounce">.</span>
-              <span className="animate-bounce delay-75">.</span>
-              <span className="animate-bounce delay-150">.</span>
-            </div>
-          )}
+            ))}
+            
+            {isTyping && (
+              <div className="animate-pulse flex items-center gap-2 text-sm text-muted-foreground">
+                <span>Norea skriver</span>
+                <span className="animate-bounce">.</span>
+                <span className="animate-bounce delay-75">.</span>
+                <span className="animate-bounce delay-150">.</span>
+              </div>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </PageContainer>
   );
 };
 
