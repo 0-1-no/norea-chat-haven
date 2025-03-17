@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { 
   Popover, PopoverContent, PopoverTrigger 
 } from "@/components/ui/popover";
-import { Zap, Lightbulb, Database, ChevronDown, CreditCard } from 'lucide-react';
+import { Zap, Lightbulb, Database, ChevronDown, CreditCard, Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Badge } from './ui/badge';
 
@@ -34,6 +34,8 @@ const resonneringModels: AIModel[] = [
 export const ModelSelector: React.FC<ModelSelectorProps> = ({ className }) => {
   const [modelType, setModelType] = useState<ModelType>("autopilot");
   const [selectedModel, setSelectedModel] = useState<string>("");
+  const [modeOpen, setModeOpen] = useState(false);
+  const [modelOpen, setModelOpen] = useState(false);
   
   // Reset selected model when model type changes to autopilot
   useEffect(() => {
@@ -55,10 +57,20 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({ className }) => {
     return model ? model.name : models[0].name;
   };
 
+  const handleModeSelect = (mode: ModelType) => {
+    setModelType(mode);
+    setModeOpen(false); // Close popover after selection
+  };
+
+  const handleModelSelect = (modelId: string) => {
+    setSelectedModel(modelId);
+    setModelOpen(false); // Close popover after selection
+  };
+
   return (
     <div className={cn("flex gap-2", className)}>
       {/* Mode Selector */}
-      <Popover>
+      <Popover open={modeOpen} onOpenChange={setModeOpen}>
         <PopoverTrigger asChild>
           <button className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-gray-700 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors">
             {modelType === "autopilot" && <Zap className="w-3 h-3" />}
@@ -76,48 +88,55 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({ className }) => {
           <div className="p-1">
             <button
               className={cn(
-                "flex items-start gap-3 w-full px-3 py-2 text-left rounded hover:bg-gray-100", 
+                "flex flex-col items-start w-full px-3 py-2 text-left rounded hover:bg-gray-100", 
                 modelType === "autopilot" && "bg-gray-100"
               )}
-              onClick={() => setModelType("autopilot")}
+              onClick={() => handleModeSelect("autopilot")}
             >
-              <Zap className="w-5 h-5 mt-0.5 text-gray-700" />
-              <div>
-                <div className="text-sm font-medium">Auto</div>
-                <div className="text-xs text-gray-500">Tilpasser seg hvert spørsmål</div>
+              <div className="flex items-center w-full">
+                <Zap className="w-5 h-5 text-gray-700" />
+                <div className="text-sm font-medium ml-3">Auto</div>
+                {modelType === "autopilot" && <Check className="ml-auto w-4 h-4 text-primary" />}
               </div>
+              <div className="text-xs text-gray-500 mt-1 ml-8">Tilpasser seg hvert spørsmål</div>
             </button>
             
             <button
               className={cn(
-                "flex items-start gap-3 w-full px-3 py-2 text-left rounded hover:bg-gray-100",
+                "flex flex-col items-start w-full px-3 py-2 text-left rounded hover:bg-gray-100",
                 modelType === "pro" && "bg-gray-100"
               )}
-              onClick={() => setModelType("pro")}
+              onClick={() => handleModeSelect("pro")}
             >
-              <Database className="w-5 h-5 mt-0.5 text-gray-700" />
-              <div className="flex items-center gap-2">
-                <div className="text-sm font-medium">Pro</div>
-                <Badge variant="default" className="bg-primary text-xs py-0 px-1.5 h-4">PRO</Badge>
+              <div className="flex items-center w-full">
+                <Database className="w-5 h-5 text-gray-700" />
+                <div className="text-sm font-medium ml-3">Pro</div>
+                <Badge variant="default" className="bg-primary text-xs py-0 px-1.5 h-4 ml-auto">PRO</Badge>
+                {modelType === "pro" && <Check className="ml-2 w-4 h-4 text-primary" />}
               </div>
-              <div className="text-xs text-gray-500">3x flere kilder og detaljerte svar</div>
-              <CreditCard className="absolute right-3 top-2 w-4 h-4 text-gray-400" />
+              <div className="flex items-center w-full">
+                <div className="text-xs text-gray-500 mt-1 ml-8">3x flere kilder og detaljerte svar</div>
+                <CreditCard className="ml-auto w-4 h-4 text-gray-400" />
+              </div>
             </button>
             
             <button
               className={cn(
-                "flex items-start gap-3 w-full px-3 py-2 text-left rounded hover:bg-gray-100",
+                "flex flex-col items-start w-full px-3 py-2 text-left rounded hover:bg-gray-100",
                 modelType === "resonnering" && "bg-gray-100"
               )}
-              onClick={() => setModelType("resonnering")}
+              onClick={() => handleModeSelect("resonnering")}
             >
-              <Lightbulb className="w-5 h-5 mt-0.5 text-gray-700" />
-              <div className="flex items-center gap-2">
-                <div className="text-sm font-medium">Resonnering</div>
-                <Badge variant="default" className="bg-primary text-xs py-0 px-1.5 h-4">PRO</Badge>
+              <div className="flex items-center w-full">
+                <Lightbulb className="w-5 h-5 text-gray-700" />
+                <div className="text-sm font-medium ml-3">Resonnering</div>
+                <Badge variant="default" className="bg-primary text-xs py-0 px-1.5 h-4 ml-auto">PRO</Badge>
+                {modelType === "resonnering" && <Check className="ml-2 w-4 h-4 text-primary" />}
               </div>
-              <div className="text-xs text-gray-500">Avansert problemløsning</div>
-              <CreditCard className="absolute right-3 top-2 w-4 h-4 text-gray-400" />
+              <div className="flex items-center w-full">
+                <div className="text-xs text-gray-500 mt-1 ml-8">Avansert problemløsning</div>
+                <CreditCard className="ml-auto w-4 h-4 text-gray-400" />
+              </div>
             </button>
           </div>
         </PopoverContent>
@@ -125,7 +144,7 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({ className }) => {
       
       {/* AI Model Selector */}
       {modelType !== "autopilot" && (
-        <Popover>
+        <Popover open={modelOpen} onOpenChange={setModelOpen}>
           <PopoverTrigger asChild>
             <button className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-gray-700 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors">
               <span>{getCurrentModelName()}</span>
@@ -139,16 +158,16 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({ className }) => {
                   <button
                     key={model.id}
                     className={cn(
-                      "flex items-start gap-3 w-full px-3 py-2 text-left rounded hover:bg-gray-100",
+                      "flex flex-col items-start w-full px-3 py-2 text-left rounded hover:bg-gray-100",
                       selectedModel === model.id && "bg-gray-100"
                     )}
-                    onClick={() => setSelectedModel(model.id)}
+                    onClick={() => handleModelSelect(model.id)}
                   >
-                    <div className="w-5"></div>
-                    <div>
-                      <div className="text-sm font-medium">{model.name}</div>
-                      <div className="text-xs text-gray-500">{model.description}</div>
+                    <div className="flex items-center w-full">
+                      <div className="text-sm font-medium ml-5">{model.name}</div>
+                      {selectedModel === model.id && <Check className="ml-auto w-4 h-4 text-primary" />}
                     </div>
+                    <div className="text-xs text-gray-500 mt-1 ml-5">{model.description}</div>
                   </button>
                 ))
               ) : (
@@ -156,16 +175,16 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({ className }) => {
                   <button
                     key={model.id}
                     className={cn(
-                      "flex items-start gap-3 w-full px-3 py-2 text-left rounded hover:bg-gray-100",
+                      "flex flex-col items-start w-full px-3 py-2 text-left rounded hover:bg-gray-100",
                       selectedModel === model.id && "bg-gray-100"
                     )}
-                    onClick={() => setSelectedModel(model.id)}
+                    onClick={() => handleModelSelect(model.id)}
                   >
-                    <div className="w-5"></div>
-                    <div>
-                      <div className="text-sm font-medium">{model.name}</div>
-                      <div className="text-xs text-gray-500">{model.description}</div>
+                    <div className="flex items-center w-full">
+                      <div className="text-sm font-medium ml-5">{model.name}</div>
+                      {selectedModel === model.id && <Check className="ml-auto w-4 h-4 text-primary" />}
                     </div>
+                    <div className="text-xs text-gray-500 mt-1 ml-5">{model.description}</div>
                   </button>
                 ))
               )}
@@ -176,4 +195,3 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({ className }) => {
     </div>
   );
 };
-
