@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Index from './pages/Index';
@@ -6,13 +7,13 @@ import EmptyRooms from './pages/EmptyRooms';
 import RoomView from './pages/RoomView';
 import CustomRoomView from './pages/CustomRoomView';
 import Characters from './pages/Characters';
-import CharacterView from './pages/CharacterView';
+import CharacterProfile from './pages/CharacterProfile';
 import ChatDemo from './pages/ChatDemo';
 import MemoryChat from './pages/MemoryChat';
 import WeatherChat from './pages/WeatherChat';
 import OnboardingChat from './pages/OnboardingChat';
 import FollowUpChat from './pages/FollowUpChat';
-import Components from './pages/Components';
+import ComponentLibrary from './pages/ComponentLibrary';
 import Cards from './pages/Cards';
 import DesignTokens from './pages/DesignTokens';
 import Typography from './pages/Typography';
@@ -43,13 +44,13 @@ function App() {
             <Route path="/room-view/:roomId" element={<RoomView />} />
             <Route path="/custom-room-view/:roomId" element={<CustomRoomView />} />
             <Route path="/characters" element={<Characters />} />
-            <Route path="/character/:characterName" element={<CharacterView />} />
+            <Route path="/character/:characterId" element={<CharacterProfile />} />
             <Route path="/chat-demo" element={<ChatDemo />} />
             <Route path="/memory-chat" element={<MemoryChat />} />
             <Route path="/weather-chat" element={<WeatherChat />} />
             <Route path="/onboarding-chat" element={<OnboardingChat />} />
             <Route path="/followup-chat" element={<FollowUpChat />} />
-            <Route path="/components" element={<Components />} />
+            <Route path="/components" element={<ComponentLibrary />} />
             <Route path="/cards" element={<Cards />} />
             <Route path="/design-tokens" element={<DesignTokens />} />
             <Route path="/typography" element={<Typography />} />
