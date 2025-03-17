@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { 
   Popover, PopoverContent, PopoverTrigger 
 } from "@/components/ui/popover";
-import { Zap, Lightbulb, Database, ChevronDown, CreditCard, Check } from 'lucide-react';
+import { Zap, Lightbulb, Gem, ChevronDown, Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Badge } from './ui/badge';
 
@@ -74,7 +74,7 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({ className }) => {
         <PopoverTrigger asChild>
           <button className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-gray-700 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors">
             {modelType === "autopilot" && <Zap className="w-3 h-3" />}
-            {modelType === "pro" && <Database className="w-3 h-3" />}
+            {modelType === "pro" && <Gem className="w-3 h-3" />}
             {modelType === "resonnering" && <Lightbulb className="w-3 h-3" />}
             
             <span>
@@ -109,15 +109,12 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({ className }) => {
               onClick={() => handleModeSelect("pro")}
             >
               <div className="flex items-center w-full">
-                <Database className="w-5 h-5 text-gray-700" />
+                <Gem className="w-5 h-5 text-gray-700" />
                 <div className="text-sm font-medium ml-3">Pro</div>
                 <Badge variant="default" className="bg-primary text-xs py-0 px-1.5 h-4 ml-auto">PRO</Badge>
                 {modelType === "pro" && <Check className="ml-2 w-4 h-4 text-primary" />}
               </div>
-              <div className="flex items-center w-full">
-                <div className="text-xs text-gray-500 mt-1 ml-8">3x flere kilder og detaljerte svar</div>
-                <CreditCard className="ml-auto w-4 h-4 text-gray-400" />
-              </div>
+              <div className="text-xs text-gray-500 mt-1 ml-8">3x flere kilder og detaljerte svar</div>
             </button>
             
             <button
@@ -133,10 +130,7 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({ className }) => {
                 <Badge variant="default" className="bg-primary text-xs py-0 px-1.5 h-4 ml-auto">PRO</Badge>
                 {modelType === "resonnering" && <Check className="ml-2 w-4 h-4 text-primary" />}
               </div>
-              <div className="flex items-center w-full">
-                <div className="text-xs text-gray-500 mt-1 ml-8">Avansert problemløsning</div>
-                <CreditCard className="ml-auto w-4 h-4 text-gray-400" />
-              </div>
+              <div className="text-xs text-gray-500 mt-1 ml-8">Avansert problemløsning</div>
             </button>
           </div>
         </PopoverContent>
