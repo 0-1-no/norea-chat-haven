@@ -304,9 +304,11 @@ const LuminousOrb = ({ size = 'medium' }) => {
   );
 };
 
-// Neural Orb Component with original animation style
+// Neural Orb Component - Updated to remove borders and adapt to light/dark backgrounds
 const NeuralOrb = ({ size = 'medium' }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { theme } = useTheme();
+  const isDarkMode = theme === 'dark';
   
   // Size dimensions
   const sizeClasses = {
@@ -352,9 +354,13 @@ const NeuralOrb = ({ size = 'medium' }) => {
 
     // Animation function
     const animate = () => {
-      // Fill with transparent black for trails effect
+      // Adaptive background opacity for light/dark modes
+      const bgOpacity = isDarkMode ? 0.03 : 0.03;
+      const bgColor = isDarkMode ? "rgba(0,0,0," + bgOpacity + ")" : "rgba(255,255,255," + bgOpacity + ")";
+      
+      // Fill with transparent background for trails effect
       ctx.globalCompositeOperation = "source-over";
-      ctx.fillStyle = "rgba(0,0,0,0.03)";
+      ctx.fillStyle = bgColor;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
       // Use additive blending for light effects
@@ -412,8 +418,13 @@ const NeuralOrb = ({ size = 'medium' }) => {
             ctx.beginPath();
             
             // Create a rainbow color effect with HSL
+            // Adjust saturation and lightness for light/dark mode
             const hue = ((a / maxPoints * 360) | 0);
-            ctx.strokeStyle = `hsla(${hue}, 70%, 60%, 0.15)`;
+            const saturation = isDarkMode ? "70%" : "80%";
+            const lightness = isDarkMode ? "60%" : "45%"; // Darker on light background
+            const strokeOpacity = isDarkMode ? 0.15 : 0.35; // Higher opacity on light background
+            
+            ctx.strokeStyle = `hsla(${hue}, ${saturation}, ${lightness}, ${strokeOpacity})`;
             
             // Dynamic line width based on z-coordinate
             const baseLineWidth = size === 'small' ? 3 : size === 'medium' ? 4.5 : 6;
@@ -436,10 +447,10 @@ const NeuralOrb = ({ size = 'medium' }) => {
     return () => {
       cancelAnimationFrame(animationId);
     };
-  }, [size]);
+  }, [size, isDarkMode]); // Added isDarkMode to dependencies
 
   return (
-    <div className={`${sizeClasses[size]} rounded-full overflow-hidden flex items-center justify-center bg-black`}>
+    <div className={`${sizeClasses[size]} rounded-full overflow-hidden flex items-center justify-center`}>
       <canvas 
         ref={canvasRef} 
         className="w-full h-full"
