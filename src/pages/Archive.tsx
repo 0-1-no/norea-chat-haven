@@ -1,7 +1,6 @@
 
 import React, { useState } from 'react';
-import { PageContainer } from '@/components/layout/PageContainer';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Search, MessageCircle, Calendar, Trash2, Book, BookOpen } from 'lucide-react';
@@ -63,8 +62,8 @@ const ArchivePage = () => {
   };
 
   return (
-    <div className="w-full bg-background">
-      <div className="max-w-4xl mx-auto space-y-6 p-4 sm:p-6">
+    <div className="flex-1 overflow-auto p-4 sm:p-6">
+      <div className="max-w-4xl mx-auto space-y-6">
         {/* Hero section for archive */}
         <div className="relative bg-gradient-to-r from-amber-50 to-yellow-100 rounded-xl p-6 overflow-hidden">
           <div className="absolute top-0 right-0 opacity-10">
@@ -93,33 +92,35 @@ const ArchivePage = () => {
           />
         </div>
 
-        {/* Archive list */}
-        <div className="space-y-3">
+        {/* Archive list - compressed */}
+        <div className="space-y-2">
           {filteredConversations.map((conversation) => (
             <Card 
               key={conversation.id} 
               className="bg-white border-secondary-100 hover:border-primary/20 transition-colors cursor-pointer"
             >
-              <div className="p-3">
+              <div className="p-2.5">
                 <div className="flex justify-between items-start">
-                  <div className="flex items-start gap-2">
-                    <MessageCircle className="w-4 h-4 text-amber-600 mt-0.5" />
+                  <div className="flex items-start gap-1.5">
+                    <MessageCircle className="w-3.5 h-3.5 text-amber-600 mt-0.5 flex-shrink-0" />
                     <div>
-                      <h3 className="text-base font-medium text-primary-900">{conversation.title}</h3>
+                      <h3 className="text-sm font-medium text-primary-900 line-clamp-1">{conversation.title}</h3>
                       <div className="flex items-center gap-1 text-xs text-muted-foreground mt-0.5">
                         <Calendar className="w-3 h-3" />
                         <span>{conversation.date}</span>
                       </div>
-                      <p className="text-xs text-muted-foreground mt-1 line-clamp-1">{conversation.preview}</p>
                     </div>
                   </div>
                   <Button 
                     variant="ghost" 
                     size="icon"
-                    className="text-muted-foreground hover:text-destructive hover:bg-destructive/10 -mt-1 -mr-1 h-7 w-7"
-                    onClick={() => handleDelete(conversation.id)}
+                    className="text-muted-foreground hover:text-destructive hover:bg-destructive/10 -mt-1 -mr-1 h-6 w-6"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleDelete(conversation.id);
+                    }}
                   >
-                    <Trash2 className="w-4 h-4" />
+                    <Trash2 className="w-3.5 h-3.5" />
                   </Button>
                 </div>
               </div>
