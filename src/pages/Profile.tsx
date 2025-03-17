@@ -17,7 +17,7 @@ const Profile: React.FC = () => {
         <div className="space-y-6 max-w-4xl mx-auto">
           <ProfileCover 
             coverImage="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=1500&auto=format&fit=crop" 
-            profileImage="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600&auto=format&fit=crop"
+            profileImage="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=600&auto=format&fit=crop"
           />
           
           <div className="flex items-center space-x-3 px-8">
