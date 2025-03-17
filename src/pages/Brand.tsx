@@ -120,10 +120,10 @@ const Brand = () => {
             <ul className="list-disc list-inside mt-2 text-sm text-gray-600 dark:text-gray-300 space-y-1">
               <li>Canvas-based animation with 3D rotation and perspective</li>
               <li>Multiple interconnected circular patterns creating depth</li>
-              <li>Additive blending for light effects using Norea's color palette</li>
-              <li>Trail effect with fade giving a sense of motion and flow</li>
+              <li>Additive blending for light effects using vibrant full spectrum colors</li>
+              <li>High contrast lines with variable thickness creating a glowing effect</li>
               <li>Optimized for performance with hardware acceleration</li>
-              <li>Adaptive colors that respond to light/dark theme</li>
+              <li>Maintains visual integrity in both light and dark themes</li>
             </ul>
           </div>
         </section>
@@ -304,17 +304,22 @@ const LuminousOrb = ({ size = 'medium' }) => {
   );
 };
 
-// Neural Orb Component with improved neuron visibility and transparent background
+// Neural Orb Component with original animation style
 const NeuralOrb = ({ size = 'medium' }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const { theme } = useTheme();
-  const isDarkMode = theme === 'dark';
   
-  // Reduced size dimensions
+  // Size dimensions
   const sizeClasses = {
     small: "w-10 h-10",
     medium: "w-32 h-32",
     large: "w-60 h-60"
+  };
+
+  // Size dimensions in pixels
+  const sizeDimensions = {
+    small: 40,
+    medium: 128,
+    large: 240
   };
 
   useEffect(() => {
@@ -324,123 +329,99 @@ const NeuralOrb = ({ size = 'medium' }) => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Set the canvas size based on the container size
-    const setCanvasSize = () => {
-      const containerWidth = canvas.parentElement?.clientWidth || (
-        size === 'small' ? 40 : size === 'medium' ? 128 : 240
-      );
-      const containerHeight = canvas.parentElement?.clientHeight || (
-        size === 'small' ? 40 : size === 'medium' ? 128 : 240
-      );
-      
-      canvas.width = containerWidth;
-      canvas.height = containerHeight;
-    };
-    
-    setCanvasSize();
-    window.addEventListener('resize', setCanvasSize);
+    // Set canvas dimensions
+    const pixelSize = sizeDimensions[size];
+    canvas.width = pixelSize;
+    canvas.height = pixelSize;
 
-    // Determine complexity based on size
-    const complexityFactor = size === 'small' ? 20 : size === 'medium' ? 30 : 45;
-    
-    const max = complexityFactor;
+    // Initialize variables
+    const maxPoints = size === 'small' ? 40 : size === 'medium' ? 60 : 80;
     let count = 0;
-    const p: number[][] = [];
-    let r = 0;
+    const points: number[][] = [];
+    let rotation = 0;
 
-    for (let a = 0; a < max; a++) {
-      p.push([Math.cos(r), Math.sin(r), 0]);
-      r += Math.PI * 2 / max;
+    // Create the initial points in a circular pattern
+    for (let a = 0; a < maxPoints; a++) {
+      points.push([Math.cos(rotation), Math.sin(rotation), 0]);
+      rotation += Math.PI * 2 / maxPoints;
     }
-    for (let a = 0; a < max; a++) p.push([0, p[a][0], p[a][1]]);
-    for (let a = 0; a < max; a++) p.push([p[a][1], 0, p[a][0]]);
+    
+    // Create additional points by cycling the coordinates
+    for (let a = 0; a < maxPoints; a++) points.push([0, points[a][0], points[a][1]]);
+    for (let a = 0; a < maxPoints; a++) points.push([points[a][1], 0, points[a][0]]);
 
-    // Use brand colors from CSS variables
-    const getBrandColors = () => {
-      if (isDarkMode) {
-        return [
-          "rgba(229, 222, 255, 0.7)",  // Light purple (higher opacity)
-          "rgba(214, 188, 250, 0.65)", // Light-mid purple
-          "rgba(155, 135, 245, 0.6)",  // Mid purple
-          "rgba(139, 92, 246, 0.65)",  // Primary purple
-          "rgba(217, 70, 239, 0.6)",   // Pink accent
-          "rgba(192, 132, 252, 0.55)"  // Lilac
-        ];
-      } else {
-        return [
-          "rgba(139, 92, 246, 0.65)",   // Primary purple (higher opacity)
-          "rgba(155, 135, 245, 0.6)",   // Medium purple
-          "rgba(170, 155, 245, 0.65)",  // Light-medium purple
-          "rgba(192, 175, 255, 0.6)",   // Light purple
-          "rgba(217, 70, 239, 0.55)",   // Pink accent
-          "rgba(126, 105, 171, 0.6)"    // Muted purple
-        ];
-      }
-    };
-
+    // Animation function
     const animate = () => {
-      // Clear with a fully transparent background to inherit from parent
+      // Fill with transparent black for trails effect
       ctx.globalCompositeOperation = "source-over";
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      // Use lower alpha to let background show through more
-      ctx.fillStyle = "rgba(0, 0, 0, 0)";
+      ctx.fillStyle = "rgba(0,0,0,0.03)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      // Use additive blending for light effects
       ctx.globalCompositeOperation = "lighter";
       
       const tim = count / 5;
-      const colors = getBrandColors();
       
+      // Loop through layers to create depth
       for (let e = 0; e < 3; e++) {
-        const scaledTime = tim * 1.5; // Slightly slower rotation
-        const s = 1 - e / 3;
+        const scaledTime = tim * 1.7;
+        const scale = 1 - e / 3;
         
-        const a1 = scaledTime / 59;
-        const yp = Math.cos(a1);
-        const yp2 = Math.sin(a1);
+        // Calculate rotation angles
+        const angle1 = scaledTime / 59;
+        const yp = Math.cos(angle1);
+        const yp2 = Math.sin(angle1);
         
-        const a2 = scaledTime / 23;
-        const xp = Math.cos(a2);
-        const xp2 = Math.sin(a2);
+        const angle2 = scaledTime / 23;
+        const xp = Math.cos(angle2);
+        const xp2 = Math.sin(angle2);
         
-        const p2: number[][] = [];
-        for (let a = 0; a < p.length; a++) {
-          const x = p[a][0];
-          const y = p[a][1];
-          const z = p[a][2];
+        // Transform the points in 3D space
+        const transformedPoints: number[][] = [];
+        for (let a = 0; a < points.length; a++) {
+          const x = points[a][0];
+          const y = points[a][1];
+          const z = points[a][2];
           
+          // Apply 3D rotations
           const y1 = y * yp + z * yp2;
           const z1 = y * yp2 - z * yp;
           const x1 = x * xp + z1 * xp2;
           const z2 = x * xp2 - z1 * xp;
           
-          const z3 = Math.pow(2.5, z2 * s); // Enhanced depth effect
-          const projectedX = x1 * z3;
-          const projectedY = y1 * z3;
+          // Apply perspective
+          const perspective = Math.pow(2, z2 * scale);
+          const projectedX = x1 * perspective;
+          const projectedY = y1 * perspective;
           
-          p2.push([projectedX, projectedY, z2]);
+          transformedPoints.push([projectedX, projectedY, z2]);
         }
         
-        // Adjusted scale factor for new sizes
-        const scaleFactor = size === 'small' ? 0.25 : size === 'medium' ? 0.5 : 0.8;
-        const scale = s * 120 * scaleFactor;
+        // Calculate the scale factor based on orb size
+        const sizeScaleFactor = size === 'small' ? 0.3 : size === 'medium' ? 0.5 : 0.8;
+        const viewportScale = scale * pixelSize * 0.6 * sizeScaleFactor;
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
         
+        // Draw the lines connecting the points
         for (let d = 0; d < 3; d++) {
-          for (let a = 0; a < max; a++) {
-            const b = p2[d * max + a];
-            const c = p2[((a + 1) % max) + d * max];
+          for (let a = 0; a < maxPoints; a++) {
+            const b = transformedPoints[d * maxPoints + a];
+            const c = transformedPoints[((a + 1) % maxPoints) + d * maxPoints];
             
             ctx.beginPath();
             
-            const colorIndex = Math.floor((a / max) * colors.length);
-            ctx.strokeStyle = colors[colorIndex];
+            // Create a rainbow color effect with HSL
+            const hue = ((a / maxPoints * 360) | 0);
+            ctx.strokeStyle = `hsla(${hue}, 70%, 60%, 0.15)`;
             
-            // Increased line width for better visibility
-            const lineWidthBase = size === 'small' ? 4 : size === 'medium' ? 6 : 8;
-            ctx.lineWidth = Math.pow(lineWidthBase, b[2] + 0.1) * scaleFactor;
+            // Dynamic line width based on z-coordinate
+            const baseLineWidth = size === 'small' ? 3 : size === 'medium' ? 4.5 : 6;
+            ctx.lineWidth = Math.pow(baseLineWidth, b[2]);
             
-            ctx.lineTo(b[0] * scale + canvas.width / 2, b[1] * scale + canvas.height / 2);
-            ctx.lineTo(c[0] * scale + canvas.width / 2, c[1] * scale + canvas.height / 2);
+            // Draw the line
+            ctx.lineTo(b[0] * viewportScale + centerX, b[1] * viewportScale + centerY);
+            ctx.lineTo(c[0] * viewportScale + centerX, c[1] * viewportScale + centerY);
             ctx.stroke();
           }
         }
@@ -453,13 +434,12 @@ const NeuralOrb = ({ size = 'medium' }) => {
     const animationId = requestAnimationFrame(animate);
     
     return () => {
-      window.removeEventListener('resize', setCanvasSize);
       cancelAnimationFrame(animationId);
     };
-  }, [size, isDarkMode, theme]);
+  }, [size]);
 
   return (
-    <div className={`${sizeClasses[size]} rounded-full overflow-hidden flex items-center justify-center`}>
+    <div className={`${sizeClasses[size]} rounded-full overflow-hidden flex items-center justify-center bg-black`}>
       <canvas 
         ref={canvasRef} 
         className="w-full h-full"
