@@ -64,51 +64,24 @@ export const SidebarContent: React.FC = () => {
         <div className="space-y-4">
           <div className="space-y-1">
             <div className="px-3 py-1 text-xs font-medium text-gray-500">I dag</div>
-            <ChatItem title="Hva er linting" to="/chat-demo" />
-            <ChatItem title="AI Design System Strategies" to="/chat-demo" />
-            <ChatItem title="Bygg arbitrage program" to="/chat-demo" />
-            <ChatItem title="Norea AI Context Prompt" to="/chat-demo" />
+            <ChatItem title="Enkel chat-demonstrasjon" to="/chat-demo" />
+            <ChatItem title="Minne-demonstrasjon" to="/memory-chat" />
+            <ChatItem title="Vær-demonstrasjon" to="/weather-chat" />
+            <ChatItem title="Oppfølgingsforslag" to="/followup-chat" />
           </div>
           
           <div className="space-y-1">
             <div className="px-3 py-1 text-xs font-medium text-gray-500">Siste 7 dager</div>
-            <ChatItem title="Coloring Page Request" to="/chat-demo" />
+            <ChatItem title="Hva er linting" to="/chat-demo" />
+            <ChatItem title="AI Design System" to="/chat-demo" />
             <ChatItem title="Skismøring og vannkvalitet" to="/chat-demo" />
-            <ChatItem title="Helgeturer med barn Oslo" to="/chat-demo" />
-            <ChatItem title="Fargebeskrivelse for designer" to="/chat-demo" />
           </div>
           
           <div className="space-y-1">
             <div className="px-3 py-1 text-xs font-medium text-gray-500">Eldre</div>
             <ChatItem title="Hva er GraphQL" to="/chat-demo" />
-            <ChatItem title="Adam og den forbudte frukten" to="/chat-demo" />
-            <ChatItem title="Horsleys syn på prostitusjon" to="/chat-demo" />
             <ChatItem title="Face ID iOS API" to="/chat-demo" />
           </div>
-        </div>
-        
-        <div className="mt-2">
-          <SidebarItem 
-            title="Enkel chat-demonstrasjon"
-            to="/chat-demo" 
-          />
-          <SidebarItem 
-            title="Minne-demonstrasjon"
-            to="/memory-chat" 
-          />
-          <SidebarItem 
-            title="Vær-demonstrasjon"
-            to="/weather-chat" 
-            icon={<CloudRain className="w-4 h-4" />}
-          />
-          <SidebarItem 
-            title="Onboarding-demonstrasjon"
-            to="/onboarding-chat"
-          />
-          <SidebarItem 
-            title="Oppfølgingsforslag"
-            to="/followup-chat"
-          />
         </div>
       </SidebarSection>
       
