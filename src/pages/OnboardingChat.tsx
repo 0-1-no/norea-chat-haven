@@ -175,6 +175,7 @@ const OnboardingChat = () => {
   const handleStartOnboarding = () => {
     addAIMessage({
       id: "name-prompt",
+      role: "ai",
       content: "Flott! Hva heter du?",
     });
     setProgress(10);
@@ -189,6 +190,7 @@ const OnboardingChat = () => {
     setTimeout(() => {
       addAIMessage({
         id: "experience-prompt",
+        role: "ai",
         content: `Takk, ${name}! Fortell meg litt om din erfaring med AI assistenter. Har du brukt lignende tjenester før?`,
         component: (
           <OptionButtons
@@ -228,6 +230,7 @@ const OnboardingChat = () => {
     setTimeout(() => {
       addAIMessage({
         id: "tour-intro",
+        role: "ai",
         content: `Takk for informasjonen, ${userName}! La meg vise deg noen av funksjonene Norea AI tilbyr:`,
         component: (
           <ImageCarousel 
@@ -245,6 +248,7 @@ const OnboardingChat = () => {
       setTimeout(() => {
         addAIMessage({
           id: "video-demo",
+          role: "ai",
           content: "Her er en kort video som viser hvordan du kan bruke Norea AI i hverdagen:",
           component: (
             <VideoEmbed 
@@ -259,6 +263,7 @@ const OnboardingChat = () => {
         setTimeout(() => {
           addAIMessage({
             id: "preferences-prompt",
+            role: "ai",
             content: "Hvilke temaer er du mest interessert i? Velg så mange du vil:",
             component: (
               <UserPreferences
@@ -304,6 +309,7 @@ const OnboardingChat = () => {
     setTimeout(() => {
       addAIMessage({
         id: "privacy-intro",
+        role: "ai",
         content: "Takk for dine valg! Personvern er viktig for oss. Her er hvordan vi håndterer dataene dine:",
         component: (
           <div className="bg-card/50 backdrop-blur-sm border border-border rounded-lg p-4 space-y-3 max-w-lg">
@@ -342,6 +348,7 @@ const OnboardingChat = () => {
     setTimeout(() => {
       addAIMessage({
         id: "completion",
+        role: "ai",
         content: `Fantastisk, ${userName}! Din profil er nå satt opp og jeg er klar til å hjelpe deg. Du kan stille meg spørsmål, be om hjelp, eller utforske Norea AI videre.`,
         component: (
           <div className="bg-card/50 backdrop-blur-sm border border-border rounded-lg p-4 max-w-lg">
@@ -372,6 +379,7 @@ const OnboardingChat = () => {
     setTimeout(() => {
       addAIMessage({
         id: "final",
+        role: "ai",
         content: `Takk for at du fullførte onboarding-prosessen, ${userName}! Jeg er her for å hjelpe deg med det du trenger. Bare spør i vei!`
       });
     }, 500);
@@ -394,6 +402,7 @@ const OnboardingChat = () => {
       setTimeout(() => {
         addAIMessage({
           id: `response-${Date.now()}`,
+          role: "ai",
           content: `Takk for meldingen, ${userName}! Som en demo-chat kan jeg ikke svare på spesifikke spørsmål akkurat nå, men i en faktisk implementasjon ville jeg gitt et nyttig svar basert på din profil og dine preferanser.`
         });
       }, 500);
@@ -412,11 +421,7 @@ const OnboardingChat = () => {
 
   // Add AI message
   const addAIMessage = (message: ChatMessage) => {
-    const newMessage: ChatMessage = {
-      ...message,
-      role: "ai"
-    };
-    setMessages(prev => [...prev, newMessage]);
+    setMessages(prev => [...prev, message]);
   };
 
   return (
