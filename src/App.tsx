@@ -29,6 +29,10 @@ import MemoryChat from "./pages/MemoryChat";
 import WeatherChat from "./pages/WeatherChat";
 import OnboardingChat from "./pages/OnboardingChat";
 import FollowUpChat from "./pages/FollowUpChat";
+import Profile from "./pages/Profile";
+import Settings from "./pages/Settings";
+import Personalization from "./pages/Personalization";
+import Memory from "./pages/Memory";
 
 const queryClient = new QueryClient();
 
@@ -62,6 +66,13 @@ function App() {
             <Route path="/custom-room-view/:roomId" element={<CustomRoomView />} />
             <Route path="/characters" element={<Characters />} />
             <Route path="/character/:characterId" element={<CharacterProfile />} />
+            
+            {/* User profile routes */}
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/personalization" element={<Personalization />} />
+            <Route path="/memory" element={<Memory />} />
+            
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

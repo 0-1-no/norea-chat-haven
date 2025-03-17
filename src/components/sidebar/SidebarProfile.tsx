@@ -1,7 +1,8 @@
 
 import React from 'react';
-import { User, Sun, Moon, LogOut } from 'lucide-react';
+import { User, Settings, Wand, Brain, Sun, Moon, LogOut } from 'lucide-react';
 import { useTheme } from 'next-themes';
+import { Link } from 'react-router-dom';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -38,9 +39,29 @@ export const SidebarProfile: React.FC = () => {
           </div>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start" className="w-56 z-50">
-          <DropdownMenuItem className="cursor-pointer flex items-center gap-2">
-            <User className="h-4 w-4" />
-            <span>Profil</span>
+          <DropdownMenuItem className="cursor-pointer flex items-center gap-2" asChild>
+            <Link to="/profile">
+              <User className="h-4 w-4" />
+              <span>Profil</span>
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem className="cursor-pointer flex items-center gap-2" asChild>
+            <Link to="/settings">
+              <Settings className="h-4 w-4" />
+              <span>Innstillinger</span>
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem className="cursor-pointer flex items-center gap-2" asChild>
+            <Link to="/personalization">
+              <Wand className="h-4 w-4" />
+              <span>Personalisering</span>
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem className="cursor-pointer flex items-center gap-2" asChild>
+            <Link to="/memory">
+              <Brain className="h-4 w-4" />
+              <span>Hukommelse</span>
+            </Link>
           </DropdownMenuItem>
           <DropdownMenuItem 
             className="cursor-pointer flex items-center gap-2"
