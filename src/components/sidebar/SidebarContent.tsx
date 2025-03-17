@@ -60,6 +60,10 @@ export const SidebarContent: React.FC = () => {
           title="Onboarding-demonstrasjon"
           to="/onboarding-chat"
         />
+        <SidebarItem 
+          title="Oppfølgingsforslag"
+          to="/followup-chat"
+        />
       </SidebarSection>
       
       <SidebarSection title="Design System" icon={<Layers className="w-4 h-4 text-gray-500" />}>

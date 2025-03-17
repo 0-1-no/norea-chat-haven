@@ -28,6 +28,7 @@ import DefaultLayout from "./layouts/DefaultLayout";
 import MemoryChat from "./pages/MemoryChat";
 import WeatherChat from "./pages/WeatherChat";
 import OnboardingChat from "./pages/OnboardingChat";
+import FollowUpChat from "./pages/FollowUpChat";
 
 const queryClient = new QueryClient();
 
@@ -53,6 +54,7 @@ function App() {
             <Route path="/memory-chat" element={<MemoryChat />} />
             <Route path="/weather-chat" element={<WeatherChat />} />
             <Route path="/onboarding-chat" element={<OnboardingChat />} />
+            <Route path="/followup-chat" element={<FollowUpChat />} />
             <Route path="/typography" element={<Typography />} />
             <Route path="/rooms" element={<Rooms />} />
             <Route path="/empty-rooms" element={<EmptyRooms />} />
