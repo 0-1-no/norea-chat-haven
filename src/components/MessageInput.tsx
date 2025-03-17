@@ -1,7 +1,8 @@
 
 import React, { useState } from 'react';
-import { Paperclip, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { ModelSelector } from './ModelSelector';
 
 type MessageInputProps = {
   onSendMessage?: (message: string) => void;
@@ -59,11 +60,7 @@ export const MessageInput: React.FC<MessageInputProps> = ({
       </div>
       
       <div className="flex items-center justify-between mt-1 px-2">
-        <button 
-          className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-hover transition-colors"
-        >
-          <Paperclip className="w-4 h-4 text-muted-foreground" />
-        </button>
+        <ModelSelector />
         
         <div className="flex items-center gap-3">
           <span className="text-xs text-muted-foreground">{characterCount}/{maxCharacterCount}</span>
