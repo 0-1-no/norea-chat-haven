@@ -1,15 +1,13 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Check, ChevronRight, User } from 'lucide-react';
-import { Motion, Presence, useScroll } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Message } from '@/components/message/Message';
 
 interface ChatMessage {
   id: string;
@@ -196,7 +194,6 @@ const OnboardingChat: React.FC = () => {
   };
 
   useEffect(() => {
-    // Initial greeting message
     if (messages.length === 0) {
       addMessage({
         id: 'initial',
@@ -211,7 +208,6 @@ const OnboardingChat: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    // Scroll to bottom when new messages arrive
     if (chatContainerRef.current) {
       chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
     }
@@ -219,7 +215,6 @@ const OnboardingChat: React.FC = () => {
 
   return (
     <div className="flex flex-col h-screen bg-background">
-      {/* Progress Bar */}
       <div className={cn(
         "sticky top-0 z-10 bg-background/80 backdrop-blur-sm border-b border-border",
         isMobile ? "py-2" : "py-4"
@@ -233,7 +228,6 @@ const OnboardingChat: React.FC = () => {
         </div>
       </div>
 
-      {/* Chat Container */}
       <div 
         ref={chatContainerRef}
         className="flex-1 overflow-y-auto py-6 px-4 space-y-6"
@@ -241,18 +235,29 @@ const OnboardingChat: React.FC = () => {
         <div className="container max-w-3xl mx-auto space-y-6">
           {messages.map((message) => (
             <div key={message.id} className="space-y-4">
-              <Message
-                author={message.role === 'user' ? 'Du' : 'Norea AI'}
-                type={message.role === 'user' ? 'user' : 'assistant'}
-                animate={true}
-              >
-                <p>{message.content}</p>
-                {message.component && (
-                  <div className="mt-4">
-                    {message.component}
+              <div className={cn(
+                "group rounded-lg mb-8 relative",
+                message.role === 'user' 
+                  ? "bg-gray-100 text-foreground float-right clear-both max-w-[66%]"
+                  : "bg-background text-foreground float-left clear-both max-w-[85%]"
+              )}>
+                <div className={cn(
+                  message.role === 'user' ? "px-5 py-4" : "px-6 py-5",
+                )}>
+                  <div className={cn(
+                    message.role === 'assistant' 
+                      ? "prose prose-headings:mt-6 prose-headings:mb-3 prose-p:my-4 prose-p:leading-relaxed prose-ul:my-4 prose-ol:my-4 prose-li:my-2 prose-li:leading-relaxed prose-pre:bg-gray-50 prose-pre:p-3 prose-pre:rounded prose-strong:font-medium" 
+                      : ""
+                  )}>
+                    <p>{message.content}</p>
+                    {message.component && (
+                      <div className="mt-4">
+                        {message.component}
+                      </div>
+                    )}
                   </div>
-                )}
-              </Message>
+                </div>
+              </div>
             </div>
           ))}
           
@@ -270,7 +275,6 @@ const OnboardingChat: React.FC = () => {
   );
 };
 
-// Component for name input
 const NameInput: React.FC<{ onSubmit: (name: string) => void }> = ({ onSubmit }) => {
   const [name, setName] = useState('');
   
@@ -294,7 +298,6 @@ const NameInput: React.FC<{ onSubmit: (name: string) => void }> = ({ onSubmit })
   );
 };
 
-// Component for interest selection
 const InterestSelector: React.FC<{ 
   interests: Array<{ id: string, label: string }>,
   selectedInterests: string[],
@@ -338,7 +341,6 @@ const InterestSelector: React.FC<{
   );
 };
 
-// Component for features carousel
 const FeaturesCarousel: React.FC = () => {
   const features = [
     { title: "Smart Skriving", description: "Få hjelp med å skrive, redigere og forbedre tekst." },
@@ -371,7 +373,6 @@ const FeaturesCarousel: React.FC = () => {
   );
 };
 
-// Component for video embedding
 const VideoEmbed: React.FC = () => {
   return (
     <div className="rounded-lg overflow-hidden">
@@ -385,7 +386,6 @@ const VideoEmbed: React.FC = () => {
   );
 };
 
-// Component for use case selection
 const UseCaseSelector: React.FC<{ onSelect: (useCase: string) => void }> = ({ onSelect }) => {
   const useCases = [
     "Skrivearbeid",
@@ -410,7 +410,6 @@ const UseCaseSelector: React.FC<{ onSelect: (useCase: string) => void }> = ({ on
   );
 };
 
-// Component for template gallery
 const TemplateGallery: React.FC<{ useCase: string }> = ({ useCase }) => {
   const templates = [
     { title: "Oppgaveliste", description: "Hold oversikt over gjøremål" },
@@ -437,7 +436,6 @@ const TemplateGallery: React.FC<{ useCase: string }> = ({ useCase }) => {
   );
 };
 
-// Component for feedback
 const FeedbackSelector: React.FC<{ onSelect: (feedback: string) => void }> = ({ onSelect }) => {
   const feedbackOptions = [
     "Veldig bra! Alt var tydelig.",
