@@ -1,6 +1,5 @@
 
-import React, { useState, useRef, useEffect } from '
-react';
+import React, { useState, useRef, useEffect } from 'react';
 import { ArrowRight, Paperclip } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ModelSelector } from './ModelSelector';
@@ -18,22 +17,19 @@ export const MessageInput: React.FC<MessageInputProps> = ({
 }) => {
   const [message, setMessage] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const maxCharacterCount = 1000;
   const maxHeight = 180; // Maximum height for the textarea in pixels
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const text = e.target.value;
-    if (text.length <= maxCharacterCount) {
-      setMessage(text);
+    setMessage(text);
+    
+    // Reset the height to auto to properly calculate the new height
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
       
-      // Reset the height to auto to properly calculate the new height
-      if (textareaRef.current) {
-        textareaRef.current.style.height = 'auto';
-        
-        // Set the new height, but cap it at maxHeight
-        const newHeight = Math.min(textareaRef.current.scrollHeight, maxHeight);
-        textareaRef.current.style.height = `${newHeight}px`;
-      }
+      // Set the new height, but cap it at maxHeight
+      const newHeight = Math.min(textareaRef.current.scrollHeight, maxHeight);
+      textareaRef.current.style.height = `${newHeight}px`;
     }
   };
 
@@ -113,4 +109,3 @@ export const MessageInput: React.FC<MessageInputProps> = ({
     </div>
   );
 };
-
