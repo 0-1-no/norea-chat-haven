@@ -304,7 +304,7 @@ const LuminousOrb = ({ size = 'medium' }) => {
   );
 };
 
-// Neural Orb Component with improved neuron visibility
+// Neural Orb Component with improved neuron visibility and transparent background
 const NeuralOrb = ({ size = 'medium' }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { theme } = useTheme();
@@ -342,7 +342,6 @@ const NeuralOrb = ({ size = 'medium' }) => {
 
     // Determine complexity based on size
     const complexityFactor = size === 'small' ? 20 : size === 'medium' ? 30 : 45;
-    const particleDensity = size === 'small' ? 60 : size === 'medium' ? 90 : 120;
     
     const max = complexityFactor;
     let count = 0;
@@ -356,40 +355,41 @@ const NeuralOrb = ({ size = 'medium' }) => {
     for (let a = 0; a < max; a++) p.push([0, p[a][0], p[a][1]]);
     for (let a = 0; a < max; a++) p.push([p[a][1], 0, p[a][0]]);
 
-    // Enhanced colors for light and dark themes with higher opacity for better visibility
-    const getLightModeColors = () => [
-      "rgba(139, 92, 246, 0.5)",    // Primary purple (higher opacity)
-      "rgba(155, 135, 245, 0.6)",   // Medium purple (higher opacity)
-      "rgba(170, 155, 245, 0.65)",  // Lighter purple (higher opacity)
-      "rgba(192, 175, 255, 0.55)",  // Very light purple (higher opacity)
-      "rgba(209, 198, 255, 0.5)",   // Softest purple (higher opacity)
-      "rgba(217, 70, 239, 0.45)"    // Pink accent (higher opacity)
-    ];
-
-    const getDarkModeColors = () => [
-      "rgba(229, 222, 255, 0.6)",  // Lightest purple (higher opacity)
-      "rgba(214, 188, 250, 0.55)",  // Light purple (higher opacity)
-      "rgba(155, 135, 245, 0.5)",  // Medium purple (higher opacity)
-      "rgba(139, 92, 246, 0.55)",  // Primary purple (higher opacity)
-      "rgba(126, 105, 171, 0.5)",  // Muted purple (higher opacity)
-      "rgba(110, 89, 165, 0.45)"   // Dark purple (higher opacity)
-    ];
+    // Use brand colors from CSS variables
+    const getBrandColors = () => {
+      if (isDarkMode) {
+        return [
+          "rgba(229, 222, 255, 0.7)",  // Light purple (higher opacity)
+          "rgba(214, 188, 250, 0.65)", // Light-mid purple
+          "rgba(155, 135, 245, 0.6)",  // Mid purple
+          "rgba(139, 92, 246, 0.65)",  // Primary purple
+          "rgba(217, 70, 239, 0.6)",   // Pink accent
+          "rgba(192, 132, 252, 0.55)"  // Lilac
+        ];
+      } else {
+        return [
+          "rgba(139, 92, 246, 0.65)",   // Primary purple (higher opacity)
+          "rgba(155, 135, 245, 0.6)",   // Medium purple
+          "rgba(170, 155, 245, 0.65)",  // Light-medium purple
+          "rgba(192, 175, 255, 0.6)",   // Light purple
+          "rgba(217, 70, 239, 0.55)",   // Pink accent
+          "rgba(126, 105, 171, 0.6)"    // Muted purple
+        ];
+      }
+    };
 
     const animate = () => {
-      // Clear with a semi-transparent background based on theme
+      // Clear with a fully transparent background to inherit from parent
       ctx.globalCompositeOperation = "source-over";
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      if (isDarkMode) {
-        ctx.fillStyle = "rgba(26, 31, 44, 0.15)"; // Dark mode background with less fade
-      } else {
-        ctx.fillStyle = "rgba(250, 250, 255, 0.15)"; // Light mode background with less fade
-      }
-      
+      // Use lower alpha to let background show through more
+      ctx.fillStyle = "rgba(0, 0, 0, 0)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.globalCompositeOperation = "lighter";
       
       const tim = count / 5;
-      const colors = isDarkMode ? getDarkModeColors() : getLightModeColors();
+      const colors = getBrandColors();
       
       for (let e = 0; e < 3; e++) {
         const scaledTime = tim * 1.5; // Slightly slower rotation
@@ -414,7 +414,7 @@ const NeuralOrb = ({ size = 'medium' }) => {
           const x1 = x * xp + z1 * xp2;
           const z2 = x * xp2 - z1 * xp;
           
-          const z3 = Math.pow(2.2, z2 * s); // Increased depth effect
+          const z3 = Math.pow(2.5, z2 * s); // Enhanced depth effect
           const projectedX = x1 * z3;
           const projectedY = y1 * z3;
           
@@ -437,7 +437,7 @@ const NeuralOrb = ({ size = 'medium' }) => {
             
             // Increased line width for better visibility
             const lineWidthBase = size === 'small' ? 4 : size === 'medium' ? 6 : 8;
-            ctx.lineWidth = Math.pow(lineWidthBase, b[2]) * scaleFactor;
+            ctx.lineWidth = Math.pow(lineWidthBase, b[2] + 0.1) * scaleFactor;
             
             ctx.lineTo(b[0] * scale + canvas.width / 2, b[1] * scale + canvas.height / 2);
             ctx.lineTo(c[0] * scale + canvas.width / 2, c[1] * scale + canvas.height / 2);
@@ -459,7 +459,7 @@ const NeuralOrb = ({ size = 'medium' }) => {
   }, [size, isDarkMode, theme]);
 
   return (
-    <div className={`${sizeClasses[size]} rounded-full overflow-hidden border ${isDarkMode ? 'border-gray-700 bg-[#1A1F2C]' : 'border-gray-200 bg-[#F8F8FC]'} shadow-surface-md flex items-center justify-center`}>
+    <div className={`${sizeClasses[size]} rounded-full overflow-hidden flex items-center justify-center`}>
       <canvas 
         ref={canvasRef} 
         className="w-full h-full"
