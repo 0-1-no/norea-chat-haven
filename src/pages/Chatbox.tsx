@@ -31,9 +31,11 @@ const Chatbox = () => {
               <ul className="list-disc list-inside mt-2 text-sm text-gray-600 space-y-1">
                 <li>Standard: Tomt inntastingsfelt med plassholdertekst</li>
                 <li>Fokusert: Feltet har fokus med synlig ramme</li>
-                <li>Med innhold: Send-knappen blir aktiv</li>
-                <li>Hover-tilstander: Knapp og vedleggsikon har hover-effekter</li>
-                <li>Tegnteller: Oppdateres når brukeren skriver</li>
+                <li>Med innhold: Send-knappen blir aktiv og endrer farge</li>
+                <li>Vedlegg: Mulighet for å legge til filer med papirklips-ikonet</li>
+                <li>Modellvalg: Bruker kan velge mellom Autopilot, Pro eller Resonnering</li>
+                <li>Tekstlengde: Feltet utvider seg automatisk med innhold inntil en maksgrense</li>
+                <li>Tastatursnarvei: Enter sender meldingen, Shift+Enter gir linjeskift</li>
               </ul>
             </div>
           </section>

@@ -13,7 +13,7 @@ export const SidebarSection: React.FC<SidebarSectionProps> = ({
   title, 
   icon, 
   children, 
-  defaultOpen = true 
+  defaultOpen = false 
 }) => {
   const [isOpen, setIsOpen] = useState(defaultOpen);
 

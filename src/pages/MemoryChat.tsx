@@ -181,6 +181,11 @@ const MemoryChat = () => {
     }
   }, []);
 
+  const handleSendMessage = (message: string) => {
+    console.log("Message sent:", message);
+    // In a real application, this would add the message to the conversation
+  };
+
   return (
     <PageContainer title="Minne-demonstrasjon" showBackButton={true}>
       <div className="flex-1 overflow-hidden flex flex-col">
@@ -196,6 +201,14 @@ const MemoryChat = () => {
               </div>
             ))}
           </div>
+        </div>
+        
+        <div className="p-4 border-t border-border">
+          <MessageInput 
+            onSendMessage={handleSendMessage}
+            className="max-w-3xl mx-auto"
+            placeholder="Send en melding..."
+          />
         </div>
       </div>
     </PageContainer>
