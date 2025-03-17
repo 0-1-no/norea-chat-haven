@@ -1,27 +1,33 @@
+
 import React, { useRef, useEffect } from 'react';
 import { Separator } from "@/components/ui/separator";
 import { PageContainer } from '@/components/layout/PageContainer';
 
 const Brand = () => {
   const orbRef = useRef<HTMLDivElement>(null);
+  const orbGradientRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Animation for the orb
     const orb = orbRef.current;
-    if (!orb) return;
+    const orbGradient = orbGradientRef.current;
+    if (!orb || !orbGradient) return;
 
     let animationFrameId: number;
     let time = 0;
 
     const animate = () => {
-      time += 0.005;
+      time += 0.003;
       
-      // Pulsating glow effect
-      const glowIntensity = Math.sin(time) * 0.5 + 1.5;
-      orb.style.boxShadow = `0 0 ${20 * glowIntensity}px ${10 * glowIntensity}px rgba(155, 135, 245, ${0.4 * glowIntensity})`;
+      // Subtle glow pulsation
+      const glowIntensity = Math.sin(time) * 0.3 + 1.2;
+      orb.style.boxShadow = `0 0 ${25 * glowIntensity}px ${15 * glowIntensity}px rgba(155, 135, 245, ${0.3 * glowIntensity})`;
       
-      // Subtle size variation
-      const sizeVariation = Math.sin(time * 0.8) * 0.03 + 1;
+      // Animate the gradient movement
+      orbGradient.style.backgroundPosition = `${Math.sin(time * 0.5) * 100}% ${Math.cos(time * 0.7) * 100}%`;
+      
+      // Subtle size breathing effect
+      const sizeVariation = Math.sin(time * 0.6) * 0.02 + 1;
       orb.style.transform = `scale(${sizeVariation})`;
       
       animationFrameId = requestAnimationFrame(animate);
@@ -73,28 +79,46 @@ const Brand = () => {
           <section className="space-y-4">
             <h2 className="text-2xl font-semibold">Norea AI Orb</h2>
             <p className="text-muted-foreground">
-              The glowing orb represents Norea AI's living, dynamic presence and intelligence.
+              The glowing orb represents Norea AI's ethereal intelligence, with cloud-like movements that symbolize flowing thoughts and ideas.
             </p>
             
             <div className="flex items-center justify-center py-16">
               <div 
                 ref={orbRef}
-                className="w-32 h-32 rounded-full bg-gradient-to-br from-purple-400 to-purple-700 relative"
+                className="w-32 h-32 rounded-full relative overflow-hidden"
                 style={{
-                  transition: "box-shadow 0.5s ease, transform 0.5s ease"
+                  transition: "box-shadow 2s ease, transform 2s ease"
                 }}
               >
-                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-70"></div>
-                <div className="absolute top-1/4 left-1/4 w-1/6 h-1/6 rounded-full bg-white/80 blur-sm"></div>
+                {/* Main orb with drifting gradient effect */}
+                <div 
+                  ref={orbGradientRef}
+                  className="absolute inset-0 rounded-full"
+                  style={{
+                    background: 'linear-gradient(135deg, #e5deff 0%, #9b87f5 35%, #d946ef 70%, #e5deff 100%)',
+                    backgroundSize: '300% 300%',
+                    transition: 'background-position 0.5s ease-in-out'
+                  }}
+                ></div>
+                
+                {/* Soft overlay gradient to add dimension */}
+                <div 
+                  className="absolute inset-0 rounded-full"
+                  style={{
+                    background: 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 70%)',
+                    mixBlendMode: 'overlay'
+                  }}
+                ></div>
               </div>
             </div>
             
             <div className="mt-8 p-4 bg-gray-50 rounded-lg border">
               <h3 className="font-medium">Implementation Notes:</h3>
               <ul className="list-disc list-inside mt-2 text-sm text-gray-600 space-y-1">
-                <li>The orb uses a gradient background from light purple to primary purple</li>
-                <li>Animation includes a pulsating glow effect and subtle size variations</li>
-                <li>Light reflections are added with semi-transparent white overlays</li>
+                <li>Multi-toned gradient background that drifts to create a cloud-like effect</li>
+                <li>Soft radial overlay for subtle dimension without heavy 3D effects</li>
+                <li>Gentle pulsating glow that mimics an ethereal presence</li>
+                <li>Subtle breathing animation for organic feel</li>
               </ul>
             </div>
           </section>
