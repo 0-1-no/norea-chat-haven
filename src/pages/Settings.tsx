@@ -86,17 +86,17 @@ const Settings: React.FC = () => {
             </div>
           </div>
 
-          {/* Theme Settings */}
+          {/* Theme Settings - Compressed version */}
           <div>
             <h2 className="text-xl font-semibold mb-4">Tema innstillinger</h2>
-            <Card className="border-primary/10 bg-gradient-to-b from-background to-secondary/20">
-              <CardContent className="pt-6">
-                <RadioGroup defaultValue="system" className="space-y-4">
-                  <div className="flex items-center space-x-3 p-3 rounded-md hover:bg-primary/5 transition-colors">
+            <Card>
+              <CardContent className="py-4">
+                <RadioGroup defaultValue="system" className="flex space-x-2">
+                  <div className="flex-1 flex items-center p-2 rounded-md hover:bg-primary/5 transition-colors">
                     <RadioGroupItem value="light" id="theme-light" className="text-primary" />
-                    <Label htmlFor="theme-light" className="flex items-center cursor-pointer">
-                      <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mr-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
+                    <Label htmlFor="theme-light" className="flex items-center cursor-pointer ml-2">
+                      <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mr-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
                           <circle cx="12" cy="12" r="4"></circle>
                           <path d="M12 2v2"></path>
                           <path d="M12 20v2"></path>
@@ -108,33 +108,33 @@ const Settings: React.FC = () => {
                           <path d="m19.07 4.93-1.41 1.41"></path>
                         </svg>
                       </div>
-                      <span>Dagmodus</span>
+                      <span className="text-sm">Dag</span>
                     </Label>
                   </div>
                   
-                  <div className="flex items-center space-x-3 p-3 rounded-md hover:bg-primary/5 transition-colors">
+                  <div className="flex-1 flex items-center p-2 rounded-md hover:bg-primary/5 transition-colors">
                     <RadioGroupItem value="dark" id="theme-dark" className="text-primary" />
-                    <Label htmlFor="theme-dark" className="flex items-center cursor-pointer">
-                      <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mr-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
+                    <Label htmlFor="theme-dark" className="flex items-center cursor-pointer ml-2">
+                      <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mr-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
                           <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
                         </svg>
                       </div>
-                      <span>Nattmodus</span>
+                      <span className="text-sm">Natt</span>
                     </Label>
                   </div>
                   
-                  <div className="flex items-center space-x-3 p-3 rounded-md hover:bg-primary/5 transition-colors">
+                  <div className="flex-1 flex items-center p-2 rounded-md hover:bg-primary/5 transition-colors">
                     <RadioGroupItem value="system" id="theme-system" className="text-primary" />
-                    <Label htmlFor="theme-system" className="flex items-center cursor-pointer">
-                      <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mr-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
+                    <Label htmlFor="theme-system" className="flex items-center cursor-pointer ml-2">
+                      <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mr-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
                           <rect width="20" height="14" x="2" y="3" rx="2"></rect>
                           <line x1="8" x2="16" y1="21" y2="21"></line>
                           <line x1="12" x2="12" y1="17" y2="21"></line>
                         </svg>
                       </div>
-                      <span>Følg systemet</span>
+                      <span className="text-sm">System</span>
                     </Label>
                   </div>
                 </RadioGroup>
@@ -177,8 +177,8 @@ const Settings: React.FC = () => {
 
                   <div className="flex justify-between items-center p-3 border rounded-md">
                     <div className="flex items-center gap-3">
-                      <svg className="h-5 w-5" viewBox="0 0 17 21" fill="currentColor">
-                        <path d="M14.5 0h-12C1.1 0 0 1.1 0 2.5v16C0 19.9 1.1 21 2.5 21h12c1.4 0 2.5-1.1 2.5-2.5v-16C17 1.1 15.9 0 14.5 0zM8.5 19c-.8 0-1.5-.7-1.5-1.5s.7-1.5 1.5-1.5 1.5.7 1.5 1.5-.7 1.5-1.5 1.5zM14 15.5c0 .3-.2.5-.5.5h-10c-.3 0-.5-.2-.5-.5v-12c0-.3.2-.5.5-.5h10c.3 0 .5.2.5.5v12z" fill="#000000"/>
+                      <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.6 13.8c0-3 2.5-4.5 2.6-4.6-1.4-2.1-3.6-2.3-4.4-2.4-1.9-0.2-3.6 1.1-4.6 1.1-.9 0-2.4-1.1-4-1-2 0-3.9 1.2-5 3-2.1 3.7-0.5 9.1 1.5 12.1 1 1.5 2.2 3.1 3.8 3 1.5-.1 2.1-1 3.9-1s2.4 1 4 1 2.7-1.5 3.7-2.9c1.2-1.7 1.6-3.3 1.7-3.4-.1-.1-3.2-1.3-3.2-4.9zM14.5 4.2c.8-1 1.4-2.4 1.2-3.8-1.2.1-2.7.8-3.5 1.8-.8.9-1.5 2.3-1.3 3.7 1.4.1 2.8-.7 3.6-1.7z"/>
                       </svg>
                       <div>
                         <p className="font-medium">Apple</p>
