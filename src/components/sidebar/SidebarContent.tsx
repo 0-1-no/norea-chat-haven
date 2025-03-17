@@ -39,7 +39,10 @@ export const SidebarContent: React.FC = () => {
         />
       </SidebarSection>
       
-      <SidebarSection title="Demoer" icon={<Sparkles className="w-4 h-4 text-gray-500" />}>
+      <SidebarSection 
+        title="Nylige samtaler" 
+        icon={<MessageCircle className="w-4 h-4 text-gray-500" />}
+      >
         <SidebarItem 
           title="Enkel chat-demonstrasjon"
           to="/chat-demo" 
@@ -52,6 +55,10 @@ export const SidebarContent: React.FC = () => {
           title="Vær-demonstrasjon"
           to="/weather-chat" 
           icon={<CloudRain className="w-4 h-4" />}
+        />
+        <SidebarItem 
+          title="Onboarding-demonstrasjon"
+          to="/onboarding-chat"
         />
       </SidebarSection>
       
@@ -96,13 +103,6 @@ export const SidebarContent: React.FC = () => {
           title="Layout"
           to="/layout" 
         />
-      </SidebarSection>
-      
-      <SidebarSection 
-        title="Nylige samtaler" 
-        icon={<MessageCircle className="w-4 h-4 text-gray-500" />}
-      >
-        {/* Removed dead links from this section */}
       </SidebarSection>
     </div>
   );
