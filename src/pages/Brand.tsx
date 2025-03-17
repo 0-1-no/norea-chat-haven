@@ -1,4 +1,3 @@
-
 import React, { useRef, useEffect, useState } from 'react';
 import { Separator } from "@/components/ui/separator";
 import { PageContainer } from '@/components/layout/PageContainer';
@@ -150,11 +149,11 @@ const LuminousOrb = ({ size = 'medium' }) => {
   const particlesRef = useRef<HTMLDivElement>(null);
   const [isHovering, setIsHovering] = useState(false);
 
-  // Standardized size dimensions to match NeuralOrb
+  // Reduced size dimensions
   const sizeClasses = {
-    small: "w-12 h-12",
-    medium: "w-48 h-48",
-    large: "w-80 h-80"
+    small: "w-10 h-10",
+    medium: "w-32 h-32",
+    large: "w-60 h-60"
   };
 
   // Adjust particle count and size based on orb size
@@ -305,17 +304,17 @@ const LuminousOrb = ({ size = 'medium' }) => {
   );
 };
 
-// Neural Orb Component with improved light mode
+// Neural Orb Component with improved neuron visibility
 const NeuralOrb = ({ size = 'medium' }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { theme } = useTheme();
   const isDarkMode = theme === 'dark';
   
-  // Standardized size dimensions to match LuminousOrb
+  // Reduced size dimensions
   const sizeClasses = {
-    small: "w-12 h-12",
-    medium: "w-48 h-48",
-    large: "w-80 h-80"
+    small: "w-10 h-10",
+    medium: "w-32 h-32",
+    large: "w-60 h-60"
   };
 
   useEffect(() => {
@@ -328,10 +327,10 @@ const NeuralOrb = ({ size = 'medium' }) => {
     // Set the canvas size based on the container size
     const setCanvasSize = () => {
       const containerWidth = canvas.parentElement?.clientWidth || (
-        size === 'small' ? 48 : size === 'medium' ? 192 : 320
+        size === 'small' ? 40 : size === 'medium' ? 128 : 240
       );
       const containerHeight = canvas.parentElement?.clientHeight || (
-        size === 'small' ? 48 : size === 'medium' ? 192 : 320
+        size === 'small' ? 40 : size === 'medium' ? 128 : 240
       );
       
       canvas.width = containerWidth;
@@ -342,8 +341,8 @@ const NeuralOrb = ({ size = 'medium' }) => {
     window.addEventListener('resize', setCanvasSize);
 
     // Determine complexity based on size
-    const complexityFactor = size === 'small' ? 40 : size === 'medium' ? 60 : 80;
-    const particleDensity = size === 'small' ? 80 : size === 'medium' ? 120 : 150;
+    const complexityFactor = size === 'small' ? 20 : size === 'medium' ? 30 : 45;
+    const particleDensity = size === 'small' ? 60 : size === 'medium' ? 90 : 120;
     
     const max = complexityFactor;
     let count = 0;
@@ -357,23 +356,23 @@ const NeuralOrb = ({ size = 'medium' }) => {
     for (let a = 0; a < max; a++) p.push([0, p[a][0], p[a][1]]);
     for (let a = 0; a < max; a++) p.push([p[a][1], 0, p[a][0]]);
 
-    // Improved colors for light and dark themes
+    // Enhanced colors for light and dark themes with higher opacity for better visibility
     const getLightModeColors = () => [
-      "rgba(139, 92, 246, 0.15)",   // Primary purple (lighter opacity)
-      "rgba(155, 135, 245, 0.2)",   // Medium purple
-      "rgba(170, 155, 245, 0.25)",  // Lighter purple
-      "rgba(192, 175, 255, 0.2)",   // Very light purple
-      "rgba(209, 198, 255, 0.15)",  // Softest purple
-      "rgba(217, 70, 239, 0.15)"    // Pink accent
+      "rgba(139, 92, 246, 0.5)",    // Primary purple (higher opacity)
+      "rgba(155, 135, 245, 0.6)",   // Medium purple (higher opacity)
+      "rgba(170, 155, 245, 0.65)",  // Lighter purple (higher opacity)
+      "rgba(192, 175, 255, 0.55)",  // Very light purple (higher opacity)
+      "rgba(209, 198, 255, 0.5)",   // Softest purple (higher opacity)
+      "rgba(217, 70, 239, 0.45)"    // Pink accent (higher opacity)
     ];
 
     const getDarkModeColors = () => [
-      "rgba(229, 222, 255, 0.2)",  // Lightest purple
-      "rgba(214, 188, 250, 0.2)",  // Light purple
-      "rgba(155, 135, 245, 0.2)",  // Medium purple
-      "rgba(139, 92, 246, 0.2)",   // Primary purple
-      "rgba(126, 105, 171, 0.2)",  // Muted purple
-      "rgba(110, 89, 165, 0.2)"    // Dark purple
+      "rgba(229, 222, 255, 0.6)",  // Lightest purple (higher opacity)
+      "rgba(214, 188, 250, 0.55)",  // Light purple (higher opacity)
+      "rgba(155, 135, 245, 0.5)",  // Medium purple (higher opacity)
+      "rgba(139, 92, 246, 0.55)",  // Primary purple (higher opacity)
+      "rgba(126, 105, 171, 0.5)",  // Muted purple (higher opacity)
+      "rgba(110, 89, 165, 0.45)"   // Dark purple (higher opacity)
     ];
 
     const animate = () => {
@@ -381,9 +380,9 @@ const NeuralOrb = ({ size = 'medium' }) => {
       ctx.globalCompositeOperation = "source-over";
       
       if (isDarkMode) {
-        ctx.fillStyle = "rgba(26, 31, 44, 0.03)"; // Dark mode background
+        ctx.fillStyle = "rgba(26, 31, 44, 0.15)"; // Dark mode background with less fade
       } else {
-        ctx.fillStyle = "rgba(250, 250, 255, 0.03)"; // Light mode background - lighter fade
+        ctx.fillStyle = "rgba(250, 250, 255, 0.15)"; // Light mode background with less fade
       }
       
       ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -393,7 +392,7 @@ const NeuralOrb = ({ size = 'medium' }) => {
       const colors = isDarkMode ? getDarkModeColors() : getLightModeColors();
       
       for (let e = 0; e < 3; e++) {
-        const scaledTime = tim * 1.7;
+        const scaledTime = tim * 1.5; // Slightly slower rotation
         const s = 1 - e / 3;
         
         const a1 = scaledTime / 59;
@@ -415,15 +414,15 @@ const NeuralOrb = ({ size = 'medium' }) => {
           const x1 = x * xp + z1 * xp2;
           const z2 = x * xp2 - z1 * xp;
           
-          const z3 = Math.pow(2, z2 * s);
+          const z3 = Math.pow(2.2, z2 * s); // Increased depth effect
           const projectedX = x1 * z3;
           const projectedY = y1 * z3;
           
           p2.push([projectedX, projectedY, z2]);
         }
         
-        // Scale factor based on the orb size
-        const scaleFactor = size === 'small' ? 0.3 : size === 'medium' ? 0.6 : 1.0;
+        // Adjusted scale factor for new sizes
+        const scaleFactor = size === 'small' ? 0.25 : size === 'medium' ? 0.5 : 0.8;
         const scale = s * 120 * scaleFactor;
         
         for (let d = 0; d < 3; d++) {
@@ -436,8 +435,8 @@ const NeuralOrb = ({ size = 'medium' }) => {
             const colorIndex = Math.floor((a / max) * colors.length);
             ctx.strokeStyle = colors[colorIndex];
             
-            // Adjust line width proportional to size
-            const lineWidthBase = size === 'small' ? 3 : size === 'medium' ? 4.5 : 6;
+            // Increased line width for better visibility
+            const lineWidthBase = size === 'small' ? 4 : size === 'medium' ? 6 : 8;
             ctx.lineWidth = Math.pow(lineWidthBase, b[2]) * scaleFactor;
             
             ctx.lineTo(b[0] * scale + canvas.width / 2, b[1] * scale + canvas.height / 2);
