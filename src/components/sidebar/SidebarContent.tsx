@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Folders, Users, Layers, MessageCircle, LayoutDashboard, Sparkles, UserCircle, CloudRain } from 'lucide-react';
+import { Folders, Users, Layers, MessageCircle, LayoutDashboard, UserCircle } from 'lucide-react';
 import { SidebarSection } from './SidebarSection';
 import { SidebarItem } from './SidebarItem';
 
@@ -39,7 +39,10 @@ export const SidebarContent: React.FC = () => {
         />
       </SidebarSection>
       
-      <SidebarSection title="Demoer" icon={<Sparkles className="w-4 h-4 text-gray-500" />}>
+      <SidebarSection 
+        title="Nylige samtaler" 
+        icon={<MessageCircle className="w-4 h-4 text-gray-500" />}
+      >
         <SidebarItem 
           title="Enkel chat-demonstrasjon"
           to="/chat-demo" 
@@ -51,7 +54,10 @@ export const SidebarContent: React.FC = () => {
         <SidebarItem 
           title="Vær-demonstrasjon"
           to="/weather-chat" 
-          icon={<CloudRain className="w-4 h-4" />}
+        />
+        <SidebarItem 
+          title="Onboarding-demonstrasjon"
+          to="/onboarding-chat" 
         />
       </SidebarSection>
       
@@ -96,13 +102,6 @@ export const SidebarContent: React.FC = () => {
           title="Layout"
           to="/layout" 
         />
-      </SidebarSection>
-      
-      <SidebarSection 
-        title="Nylige samtaler" 
-        icon={<MessageCircle className="w-4 h-4 text-gray-500" />}
-      >
-        {/* Removed dead links from this section */}
       </SidebarSection>
     </div>
   );
