@@ -142,7 +142,7 @@ const Brand = () => {
   );
 };
 
-// Luminous Orb Component (previously the first orb)
+// Luminous Orb Component
 const LuminousOrb = ({ size = 'medium' }) => {
   const orbRef = useRef<HTMLDivElement>(null);
   const orbGradientRef = useRef<HTMLDivElement>(null);
@@ -150,11 +150,11 @@ const LuminousOrb = ({ size = 'medium' }) => {
   const particlesRef = useRef<HTMLDivElement>(null);
   const [isHovering, setIsHovering] = useState(false);
 
-  // Determine size dimensions
+  // Standardized size dimensions to match NeuralOrb
   const sizeClasses = {
-    small: "w-10 h-10",
-    medium: "w-24 h-24",
-    large: "w-40 h-40"
+    small: "w-12 h-12",
+    medium: "w-48 h-48",
+    large: "w-80 h-80"
   };
 
   // Adjust particle count and size based on orb size
@@ -212,6 +212,7 @@ const LuminousOrb = ({ size = 'medium' }) => {
       orb.style.transform = `scale(${sizeVariation})`;
       
       const glowIntensity = Math.sin(time) * 0.5 + 1.5;
+      // Scale glow size with orb size
       const glowSize = size === 'small' ? 5 : size === 'medium' ? 12 : 20;
       orb.style.boxShadow = `0 0 ${glowSize * glowIntensity}px ${(glowSize * 0.75) * glowIntensity}px rgba(155, 135, 245, ${0.4 * glowIntensity})`;
 
@@ -304,13 +305,13 @@ const LuminousOrb = ({ size = 'medium' }) => {
   );
 };
 
-// Neural Orb Component (previously the second/alternative orb)
+// Neural Orb Component with improved light mode
 const NeuralOrb = ({ size = 'medium' }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { theme } = useTheme();
   const isDarkMode = theme === 'dark';
   
-  // Determine size dimensions
+  // Standardized size dimensions to match LuminousOrb
   const sizeClasses = {
     small: "w-12 h-12",
     medium: "w-48 h-48",
@@ -356,23 +357,23 @@ const NeuralOrb = ({ size = 'medium' }) => {
     for (let a = 0; a < max; a++) p.push([0, p[a][0], p[a][1]]);
     for (let a = 0; a < max; a++) p.push([p[a][1], 0, p[a][0]]);
 
-    // Colors for light and dark themes
+    // Improved colors for light and dark themes
     const getLightModeColors = () => [
-      "rgba(229, 222, 255, 0.2)", // Lightest purple
-      "rgba(214, 188, 250, 0.2)", // Light purple
-      "rgba(155, 135, 245, 0.2)", // Medium purple
-      "rgba(139, 92, 246, 0.2)",  // Primary purple
-      "rgba(126, 105, 171, 0.2)", // Muted purple
-      "rgba(110, 89, 165, 0.2)"   // Dark purple
+      "rgba(139, 92, 246, 0.15)",   // Primary purple (lighter opacity)
+      "rgba(155, 135, 245, 0.2)",   // Medium purple
+      "rgba(170, 155, 245, 0.25)",  // Lighter purple
+      "rgba(192, 175, 255, 0.2)",   // Very light purple
+      "rgba(209, 198, 255, 0.15)",  // Softest purple
+      "rgba(217, 70, 239, 0.15)"    // Pink accent
     ];
 
     const getDarkModeColors = () => [
-      "rgba(229, 222, 255, 0.2)", // Lightest purple
-      "rgba(214, 188, 250, 0.2)", // Light purple
-      "rgba(155, 135, 245, 0.2)", // Medium purple
-      "rgba(139, 92, 246, 0.2)",  // Primary purple
-      "rgba(126, 105, 171, 0.2)", // Muted purple
-      "rgba(110, 89, 165, 0.2)"   // Dark purple
+      "rgba(229, 222, 255, 0.2)",  // Lightest purple
+      "rgba(214, 188, 250, 0.2)",  // Light purple
+      "rgba(155, 135, 245, 0.2)",  // Medium purple
+      "rgba(139, 92, 246, 0.2)",   // Primary purple
+      "rgba(126, 105, 171, 0.2)",  // Muted purple
+      "rgba(110, 89, 165, 0.2)"    // Dark purple
     ];
 
     const animate = () => {
@@ -382,7 +383,7 @@ const NeuralOrb = ({ size = 'medium' }) => {
       if (isDarkMode) {
         ctx.fillStyle = "rgba(26, 31, 44, 0.03)"; // Dark mode background
       } else {
-        ctx.fillStyle = "rgba(240, 240, 250, 0.03)"; // Light mode background
+        ctx.fillStyle = "rgba(250, 250, 255, 0.03)"; // Light mode background - lighter fade
       }
       
       ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -459,7 +460,7 @@ const NeuralOrb = ({ size = 'medium' }) => {
   }, [size, isDarkMode, theme]);
 
   return (
-    <div className={`${sizeClasses[size]} rounded-full overflow-hidden border border-border shadow-surface-md flex items-center justify-center ${isDarkMode ? 'bg-[#1A1F2C]' : 'bg-[#F0F0F5]'}`}>
+    <div className={`${sizeClasses[size]} rounded-full overflow-hidden border ${isDarkMode ? 'border-gray-700 bg-[#1A1F2C]' : 'border-gray-200 bg-[#F8F8FC]'} shadow-surface-md flex items-center justify-center`}>
       <canvas 
         ref={canvasRef} 
         className="w-full h-full"
