@@ -8,8 +8,7 @@ export const SidebarNewChat: React.FC = () => {
     <div className="px-3 mb-4 w-full">
       <Button 
         className="w-full"
-        variant="default"
-        fullWidth
+        variant="outline"
       >
         <Plus className="w-4 h-4" />
         <span className="text-sm font-medium">Ny samtale</span>

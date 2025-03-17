@@ -6,7 +6,6 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { SidebarItem } from './sidebar/SidebarItem';
 import { SidebarSection } from './sidebar/SidebarSection';
 import { SidebarProfile } from './sidebar/SidebarProfile';
-import { SidebarSearch } from './sidebar/SidebarSearch';
 import { SidebarNewChat } from './sidebar/SidebarNewChat';
 import { SidebarContent } from './sidebar/SidebarContent';
 import { Link } from 'react-router-dom';
@@ -34,7 +33,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ onToggle }) => {
         )}
       </div>
       
-      <SidebarSearch />
       <SidebarNewChat />
       <SidebarContent />
       <SidebarProfile />
