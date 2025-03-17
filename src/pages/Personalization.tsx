@@ -4,6 +4,7 @@ import DefaultLayout from '@/layouts/DefaultLayout';
 import { UserProfileLayout } from '@/components/profile/UserProfileLayout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { Tag } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 
