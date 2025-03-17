@@ -1,8 +1,10 @@
 
 import React, { useState } from 'react';
-import { Folders, Users, Layers, MessageCircle, LayoutDashboard, Sparkles, UserCircle, CloudRain } from 'lucide-react';
+import { Folders, Users, Layers, MessageCircle, LayoutDashboard, Sparkles, UserCircle, CloudRain, Archive } from 'lucide-react';
 import { SidebarSection } from './SidebarSection';
 import { SidebarItem } from './SidebarItem';
+import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 export const SidebarContent: React.FC = () => {
   const [activeChat, setActiveChat] = useState<string | null>("Enkel chat-demonstrasjon");
@@ -40,9 +42,15 @@ export const SidebarContent: React.FC = () => {
       </SidebarSection>
       
       <SidebarSection 
-        title="Nylige samtaler" 
+        title="Samtaler" 
         icon={<MessageCircle className="w-4 h-4 text-gray-500" />}
       >
+        <div className="flex justify-between items-center px-3 mb-1">
+          <Link to="/archive" className="text-xs text-sidebar-foreground/70 flex items-center gap-1 hover:text-sidebar-foreground transition-colors">
+            <Archive className="w-3.5 h-3.5" />
+            <span>Arkiv</span>
+          </Link>
+        </div>
         <SidebarItem 
           title="Enkel chat-demonstrasjon"
           to="/chat-demo" 
