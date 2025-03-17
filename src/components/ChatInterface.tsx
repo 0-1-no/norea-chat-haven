@@ -18,19 +18,19 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
 
   const suggestedPrompts = [
     {
-      text: "Write a to-do list for a personal project or task",
+      text: "Skriv en huskeliste for et personlig prosjekt",
       icon: "document"
     },
     {
-      text: "Generate an email reply to a job offer",
+      text: "Lag et svar på et jobbtilbud",
       icon: "email"
     },
     {
-      text: "Summarise this article or text for me in one paragraph",
+      text: "Oppsummer denne artikkelen i ett avsnitt",
       icon: "document"
     },
     {
-      text: "How does AI work in a technical capacity",
+      text: "Hvordan fungerer AI teknisk sett",
       icon: "settings"
     }
   ];
@@ -55,11 +55,11 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
           <div className="max-w-xl w-full space-y-8 animate-fade-in">
             <div className="text-center space-y-2">
               <h1 className="text-3xl font-semibold">
-                Hi there, <span className="text-norea-purple">{userName}</span>
+                Hei, <span className="text-norea-purple">{userName}</span>
               </h1>
-              <p className="text-3xl font-semibold">What would you like to know?</p>
+              <p className="text-3xl font-semibold">Hva vil du vite?</p>
               <p className="text-gray-500 mt-2">
-                Use one of the most common prompts below or use your own to begin
+                Bruk en av forslagene nedenfor eller skriv ditt eget spørsmål
               </p>
             </div>
             
@@ -80,7 +80,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
               onClick={handleRefreshPrompts}
             >
               <RefreshCw className="w-4 h-4" />
-              <span className="text-sm">Refresh Prompts</span>
+              <span className="text-sm">Oppdater forslag</span>
             </button>
           </div>
         )}
