@@ -74,6 +74,14 @@ const Index = () => {
       <div className="flex flex-col items-center justify-center h-full max-w-3xl mx-auto px-4">
         <h1 className="text-3xl font-bold text-center mb-6">Hva kan jeg hjelpe med?</h1>
         
+        {/* Chat interface - moved between title and prompts */}
+        <div className="w-full mb-6">
+          <ChatInterface 
+            userName="John"
+            className="flex-1"
+          />
+        </div>
+        
         {/* Basic prompt cards in a row */}
         <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
           {basicPrompts.map((prompt) => (
@@ -169,14 +177,6 @@ const Index = () => {
             </Tabs>
           </div>
         )}
-        
-        {/* Chat interface */}
-        <div className="w-full">
-          <ChatInterface 
-            userName="John"
-            className="flex-1"
-          />
-        </div>
       </div>
     </PageContainer>
   );
