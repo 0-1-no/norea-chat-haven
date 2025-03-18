@@ -24,7 +24,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Plus, X, Calendar, Flag, Hash, Bell, MapPin, ChevronDown, CirclePlus } from "lucide-react";
 import { Task, SubTask } from './TaskItem';
-import { useMediaQuery } from '@/hooks/use-mobile';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface TaskDetailModalProps {
   task: Task | null;
@@ -36,7 +36,7 @@ interface TaskDetailModalProps {
 const TaskDetailModal = ({ task, open, onClose, onSave }: TaskDetailModalProps) => {
   const [editedTask, setEditedTask] = useState<Task | null>(null);
   const [newSubtask, setNewSubtask] = useState('');
-  const isMobile = useMediaQuery('(max-width: 640px)');
+  const isMobile = useIsMobile();
   
   useEffect(() => {
     // Deep clone the task when it changes
@@ -255,7 +255,7 @@ const TaskDetailModal = ({ task, open, onClose, onSave }: TaskDetailModalProps) 
   
   return isMobile ? (
     <Sheet open={open} onOpenChange={(open) => !open && onClose()}>
-      <SheetContent className="w-full sm:max-w-lg" side="bottom" showX>
+      <SheetContent className="w-full sm:max-w-lg" side="bottom">
         {modalContent}
       </SheetContent>
     </Sheet>
