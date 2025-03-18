@@ -8,7 +8,7 @@ import { CheckCircle, Clock, ListTodo, MessageCircle, Sparkles, Star } from 'luc
 
 const AssistantTodo = () => {
   return (
-    <PageContainer>
+    <PageContainer title="Todo Assistent">
       <Header title="Todo Assistent" />
       
       <div className="container mx-auto px-4 py-6">
