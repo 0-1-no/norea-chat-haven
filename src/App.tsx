@@ -35,7 +35,10 @@ import Personalization from "./pages/Personalization";
 import Memory from "./pages/Memory";
 import Archive from "./pages/Archive";
 import Assistants from "./pages/Assistants";
-import AssistantTodo from "./pages/AssistantTodo";
+import TodoApp from "./pages/todo/TodoApp";
+import TodoTasks from "./pages/todo/TodoTasks";
+import TodoProjects from "./pages/todo/TodoProjects";
+import TodoGoals from "./pages/todo/TodoGoals";
 
 const queryClient = new QueryClient();
 
@@ -72,7 +75,12 @@ function App() {
             
             {/* Assistant routes */}
             <Route path="/assistants" element={<Assistants />} />
-            <Route path="/assistant/todo" element={<AssistantTodo />} />
+            
+            {/* Todo App routes */}
+            <Route path="/assistant/todo" element={<TodoApp />} />
+            <Route path="/assistant/todo/tasks" element={<TodoTasks />} />
+            <Route path="/assistant/todo/projects" element={<TodoProjects />} />
+            <Route path="/assistant/todo/goals" element={<TodoGoals />} />
             
             {/* User profile routes */}
             <Route path="/profile" element={<Profile />} />
