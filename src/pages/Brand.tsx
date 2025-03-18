@@ -55,7 +55,7 @@ const Brand = () => {
           </p>
           
           <h3 className="text-xl font-medium mt-6">Size Variants</h3>
-          <div className="flex flex-col md:flex-row items-center justify-center gap-8 py-8">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-16 py-12">
             {/* Small */}
             <div className="flex flex-col items-center">
               <NoreaOrb size="small" />
