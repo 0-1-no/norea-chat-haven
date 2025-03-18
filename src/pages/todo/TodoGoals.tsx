@@ -1,53 +1,42 @@
-
 import React from 'react';
 import TodoLayout from '@/layouts/TodoLayout';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Plus, Search, ArrowUpRight, CalendarClock } from 'lucide-react';
-
 const TodoGoals = () => {
   // Sample goals data
-  const goals = [
-    {
-      id: 1,
-      title: "Lær et nytt språk",
-      description: "Få grunnleggende kunnskap i spansk innen 6 måneder",
-      deadline: "Oktober 2023",
-      daysRemaining: 45,
-      progress: 35,
-      gradient: "bg-gradient-to-r from-purple-500 to-indigo-500"
-    },
-    {
-      id: 2,
-      title: "Oppgradere hjemmekontoret",
-      description: "Få på plass nytt utstyr og en bedre arbeidsstasjon",
-      deadline: "Desember 2023",
-      daysRemaining: 75,
-      progress: 60,
-      gradient: "bg-gradient-to-r from-blue-500 to-cyan-400"
-    },
-    {
-      id: 3,
-      title: "Bedre fysisk form",
-      description: "Løpe 5 kilometer under 25 minutter",
-      deadline: "Januar 2024",
-      daysRemaining: 102,
-      progress: 25,
-      gradient: "bg-gradient-to-r from-green-500 to-emerald-400"
-    }
-  ];
-
-  return (
-    <TodoLayout>
+  const goals = [{
+    id: 1,
+    title: "Lær et nytt språk",
+    description: "Få grunnleggende kunnskap i spansk innen 6 måneder",
+    deadline: "Oktober 2023",
+    daysRemaining: 45,
+    progress: 35,
+    gradient: "bg-gradient-to-r from-purple-500 to-indigo-500"
+  }, {
+    id: 2,
+    title: "Oppgradere hjemmekontoret",
+    description: "Få på plass nytt utstyr og en bedre arbeidsstasjon",
+    deadline: "Desember 2023",
+    daysRemaining: 75,
+    progress: 60,
+    gradient: "bg-gradient-to-r from-blue-500 to-cyan-400"
+  }, {
+    id: 3,
+    title: "Bedre fysisk form",
+    description: "Løpe 5 kilometer under 25 minutter",
+    deadline: "Januar 2024",
+    daysRemaining: 102,
+    progress: 25,
+    gradient: "bg-gradient-to-r from-green-500 to-emerald-400"
+  }];
+  return <TodoLayout>
       <div className="space-y-6 max-w-4xl mx-auto">
         <div className="flex flex-col sm:flex-row justify-between gap-4">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-            <Input
-              placeholder="Søk i mål..."
-              className="pl-9"
-            />
+            <Input placeholder="Søk i mål..." className="pl-9" />
           </div>
           <Button className="flex gap-2 bg-purple-600 hover:bg-purple-700">
             <Plus className="h-4 w-4" />
@@ -56,11 +45,7 @@ const TodoGoals = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {goals.map(goal => (
-            <Card 
-              key={goal.id} 
-              className={`overflow-hidden rounded-xl border shadow-sm hover:shadow-md transition-shadow duration-300 h-full ${goal.gradient} text-white`}
-            >
+          {goals.map(goal => <Card key={goal.id} className={`overflow-hidden rounded-xl border shadow-sm hover:shadow-md transition-shadow duration-300 h-full ${goal.gradient} text-white`}>
               <div className="p-6">
                 <div className="flex justify-between items-start mb-4">
                   <div className="space-y-1">
@@ -78,10 +63,9 @@ const TodoGoals = () => {
                     <span className="font-medium">{goal.progress}%</span>
                   </div>
                   <div className="h-2 rounded-full bg-black/20 overflow-hidden">
-                    <div 
-                      className="h-full bg-white"
-                      style={{ width: `${goal.progress}%` }}
-                    ></div>
+                    <div className="h-full bg-white" style={{
+                  width: `${goal.progress}%`
+                }}></div>
                   </div>
                 </div>
                 
@@ -95,22 +79,12 @@ const TodoGoals = () => {
                   </div>
                 </div>
               </div>
-            </Card>
-          ))}
+            </Card>)}
           
           {/* Add new goal card */}
-          <Card className="border-dashed border-2 p-6 flex items-center justify-center hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200 cursor-pointer rounded-xl h-full">
-            <Button variant="ghost" className="flex flex-col items-center gap-3 h-auto py-8 px-8">
-              <div className="rounded-full bg-purple-100 dark:bg-purple-900/30 p-4">
-                <Plus className="h-6 w-6 text-purple-600 dark:text-purple-400" />
-              </div>
-              <span className="text-base">Legg til nytt mål</span>
-            </Button>
-          </Card>
+          
         </div>
       </div>
-    </TodoLayout>
-  );
+    </TodoLayout>;
 };
-
 export default TodoGoals;
