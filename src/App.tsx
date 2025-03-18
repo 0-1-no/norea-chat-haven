@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -39,6 +38,8 @@ import TodoApp from "./pages/todo/TodoApp";
 import TodoTasks from "./pages/todo/TodoTasks";
 import TodoProjects from "./pages/todo/TodoProjects";
 import TodoGoals from "./pages/todo/TodoGoals";
+import ProjectListView from "./pages/todo/ProjectListView";
+import ProjectKanbanView from "./pages/todo/ProjectKanbanView";
 
 const queryClient = new QueryClient();
 
@@ -73,23 +74,22 @@ function App() {
             <Route path="/characters" element={<Characters />} />
             <Route path="/character/:characterId" element={<CharacterProfile />} />
             
-            {/* Assistant routes */}
             <Route path="/assistants" element={<Assistants />} />
             
-            {/* Todo App routes */}
             <Route path="/assistant/todo" element={<TodoApp />} />
             <Route path="/assistant/todo/tasks" element={<TodoTasks />} />
             <Route path="/assistant/todo/projects" element={<TodoProjects />} />
             <Route path="/assistant/todo/goals" element={<TodoGoals />} />
             
-            {/* User profile routes */}
+            <Route path="/assistant/todo/projects/:projectId/list" element={<ProjectListView />} />
+            <Route path="/assistant/todo/projects/:projectId/kanban" element={<ProjectKanbanView />} />
+            
             <Route path="/profile" element={<Profile />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/personalization" element={<Personalization />} />
             <Route path="/memory" element={<Memory />} />
             <Route path="/archive" element={<Archive />} />
             
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

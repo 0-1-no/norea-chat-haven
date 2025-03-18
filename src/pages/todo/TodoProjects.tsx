@@ -1,48 +1,49 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import TodoLayout from '@/layouts/TodoLayout';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Plus, Search, CheckCircle, Clock, Calendar, Briefcase } from 'lucide-react';
+import { Plus, Search, CheckCircle, Clock, List, LayoutGrid } from 'lucide-react';
+
+// Mock project data that will be reused across project views
+export const projectsData = [
+  { 
+    id: 1, 
+    title: "Husholdning", 
+    description: "Oppgaver relatert til hus og hjem", 
+    tasks: 5, 
+    completedTasks: 2, 
+    color: "bg-blue-500"
+  },
+  { 
+    id: 2, 
+    title: "Jobb", 
+    description: "Arbeidsrelaterte oppgaver og prosjekter", 
+    tasks: 8, 
+    completedTasks: 3, 
+    color: "bg-purple-500"
+  },
+  { 
+    id: 3, 
+    title: "Økonomi", 
+    description: "Økonomisk planlegging og oppgaver", 
+    tasks: 3, 
+    completedTasks: 1, 
+    color: "bg-green-500"
+  },
+  { 
+    id: 4, 
+    title: "Helse", 
+    description: "Treningsplan og helserelaterte oppgaver", 
+    tasks: 4, 
+    completedTasks: 2, 
+    color: "bg-red-500"
+  }
+];
 
 const TodoProjects = () => {
-  // Sample projects data
-  const projects = [
-    { 
-      id: 1, 
-      title: "Husholdning", 
-      description: "Oppgaver relatert til hus og hjem", 
-      tasks: 5, 
-      completedTasks: 2, 
-      color: "bg-blue-500"
-    },
-    { 
-      id: 2, 
-      title: "Jobb", 
-      description: "Arbeidsrelaterte oppgaver og prosjekter", 
-      tasks: 8, 
-      completedTasks: 3, 
-      color: "bg-purple-500"
-    },
-    { 
-      id: 3, 
-      title: "Økonomi", 
-      description: "Økonomisk planlegging og oppgaver", 
-      tasks: 3, 
-      completedTasks: 1, 
-      color: "bg-green-500"
-    },
-    { 
-      id: 4, 
-      title: "Helse", 
-      description: "Treningsplan og helserelaterte oppgaver", 
-      tasks: 4, 
-      completedTasks: 2, 
-      color: "bg-red-500"
-    }
-  ];
-
   return (
     <TodoLayout>
       <div className="space-y-6 max-w-5xl mx-auto">
@@ -61,8 +62,8 @@ const TodoProjects = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {projects.map(project => (
-            <Card key={project.id} className="flex flex-col h-full">
+          {projectsData.map(project => (
+            <Card key={project.id} className="flex flex-col h-full hover:shadow-md transition-shadow">
               <CardHeader className="pb-2">
                 <div className="flex items-center gap-2 mb-1">
                   <div className={`${project.color} w-3 h-3 rounded-full`}></div>
@@ -90,14 +91,18 @@ const TodoProjects = () => {
                   ></div>
                 </div>
                 <div className="flex justify-between mt-4">
-                  <Button variant="outline" size="sm" className="flex gap-1.5">
-                    <CheckCircle className="h-3.5 w-3.5" />
-                    Oppgaver
-                  </Button>
-                  <Button variant="outline" size="sm" className="flex gap-1.5">
-                    <Calendar className="h-3.5 w-3.5" />
-                    Tidsplan
-                  </Button>
+                  <Link to={`/assistant/todo/projects/${project.id}/list`} className="w-1/2 pr-1">
+                    <Button variant="outline" size="sm" className="flex gap-1.5 w-full">
+                      <List className="h-3.5 w-3.5" />
+                      Liste
+                    </Button>
+                  </Link>
+                  <Link to={`/assistant/todo/projects/${project.id}/kanban`} className="w-1/2 pl-1">
+                    <Button variant="outline" size="sm" className="flex gap-1.5 w-full">
+                      <LayoutGrid className="h-3.5 w-3.5" />
+                      Kanban
+                    </Button>
+                  </Link>
                 </div>
               </CardContent>
             </Card>
