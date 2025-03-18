@@ -7,7 +7,8 @@ import { Plus, ListChecks, Calendar, ArrowRight, Check, Lightbulb } from 'lucide
 import { useNavigate } from 'react-router-dom';
 import { Progress } from '@/components/ui/progress';
 import { Separator } from '@/components/ui/separator';
-import { Task } from '@/components/todo/TaskItem';
+import TaskItem, { Task } from '@/components/todo/TaskItem';
+import { Tag } from '@/components/ui/tag';
 
 const TodoApp = () => {
   const navigate = useNavigate();
@@ -26,39 +27,37 @@ const TodoApp = () => {
   const todayTasks: Task[] = [
     {
       id: 1,
-      title: "Skrive rapport",
-      description: "Ferdigstille kvartalsrapporten for prosjekt X",
+      title: "Skrive ukentlig rapport",
+      description: "Inkluder status på alle pågående prosjekter",
       priority: "high",
       completed: false,
-      project: "Jobb"
+      project: "Jobb",
+      dueDate: "I dag"
     },
     {
       id: 2,
-      title: "Ringe tannlegen",
+      title: "Bestill takeaway",
       priority: "medium",
       completed: false,
-      project: "Personlig"
+      project: "Husholdning",
+      dueDate: "I dag"
     },
     {
       id: 3,
       title: "Kjøpe melk",
       priority: "low",
       completed: false,
-      project: "Ærender"
+      project: "Ærender",
+      dueDate: "I dag"
     }
   ];
 
   // Focus task - the most important task for today
-  const focusTask = {
-    id: 1,
-    title: "Skrive rapport",
-    description: "Ferdigstille kvartalsrapporten for prosjekt X",
-    priority: "high"
-  };
+  const focusTask = todayTasks[0]; // Using the first task as focus task
 
   // Productivity quotes and tips
   const productivityTips = [
-    "«Den viktigste oppgaven er ikke alltid den mest haster.» — Cal Newport",
+    "«Den viktigste oppgaven er ikke alltid den som haster mest.» — Cal Newport",
     "Bruk 'to-minutters regelen': hvis en oppgave tar mindre enn to minutter, gjør den med en gang.",
     "«Hvis du ikke har satt opp dagen, vil dagen sette opp deg.» — Cal Newport",
     "Del store oppgaver inn i mindre, håndterbare deler for å redusere overveldelse."
@@ -69,19 +68,6 @@ const TodoApp = () => {
 
   const getCompletionPercentage = () => {
     return Math.round(stats.tasks.completed / stats.tasks.total * 100);
-  };
-
-  const getPriorityColor = (priority) => {
-    switch (priority) {
-      case 'high':
-        return 'bg-red-500';
-      case 'medium':
-        return 'bg-amber-500';
-      case 'low':
-        return 'bg-emerald-500';
-      default:
-        return 'bg-slate-500';
-    }
   };
 
   const handleToggleComplete = (taskId: number) => {
@@ -143,13 +129,11 @@ const TodoApp = () => {
                 <CardDescription>Fokuser på denne oppgaven for å maksimere produktiviteten din</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="flex items-start gap-3 mb-3">
-                  <div className={`h-3 w-3 rounded-full mt-1.5 ${getPriorityColor(focusTask.priority)}`} />
-                  <div className="flex-1">
-                    <h3 className="text-xl font-semibold">{focusTask.title}</h3>
-                    <p className="text-sm text-muted-foreground mt-1">{focusTask.description}</p>
-                  </div>
-                </div>
+                <TaskItem 
+                  task={focusTask}
+                  onToggleComplete={handleToggleComplete}
+                  onOpenDetail={handleOpenTaskDetail}
+                />
               </CardContent>
             </Card>
             
@@ -172,26 +156,12 @@ const TodoApp = () => {
               
               <div className="space-y-0.5">
                 {todayTasks.map(task => (
-                  <div 
-                    key={task.id} 
-                    className="flex items-center gap-3 p-3 rounded-md hover:bg-slate-50 transition-colors cursor-pointer"
-                    onClick={() => handleOpenTaskDetail(task)}
-                  >
-                    <div className={`h-3 w-3 rounded-full ${getPriorityColor(task.priority)}`} />
-                    <div className="flex-1">
-                      <div className={`${task.completed ? 'line-through text-muted-foreground' : ''}`}>
-                        {task.title}
-                      </div>
-                      {task.description && (
-                        <p className="text-xs text-muted-foreground mt-0.5 line-clamp-1">{task.description}</p>
-                      )}
-                    </div>
-                    {task.project && (
-                      <span className="text-xs bg-secondary/50 text-secondary-foreground px-2 py-0.5 rounded">
-                        {task.project}
-                      </span>
-                    )}
-                  </div>
+                  <TaskItem 
+                    key={task.id}
+                    task={task}
+                    onToggleComplete={handleToggleComplete}
+                    onOpenDetail={handleOpenTaskDetail}
+                  />
                 ))}
               </div>
             </div>
