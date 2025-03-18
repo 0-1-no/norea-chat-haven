@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Folders, Users, Layers, MessageCircle, LayoutDashboard, Sparkles, UserCircle, CloudRain, Archive, Share, Edit, Trash } from 'lucide-react';
+import { Folders, Users, Layers, MessageCircle, LayoutDashboard, Sparkles, UserCircle, CloudRain, Archive, Share, Edit, Trash, Bot } from 'lucide-react';
 import { SidebarSection } from './SidebarSection';
 import { SidebarItem } from './SidebarItem';
 import { Button } from '@/components/ui/button';
@@ -44,6 +44,17 @@ export const SidebarContent: React.FC = () => {
         <SidebarItem 
           title="Dating Coach" 
           to="/character/dating-coach"
+        />
+      </SidebarSection>
+      
+      <SidebarSection title="Assistenter" icon={<Bot className="w-4 h-4 text-gray-500" />}>
+        <SidebarItem 
+          title="Alle assistenter" 
+          to="/assistants"
+        />
+        <SidebarItem 
+          title="Todo Assistent" 
+          to="/assistant/todo"
         />
       </SidebarSection>
       

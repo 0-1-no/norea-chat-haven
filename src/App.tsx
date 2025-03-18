@@ -34,6 +34,8 @@ import Settings from "./pages/Settings";
 import Personalization from "./pages/Personalization";
 import Memory from "./pages/Memory";
 import Archive from "./pages/Archive";
+import Assistants from "./pages/Assistants";
+import AssistantTodo from "./pages/AssistantTodo";
 
 const queryClient = new QueryClient();
 
@@ -67,6 +69,10 @@ function App() {
             <Route path="/custom-room-view/:roomId" element={<CustomRoomView />} />
             <Route path="/characters" element={<Characters />} />
             <Route path="/character/:characterId" element={<CharacterProfile />} />
+            
+            {/* Assistant routes */}
+            <Route path="/assistants" element={<Assistants />} />
+            <Route path="/assistant/todo" element={<AssistantTodo />} />
             
             {/* User profile routes */}
             <Route path="/profile" element={<Profile />} />
