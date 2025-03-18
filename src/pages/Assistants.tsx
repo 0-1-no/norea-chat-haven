@@ -21,7 +21,7 @@ const Assistants = () => {
         {/* Featured Assistant */}
         <div className="mb-12">
           <h2 className="text-xl font-semibold mb-4">Anbefalt assistent</h2>
-          <div className="flex flex-col md:flex-row gap-6 items-center md:items-stretch justify-center">
+          <div className="max-w-md mx-auto">
             <StyledProfileCard
               name="Todo Assistent"
               tagline="Din personlige produktivitets coach"
@@ -33,10 +33,10 @@ const Assistants = () => {
               tags={["Produktivitet", "Oppgavestyring"]}
               glowEffect={true}
               onClick={() => window.location.href = "/assistant/todo"}
-              className="w-full md:w-auto"
+              className="w-full shadow-lg hover:shadow-xl transition-shadow duration-300"
             />
             
-            <Card className="flex-1 p-6 max-w-md">
+            <Card className="mt-6 p-6">
               <CardHeader className="px-0 pt-0">
                 <CardTitle className="flex items-center text-2xl">
                   <ListTodo className="mr-2 h-6 w-6 text-primary" />
@@ -81,7 +81,7 @@ const Assistants = () => {
             Vi jobber kontinuerlig med å utvikle nye assistenter for forskjellige behov.
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             <ImageCard
               title="Concierge"
               description="Hjelper med å planlegge hverdagen, booke restaurantbord, bestille blomster og holde oversikt over viktige datoer og hendelser"
