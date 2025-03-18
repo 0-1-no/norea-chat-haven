@@ -3,8 +3,6 @@ import React from 'react';
 import { PageContainer } from '@/components/layout/PageContainer';
 import { ImageCard } from '@/components/ui/image-card';
 import { StyledProfileCard } from '@/components/ui/styled-profile-card';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
-import { CheckCircle, ListTodo } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Assistants = () => {
@@ -36,41 +34,13 @@ const Assistants = () => {
               className="w-full shadow-lg hover:shadow-xl transition-shadow duration-300"
             />
             
-            <Card className="mt-6 p-6">
-              <CardHeader className="px-0 pt-0">
-                <CardTitle className="flex items-center text-2xl">
-                  <ListTodo className="mr-2 h-6 w-6 text-primary" />
-                  Oppgavestyring med AI
-                </CardTitle>
-                <CardDescription>
-                  Den smarte Todo-assistenten hjelper deg med å holde orden på oppgavene dine og øke produktiviteten.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="px-0 pb-0 space-y-4">
-                <div className="space-y-2">
-                  <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-2 shrink-0 mt-0.5" />
-                    <p>Oppretter, organiserer og prioriterer oppgaver basert på dine mål</p>
-                  </div>
-                  <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-2 shrink-0 mt-0.5" />
-                    <p>Minner deg på frister og følger opp uferdige oppgaver</p>
-                  </div>
-                  <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-2 shrink-0 mt-0.5" />
-                    <p>Tilpasser seg dine arbeidsvaner og produktivitetsmønstre</p>
-                  </div>
-                  <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-2 shrink-0 mt-0.5" />
-                    <p>Gir motiverende tilbakemeldinger når du fullfører oppgaver</p>
-                  </div>
-                </div>
-                
-                <Button className="w-full mt-6" onClick={() => window.location.href = "/assistant/todo"}>
-                  Prøv Todo-assistenten
-                </Button>
-              </CardContent>
-            </Card>
+            <Button 
+              className="w-full mt-6" 
+              onClick={() => window.location.href = "/assistant/todo"}
+              size="lg"
+            >
+              Prøv Todo-assistenten
+            </Button>
           </div>
         </div>
         
