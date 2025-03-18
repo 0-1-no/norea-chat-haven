@@ -5,7 +5,7 @@ import { PageContainer } from '@/components/layout/PageContainer';
 import { ImageCard } from '@/components/ui/image-card';
 import { StyledProfileCard } from '@/components/ui/styled-profile-card';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
-import { Bot, CheckCircle, ListTodo, Plus } from 'lucide-react';
+import { Bot, Calendar, CheckCircle, ListTodo, Plus, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Assistants = () => {
@@ -24,7 +24,7 @@ const Assistants = () => {
         {/* Featured Assistant */}
         <div className="mb-12">
           <h2 className="text-xl font-semibold mb-4">Anbefalt assistent</h2>
-          <div className="flex flex-col lg:flex-row gap-6 items-center">
+          <div className="flex flex-col md:flex-row gap-6 items-center md:items-stretch justify-center">
             <StyledProfileCard
               name="Todo Assistent"
               tagline="Din personlige produktivitets coach"
@@ -34,16 +34,12 @@ const Assistants = () => {
               textColor="text-white"
               accentColor="text-blue-200"
               tags={["Produktivitet", "Oppgavestyring"]}
-              stats={[
-                { label: "Brukere", value: "247" },
-                { label: "Rating", value: "4.8" }
-              ]}
               glowEffect={true}
               onClick={() => window.location.href = "/assistant/todo"}
-              className="w-full lg:w-auto"
+              className="w-full md:w-auto"
             />
             
-            <Card className="flex-1 p-6">
+            <Card className="flex-1 p-6 max-w-md">
               <CardHeader className="px-0 pt-0">
                 <CardTitle className="flex items-center text-2xl">
                   <ListTodo className="mr-2 h-6 w-6 text-primary" />
@@ -78,6 +74,57 @@ const Assistants = () => {
                 </Button>
               </CardContent>
             </Card>
+          </div>
+        </div>
+        
+        {/* All Assistants */}
+        <div className="mb-12">
+          <h2 className="text-xl font-semibold mb-4">Alle assistenter</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <StyledProfileCard
+              name="Concierge"
+              tagline="Din personlige livsstils-assistent"
+              description="Hjelper med å planlegge hverdagen, booke restaurantbord, bestille blomster og holder oversikt over viktige datoer og hendelser."
+              mainImageSrc="/lovable-uploads/947acd65-7455-4f85-9e31-f9632eb17164.png"
+              backgroundColor="bg-gradient-to-br from-emerald-500 to-teal-700"
+              textColor="text-white"
+              accentColor="text-emerald-200"
+              tags={["Planlegging", "Booking", "Livsstil"]}
+              glowEffect={true}
+              onClick={() => {}}
+              className="w-full"
+              overlayEffect="gradient"
+            />
+            
+            <StyledProfileCard
+              name="Clay"
+              tagline="Din personlige nettverks-coach"
+              description="En personlig CRM assistent som hjelper deg med å holde oversikt over ditt nettverk, venner, familie, bursdager og gir råd om hvordan bli mer sosial."
+              mainImageSrc="/placeholder.svg"
+              backgroundColor="bg-gradient-to-br from-amber-500 to-orange-700"
+              textColor="text-white"
+              accentColor="text-amber-200"
+              tags={["Nettverk", "CRM", "Relasjoner"]}
+              glowEffect={true}
+              onClick={() => {}}
+              className="w-full"
+              overlayEffect="gradient"
+            />
+            
+            <StyledProfileCard
+              name="Todo Assistent"
+              tagline="Din personlige produktivitets coach"
+              description="Organiser oppgavene dine, følg opp fremgang, og få motivasjon for å fullføre oppgaver."
+              mainImageSrc="/lovable-uploads/48c70b68-80c9-4b0e-964a-126502b28085.png"
+              backgroundColor="bg-gradient-to-br from-blue-600 to-purple-700"
+              textColor="text-white"
+              accentColor="text-blue-200"
+              tags={["Produktivitet", "Oppgavestyring"]}
+              glowEffect={true}
+              onClick={() => window.location.href = "/assistant/todo"}
+              className="w-full"
+              overlayEffect="gradient"
+            />
           </div>
         </div>
         
