@@ -25,10 +25,10 @@ const TodoTasks = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
   const [isDetailOpen, setIsDetailOpen] = useState(false);
-  const [expandedSections, setExpandedSections] = useState<string[]>(['today', 'upcoming']);
+  const [expandedSections, setExpandedSections] = useState<string[]>(['today', 'upcoming', 'this-week', 'next-week', 'future']);
   const [activeFilter, setActiveFilter] = useState<string>('all');
   
-  // Sample tasks data with subtasks
+  // Sample tasks data with subtasks - expanded to cover more time periods
   const taskGroups = [
     {
       id: 'today',
@@ -60,7 +60,7 @@ const TodoTasks = () => {
     },
     {
       id: 'upcoming',
-      title: 'Kommende',
+      title: 'I morgen',
       tasks: [
         { 
           id: 3, 
@@ -83,12 +83,150 @@ const TodoTasks = () => {
           completed: false, 
           project: "Helse" 
         },
+      ]
+    },
+    {
+      id: 'this-week',
+      title: 'Denne uken',
+      tasks: [
         { 
           id: 5, 
           title: "Planlegg helgen", 
           dueDate: "Fredag", 
           priority: "medium" as const, 
-          completed: false 
+          completed: false,
+          project: "Personlig" 
+        },
+        { 
+          id: 8, 
+          title: "Foreldremøte", 
+          dueDate: "Torsdag", 
+          priority: "high" as const, 
+          completed: false,
+          project: "Familie" 
+        },
+        { 
+          id: 9, 
+          title: "Bestill frisørtime", 
+          dueDate: "Onsdag", 
+          priority: "low" as const, 
+          completed: false,
+          project: "Personlig" 
+        },
+        { 
+          id: 10, 
+          title: "Kjøp bursdagsgave", 
+          dueDate: "Fredag", 
+          priority: "medium" as const, 
+          completed: false,
+          project: "Familie",
+          subtasks: [
+            { id: 301, title: "Finn ideer", completed: true },
+            { id: 302, title: "Sjekk priser", completed: false },
+            { id: 303, title: "Kjøp gave", completed: false },
+            { id: 304, title: "Pakk inn gave", completed: false }
+          ]
+        },
+      ]
+    },
+    {
+      id: 'next-week',
+      title: 'Neste uke',
+      tasks: [
+        { 
+          id: 11, 
+          title: "Kvartalsgjennomgang", 
+          description: "Presentere kvartalsvise resultater for ledelsen",
+          dueDate: "Mandag (neste uke)", 
+          priority: "high" as const, 
+          completed: false,
+          project: "Jobb" 
+        },
+        { 
+          id: 12, 
+          title: "Levere skattemelding", 
+          dueDate: "Tirsdag (neste uke)", 
+          priority: "high" as const, 
+          completed: false,
+          project: "Økonomi",
+          subtasks: [
+            { id: 401, title: "Samle alle dokumenter", completed: true },
+            { id: 402, title: "Dobbeltsjekk fradrag", completed: false },
+            { id: 403, title: "Send inn skjema", completed: false }
+          ]
+        },
+        { 
+          id: 13, 
+          title: "Middagsselskap", 
+          dueDate: "Lørdag (neste uke)", 
+          priority: "medium" as const, 
+          completed: false,
+          project: "Sosialt",
+          subtasks: [
+            { id: 501, title: "Lag gjesteliste", completed: true },
+            { id: 502, title: "Send invitasjoner", completed: true },
+            { id: 503, title: "Planlegg meny", completed: false },
+            { id: 504, title: "Kjøp ingredienser", completed: false },
+            { id: 505, title: "Rydd huset", completed: false }
+          ]
+        },
+      ]
+    },
+    {
+      id: 'future',
+      title: 'Senere',
+      tasks: [
+        { 
+          id: 14, 
+          title: "Bestill sommerferie", 
+          dueDate: "Om 3 uker", 
+          priority: "medium" as const, 
+          completed: false,
+          project: "Reise",
+          subtasks: [
+            { id: 601, title: "Bestemt destinasjon", completed: true },
+            { id: 602, title: "Sjekk hoteller", completed: false },
+            { id: 603, title: "Bestill fly", completed: false },
+            { id: 604, title: "Planlegg aktiviteter", completed: false }
+          ]
+        },
+        { 
+          id: 15, 
+          title: "Årlig helsekontroll", 
+          dueDate: "Om 1 måned", 
+          priority: "medium" as const, 
+          completed: false,
+          project: "Helse" 
+        },
+        { 
+          id: 16, 
+          title: "Betale forsikring", 
+          dueDate: "15. neste måned", 
+          priority: "high" as const, 
+          completed: false,
+          project: "Økonomi" 
+        },
+        { 
+          id: 17, 
+          title: "Oppdatere CV", 
+          dueDate: "Innen 2 måneder", 
+          priority: "low" as const, 
+          completed: false,
+          project: "Karriere" 
+        },
+        { 
+          id: 18, 
+          title: "Planlegge jubileumsfest", 
+          dueDate: "Om 3 måneder", 
+          priority: "medium" as const, 
+          completed: false,
+          project: "Familie",
+          subtasks: [
+            { id: 701, title: "Velg lokale", completed: false },
+            { id: 702, title: "Lag gjesteliste", completed: false },
+            { id: 703, title: "Bestill catering", completed: false },
+            { id: 704, title: "Planlegg underholdning", completed: false }
+          ]
         },
       ]
     },
@@ -165,7 +303,7 @@ const TodoTasks = () => {
     
     if (activeFilter === 'upcoming') {
       // Return just upcoming tasks
-      return taskGroups.filter(group => group.id === 'upcoming');
+      return taskGroups.filter(group => ['upcoming', 'this-week', 'next-week', 'future'].includes(group.id));
     }
     
     if (activeFilter === 'completed') {
