@@ -3,7 +3,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { Separator } from "@/components/ui/separator";
 import { PageContainer } from '@/components/layout/PageContainer';
 import { useTheme } from 'next-themes';
-import { NoreaOrb } from '@/components/brand/NoreaOrb';
+import GlowingOrb from '@/components/brand/GlowingOrb';
 
 const Brand = () => {
   const [mounted, setMounted] = useState(false);
@@ -55,23 +55,23 @@ const Brand = () => {
           </p>
           
           <h3 className="text-xl font-medium mt-6">Size Variants</h3>
-          <div className="flex flex-col md:flex-row items-center justify-center gap-16 py-12">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-24 py-16">
             {/* Small */}
             <div className="flex flex-col items-center">
-              <NoreaOrb size="small" />
-              <span className="mt-2 text-sm text-muted-foreground">Small</span>
+              <GlowingOrb size="small" />
+              <span className="mt-4 text-sm text-muted-foreground">Small</span>
             </div>
             
             {/* Medium */}
             <div className="flex flex-col items-center">
-              <NoreaOrb size="medium" />
-              <span className="mt-2 text-sm text-muted-foreground">Medium</span>
+              <GlowingOrb size="medium" />
+              <span className="mt-4 text-sm text-muted-foreground">Medium</span>
             </div>
             
             {/* Large */}
             <div className="flex flex-col items-center">
-              <NoreaOrb size="large" />
-              <span className="mt-2 text-sm text-muted-foreground">Large</span>
+              <GlowingOrb size="large" />
+              <span className="mt-4 text-sm text-muted-foreground">Large</span>
             </div>
           </div>
           
