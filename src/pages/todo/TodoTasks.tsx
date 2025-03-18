@@ -10,18 +10,23 @@ import {
   Plus, 
   Search, 
   Filter, 
-  Calendar 
+  Calendar,
+  Inbox,
+  Clock,
+  CheckCircle
 } from 'lucide-react';
 import TaskItem, { Task } from '@/components/todo/TaskItem';
 import TaskDetailModal from '@/components/todo/TaskDetailModal';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { Separator } from '@/components/ui/separator';
+import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 
 const TodoTasks = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
   const [isDetailOpen, setIsDetailOpen] = useState(false);
   const [expandedSections, setExpandedSections] = useState<string[]>(['today', 'upcoming']);
+  const [activeFilter, setActiveFilter] = useState<string>('all');
   
   // Sample tasks data with subtasks
   const taskGroups = [
@@ -134,6 +139,45 @@ const TodoTasks = () => {
     );
   };
 
+  // Filter tasks based on selected filter
+  const getFilteredTaskGroups = () => {
+    if (activeFilter === 'all') {
+      return taskGroups;
+    }
+    
+    if (activeFilter === 'inbox') {
+      // Returns all non-completed tasks without specific projects
+      const inboxTasks = taskGroups
+        .filter(group => group.id !== 'completed')
+        .map(group => ({
+          ...group,
+          tasks: group.tasks.filter(task => !task.project)
+        }))
+        .filter(group => group.tasks.length > 0);
+      
+      return inboxTasks;
+    }
+    
+    if (activeFilter === 'today') {
+      // Return just today's tasks
+      return taskGroups.filter(group => group.id === 'today');
+    }
+    
+    if (activeFilter === 'upcoming') {
+      // Return just upcoming tasks
+      return taskGroups.filter(group => group.id === 'upcoming');
+    }
+    
+    if (activeFilter === 'completed') {
+      // Return just completed tasks
+      return taskGroups.filter(group => group.id === 'completed');
+    }
+    
+    return taskGroups;
+  };
+  
+  const filteredTaskGroups = getFilteredTaskGroups();
+
   return (
     <TodoLayout>
       <div className="space-y-6 max-w-3xl mx-auto">
@@ -161,50 +205,81 @@ const TodoTasks = () => {
           </div>
         </div>
         
+        {/* Quick Filter Buttons */}
+        <div className="overflow-x-auto pb-2">
+          <ToggleGroup type="single" value={activeFilter} onValueChange={(value) => value && setActiveFilter(value)}>
+            <ToggleGroupItem value="all" aria-label="Vis alle oppgaver" className="px-4">
+              Alle
+            </ToggleGroupItem>
+            <ToggleGroupItem value="inbox" aria-label="Vis innboks" className="flex items-center gap-2 px-4">
+              <Inbox className="h-4 w-4" />
+              Innboks
+            </ToggleGroupItem>
+            <ToggleGroupItem value="today" aria-label="Vis dagens oppgaver" className="flex items-center gap-2 px-4">
+              <Calendar className="h-4 w-4" />
+              I dag
+            </ToggleGroupItem>
+            <ToggleGroupItem value="upcoming" aria-label="Vis kommende oppgaver" className="flex items-center gap-2 px-4">
+              <Clock className="h-4 w-4" />
+              Kommende
+            </ToggleGroupItem>
+            <ToggleGroupItem value="completed" aria-label="Vis fullførte oppgaver" className="flex items-center gap-2 px-4">
+              <CheckCircle className="h-4 w-4" />
+              Fullført
+            </ToggleGroupItem>
+          </ToggleGroup>
+        </div>
+        
         <div className="space-y-4">
-          {taskGroups.map(group => (
-            <Card key={group.id} className="shadow-sm">
-              <Collapsible
-                open={expandedSections.includes(group.id)}
-                onOpenChange={() => toggleSectionExpanded(group.id)}
-              >
-                <div className="flex items-center py-3 px-4">
-                  <CollapsibleTrigger asChild>
-                    <Button variant="ghost" size="sm" className="h-6 w-6 p-0 mr-2">
-                      {expandedSections.includes(group.id) ? (
-                        <ChevronDown className="h-4 w-4" />
-                      ) : (
-                        <ChevronRight className="h-4 w-4" />
-                      )}
-                    </Button>
-                  </CollapsibleTrigger>
-                  <CardTitle className="text-base font-medium">{group.title}</CardTitle>
-                  <div className="ml-auto text-sm text-muted-foreground">
-                    {group.tasks.length} oppgaver
-                  </div>
-                </div>
-                <Separator />
-                <CollapsibleContent>
-                  <CardContent className="pt-3 pb-1">
-                    <div className="space-y-0">
-                      {group.tasks.map(task => (
-                        <TaskItem
-                          key={task.id}
-                          task={task}
-                          onToggleComplete={toggleTaskCompletion}
-                          onOpenDetail={openTaskDetail}
-                        />
-                      ))}
+          {filteredTaskGroups.length > 0 ? (
+            filteredTaskGroups.map(group => (
+              <Card key={group.id} className="shadow-sm">
+                <Collapsible
+                  open={expandedSections.includes(group.id)}
+                  onOpenChange={() => toggleSectionExpanded(group.id)}
+                >
+                  <div className="flex items-center py-3 px-4">
+                    <CollapsibleTrigger asChild>
+                      <Button variant="ghost" size="sm" className="h-6 w-6 p-0 mr-2">
+                        {expandedSections.includes(group.id) ? (
+                          <ChevronDown className="h-4 w-4" />
+                        ) : (
+                          <ChevronRight className="h-4 w-4" />
+                        )}
+                      </Button>
+                    </CollapsibleTrigger>
+                    <CardTitle className="text-base font-medium">{group.title}</CardTitle>
+                    <div className="ml-auto text-sm text-muted-foreground">
+                      {group.tasks.length} oppgaver
                     </div>
-                    <Button variant="ghost" className="text-muted-foreground text-sm mt-2 mb-1">
-                      <Plus className="h-4 w-4 mr-2" />
-                      Legg til oppgave
-                    </Button>
-                  </CardContent>
-                </CollapsibleContent>
-              </Collapsible>
-            </Card>
-          ))}
+                  </div>
+                  <Separator />
+                  <CollapsibleContent>
+                    <CardContent className="pt-3 pb-1">
+                      <div className="space-y-0">
+                        {group.tasks.map(task => (
+                          <TaskItem
+                            key={task.id}
+                            task={task}
+                            onToggleComplete={toggleTaskCompletion}
+                            onOpenDetail={openTaskDetail}
+                          />
+                        ))}
+                      </div>
+                      <Button variant="ghost" className="text-muted-foreground text-sm mt-2 mb-1">
+                        <Plus className="h-4 w-4 mr-2" />
+                        Legg til oppgave
+                      </Button>
+                    </CardContent>
+                  </CollapsibleContent>
+                </Collapsible>
+              </Card>
+            ))
+          ) : (
+            <div className="text-center py-8">
+              <p className="text-muted-foreground">Ingen oppgaver funnet</p>
+            </div>
+          )}
         </div>
       </div>
 
