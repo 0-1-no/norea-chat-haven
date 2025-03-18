@@ -1,20 +1,17 @@
 
 import React from 'react';
-import { Header } from '@/components/Header';
 import { PageContainer } from '@/components/layout/PageContainer';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { CheckCircle, Clock, ListTodo, MessageCircle, Sparkles, Star } from 'lucide-react';
+import { CheckCircle, Clock, ListTodo, MessageCircle, Sparkles } from 'lucide-react';
 
 const AssistantTodo = () => {
   return (
     <PageContainer title="Todo Assistent">
-      <Header title="Todo Assistent" />
-      
       <div className="container mx-auto px-4 py-6">
-        <div className="flex flex-col lg:flex-row gap-8">
-          {/* Left column: Assistant hero */}
-          <div className="flex-1">
+        <div className="flex flex-col gap-8 max-w-4xl mx-auto">
+          {/* Assistant hero */}
+          <div>
             <div className="relative rounded-xl overflow-hidden mb-6">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-purple-700 opacity-90"></div>
               <img 
@@ -26,10 +23,6 @@ const AssistantTodo = () => {
                 <div className="flex justify-between items-start">
                   <div className="bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full text-white text-sm">
                     Produktivitet
-                  </div>
-                  <div className="flex items-center bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full text-white text-sm">
-                    <Star className="h-4 w-4 text-yellow-300 mr-1" fill="currentColor" />
-                    4.8/5
                   </div>
                 </div>
                 <div className="text-white">
@@ -59,7 +52,7 @@ const AssistantTodo = () => {
               </CardContent>
             </Card>
             
-            <Card>
+            <Card className="mb-6">
               <CardHeader>
                 <CardTitle>Funksjoner</CardTitle>
               </CardHeader>
@@ -107,11 +100,8 @@ const AssistantTodo = () => {
                 </div>
               </CardContent>
             </Card>
-          </div>
-          
-          {/* Right column: Action card and testimonials */}
-          <div className="lg:w-96 space-y-6">
-            <Card className="border-2 border-primary/20">
+            
+            <Card className="border-2 border-primary/20 max-w-md mx-auto">
               <CardHeader className="bg-primary/5 border-b border-primary/10">
                 <CardTitle className="text-center">Start med Todo-assistenten</CardTitle>
               </CardHeader>
@@ -126,43 +116,6 @@ const AssistantTodo = () => {
                 <p className="text-xs text-center text-muted-foreground">
                   Tilgjengelig 24/7 • Umiddelbare svar
                 </p>
-              </CardContent>
-            </Card>
-            
-            {/* Testimonials */}
-            <h3 className="text-lg font-medium mb-3">Hva brukerne sier</h3>
-            
-            <Card className="bg-muted/50">
-              <CardContent className="pt-6">
-                <p className="italic text-sm mb-4">
-                  "Todo-assistenten har hjulpet meg å holde styr på alle prosjektene mine. Jeg er mer produktiv enn noen gang!"
-                </p>
-                <div className="flex items-center">
-                  <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center mr-2">
-                    <span className="text-xs font-medium">MH</span>
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium">Marte Hansen</p>
-                    <p className="text-xs text-muted-foreground">Student</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-            
-            <Card className="bg-muted/50">
-              <CardContent className="pt-6">
-                <p className="italic text-sm mb-4">
-                  "Jeg har prøvd mange produktivitetsapper, men denne AI-assistenten tilpasser seg virkelig mine behov. Fantastisk!"
-                </p>
-                <div className="flex items-center">
-                  <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center mr-2">
-                    <span className="text-xs font-medium">TB</span>
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium">Thomas Berg</p>
-                    <p className="text-xs text-muted-foreground">Prosjektleder</p>
-                  </div>
-                </div>
               </CardContent>
             </Card>
           </div>

@@ -1,11 +1,10 @@
 
 import React from 'react';
-import { Header } from '@/components/Header';
 import { PageContainer } from '@/components/layout/PageContainer';
 import { ImageCard } from '@/components/ui/image-card';
 import { StyledProfileCard } from '@/components/ui/styled-profile-card';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
-import { Bot, Calendar, CheckCircle, ListTodo, Plus, Users } from 'lucide-react';
+import { CheckCircle, ListTodo } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Assistants = () => {
@@ -82,7 +81,7 @@ const Assistants = () => {
             Vi jobber kontinuerlig med å utvikle nye assistenter for forskjellige behov.
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <ImageCard
               title="Concierge"
               description="Hjelper med å planlegge hverdagen, booke restaurantbord, bestille blomster og holde oversikt over viktige datoer og hendelser"
@@ -102,27 +101,6 @@ const Assistants = () => {
               actionLabel="Kommer snart"
               className="opacity-80 hover:opacity-100 transition-opacity"
             />
-            
-            <ImageCard
-              title="Helse Coach"
-              description="En personlig assistent for trening, ernæring og velvære"
-              imageSrc="/lovable-uploads/7e6f530a-deee-4947-9000-ac9dc9aad56c.png"
-              imageAlt="Helse Coach"
-              tags={["Helse", "Trening", "Ernæring"]}
-              actionLabel="Kommer snart"
-              className="opacity-80 hover:opacity-100 transition-opacity"
-            />
-            
-            <div className="border border-dashed border-muted-foreground/30 rounded-lg flex flex-col items-center justify-center p-8 text-center h-full">
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                <Plus className="w-6 h-6 text-primary" />
-              </div>
-              <h3 className="text-lg font-medium mb-2">Foreslå en assistent</h3>
-              <p className="text-sm text-muted-foreground mb-4">
-                Har du forslag til en assistent du gjerne vil se i Norea?
-              </p>
-              <Button variant="outline">Send forslag</Button>
-            </div>
           </div>
         </div>
       </div>
