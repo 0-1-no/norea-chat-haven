@@ -11,8 +11,6 @@ import { Button } from '@/components/ui/button';
 const Assistants = () => {
   return (
     <PageContainer title="Assistenter">
-      <Header title="Assistenter" />
-      
       <div className="container mx-auto px-4 py-6">
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-2">Norea Assistenter</h1>
@@ -77,57 +75,6 @@ const Assistants = () => {
           </div>
         </div>
         
-        {/* All Assistants */}
-        <div className="mb-12">
-          <h2 className="text-xl font-semibold mb-4">Alle assistenter</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <StyledProfileCard
-              name="Concierge"
-              tagline="Din personlige livsstils-assistent"
-              description="Hjelper med å planlegge hverdagen, booke restaurantbord, bestille blomster og holder oversikt over viktige datoer og hendelser."
-              mainImageSrc="/lovable-uploads/947acd65-7455-4f85-9e31-f9632eb17164.png"
-              backgroundColor="bg-gradient-to-br from-emerald-500 to-teal-700"
-              textColor="text-white"
-              accentColor="text-emerald-200"
-              tags={["Planlegging", "Booking", "Livsstil"]}
-              glowEffect={true}
-              onClick={() => {}}
-              className="w-full"
-              overlayEffect="gradient"
-            />
-            
-            <StyledProfileCard
-              name="Clay"
-              tagline="Din personlige nettverks-coach"
-              description="En personlig CRM assistent som hjelper deg med å holde oversikt over ditt nettverk, venner, familie, bursdager og gir råd om hvordan bli mer sosial."
-              mainImageSrc="/placeholder.svg"
-              backgroundColor="bg-gradient-to-br from-amber-500 to-orange-700"
-              textColor="text-white"
-              accentColor="text-amber-200"
-              tags={["Nettverk", "CRM", "Relasjoner"]}
-              glowEffect={true}
-              onClick={() => {}}
-              className="w-full"
-              overlayEffect="gradient"
-            />
-            
-            <StyledProfileCard
-              name="Todo Assistent"
-              tagline="Din personlige produktivitets coach"
-              description="Organiser oppgavene dine, følg opp fremgang, og få motivasjon for å fullføre oppgaver."
-              mainImageSrc="/lovable-uploads/48c70b68-80c9-4b0e-964a-126502b28085.png"
-              backgroundColor="bg-gradient-to-br from-blue-600 to-purple-700"
-              textColor="text-white"
-              accentColor="text-blue-200"
-              tags={["Produktivitet", "Oppgavestyring"]}
-              glowEffect={true}
-              onClick={() => window.location.href = "/assistant/todo"}
-              className="w-full"
-              overlayEffect="gradient"
-            />
-          </div>
-        </div>
-        
         {/* Coming Soon Section */}
         <div className="mt-12">
           <h2 className="text-xl font-semibold mb-4">Kommer snart</h2>
@@ -137,21 +84,31 @@ const Assistants = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <ImageCard
-              title="Helse Coach"
-              description="En personlig assistent for trening, ernæring og velvære"
-              imageSrc="/lovable-uploads/7e6f530a-deee-4947-9000-ac9dc9aad56c.png"
-              imageAlt="Helse Coach"
-              tags={["Helse", "Trening", "Ernæring"]}
+              title="Concierge"
+              description="Hjelper med å planlegge hverdagen, booke restaurantbord, bestille blomster og holde oversikt over viktige datoer og hendelser"
+              imageSrc="/lovable-uploads/947acd65-7455-4f85-9e31-f9632eb17164.png"
+              imageAlt="Concierge"
+              tags={["Planlegging", "Booking", "Livsstil"]}
               actionLabel="Kommer snart"
               className="opacity-80 hover:opacity-100 transition-opacity"
             />
             
             <ImageCard
-              title="Studie Hjelper"
-              description="Din digitale studieveileder som hjelper deg med studier og lekser"
+              title="Clay"
+              description="En personlig CRM assistent som hjelper deg med å holde oversikt over ditt nettverk, venner, familie og bursdager"
               imageSrc="/placeholder.svg"
-              imageAlt="Studie Hjelper"
-              tags={["Utdanning", "Læring"]}
+              imageAlt="Clay"
+              tags={["Nettverk", "CRM", "Relasjoner"]}
+              actionLabel="Kommer snart"
+              className="opacity-80 hover:opacity-100 transition-opacity"
+            />
+            
+            <ImageCard
+              title="Helse Coach"
+              description="En personlig assistent for trening, ernæring og velvære"
+              imageSrc="/lovable-uploads/7e6f530a-deee-4947-9000-ac9dc9aad56c.png"
+              imageAlt="Helse Coach"
+              tags={["Helse", "Trening", "Ernæring"]}
               actionLabel="Kommer snart"
               className="opacity-80 hover:opacity-100 transition-opacity"
             />
