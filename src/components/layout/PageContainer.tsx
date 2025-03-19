@@ -1,5 +1,5 @@
 
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { Header } from '@/components/Header';
 import {
   Sidebar,
@@ -10,6 +10,9 @@ import {
   SidebarHeader,
 } from '@/components/ui/sidebar';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { SidebarNewChat } from '@/components/sidebar/SidebarNewChat';
+import { SidebarContent as SidebarMainContent } from '@/components/sidebar/SidebarContent';
+import { SidebarTestFooter } from '@/components/sidebar/SidebarTestFooter';
 
 interface PageContainerProps {
   children: React.ReactNode;
@@ -42,18 +45,18 @@ export const PageContainer: React.FC<PageContainerProps> = ({
               <div className="px-2 mb-4 w-full">
                 {/* New Chat button */}
                 <div className="px-1">
-                  {React.createElement(require('@/components/sidebar/SidebarNewChat').SidebarNewChat)}
+                  <SidebarNewChat />
                 </div>
               </div>
               
               {/* Main sidebar content */}
-              {React.createElement(require('@/components/sidebar/SidebarContent').SidebarContent)}
+              <SidebarMainContent />
             </div>
           </SidebarContent>
           
           <SidebarFooter>
             {/* Test footer at bottom of sidebar */}
-            {React.createElement(require('@/components/sidebar/SidebarTestFooter').SidebarTestFooter)}
+            <SidebarTestFooter />
           </SidebarFooter>
         </Sidebar>
         
@@ -75,7 +78,6 @@ export const PageContainer: React.FC<PageContainerProps> = ({
             <Header 
               title={title}
               showBackButton={showBackButton}
-              toggleSidebar={() => {}}
               className="sticky top-0 z-20 bg-canvas"
             >
               <SidebarTrigger />

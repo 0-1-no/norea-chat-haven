@@ -11,6 +11,7 @@ type HeaderProps = {
   className?: string;
   sidebarOpen?: boolean;
   toggleSidebar?: () => void;
+  children?: React.ReactNode; // Add children prop
 };
 
 export const Header: React.FC<HeaderProps> = ({ 
@@ -19,7 +20,8 @@ export const Header: React.FC<HeaderProps> = ({
   onBackClick,
   className,
   sidebarOpen,
-  toggleSidebar
+  toggleSidebar,
+  children
 }) => {
   return (
     <div className={cn(
@@ -37,6 +39,8 @@ export const Header: React.FC<HeaderProps> = ({
           >
             <PanelLeft className="w-5 h-5 text-surface-foreground" />
           </Button>
+        ) : children ? (
+          children
         ) : (
           // Empty placeholder to maintain layout
           <div className="w-8" />
