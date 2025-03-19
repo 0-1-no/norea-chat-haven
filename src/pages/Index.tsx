@@ -8,7 +8,6 @@ import { ChevronDown, ChevronUp } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { useIsMobile } from '@/hooks/use-mobile';
 import { NoreaOrb } from '@/components/brand/NoreaOrb';
-import { ScrollArea } from '@/components/ui/scroll-area';
 
 const Index = () => {
   const [showMorePrompts, setShowMorePrompts] = useState(false);
@@ -119,119 +118,117 @@ const Index = () => {
 
   return (
     <PageContainer title="Hjem" showBackButton={false}>
-      <ScrollArea className="w-full h-full pb-20">
-        <div className="flex flex-col items-center justify-start w-full max-w-3xl mx-auto px-0 mb-20">
-          <div className="mb-6">
-            <NoreaOrb size="medium" interactive={true} />
-          </div>
-          <h1 className="text-3xl font-bold text-center mb-6">Hva kan jeg hjelpe med?</h1>
-          
-          {/* Chat interface */}
-          <div className="w-full mb-6 overflow-hidden">
-            <ChatInterface 
-              userName="John"
-              className="flex-1"
-            />
-          </div>
-          
-          {/* Basic prompt cards in a row or carousel */}
-          <div className="w-full mb-4 overflow-hidden">
-            {renderBasicPrompts()}
-          </div>
-          
-          {/* Show more/less button */}
-          <button 
-            onClick={toggleMorePrompts}
-            className="flex items-center gap-1 text-primary hover:text-primary/80 transition-colors text-sm mb-6"
-          >
-            {showMorePrompts ? (
-              <>
-                <span>Vis færre forslag</span>
-                <ChevronUp className="w-4 h-4" />
-              </>
-            ) : (
-              <>
-                <span>Vis flere forslag</span>
-                <ChevronDown className="w-4 h-4" />
-              </>
-            )}
-          </button>
-          
-          {/* Tabbed categorized prompts */}
-          {showMorePrompts && (
-            <div className="w-full mb-8 animate-fade-in">
-              <Tabs defaultValue="all" className="w-full" onValueChange={handleSelectCategory}>
-                <TabsList className="w-full justify-start mb-4 bg-transparent p-0 h-auto overflow-x-auto scrollbar-hidden flex-nowrap">
-                  <TabsTrigger value="all" className="data-[state=active]:bg-primary/10">Alle</TabsTrigger>
-                  <TabsTrigger value="work" className="data-[state=active]:bg-primary/10">Jobb</TabsTrigger>
-                  <TabsTrigger value="creativity" className="data-[state=active]:bg-primary/10">Kreativitet</TabsTrigger>
-                  <TabsTrigger value="learning" className="data-[state=active]:bg-primary/10">Læring</TabsTrigger>
-                </TabsList>
-                
-                <TabsContent value="all" className="mt-0">
-                  <div className="flex flex-wrap gap-3 w-full">
-                    {categorizedPrompts.all.map((prompt) => (
-                      <PromptCard
-                        key={prompt.id}
-                        text={prompt.text}
-                        icon={prompt.icon as any}
-                        variant={isMobile ? "compact" : "default"}
-                        onClick={() => handlePromptSelect(prompt.text)}
-                        className="w-auto"
-                      />
-                    ))}
-                  </div>
-                </TabsContent>
-                
-                <TabsContent value="work" className="mt-0">
-                  <div className="flex flex-wrap gap-3 w-full">
-                    {categorizedPrompts.work.map((prompt) => (
-                      <PromptCard
-                        key={prompt.id}
-                        text={prompt.text}
-                        icon={prompt.icon as any}
-                        variant={isMobile ? "compact" : "default"}
-                        onClick={() => handlePromptSelect(prompt.text)}
-                        className="w-auto"
-                      />
-                    ))}
-                  </div>
-                </TabsContent>
-                
-                <TabsContent value="creativity" className="mt-0">
-                  <div className="flex flex-wrap gap-3 w-full">
-                    {categorizedPrompts.creativity.map((prompt) => (
-                      <PromptCard
-                        key={prompt.id}
-                        text={prompt.text}
-                        icon={prompt.icon as any}
-                        variant={isMobile ? "compact" : "default"}
-                        onClick={() => handlePromptSelect(prompt.text)}
-                        className="w-auto"
-                      />
-                    ))}
-                  </div>
-                </TabsContent>
-                
-                <TabsContent value="learning" className="mt-0">
-                  <div className="flex flex-wrap gap-3 w-full">
-                    {categorizedPrompts.learning.map((prompt) => (
-                      <PromptCard
-                        key={prompt.id}
-                        text={prompt.text}
-                        icon={prompt.icon as any}
-                        variant={isMobile ? "compact" : "default"}
-                        onClick={() => handlePromptSelect(prompt.text)}
-                        className="w-auto"
-                      />
-                    ))}
-                  </div>
-                </TabsContent>
-              </Tabs>
-            </div>
-          )}
+      <div className="flex flex-col items-center justify-center w-full max-w-3xl mx-auto px-0 overflow-hidden">
+        <div className="mb-6">
+          <NoreaOrb size="medium" interactive={true} />
         </div>
-      </ScrollArea>
+        <h1 className="text-3xl font-bold text-center mb-6">Hva kan jeg hjelpe med?</h1>
+        
+        {/* Chat interface */}
+        <div className="w-full mb-6 overflow-hidden">
+          <ChatInterface 
+            userName="John"
+            className="flex-1"
+          />
+        </div>
+        
+        {/* Basic prompt cards in a row or carousel */}
+        <div className="w-full mb-4 overflow-hidden">
+          {renderBasicPrompts()}
+        </div>
+        
+        {/* Show more/less button */}
+        <button 
+          onClick={toggleMorePrompts}
+          className="flex items-center gap-1 text-primary hover:text-primary/80 transition-colors text-sm mb-6"
+        >
+          {showMorePrompts ? (
+            <>
+              <span>Vis færre forslag</span>
+              <ChevronUp className="w-4 h-4" />
+            </>
+          ) : (
+            <>
+              <span>Vis flere forslag</span>
+              <ChevronDown className="w-4 h-4" />
+            </>
+          )}
+        </button>
+        
+        {/* Tabbed categorized prompts */}
+        {showMorePrompts && (
+          <div className="w-full mb-8 animate-fade-in overflow-hidden">
+            <Tabs defaultValue="all" className="w-full" onValueChange={handleSelectCategory}>
+              <TabsList className="w-full justify-start mb-4 bg-transparent p-0 h-auto overflow-x-auto scrollbar-hidden flex-nowrap">
+                <TabsTrigger value="all" className="data-[state=active]:bg-primary/10">Alle</TabsTrigger>
+                <TabsTrigger value="work" className="data-[state=active]:bg-primary/10">Jobb</TabsTrigger>
+                <TabsTrigger value="creativity" className="data-[state=active]:bg-primary/10">Kreativitet</TabsTrigger>
+                <TabsTrigger value="learning" className="data-[state=active]:bg-primary/10">Læring</TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="all" className="mt-0">
+                <div className="flex flex-wrap gap-3 w-full overflow-hidden">
+                  {categorizedPrompts.all.map((prompt) => (
+                    <PromptCard
+                      key={prompt.id}
+                      text={prompt.text}
+                      icon={prompt.icon as any}
+                      variant={isMobile ? "compact" : "default"}
+                      onClick={() => handlePromptSelect(prompt.text)}
+                      className="w-auto"
+                    />
+                  ))}
+                </div>
+              </TabsContent>
+              
+              <TabsContent value="work" className="mt-0">
+                <div className="flex flex-wrap gap-3 w-full">
+                  {categorizedPrompts.work.map((prompt) => (
+                    <PromptCard
+                      key={prompt.id}
+                      text={prompt.text}
+                      icon={prompt.icon as any}
+                      variant={isMobile ? "compact" : "default"}
+                      onClick={() => handlePromptSelect(prompt.text)}
+                      className="w-auto"
+                    />
+                  ))}
+                </div>
+              </TabsContent>
+              
+              <TabsContent value="creativity" className="mt-0">
+                <div className="flex flex-wrap gap-3 w-full">
+                  {categorizedPrompts.creativity.map((prompt) => (
+                    <PromptCard
+                      key={prompt.id}
+                      text={prompt.text}
+                      icon={prompt.icon as any}
+                      variant={isMobile ? "compact" : "default"}
+                      onClick={() => handlePromptSelect(prompt.text)}
+                      className="w-auto"
+                    />
+                  ))}
+                </div>
+              </TabsContent>
+              
+              <TabsContent value="learning" className="mt-0">
+                <div className="flex flex-wrap gap-3 w-full">
+                  {categorizedPrompts.learning.map((prompt) => (
+                    <PromptCard
+                      key={prompt.id}
+                      text={prompt.text}
+                      icon={prompt.icon as any}
+                      variant={isMobile ? "compact" : "default"}
+                      onClick={() => handlePromptSelect(prompt.text)}
+                      className="w-auto"
+                    />
+                  ))}
+                </div>
+              </TabsContent>
+            </Tabs>
+          </div>
+        )}
+      </div>
     </PageContainer>
   );
 };
