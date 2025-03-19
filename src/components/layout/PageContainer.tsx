@@ -68,7 +68,7 @@ export const PageContainer: React.FC<PageContainerProps> = ({
         ${isMobile ? 'fixed inset-0 z-40' : ''}
         ${(isMobile && !isSidebarOpen) ? 'translate-x-[-100%]' : 'translate-x-0'}
         transition-transform duration-300 ease-in-out
-        h-full
+        h-full pointer-events-auto
       `}>
         {isSidebarOpen && <Sidebar onToggle={toggleSidebar} />}
       </div>

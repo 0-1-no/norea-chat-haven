@@ -41,7 +41,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onToggle }) => {
       </div>
       
       {/* Fixed footer at bottom of sidebar */}
-      <div className="mt-auto">
+      <div className="mt-auto relative z-20">
         <SidebarTestFooter />
       </div>
     </div>
