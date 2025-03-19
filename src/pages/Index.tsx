@@ -80,20 +80,22 @@ const Index = () => {
   const renderBasicPrompts = () => {
     if (isMobile) {
       return (
-        <Carousel className="w-full">
-          <CarouselContent>
-            {basicPrompts.map((prompt) => (
-              <CarouselItem key={prompt.id} className="basis-4/5 md:basis-1/3">
-                <PromptCard
-                  text={prompt.text}
-                  icon={prompt.icon as any}
-                  variant="compact"
-                  onClick={() => handlePromptSelect(prompt.text)}
-                />
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
+        <div className="w-full overflow-hidden">
+          <Carousel className="w-full">
+            <CarouselContent className="-ml-4">
+              {basicPrompts.map((prompt) => (
+                <CarouselItem key={prompt.id} className="pl-4 basis-4/5 md:basis-1/3">
+                  <PromptCard
+                    text={prompt.text}
+                    icon={prompt.icon as any}
+                    variant="compact"
+                    onClick={() => handlePromptSelect(prompt.text)}
+                  />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+        </div>
       );
     } else {
       return (
