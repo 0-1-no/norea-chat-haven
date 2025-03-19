@@ -8,6 +8,7 @@ import { SidebarSection } from './sidebar/SidebarSection';
 import { SidebarProfile } from './sidebar/SidebarProfile';
 import { SidebarNewChat } from './sidebar/SidebarNewChat';
 import { SidebarContent } from './sidebar/SidebarContent';
+import { SidebarTestFooter } from './sidebar/SidebarTestFooter';
 import { Link } from 'react-router-dom';
 
 type SidebarProps = {
@@ -38,6 +39,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onToggle }) => {
         <SidebarContent />
       </div>
       <div className="mt-auto">
+        <SidebarTestFooter />
         <SidebarProfile />
       </div>
     </div>

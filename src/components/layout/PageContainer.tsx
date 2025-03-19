@@ -54,11 +54,13 @@ export const PageContainer: React.FC<PageContainerProps> = ({
   return (
     // We need to apply the background color to the html/body element to ensure it covers the status bar area
     <div className="h-screen w-full flex overflow-hidden">
-      {/* Sidebar component - positioned as overlay on mobile */}
+      {/* Sidebar component with full height on mobile */}
       <div className={`
-        ${isMobile ? 'fixed inset-0 z-50 sidebar-container' : 'sidebar-container'}
+        sidebar-container
+        ${isMobile ? 'fixed inset-0 z-50' : ''}
         ${(isMobile && !isSidebarOpen) ? 'translate-x-[-100%]' : 'translate-x-0'}
         transition-transform duration-300 ease-in-out
+        h-full
       `}>
         {isSidebarOpen && <Sidebar onToggle={toggleSidebar} />}
       </div>
