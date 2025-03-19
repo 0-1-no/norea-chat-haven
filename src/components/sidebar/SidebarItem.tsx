@@ -40,7 +40,7 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({
         {icon && icon}
         {title}
       </span>
-      {date && <span className="text-xs text-muted-foreground whitespace-nowrap">{date}</span>}
+      {date && <span className="text-xs text-sidebar-foreground/70 whitespace-nowrap">{date}</span>}
     </div>
   );
 

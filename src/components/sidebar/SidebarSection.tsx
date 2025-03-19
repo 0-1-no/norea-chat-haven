@@ -20,15 +20,15 @@ export const SidebarSection: React.FC<SidebarSectionProps> = ({
   return (
     <div className="mb-2">
       <div 
-        className="flex items-center gap-2 px-3 py-2 cursor-pointer text-sm font-medium text-gray-700"
+        className="flex items-center gap-2 px-3 py-2 cursor-pointer text-sm font-medium text-sidebar-foreground"
         onClick={() => setIsOpen(!isOpen)}
       >
         {icon}
         <span>{title}</span>
         {isOpen ? (
-          <ChevronDown className="ml-auto w-4 h-4 text-gray-500" />
+          <ChevronDown className="ml-auto w-4 h-4 text-sidebar-foreground/70" />
         ) : (
-          <ChevronRight className="ml-auto w-4 h-4 text-gray-500" />
+          <ChevronRight className="ml-auto w-4 h-4 text-sidebar-foreground/70" />
         )}
       </div>
       {isOpen && (

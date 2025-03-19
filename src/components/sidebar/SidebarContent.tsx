@@ -17,7 +17,7 @@ export const SidebarContent: React.FC = () => {
   
   return (
     <div className="flex-1 overflow-y-auto scrollbar-hidden space-y-2 px-1">
-      <SidebarSection title="Rom" icon={<LayoutDashboard className="w-4 h-4 text-gray-500" />}>
+      <SidebarSection title="Rom" icon={<LayoutDashboard className="w-4 h-4 text-sidebar-foreground/70" />}>
         <SidebarItem 
           title="Alle rom" 
           to="/rooms"
@@ -36,7 +36,7 @@ export const SidebarContent: React.FC = () => {
         />
       </SidebarSection>
       
-      <SidebarSection title="Karakterer" icon={<UserCircle className="w-4 h-4 text-gray-500" />}>
+      <SidebarSection title="Karakterer" icon={<UserCircle className="w-4 h-4 text-sidebar-foreground/70" />}>
         <SidebarItem 
           title="Alle karakterer" 
           to="/characters"
@@ -47,7 +47,7 @@ export const SidebarContent: React.FC = () => {
         />
       </SidebarSection>
       
-      <SidebarSection title="Assistenter" icon={<Bot className="w-4 h-4 text-gray-500" />}>
+      <SidebarSection title="Assistenter" icon={<Bot className="w-4 h-4 text-sidebar-foreground/70" />}>
         <SidebarItem 
           title="Alle assistenter" 
           to="/assistants"
@@ -60,7 +60,7 @@ export const SidebarContent: React.FC = () => {
       
       <SidebarSection 
         title="Samtaler" 
-        icon={<MessageCircle className="w-4 h-4 text-gray-500" />}
+        icon={<MessageCircle className="w-4 h-4 text-sidebar-foreground/70" />}
         defaultOpen={true}
       >
         <div className="mt-2 px-3 mb-3">
@@ -74,7 +74,7 @@ export const SidebarContent: React.FC = () => {
 
         <div className="space-y-4">
           <div className="space-y-1">
-            <div className="px-3 py-1 text-xs font-medium text-gray-500">I dag</div>
+            <div className="px-3 py-1 text-xs font-medium text-sidebar-foreground/70">I dag</div>
             <ChatItem title="Enkel chat-demonstrasjon" to="/chat-demo" />
             <ChatItem title="Minne-demonstrasjon" to="/memory-chat" />
             <ChatItem title="Vær-demonstrasjon" to="/weather-chat" />
@@ -82,21 +82,21 @@ export const SidebarContent: React.FC = () => {
           </div>
           
           <div className="space-y-1">
-            <div className="px-3 py-1 text-xs font-medium text-gray-500">Siste 7 dager</div>
+            <div className="px-3 py-1 text-xs font-medium text-sidebar-foreground/70">Siste 7 dager</div>
             <ChatItem title="Hva er linting" to="/chat-demo" />
             <ChatItem title="AI Design System" to="/chat-demo" />
             <ChatItem title="Skismøring og vannkvalitet" to="/chat-demo" />
           </div>
           
           <div className="space-y-1">
-            <div className="px-3 py-1 text-xs font-medium text-gray-500">Eldre</div>
+            <div className="px-3 py-1 text-xs font-medium text-sidebar-foreground/70">Eldre</div>
             <ChatItem title="Hva er GraphQL" to="/chat-demo" />
             <ChatItem title="Face ID iOS API" to="/chat-demo" />
           </div>
         </div>
       </SidebarSection>
       
-      <SidebarSection title="Design System" icon={<Layers className="w-4 h-4 text-gray-500" />}>
+      <SidebarSection title="Design System" icon={<Layers className="w-4 h-4 text-sidebar-foreground/70" />}>
         <SidebarItem 
           title="Komponentbibliotek"
           to="/components" 
