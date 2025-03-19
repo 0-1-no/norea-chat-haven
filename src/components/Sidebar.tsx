@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { SidebarItem } from './sidebar/SidebarItem';
 import { SidebarSection } from './sidebar/SidebarSection';
-import { SidebarProfile } from './sidebar/SidebarProfile';
 import { SidebarNewChat } from './sidebar/SidebarNewChat';
 import { SidebarContent } from './sidebar/SidebarContent';
 import { SidebarTestFooter } from './sidebar/SidebarTestFooter';
@@ -40,7 +39,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ onToggle }) => {
       </div>
       <div className="mt-auto">
         <SidebarTestFooter />
-        <SidebarProfile />
       </div>
     </div>
   );
