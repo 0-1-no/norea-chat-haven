@@ -33,7 +33,7 @@ export const PromptCard: React.FC<PromptCardProps> = ({
   return (
     <div 
       className={cn(
-        "bg-surface border border-surface-border rounded-lg p-4 flex items-center gap-3 cursor-pointer",
+        "bg-surface border border-surface-border rounded-lg p-4 flex items-center gap-3 cursor-pointer inline-block",
         "hover:border-primary/30 hover:shadow-surface-sm transition-all duration-200",
         "animate-slide-up",
         className
@@ -43,7 +43,7 @@ export const PromptCard: React.FC<PromptCardProps> = ({
       <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center flex-shrink-0">
         {getIcon()}
       </div>
-      <p className="text-sm text-surface-foreground flex-1">{text}</p>
+      <p className="text-sm text-surface-foreground">{text}</p>
     </div>
   );
 };

@@ -7,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { useIsMobile } from '@/hooks/use-mobile';
+import { NoreaOrb } from '@/components/brand/NoreaOrb';
 
 const Index = () => {
   const [showMorePrompts, setShowMorePrompts] = useState(false);
@@ -84,13 +85,13 @@ const Index = () => {
           <Carousel className="w-full">
             <CarouselContent className="-ml-2 flex-nowrap">
               {basicPrompts.map((prompt) => (
-                <CarouselItem key={prompt.id} className="pl-2 basis-3/4 max-w-[75%]">
+                <CarouselItem key={prompt.id} className="pl-2 basis-auto max-w-fit">
                   <PromptCard
                     text={prompt.text}
                     icon={prompt.icon as any}
                     variant="compact"
                     onClick={() => handlePromptSelect(prompt.text)}
-                    className="h-full"
+                    className="h-full w-auto"
                   />
                 </CarouselItem>
               ))}
@@ -107,6 +108,7 @@ const Index = () => {
               text={prompt.text}
               icon={prompt.icon as any}
               onClick={() => handlePromptSelect(prompt.text)}
+              className="w-auto"
             />
           ))}
         </div>
@@ -117,6 +119,9 @@ const Index = () => {
   return (
     <PageContainer title="Hjem" showBackButton={false}>
       <div className="flex flex-col items-center justify-center w-full max-w-3xl mx-auto px-0 overflow-hidden">
+        <div className="mb-6">
+          <NoreaOrb size="medium" />
+        </div>
         <h1 className="text-3xl font-bold text-center mb-6">Hva kan jeg hjelpe med?</h1>
         
         {/* Chat interface */}
@@ -170,6 +175,7 @@ const Index = () => {
                       icon={prompt.icon as any}
                       variant={isMobile ? "compact" : "default"}
                       onClick={() => handlePromptSelect(prompt.text)}
+                      className="w-auto"
                     />
                   ))}
                 </div>
@@ -184,6 +190,7 @@ const Index = () => {
                       icon={prompt.icon as any}
                       variant={isMobile ? "compact" : "default"}
                       onClick={() => handlePromptSelect(prompt.text)}
+                      className="w-auto"
                     />
                   ))}
                 </div>
@@ -198,6 +205,7 @@ const Index = () => {
                       icon={prompt.icon as any}
                       variant={isMobile ? "compact" : "default"}
                       onClick={() => handlePromptSelect(prompt.text)}
+                      className="w-auto"
                     />
                   ))}
                 </div>
@@ -212,6 +220,7 @@ const Index = () => {
                       icon={prompt.icon as any}
                       variant={isMobile ? "compact" : "default"}
                       onClick={() => handlePromptSelect(prompt.text)}
+                      className="w-auto"
                     />
                   ))}
                 </div>
