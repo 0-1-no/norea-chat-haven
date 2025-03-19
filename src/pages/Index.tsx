@@ -116,7 +116,7 @@ const Index = () => {
 
   return (
     <PageContainer title="Hjem" showBackButton={false}>
-      <div className="flex flex-col items-center justify-center h-full max-w-3xl mx-auto px-0 w-full overflow-hidden">
+      <div className="flex flex-col items-center justify-center w-full max-w-3xl mx-auto px-0 overflow-hidden">
         <h1 className="text-3xl font-bold text-center mb-6">Hva kan jeg hjelpe med?</h1>
         
         {/* Chat interface */}

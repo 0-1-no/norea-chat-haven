@@ -58,14 +58,14 @@ export const PageContainer: React.FC<PageContainerProps> = ({
           />
           
           {/* Content Area - container to limit content width to 1400px with padding */}
-          <div className="flex-1 overflow-y-auto overflow-x-hidden flex justify-center">
-            <div className="w-full max-w-canvas flex flex-col content-area overflow-x-hidden px-3 sm:px-6 md:px-8 lg:px-12 py-6 pb-12 md:py-12">
+          <div className="flex-1 overflow-y-auto overflow-x-hidden flex flex-col justify-center">
+            <div className="w-full max-w-canvas mx-auto flex flex-col items-center flex-grow content-area overflow-x-hidden px-3 sm:px-6 md:px-8 lg:px-12 py-6 pb-12 md:py-12">
               {description && (
                 <div className="mb-4 w-full overflow-hidden">
                   <p className="text-muted-foreground">{description}</p>
                 </div>
               )}
-              <div className="w-full overflow-hidden">
+              <div className="w-full overflow-hidden flex flex-col flex-grow items-center justify-center">
                 {children}
               </div>
             </div>
