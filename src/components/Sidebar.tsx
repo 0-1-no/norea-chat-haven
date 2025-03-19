@@ -18,7 +18,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onToggle }) => {
   const isMobile = useIsMobile();
 
   return (
-    <div className="h-screen w-60 bg-sidebar border-r border-sidebar-border flex flex-col pt-4 animate-fade-in">
+    <div className="h-screen w-60 bg-sidebar border-r border-sidebar-border flex flex-col pt-4 relative animate-fade-in">
       <div className="px-4 mb-4 flex justify-between items-center">
         <Link to="/">
           <h1 className="text-xl font-semibold text-sidebar-foreground hover:text-sidebar-accent-foreground transition-colors">Norea</h1>
@@ -39,6 +39,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ onToggle }) => {
       <div className="flex-1 overflow-y-auto">
         <SidebarContent />
       </div>
+      
+      {/* Fixed footer at bottom of sidebar */}
       <div className="mt-auto">
         <SidebarTestFooter />
       </div>

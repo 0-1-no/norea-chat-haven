@@ -53,19 +53,19 @@ export const PageContainer: React.FC<PageContainerProps> = ({
 
   return (
     <div className="h-screen w-full flex overflow-hidden">
-      {/* Overlay - rendered at the root level outside the sidebar container */}
+      {/* Mobile overlay rendered separately with higher z-index than content but lower than sidebar */}
       {isMobile && isSidebarOpen && (
         <div 
-          className="fixed inset-0 bg-black/30 z-40"
+          className="fixed inset-0 bg-black/30 z-30"
           onClick={() => setIsSidebarOpen(false)}
           aria-hidden="true"
         />
       )}
       
-      {/* Sidebar container - has higher z-index than the overlay */}
+      {/* Sidebar container with highest z-index */}
       <div className={`
         sidebar-container
-        ${isMobile ? 'fixed inset-0 z-50' : ''}
+        ${isMobile ? 'fixed inset-0 z-40' : ''}
         ${(isMobile && !isSidebarOpen) ? 'translate-x-[-100%]' : 'translate-x-0'}
         transition-transform duration-300 ease-in-out
         h-full
@@ -86,16 +86,17 @@ export const PageContainer: React.FC<PageContainerProps> = ({
           md:shadow-surface-sm 
           flex flex-col 
           overflow-hidden
+          z-10
         `}>
           <Header 
             title={title}
             showBackButton={showBackButton}
             sidebarOpen={isSidebarOpen}
             toggleSidebar={toggleSidebar}
-            className="sticky top-0 z-10 bg-canvas"
+            className="sticky top-0 z-20 bg-canvas"
           />
           
-          {/* Content Area - Making sure this is properly set up for vertical centering */}
+          {/* Content Area */}
           <div className="flex-1 overflow-y-auto overflow-x-hidden flex flex-col">
             <div className="w-full max-w-canvas mx-auto px-3 sm:px-6 md:px-8 lg:px-12 py-6 pb-12 md:py-12 flex-1 flex flex-col">
               {description && (
