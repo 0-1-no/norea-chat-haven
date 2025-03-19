@@ -35,3 +35,5 @@ export * from './ui/aspect-ratio';
 export * from './message/MemoryIndicator';
 export * from './ui/weather-card';
 export * from './brand/GlowingOrb';
+export * from './ui/carousel';
+export * from './ui/slider';

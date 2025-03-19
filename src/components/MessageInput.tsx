@@ -60,10 +60,10 @@ export const MessageInput: React.FC<MessageInputProps> = ({
 
   return (
     <div className={cn(
-      "border border-surface-border rounded-lg p-2 bg-surface animate-slide-up",
+      "w-full rounded-lg border border-surface-border bg-surface animate-slide-up",
       className
     )}>
-      <div className="flex items-start">
+      <div className="flex items-start p-2">
         <textarea
           ref={textareaRef}
           value={message}
@@ -71,7 +71,7 @@ export const MessageInput: React.FC<MessageInputProps> = ({
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
           rows={1}
-          className="flex-1 px-3 py-2 resize-none outline-none text-sm placeholder:text-muted-foreground"
+          className="flex-1 px-3 py-2 resize-none outline-none text-sm placeholder:text-muted-foreground bg-transparent"
           style={{ 
             minHeight: '44px', 
             maxHeight: `${maxHeight}px`,
@@ -80,7 +80,7 @@ export const MessageInput: React.FC<MessageInputProps> = ({
         />
       </div>
       
-      <div className="flex items-center justify-between mt-1 px-2">
+      <div className="flex items-center justify-between px-4 pb-2">
         <ModelSelector />
         
         <div className="flex items-center gap-3">

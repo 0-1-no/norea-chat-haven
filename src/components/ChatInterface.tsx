@@ -22,10 +22,11 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
   };
   
   return (
-    <div className={cn("flex flex-col relative", className)}>
-      <div className="w-full">
-        <MessageInput onSendMessage={handleSendMessage} />
-      </div>
+    <div className={cn("flex flex-col relative w-full", className)}>
+      <MessageInput 
+        onSendMessage={handleSendMessage} 
+        placeholder="Ask whatever you want..."
+      />
     </div>
   );
 };

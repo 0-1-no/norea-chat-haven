@@ -5,13 +5,15 @@ import { ChatInterface } from '@/components/ChatInterface';
 import { PromptCard } from '@/components/ui/prompt-card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ChevronDown, ChevronUp } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const Index = () => {
   const [showMorePrompts, setShowMorePrompts] = useState(false);
   const [activeCategory, setActiveCategory] = useState("all");
+  const isMobile = useIsMobile();
 
-  // Basic prompts that always show in a row
+  // Basic prompts that always show in a row or carousel
   const basicPrompts = [
     {
       id: '1',
@@ -27,6 +29,11 @@ const Index = () => {
       id: '3',
       text: "Lag en treningsplan",
       icon: "settings"
+    },
+    {
+      id: '4',
+      text: "Hjelp meg å skrive en e-post",
+      icon: "email"
     }
   ];
 
@@ -69,21 +76,28 @@ const Index = () => {
     // The ChatInterface component will handle the message when it receives it
   };
 
-  return (
-    <PageContainer title="Hjem" showBackButton={false}>
-      <div className="flex flex-col items-center justify-center h-full max-w-3xl mx-auto px-4">
-        <h1 className="text-3xl font-bold text-center mb-6">Hva kan jeg hjelpe med?</h1>
-        
-        {/* Chat interface - moved between title and prompts */}
-        <div className="w-full mb-6">
-          <ChatInterface 
-            userName="John"
-            className="flex-1"
-          />
-        </div>
-        
-        {/* Basic prompt cards in a row */}
-        <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
+  // Render desktop grid or mobile carousel based on screen size
+  const renderBasicPrompts = () => {
+    if (isMobile) {
+      return (
+        <Carousel className="w-full">
+          <CarouselContent>
+            {basicPrompts.map((prompt) => (
+              <CarouselItem key={prompt.id} className="basis-4/5 md:basis-1/3">
+                <PromptCard
+                  text={prompt.text}
+                  icon={prompt.icon as any}
+                  variant="compact"
+                  onClick={() => handlePromptSelect(prompt.text)}
+                />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
+      );
+    } else {
+      return (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {basicPrompts.map((prompt) => (
             <PromptCard
               key={prompt.id}
@@ -92,6 +106,27 @@ const Index = () => {
               onClick={() => handlePromptSelect(prompt.text)}
             />
           ))}
+        </div>
+      );
+    }
+  };
+
+  return (
+    <PageContainer title="Hjem" showBackButton={false}>
+      <div className="flex flex-col items-center justify-center h-full max-w-3xl mx-auto">
+        <h1 className="text-3xl font-bold text-center mb-6">Hva kan jeg hjelpe med?</h1>
+        
+        {/* Chat interface */}
+        <div className="w-full mb-6">
+          <ChatInterface 
+            userName="John"
+            className="flex-1"
+          />
+        </div>
+        
+        {/* Basic prompt cards in a row or carousel */}
+        <div className="w-full mb-4">
+          {renderBasicPrompts()}
         </div>
         
         {/* Show more/less button */}
@@ -130,6 +165,7 @@ const Index = () => {
                       key={prompt.id}
                       text={prompt.text}
                       icon={prompt.icon as any}
+                      variant={isMobile ? "compact" : "default"}
                       onClick={() => handlePromptSelect(prompt.text)}
                     />
                   ))}
@@ -143,6 +179,7 @@ const Index = () => {
                       key={prompt.id}
                       text={prompt.text}
                       icon={prompt.icon as any}
+                      variant={isMobile ? "compact" : "default"}
                       onClick={() => handlePromptSelect(prompt.text)}
                     />
                   ))}
@@ -156,6 +193,7 @@ const Index = () => {
                       key={prompt.id}
                       text={prompt.text}
                       icon={prompt.icon as any}
+                      variant={isMobile ? "compact" : "default"}
                       onClick={() => handlePromptSelect(prompt.text)}
                     />
                   ))}
@@ -169,6 +207,7 @@ const Index = () => {
                       key={prompt.id}
                       text={prompt.text}
                       icon={prompt.icon as any}
+                      variant={isMobile ? "compact" : "default"}
                       onClick={() => handlePromptSelect(prompt.text)}
                     />
                   ))}
