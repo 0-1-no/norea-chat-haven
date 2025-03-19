@@ -56,8 +56,9 @@ export const PageContainer: React.FC<PageContainerProps> = ({
     <div className="h-screen w-full flex overflow-hidden">
       {/* Sidebar component - positioned as overlay on mobile */}
       <div className={`
-        ${isMobile ? 'fixed inset-y-0 left-0 z-50 transition-transform duration-300 ease-in-out sidebar-container' : 'sidebar-container'}
-        ${(isMobile && !isSidebarOpen) ? '-translate-x-full' : 'translate-x-0'}
+        ${isMobile ? 'fixed inset-0 z-50 sidebar-container' : 'sidebar-container'}
+        ${(isMobile && !isSidebarOpen) ? 'translate-x-[-100%]' : 'translate-x-0'}
+        transition-transform duration-300 ease-in-out
       `}>
         {isSidebarOpen && <Sidebar onToggle={toggleSidebar} />}
       </div>
@@ -81,6 +82,7 @@ export const PageContainer: React.FC<PageContainerProps> = ({
             showBackButton={showBackButton}
             sidebarOpen={isSidebarOpen}
             toggleSidebar={toggleSidebar}
+            className="sticky top-0 z-10 bg-canvas"
           />
           
           {/* Content Area - Making sure this is properly set up for vertical centering */}
