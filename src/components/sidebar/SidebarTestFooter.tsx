@@ -14,7 +14,7 @@ export const SidebarTestFooter: React.FC = () => {
   const { setTheme, theme } = useTheme();
   
   return (
-    <div className="bg-sidebar border-t border-sidebar-border p-3 text-sidebar-foreground z-10">
+    <div className="bg-sidebar border-t border-sidebar-border p-3 text-sidebar-foreground z-20">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <div className="flex items-center gap-3 cursor-pointer hover:bg-sidebar-accent p-2 rounded-lg transition-colors">

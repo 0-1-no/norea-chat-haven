@@ -15,6 +15,8 @@ type SidebarProps = {
 };
 
 export const Sidebar: React.FC<SidebarProps> = ({ onToggle }) => {
+  const isMobile = useIsMobile();
+
   return (
     <div className="h-screen w-60 bg-sidebar border-r border-sidebar-border flex flex-col pt-4 animate-fade-in">
       <div className="px-4 mb-4 flex justify-between items-center">
