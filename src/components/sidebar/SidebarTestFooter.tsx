@@ -8,6 +8,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuPortal,
 } from '@/components/ui/dropdown-menu';
 import { useIsMobile } from '@/hooks/use-mobile';
 
@@ -40,59 +41,63 @@ export const SidebarTestFooter: React.FC = () => {
             </button>
           </div>
         </DropdownMenuTrigger>
-        <DropdownMenuContent 
-          align="start" 
-          className="w-56"
-          sideOffset={isMobile ? 0 : 6}
-          side={isMobile ? "top" : "right"}
-          alignOffset={isMobile ? -60 : 0}
-          forceMount
-        >
-          <DropdownMenuItem className="cursor-pointer flex items-center gap-2" asChild>
-            <Link to="/profile">
-              <User className="h-4 w-4" />
-              <span>Profil</span>
-            </Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem className="cursor-pointer flex items-center gap-2" asChild>
-            <Link to="/settings">
-              <Settings className="h-4 w-4" />
-              <span>Innstillinger</span>
-            </Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem className="cursor-pointer flex items-center gap-2" asChild>
-            <Link to="/personalization">
-              <Wand className="h-4 w-4" />
-              <span>Personalisering</span>
-            </Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem className="cursor-pointer flex items-center gap-2" asChild>
-            <Link to="/memory">
-              <Brain className="h-4 w-4" />
-              <span>Hukommelse</span>
-            </Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem 
-            className="cursor-pointer flex items-center gap-2"
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+        
+        {/* Use DropdownMenuPortal to ensure the menu renders at the root of the document */}
+        <DropdownMenuPortal>
+          <DropdownMenuContent 
+            align={isMobile ? "center" : "start"}
+            className="w-56 z-[100]" 
+            sideOffset={isMobile ? 0 : 6}
+            side={isMobile ? "top" : "right"}
+            alignOffset={isMobile ? -60 : 0}
+            forceMount
           >
-            {theme === "dark" ? (
-              <>
-                <Sun className="h-4 w-4" />
-                <span>Dagmodus ☀️</span>
-              </>
-            ) : (
-              <>
-                <Moon className="h-4 w-4" />
-                <span>Nattmodus ☾</span>
-              </>
-            )}
-          </DropdownMenuItem>
-          <DropdownMenuItem className="cursor-pointer flex items-center gap-2">
-            <LogOut className="h-4 w-4" />
-            <span>Logg ut</span>
-          </DropdownMenuItem>
-        </DropdownMenuContent>
+            <DropdownMenuItem className="cursor-pointer flex items-center gap-2" asChild>
+              <Link to="/profile">
+                <User className="h-4 w-4" />
+                <span>Profil</span>
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer flex items-center gap-2" asChild>
+              <Link to="/settings">
+                <Settings className="h-4 w-4" />
+                <span>Innstillinger</span>
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer flex items-center gap-2" asChild>
+              <Link to="/personalization">
+                <Wand className="h-4 w-4" />
+                <span>Personalisering</span>
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer flex items-center gap-2" asChild>
+              <Link to="/memory">
+                <Brain className="h-4 w-4" />
+                <span>Hukommelse</span>
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem 
+              className="cursor-pointer flex items-center gap-2"
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            >
+              {theme === "dark" ? (
+                <>
+                  <Sun className="h-4 w-4" />
+                  <span>Dagmodus ☀️</span>
+                </>
+              ) : (
+                <>
+                  <Moon className="h-4 w-4" />
+                  <span>Nattmodus ☾</span>
+                </>
+              )}
+            </DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer flex items-center gap-2">
+              <LogOut className="h-4 w-4" />
+              <span>Logg ut</span>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenuPortal>
       </DropdownMenu>
     </div>
   );

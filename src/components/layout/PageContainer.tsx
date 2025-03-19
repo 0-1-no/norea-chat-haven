@@ -53,24 +53,25 @@ export const PageContainer: React.FC<PageContainerProps> = ({
 
   return (
     <div className="h-screen w-full flex overflow-hidden">
-      {/* Sidebar component with full height on mobile */}
+      {/* Overlay - rendered at the root level outside the sidebar container */}
+      {isMobile && isSidebarOpen && (
+        <div 
+          className="fixed inset-0 bg-black/30 z-40"
+          onClick={() => setIsSidebarOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+      
+      {/* Sidebar container - has higher z-index than the overlay */}
       <div className={`
         sidebar-container
-        ${isMobile ? 'fixed inset-0 z-40' : ''}
+        ${isMobile ? 'fixed inset-0 z-50' : ''}
         ${(isMobile && !isSidebarOpen) ? 'translate-x-[-100%]' : 'translate-x-0'}
         transition-transform duration-300 ease-in-out
         h-full
       `}>
         {isSidebarOpen && <Sidebar onToggle={toggleSidebar} />}
       </div>
-      
-      {/* Create an overlay when sidebar is open on mobile */}
-      {isMobile && isSidebarOpen && (
-        <div 
-          className="fixed inset-0 bg-black/30 z-30"
-          onClick={() => setIsSidebarOpen(false)}
-        />
-      )}
       
       {/* Canvas - where main content is rendered with padding on desktop */}
       <div 
