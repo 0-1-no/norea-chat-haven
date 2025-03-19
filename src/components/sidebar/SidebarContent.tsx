@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Folders, Users, Layers, MessageCircle, LayoutDashboard, Sparkles, UserCircle, CloudRain, Archive, Share, Edit, Trash, Bot } from 'lucide-react';
 import { SidebarSection } from './SidebarSection';
@@ -11,6 +10,14 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import {
+  SidebarGroup,
+  SidebarGroupLabel,
+  SidebarGroupContent,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+} from '@/components/ui/sidebar';
 
 export const SidebarContent: React.FC = () => {
   const [activeChat, setActiveChat] = useState<string | null>("Enkel chat-demonstrasjon");
