@@ -23,7 +23,7 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   return (
     <div className={cn(
-      "h-14 border-b border-surface-border px-4 flex items-center justify-between animate-fade-in",
+      "h-14 border-b border-surface-border px-4 flex items-center justify-between animate-fade-in sticky top-0 z-10 bg-canvas",
       className
     )}>
       <div className="w-8">
