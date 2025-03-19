@@ -9,12 +9,14 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 export const SidebarTestFooter: React.FC = () => {
   const { setTheme, theme } = useTheme();
+  const isMobile = useIsMobile();
   
   return (
-    <div className="bg-sidebar border-t border-sidebar-border p-3 text-sidebar-foreground z-20">
+    <div className="bg-sidebar border-t border-sidebar-border p-3 text-sidebar-foreground relative">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <div className="flex items-center gap-3 cursor-pointer hover:bg-sidebar-accent p-2 rounded-lg transition-colors">
@@ -38,7 +40,14 @@ export const SidebarTestFooter: React.FC = () => {
             </button>
           </div>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="start" className="w-56 z-50">
+        <DropdownMenuContent 
+          align="start" 
+          className="w-56"
+          sideOffset={isMobile ? 0 : 6}
+          side={isMobile ? "top" : "right"}
+          alignOffset={isMobile ? -60 : 0}
+          forceMount
+        >
           <DropdownMenuItem className="cursor-pointer flex items-center gap-2" asChild>
             <Link to="/profile">
               <User className="h-4 w-4" />

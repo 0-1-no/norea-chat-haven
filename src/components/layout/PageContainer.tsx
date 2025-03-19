@@ -64,6 +64,14 @@ export const PageContainer: React.FC<PageContainerProps> = ({
         {isSidebarOpen && <Sidebar onToggle={toggleSidebar} />}
       </div>
       
+      {/* Create an overlay when sidebar is open on mobile */}
+      {isMobile && isSidebarOpen && (
+        <div 
+          className="fixed inset-0 bg-black/30 z-30"
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
+      
       {/* Canvas - where main content is rendered with padding on desktop */}
       <div 
         ref={contentRef}
