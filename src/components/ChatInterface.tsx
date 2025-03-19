@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import { RefreshCw } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { PromptCard } from '@/components/ui/prompt-card';
 import { MessageInput } from './MessageInput';
+import { PromptCard } from './PromptCard';
 
 type ChatInterfaceProps = {
   userName?: string;
@@ -22,7 +22,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
   };
   
   return (
-    <div className={cn("flex flex-col relative w-full max-w-full overflow-hidden flex-grow justify-center items-center", className)}>
+    <div className={cn("flex flex-col relative w-full max-w-full flex-grow", className)}>
       <MessageInput 
         onSendMessage={handleSendMessage} 
         placeholder="Ask whatever you want..."
