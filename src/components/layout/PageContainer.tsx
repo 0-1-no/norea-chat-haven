@@ -21,6 +21,15 @@ interface PageContainerProps {
   description?: string;
 }
 
+/**
+ * PageContainer - The main layout container for the application
+ * 
+ * Architecture layers:
+ * 1. Backdrop (Root) - The outermost background layer
+ * 2. Sidebar - Navigation sidebar that can be toggled
+ * 3. Canvas - The main content frame
+ * 4. Content Area - The innermost container with proper padding and constraints
+ */
 export const PageContainer: React.FC<PageContainerProps> = ({ 
   children, 
   title,
@@ -31,16 +40,17 @@ export const PageContainer: React.FC<PageContainerProps> = ({
   const contentRef = useRef<HTMLDivElement>(null);
 
   return (
+    // Layer 1: SidebarProvider (wraps everything for state management)
     <SidebarProvider defaultOpen={!isMobile}>
-      <div className="h-screen w-full flex overflow-hidden">
-        {/* Sidebar using shadcn components */}
-        <Sidebar className="z-40">
+      {/* Global layout container - serves as backdrop */}
+      <div className="h-screen w-full flex overflow-hidden backdrop-layer">
+        {/* Layer 2: Sidebar - navigation container */}
+        <Sidebar className="z-40 sidebar-layer">
           <SidebarHeader className="px-2 py-2">
             <h1 className="text-xl font-semibold text-sidebar-foreground px-2">Norea</h1>
           </SidebarHeader>
           
           <SidebarContent>
-            {/* Import your custom sidebar content */}
             <div className="flex-1 overflow-y-auto">
               <div className="px-2 mb-4 w-full">
                 {/* New Chat button */}
@@ -60,10 +70,10 @@ export const PageContainer: React.FC<PageContainerProps> = ({
           </SidebarFooter>
         </Sidebar>
         
-        {/* Canvas - where main content is rendered with padding on desktop */}
+        {/* Layer 3: Canvas - main content frame */}
         <div 
           ref={contentRef}
-          className="flex-1 p-0 sm:p-2 flex items-center justify-center overflow-hidden"
+          className="flex-1 p-0 sm:p-2 flex items-center justify-center overflow-hidden canvas-layer"
         >
           <div className={`
             w-full h-full 
@@ -83,15 +93,16 @@ export const PageContainer: React.FC<PageContainerProps> = ({
               <SidebarTrigger />
             </Header>
             
-            {/* Content Area */}
-            <div className="flex-1 overflow-y-auto overflow-x-hidden flex flex-col">
+            {/* Layer 4: Content Area - inner container with proper constraints */}
+            <div className="flex-1 overflow-y-auto overflow-x-hidden flex flex-col content-area-layer">
               <div className="w-full max-w-canvas mx-auto px-3 sm:px-6 md:px-8 lg:px-12 py-6 pb-12 md:py-12 flex-1 flex flex-col">
                 {description && (
                   <div className="mb-4 w-full">
                     <p className="text-muted-foreground">{description}</p>
                   </div>
                 )}
-                <div className="w-full flex-1 flex flex-col">
+                {/* Layer 5: Page Content - where subpage content is rendered */}
+                <div className="w-full flex-1 flex flex-col page-content-layer">
                   {children}
                 </div>
               </div>
