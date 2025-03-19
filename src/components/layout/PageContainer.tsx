@@ -64,19 +64,17 @@ export const PageContainer: React.FC<PageContainerProps> = ({
       )}
       
       {/* Sidebar container with highest z-index */}
-      <div className={`
-        sidebar-container
-        ${isMobile ? 'fixed inset-0 z-50' : ''}
-        ${(isMobile && !isSidebarOpen) ? 'translate-x-[-100%]' : 'translate-x-0'}
-        transition-transform duration-300 ease-in-out
-        h-full pointer-events-auto
-      `}>
-        {isSidebarOpen && (
-          <SidebarProvider defaultOpen={true}>
-            <Sidebar onToggle={toggleSidebar} />
-          </SidebarProvider>
-        )}
-      </div>
+      <SidebarProvider defaultOpen={true}>
+        <div className={`
+          sidebar-container
+          ${isMobile ? 'fixed inset-0 z-50' : ''}
+          ${(isMobile && !isSidebarOpen) ? 'translate-x-[-100%]' : 'translate-x-0'}
+          transition-transform duration-300 ease-in-out
+          h-full pointer-events-auto
+        `}>
+          {isSidebarOpen && <Sidebar onToggle={toggleSidebar} />}
+        </div>
+      </SidebarProvider>
       
       {/* Canvas - where main content is rendered with padding on desktop */}
       <div 
