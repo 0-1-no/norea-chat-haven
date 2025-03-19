@@ -73,7 +73,7 @@ export const PromptCard: React.FC<PromptCardProps> = ({
     >
       {!hideIcon && iconPosition === 'left' && renderIconContainer()}
       
-      <div className="overflow-hidden flex-1 min-w-0">
+      <div className="overflow-hidden flex-1">
         {title && <h4 className={cn("font-medium mb-1", variant === 'compact' ? "text-xs" : "text-sm")}>{title}</h4>}
         <p className={cn("truncate", variant === 'compact' ? "text-xs" : "text-sm")}>{text}</p>
       </div>
