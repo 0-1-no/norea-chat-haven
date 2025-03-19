@@ -13,7 +13,7 @@ type MessageInputProps = {
 export const MessageInput: React.FC<MessageInputProps> = ({ 
   onSendMessage, 
   className,
-  placeholder = "Ask whatever you want..."
+  placeholder = "Spør om hva som helst..."
 }) => {
   const [message, setMessage] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);

@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Header } from '@/components/Header';
 import { Sidebar } from '@/components/Sidebar';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -19,6 +19,7 @@ export const PageContainer: React.FC<PageContainerProps> = ({
 }) => {
   const isMobile = useIsMobile();
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(!isMobile);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   // Update sidebar state when screen size changes
   React.useEffect(() => {
@@ -29,19 +30,43 @@ export const PageContainer: React.FC<PageContainerProps> = ({
     setIsSidebarOpen(!isSidebarOpen);
   };
 
+  // Handle clicks outside sidebar on mobile to close it
+  useEffect(() => {
+    if (!isMobile) return;
+
+    const handleClickOutside = (event: MouseEvent) => {
+      // Only run on mobile when sidebar is open
+      if (!isMobile || !isSidebarOpen) return;
+      
+      // Check if the click was inside the sidebar
+      const sidebarElement = document.querySelector('.sidebar-container');
+      if (sidebarElement && !sidebarElement.contains(event.target as Node)) {
+        setIsSidebarOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMobile, isSidebarOpen]);
+
   return (
     // We need to apply the background color to the html/body element to ensure it covers the status bar area
     <div className="h-screen w-full flex overflow-hidden">
       {/* Sidebar component - positioned as overlay on mobile */}
       <div className={`
-        ${isMobile ? 'fixed z-50 transition-transform duration-300 ease-in-out' : ''}
+        ${isMobile ? 'fixed z-50 transition-transform duration-300 ease-in-out sidebar-container' : 'sidebar-container'}
         ${(isMobile && !isSidebarOpen) ? '-translate-x-full' : 'translate-x-0'}
       `}>
         {isSidebarOpen && <Sidebar onToggle={toggleSidebar} />}
       </div>
       
       {/* Canvas - where main content is rendered with padding on desktop */}
-      <div className="flex-1 p-0 sm:p-2 flex items-center justify-center overflow-hidden">
+      <div 
+        ref={contentRef}
+        className="flex-1 p-0 sm:p-2 flex items-center justify-center overflow-hidden"
+      >
         <div className={`
           w-full h-full 
           bg-canvas 
