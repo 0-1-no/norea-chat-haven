@@ -201,15 +201,15 @@ const PromptCardDemo = () => {
               
               <div className="grid grid-cols-4 gap-4 font-mono text-sm mb-3">
                 <div>icon</div>
-                <div>&apos;chat&apos; | &apos;settings&apos; | &apos;document&apos; | &apos;email&apos; | &apos;image&apos;</div>
-                <div>&apos;chat&apos;</div>
+                <div>{`'chat' | 'settings' | 'document' | 'email' | 'image'`}</div>
+                <div>{`'chat'`}</div>
                 <div>The icon to display</div>
               </div>
               
               <div className="grid grid-cols-4 gap-4 font-mono text-sm mb-3">
                 <div>iconPosition</div>
-                <div>&apos;left&apos; | &apos;right&apos;</div>
-                <div>&apos;left&apos;</div>
+                <div>{`'left' | 'right'`}</div>
+                <div>{`'left'`}</div>
                 <div>Position of the icon in the card</div>
               </div>
               
@@ -222,8 +222,8 @@ const PromptCardDemo = () => {
               
               <div className="grid grid-cols-4 gap-4 font-mono text-sm mb-3">
                 <div>variant</div>
-                <div>&apos;default&apos; | &apos;brand&apos; | &apos;compact&apos;</div>
-                <div>&apos;default&apos;</div>
+                <div>{`'default' | 'brand' | 'compact'`}</div>
+                <div>{`'default'`}</div>
                 <div>Visual style of the card</div>
               </div>
               
@@ -237,7 +237,7 @@ const PromptCardDemo = () => {
               <div className="grid grid-cols-4 gap-4 font-mono text-sm mb-3">
                 <div>className</div>
                 <div>string</div>
-                <div>&apos;&apos;</div>
+                <div>{`''`}</div>
                 <div>Additional CSS classes</div>
               </div>
               
