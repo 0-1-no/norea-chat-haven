@@ -40,7 +40,7 @@ const TodoLayout: React.FC<TodoLayoutProps> = ({ children }) => {
 
   return (
     <PageContainer title="Todo Assistent">
-      <div className="container mx-auto px-4 py-4">
+      <div className="w-full">
         <div className="mb-8">
           <Tabs value={getActiveTab()} onValueChange={handleTabChange} className="w-full">
             <TabsList className="w-full grid grid-cols-4 h-12">

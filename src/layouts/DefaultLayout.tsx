@@ -15,9 +15,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
 }) => {
   return (
     <PageContainer title={title} description={description}>
-      <div className="min-h-screen">
-        {children}
-      </div>
+      {children}
     </PageContainer>
   );
 };
