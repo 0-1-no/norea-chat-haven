@@ -58,15 +58,15 @@ export const PageContainer: React.FC<PageContainerProps> = ({
             toggleSidebar={toggleSidebar}
           />
           
-          {/* Content Area - container to limit content width to 1400px with padding */}
-          <div className="flex-1 overflow-y-auto overflow-x-hidden">
-            <div className="w-full max-w-canvas mx-auto px-3 sm:px-6 md:px-8 lg:px-12 py-6 pb-12 md:py-12">
+          {/* Content Area - Making sure this is properly set up for vertical centering */}
+          <div className="flex-1 overflow-y-auto overflow-x-hidden flex flex-col">
+            <div className="w-full max-w-canvas mx-auto px-3 sm:px-6 md:px-8 lg:px-12 py-6 pb-12 md:py-12 flex-1 flex flex-col">
               {description && (
                 <div className="mb-4 w-full">
                   <p className="text-muted-foreground">{description}</p>
                 </div>
               )}
-              <div className="w-full">
+              <div className="w-full flex-1 flex flex-col">
                 {children}
               </div>
             </div>

@@ -80,24 +80,25 @@ const Index = () => {
 
   return (
     <PageContainer title="Hjem" showBackButton={false}>
-      {/* Use flex-1, h-full and pb-0 to ensure proper vertical centering without scrolling */}
-      <div className="flex flex-col items-center justify-center flex-1 h-full w-full max-w-3xl mx-auto px-0 pb-0">
-        <div className="mb-6">
-          <NoreaOrb size="medium" interactive={true} />
-        </div>
-        <h1 className="text-3xl font-bold text-center mb-6">Hva kan jeg hjelpe med?</h1>
-        
-        {/* Chat interface */}
-        <div className="w-full mb-6">
-          <ChatInterface 
-            userName="John"
-            className="flex-1"
-          />
-        </div>
-        
-        {/* Basic prompt cards in a row or carousel */}
-        <div className="w-full mb-4">
-          {renderBasicPrompts()}
+      <div className="flex flex-col items-center justify-center flex-1 h-full">
+        <div className="flex flex-col items-center justify-center flex-1 min-h-[500px] w-full max-w-3xl mx-auto space-y-6">
+          <div>
+            <NoreaOrb size="medium" interactive={true} />
+          </div>
+          <h1 className="text-3xl font-bold text-center">Hva kan jeg hjelpe med?</h1>
+          
+          {/* Chat interface */}
+          <div className="w-full">
+            <ChatInterface 
+              userName="John"
+              className="flex-1"
+            />
+          </div>
+          
+          {/* Basic prompt cards in a row or carousel */}
+          <div className="w-full">
+            {renderBasicPrompts()}
+          </div>
         </div>
       </div>
     </PageContainer>
