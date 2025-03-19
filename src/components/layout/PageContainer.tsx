@@ -61,11 +61,13 @@ export const PageContainer: React.FC<PageContainerProps> = ({
           <div className="flex-1 overflow-y-auto overflow-x-hidden flex justify-center">
             <div className="w-full max-w-canvas flex flex-col content-area overflow-x-hidden px-3 sm:px-6 md:px-8 lg:px-12 py-6 pb-12 md:py-12">
               {description && (
-                <div className="mb-4">
+                <div className="mb-4 w-full overflow-hidden">
                   <p className="text-muted-foreground">{description}</p>
                 </div>
               )}
-              {children}
+              <div className="w-full overflow-hidden">
+                {children}
+              </div>
             </div>
           </div>
         </div>

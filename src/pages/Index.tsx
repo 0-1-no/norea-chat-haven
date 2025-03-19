@@ -82,9 +82,9 @@ const Index = () => {
       return (
         <div className="w-full overflow-hidden">
           <Carousel className="w-full">
-            <CarouselContent className="-ml-2">
+            <CarouselContent className="-ml-2 flex-nowrap">
               {basicPrompts.map((prompt) => (
-                <CarouselItem key={prompt.id} className="pl-2 basis-4/5 max-w-[80%]">
+                <CarouselItem key={prompt.id} className="pl-2 basis-3/4 max-w-[75%]">
                   <PromptCard
                     text={prompt.text}
                     icon={prompt.icon as any}
@@ -100,7 +100,7 @@ const Index = () => {
       );
     } else {
       return (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 w-full overflow-hidden">
           {basicPrompts.map((prompt) => (
             <PromptCard
               key={prompt.id}
@@ -116,11 +116,11 @@ const Index = () => {
 
   return (
     <PageContainer title="Hjem" showBackButton={false}>
-      <div className="flex flex-col items-center justify-center h-full max-w-3xl mx-auto px-0">
+      <div className="flex flex-col items-center justify-center h-full max-w-3xl mx-auto px-0 w-full overflow-hidden">
         <h1 className="text-3xl font-bold text-center mb-6">Hva kan jeg hjelpe med?</h1>
         
         {/* Chat interface */}
-        <div className="w-full mb-6">
+        <div className="w-full mb-6 overflow-hidden">
           <ChatInterface 
             userName="John"
             className="flex-1"
@@ -154,7 +154,7 @@ const Index = () => {
         {showMorePrompts && (
           <div className="w-full mb-8 animate-fade-in overflow-hidden">
             <Tabs defaultValue="all" className="w-full" onValueChange={handleSelectCategory}>
-              <TabsList className="w-full justify-start mb-4 bg-transparent p-0 h-auto overflow-x-auto flex-nowrap">
+              <TabsList className="w-full justify-start mb-4 bg-transparent p-0 h-auto overflow-x-auto scrollbar-hidden flex-nowrap">
                 <TabsTrigger value="all" className="data-[state=active]:bg-primary/10">Alle</TabsTrigger>
                 <TabsTrigger value="work" className="data-[state=active]:bg-primary/10">Jobb</TabsTrigger>
                 <TabsTrigger value="creativity" className="data-[state=active]:bg-primary/10">Kreativitet</TabsTrigger>
@@ -162,7 +162,7 @@ const Index = () => {
               </TabsList>
               
               <TabsContent value="all" className="mt-0">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full overflow-hidden">
                   {categorizedPrompts.all.map((prompt) => (
                     <PromptCard
                       key={prompt.id}

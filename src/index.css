@@ -155,12 +155,12 @@
   }
 
   body {
-    @apply bg-backdrop text-backdrop-foreground;
+    @apply bg-backdrop text-backdrop-foreground overflow-x-hidden;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
   }
   
   html {
-    @apply scroll-smooth;
+    @apply scroll-smooth overflow-x-hidden;
   }
 }
 
@@ -189,6 +189,14 @@
   .interactive-element {
     @apply bg-interactive text-interactive-foreground hover:bg-interactive-hover transition-colors;
   }
+  
+  .no-horizontal-scroll {
+    @apply overflow-x-hidden max-w-full;
+  }
+  
+  .content-wrapper {
+    @apply w-full max-w-full overflow-hidden;
+  }
 }
 
 /* Sikre at dark mode-overgangene er smidige */
@@ -207,4 +215,3 @@ body {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
-
