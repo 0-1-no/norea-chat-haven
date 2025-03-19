@@ -13,6 +13,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { SidebarNewChat } from '@/components/sidebar/SidebarNewChat';
 import { SidebarContent as SidebarMainContent } from '@/components/sidebar/SidebarContent';
 import { SidebarTestFooter } from '@/components/sidebar/SidebarTestFooter';
+import { Link } from 'react-router-dom';
 
 interface PageContainerProps {
   children: React.ReactNode;
@@ -47,7 +48,9 @@ export const PageContainer: React.FC<PageContainerProps> = ({
         {/* Layer 2: Sidebar - navigation container */}
         <Sidebar className="z-40 sidebar-layer">
           <SidebarHeader className="px-2 py-2">
-            <h1 className="text-xl font-semibold text-sidebar-foreground px-2">Norea</h1>
+            <Link to="/" className="block">
+              <h1 className="text-xl font-semibold text-sidebar-foreground px-2">Norea</h1>
+            </Link>
           </SidebarHeader>
           
           <SidebarContent>

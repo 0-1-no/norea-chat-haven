@@ -1,4 +1,3 @@
-
 import React from 'react';
 import DefaultLayout from '@/layouts/DefaultLayout';
 import { UserProfileLayout } from '@/components/profile/UserProfileLayout';
@@ -85,7 +84,7 @@ const Personalization: React.FC = () => {
   return (
     <DefaultLayout>
       <UserProfileLayout>
-        <div className="max-w-4xl mx-auto">
+        <div>
           <div className="mb-6">
             <p className="text-muted-foreground">
               Her lagrer Norea AI personaliserte detaljer om deg for å gi en skreddersydd opplevelse. 

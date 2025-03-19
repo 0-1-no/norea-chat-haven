@@ -79,7 +79,7 @@ const Index = () => {
   };
 
   return (
-    <PageContainer title="Hjem" showBackButton={false}>
+    <PageContainer title="Norea AI" showBackButton={false}>
       <div className="flex flex-col items-center justify-center flex-1 h-full">
         <div className="flex flex-col items-center justify-center flex-1 min-h-[500px] w-full max-w-3xl mx-auto space-y-6">
           <div>

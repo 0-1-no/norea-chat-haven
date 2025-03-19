@@ -189,7 +189,7 @@ const MemoryChat = () => {
   return (
     <PageContainer title="Minne-demonstrasjon" showBackButton={true}>
       <div className="flex-1 overflow-hidden flex flex-col">
-        <div className="flex-1 overflow-y-auto p-6" ref={chatContainerRef}>
+        <div className="flex-1 overflow-y-auto" ref={chatContainerRef}>
           <div className="max-w-3xl mx-auto">
             {predefinedMessages.map((message) => (
               <div key={message.id} className="mb-6">

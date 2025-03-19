@@ -1,4 +1,3 @@
-
 import React from 'react';
 import DefaultLayout from '@/layouts/DefaultLayout';
 import { UserProfileLayout } from '@/components/profile/UserProfileLayout';
@@ -14,7 +13,7 @@ const Profile: React.FC = () => {
   return (
     <DefaultLayout>
       <UserProfileLayout>
-        <div className="space-y-6 max-w-4xl mx-auto">
+        <div className="space-y-6">
           <ProfileCover 
             coverImage="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=1500&auto=format&fit=crop" 
             profileImage="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=600&auto=format&fit=crop"

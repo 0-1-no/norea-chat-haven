@@ -140,7 +140,7 @@ Prøv gjerne å trykke på noen av de foreslåtte oppfølgingsspørsmålene for 
     <PageContainer title="Oppfølgingsforslag Chat" showBackButton={true}>
       <div className="flex-1 overflow-hidden flex flex-col">
         <div className="flex-1 overflow-y-auto" ref={chatContainerRef}>
-          <div className="max-w-3xl mx-auto p-4">
+          <div className="max-w-3xl mx-auto">
             {messages.map((message) => (
               <div key={message.id} className="mb-6 after:content-[''] after:clear-both after:table">
                 <Message

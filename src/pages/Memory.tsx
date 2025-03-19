@@ -98,7 +98,7 @@ const Memory: React.FC = () => {
   return (
     <DefaultLayout>
       <UserProfileLayout>
-        <div className="max-w-4xl mx-auto">
+        <div>
           <div className="mb-6">
             <p className="text-muted-foreground">
               Her lagres minner og fakta som Norea AI har lært om deg og dine omgivelser gjennom samtaler.
