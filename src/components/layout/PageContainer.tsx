@@ -30,8 +30,8 @@ export const PageContainer: React.FC<PageContainerProps> = ({
   };
 
   return (
-    // Change to have bg-white on mobile and bg-backdrop on larger screens
-    <div className="h-screen w-full flex overflow-hidden bg-white sm:bg-backdrop">
+    // We need to apply the background color to the html/body element to ensure it covers the status bar area
+    <div className="h-screen w-full flex overflow-hidden">
       {/* Sidebar component - positioned as overlay on mobile */}
       <div className={`
         ${isMobile ? 'fixed z-50 transition-transform duration-300 ease-in-out' : ''}

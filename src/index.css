@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -162,12 +163,12 @@
   }
 
   body {
-    @apply bg-backdrop text-backdrop-foreground overflow-x-hidden;
+    @apply bg-white sm:bg-backdrop text-backdrop-foreground overflow-x-hidden;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
   }
   
   html {
-    @apply scroll-smooth overflow-x-hidden;
+    @apply scroll-smooth overflow-x-hidden bg-white sm:bg-backdrop;
   }
   
   /* Prevent zoom on touch devices */

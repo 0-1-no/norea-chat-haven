@@ -15,7 +15,10 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
 }) => {
   return (
     <PageContainer title={title} description={description}>
-      {children}
+      {/* Adding flex-1 and h-full to ensure proper content height */}
+      <div className="flex-1 h-full">
+        {children}
+      </div>
     </PageContainer>
   );
 };
