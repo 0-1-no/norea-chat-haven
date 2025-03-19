@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Settings, PanelLeft } from 'lucide-react';
+import { PanelLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
@@ -45,11 +45,8 @@ export const Header: React.FC<HeaderProps> = ({
       
       <h2 className="text-lg font-medium text-surface-foreground">{title}</h2>
       
-      <div className="w-8">
-        <button className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-hover transition-colors">
-          <Settings className="w-5 h-5 text-surface-foreground" />
-        </button>
-      </div>
+      {/* Removed settings button, replaced with empty div to maintain layout */}
+      <div className="w-8"></div>
     </div>
   );
 };
