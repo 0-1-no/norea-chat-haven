@@ -9,6 +9,12 @@ import { SidebarNewChat } from './sidebar/SidebarNewChat';
 import { SidebarContent } from './sidebar/SidebarContent';
 import { SidebarTestFooter } from './sidebar/SidebarTestFooter';
 import { Link } from 'react-router-dom';
+import {
+  Sidebar as ShadcnSidebar,
+  SidebarHeader,
+  SidebarContent as ShadcnSidebarContent,
+  SidebarFooter
+} from '@/components/ui/sidebar';
 
 type SidebarProps = {
   onToggle?: () => void;
@@ -18,32 +24,33 @@ export const Sidebar: React.FC<SidebarProps> = ({ onToggle }) => {
   const isMobile = useIsMobile();
 
   return (
-    <div className="h-screen w-60 bg-sidebar border-r border-sidebar-border flex flex-col pt-4 relative animate-fade-in">
-      <div className="px-4 mb-4 flex justify-between items-center">
-        <Link to="/">
-          <h1 className="text-xl font-semibold text-sidebar-foreground hover:text-sidebar-accent-foreground transition-colors">Norea</h1>
-        </Link>
-        {onToggle && (
-          <Button
-            variant="ghost"
-            size="icon"
-            className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-sidebar-hover transition-colors"
-            onClick={onToggle}
-          >
-            <PanelLeft className="w-5 h-5 text-sidebar-foreground" />
-          </Button>
-        )}
-      </div>
+    <ShadcnSidebar className="h-screen w-60 bg-sidebar border-r border-sidebar-border animate-fade-in">
+      <SidebarHeader className="px-3 py-3">
+        <div className="flex justify-between items-center">
+          <Link to="/">
+            <h1 className="text-xl font-semibold text-sidebar-foreground hover:text-sidebar-accent-foreground transition-colors">Norea</h1>
+          </Link>
+          {onToggle && (
+            <Button
+              variant="ghost"
+              size="icon"
+              className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-sidebar-hover transition-colors"
+              onClick={onToggle}
+            >
+              <PanelLeft className="w-5 h-5 text-sidebar-foreground" />
+            </Button>
+          )}
+        </div>
+        <SidebarNewChat />
+      </SidebarHeader>
       
-      <SidebarNewChat />
-      <div className="flex-1 overflow-y-auto">
+      <ShadcnSidebarContent className="flex-1 overflow-y-auto px-1">
         <SidebarContent />
-      </div>
+      </ShadcnSidebarContent>
       
-      {/* Fixed footer at bottom of sidebar */}
-      <div className="mt-auto relative z-20">
+      <SidebarFooter className="mt-auto pointer-events-auto relative">
         <SidebarTestFooter />
-      </div>
-    </div>
+      </SidebarFooter>
+    </ShadcnSidebar>
   );
 };

@@ -53,7 +53,7 @@ export const PageContainer: React.FC<PageContainerProps> = ({
 
   return (
     <div className="h-screen w-full flex overflow-hidden">
-      {/* Mobile overlay rendered separately with higher z-index than content but lower than sidebar */}
+      {/* Mobile overlay with z-index lower than sidebar but higher than content */}
       {isMobile && isSidebarOpen && (
         <div 
           className="fixed inset-0 bg-black/30 z-30"
@@ -65,7 +65,7 @@ export const PageContainer: React.FC<PageContainerProps> = ({
       {/* Sidebar container with highest z-index */}
       <div className={`
         sidebar-container
-        ${isMobile ? 'fixed inset-0 z-40' : ''}
+        ${isMobile ? 'fixed inset-0 z-50' : ''}
         ${(isMobile && !isSidebarOpen) ? 'translate-x-[-100%]' : 'translate-x-0'}
         transition-transform duration-300 ease-in-out
         h-full pointer-events-auto

@@ -47,7 +47,7 @@ export const SidebarTestFooter: React.FC = () => {
             align={isMobile ? "center" : "start"} 
             side={isMobile ? "top" : "right"}
             sideOffset={isMobile ? 10 : 6}
-            className="w-56 z-[999]"
+            className="w-56 z-[200]"
             forceMount
           >
             <DropdownMenuItem className="cursor-pointer flex items-center gap-2" asChild>
