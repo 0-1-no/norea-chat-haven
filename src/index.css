@@ -147,6 +147,13 @@
     --interactive-hover: 263 70% 65%;
     --interactive-muted: 263 55% 25%; /* Adjusted interactive muted */
   }
+  
+  /* Add meta tag properties through CSS to prevent mobile zoom */
+  @media screen and (max-width: 768px) {
+    :root {
+      touch-action: pan-x pan-y;
+    }
+  }
 }
 
 @layer base {
@@ -161,6 +168,11 @@
   
   html {
     @apply scroll-smooth overflow-x-hidden;
+  }
+  
+  /* Prevent zoom on touch devices */
+  input, textarea, select, button {
+    font-size: 16px; /* Prevents iOS zoom */
   }
 }
 
@@ -214,4 +226,34 @@ body {
   transition-property: background-color, border-color, color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
+}
+
+/* Add animation for spin-slow */
+@keyframes spin-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 4s linear infinite;
+}
+
+/* Add animation for fade-in */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-in-out;
+}
+
+/* Add animation for slide-up */
+@keyframes slide-up {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out;
 }

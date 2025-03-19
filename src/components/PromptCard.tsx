@@ -1,7 +1,6 @@
 
 import React from 'react';
-import { MessageSquare, Settings, FileText, Mail } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { PromptCard as UIPromptCard } from '@/components/ui/prompt-card';
 
 type PromptCardProps = {
   text: string;
@@ -16,34 +15,12 @@ export const PromptCard: React.FC<PromptCardProps> = ({
   onClick, 
   className 
 }) => {
-  const getIcon = () => {
-    switch (icon) {
-      case 'settings':
-        return <Settings className="w-4 h-4 text-muted-foreground" />;
-      case 'document':
-        return <FileText className="w-4 h-4 text-muted-foreground" />;
-      case 'email':
-        return <Mail className="w-4 h-4 text-muted-foreground" />;
-      case 'chat':
-      default:
-        return <MessageSquare className="w-4 h-4 text-muted-foreground" />;
-    }
-  };
-
   return (
-    <div 
-      className={cn(
-        "bg-surface border border-surface-border rounded-lg p-4 flex items-center gap-3 cursor-pointer inline-block",
-        "hover:border-primary/30 hover:shadow-surface-sm transition-all duration-200",
-        "animate-slide-up",
-        className
-      )}
+    <UIPromptCard
+      text={text}
+      icon={icon}
       onClick={onClick}
-    >
-      <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center flex-shrink-0">
-        {getIcon()}
-      </div>
-      <p className="text-sm text-surface-foreground">{text}</p>
-    </div>
+      className={className}
+    />
   );
 };

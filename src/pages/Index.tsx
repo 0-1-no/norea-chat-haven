@@ -91,7 +91,7 @@ const Index = () => {
                     icon={prompt.icon as any}
                     variant="compact"
                     onClick={() => handlePromptSelect(prompt.text)}
-                    className="h-full w-auto"
+                    className="w-auto"
                   />
                 </CarouselItem>
               ))}
@@ -101,7 +101,7 @@ const Index = () => {
       );
     } else {
       return (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 w-full overflow-hidden">
+        <div className="flex flex-wrap gap-3 w-full overflow-hidden">
           {basicPrompts.map((prompt) => (
             <PromptCard
               key={prompt.id}
@@ -120,7 +120,7 @@ const Index = () => {
     <PageContainer title="Hjem" showBackButton={false}>
       <div className="flex flex-col items-center justify-center w-full max-w-3xl mx-auto px-0 overflow-hidden">
         <div className="mb-6">
-          <NoreaOrb size="medium" />
+          <NoreaOrb size="medium" interactive={true} />
         </div>
         <h1 className="text-3xl font-bold text-center mb-6">Hva kan jeg hjelpe med?</h1>
         
@@ -167,7 +167,7 @@ const Index = () => {
               </TabsList>
               
               <TabsContent value="all" className="mt-0">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full overflow-hidden">
+                <div className="flex flex-wrap gap-3 w-full overflow-hidden">
                   {categorizedPrompts.all.map((prompt) => (
                     <PromptCard
                       key={prompt.id}
@@ -182,7 +182,7 @@ const Index = () => {
               </TabsContent>
               
               <TabsContent value="work" className="mt-0">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="flex flex-wrap gap-3 w-full">
                   {categorizedPrompts.work.map((prompt) => (
                     <PromptCard
                       key={prompt.id}
@@ -197,7 +197,7 @@ const Index = () => {
               </TabsContent>
               
               <TabsContent value="creativity" className="mt-0">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="flex flex-wrap gap-3 w-full">
                   {categorizedPrompts.creativity.map((prompt) => (
                     <PromptCard
                       key={prompt.id}
@@ -212,7 +212,7 @@ const Index = () => {
               </TabsContent>
               
               <TabsContent value="learning" className="mt-0">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="flex flex-wrap gap-3 w-full">
                   {categorizedPrompts.learning.map((prompt) => (
                     <PromptCard
                       key={prompt.id}
