@@ -80,7 +80,8 @@ const Index = () => {
 
   return (
     <PageContainer title="Hjem" showBackButton={false}>
-      <div className="flex flex-col items-center justify-center w-full max-w-3xl mx-auto px-0">
+      {/* Add min-h-full and flex classes to center content vertically */}
+      <div className="flex flex-col items-center justify-center min-h-full w-full max-w-3xl mx-auto px-0">
         <div className="mb-6">
           <NoreaOrb size="medium" interactive={true} />
         </div>
