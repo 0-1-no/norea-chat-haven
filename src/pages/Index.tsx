@@ -80,11 +80,11 @@ const Index = () => {
   const renderBasicPrompts = () => {
     if (isMobile) {
       return (
-        <div className="w-full overflow-x-hidden">
+        <div className="w-full overflow-hidden">
           <Carousel className="w-full">
-            <CarouselContent className="-ml-2 mr-0">
+            <CarouselContent className="-ml-2">
               {basicPrompts.map((prompt) => (
-                <CarouselItem key={prompt.id} className="pl-2 basis-[85%] sm:basis-[45%] md:basis-1/3 max-w-[85%] sm:max-w-[45%] md:max-w-[33.333%]">
+                <CarouselItem key={prompt.id} className="pl-2 basis-4/5 max-w-[80%]">
                   <PromptCard
                     text={prompt.text}
                     icon={prompt.icon as any}
@@ -116,7 +116,7 @@ const Index = () => {
 
   return (
     <PageContainer title="Hjem" showBackButton={false}>
-      <div className="flex flex-col items-center justify-center h-full max-w-3xl mx-auto">
+      <div className="flex flex-col items-center justify-center h-full max-w-3xl mx-auto px-0">
         <h1 className="text-3xl font-bold text-center mb-6">Hva kan jeg hjelpe med?</h1>
         
         {/* Chat interface */}
@@ -128,7 +128,7 @@ const Index = () => {
         </div>
         
         {/* Basic prompt cards in a row or carousel */}
-        <div className="w-full mb-4">
+        <div className="w-full mb-4 overflow-hidden">
           {renderBasicPrompts()}
         </div>
         
@@ -152,9 +152,9 @@ const Index = () => {
         
         {/* Tabbed categorized prompts */}
         {showMorePrompts && (
-          <div className="w-full mb-8 animate-fade-in">
+          <div className="w-full mb-8 animate-fade-in overflow-hidden">
             <Tabs defaultValue="all" className="w-full" onValueChange={handleSelectCategory}>
-              <TabsList className="w-full justify-start mb-4 bg-transparent p-0 h-auto">
+              <TabsList className="w-full justify-start mb-4 bg-transparent p-0 h-auto overflow-x-auto flex-nowrap">
                 <TabsTrigger value="all" className="data-[state=active]:bg-primary/10">Alle</TabsTrigger>
                 <TabsTrigger value="work" className="data-[state=active]:bg-primary/10">Jobb</TabsTrigger>
                 <TabsTrigger value="creativity" className="data-[state=active]:bg-primary/10">Kreativitet</TabsTrigger>

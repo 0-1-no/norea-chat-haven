@@ -63,7 +63,7 @@ export const PromptCard: React.FC<PromptCardProps> = ({
   return (
     <div 
       className={cn(
-        "flex items-center gap-3 cursor-pointer transition-all duration-200",
+        "flex items-center gap-3 cursor-pointer transition-all duration-200 overflow-hidden",
         variant === 'default' && "rounded-lg p-4 bg-surface border border-surface-border hover:border-primary hover:bg-surface-hover hover:shadow-surface-md",
         variant === 'brand' && "rounded-lg p-4 bg-gradient-to-r from-primary to-primary-hover text-primary-foreground border border-primary/30 hover:shadow-surface-md",
         variant === 'compact' && "rounded-md p-2 bg-surface border border-surface-border hover:border-primary/50 hover:bg-surface-hover",
@@ -73,8 +73,8 @@ export const PromptCard: React.FC<PromptCardProps> = ({
     >
       {!hideIcon && iconPosition === 'left' && renderIconContainer()}
       
-      <div className="flex-1 min-w-0">
-        {title && <h4 className={cn("font-medium mb-1", variant === 'compact' ? "text-xs" : "text-sm")}>{title}</h4>}
+      <div className="flex-1 min-w-0 overflow-hidden">
+        {title && <h4 className={cn("font-medium mb-1 truncate", variant === 'compact' ? "text-xs" : "text-sm")}>{title}</h4>}
         <p className={cn("truncate", variant === 'compact' ? "text-xs" : "text-sm")}>{text}</p>
       </div>
       

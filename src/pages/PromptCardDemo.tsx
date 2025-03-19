@@ -229,7 +229,7 @@ const PromptCardDemo = () => {
               
               <div className="grid grid-cols-4 gap-4 font-mono text-sm mb-3">
                 <div>onClick</div>
-                <div>() => void</div>
+                <div>() =&gt; void</div>
                 <div>undefined</div>
                 <div>Function called when the card is clicked</div>
               </div>
