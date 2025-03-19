@@ -82,7 +82,7 @@ const Index = () => {
   const renderBasicPrompts = () => {
     if (isMobile) {
       return (
-        <div className="w-full overflow-hidden">
+        <div className="w-full">
           <Carousel className="w-full">
             <CarouselContent className="-ml-2 flex-nowrap">
               {basicPrompts.map((prompt) => (
@@ -102,14 +102,13 @@ const Index = () => {
       );
     } else {
       return (
-        <div className="flex flex-wrap gap-3 w-full overflow-hidden">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
           {basicPrompts.map((prompt) => (
             <PromptCard
               key={prompt.id}
               text={prompt.text}
               icon={prompt.icon as any}
               onClick={() => handlePromptSelect(prompt.text)}
-              className="w-auto"
             />
           ))}
         </div>
@@ -119,47 +118,51 @@ const Index = () => {
 
   return (
     <PageContainer title="Hjem" showBackButton={false}>
-      <ScrollArea className="w-full h-full pb-20">
-        <div className="flex flex-col items-center justify-start w-full max-w-3xl mx-auto px-0 mb-20">
-          <div className="mb-6">
-            <NoreaOrb size="medium" interactive={true} />
-          </div>
-          <h1 className="text-3xl font-bold text-center mb-6">Hva kan jeg hjelpe med?</h1>
-          
-          {/* Chat interface */}
-          <div className="w-full mb-6 overflow-hidden">
-            <ChatInterface 
-              userName="John"
-              className="flex-1"
-            />
+      <ScrollArea className="w-full h-full">
+        <div className="flex flex-col w-full px-4 sm:px-6 md:px-8 pb-20">
+          <div className="flex flex-col items-center max-w-2xl mx-auto w-full">
+            <div className="mb-6 mt-8">
+              <NoreaOrb size="medium" interactive={true} />
+            </div>
+            <h1 className="text-3xl font-bold mb-8">Hva kan jeg hjelpe med?</h1>
+            
+            {/* Chat interface */}
+            <div className="w-full mb-8">
+              <ChatInterface 
+                userName="John"
+                className="w-full"
+              />
+            </div>
           </div>
           
           {/* Basic prompt cards in a row or carousel */}
-          <div className="w-full mb-4 overflow-hidden">
+          <div className="max-w-2xl mx-auto w-full mb-4">
             {renderBasicPrompts()}
           </div>
           
           {/* Show more/less button */}
-          <button 
-            onClick={toggleMorePrompts}
-            className="flex items-center gap-1 text-primary hover:text-primary/80 transition-colors text-sm mb-6"
-          >
-            {showMorePrompts ? (
-              <>
-                <span>Vis færre forslag</span>
-                <ChevronUp className="w-4 h-4" />
-              </>
-            ) : (
-              <>
-                <span>Vis flere forslag</span>
-                <ChevronDown className="w-4 h-4" />
-              </>
-            )}
-          </button>
+          <div className="max-w-2xl mx-auto w-full flex justify-center mb-6">
+            <button 
+              onClick={toggleMorePrompts}
+              className="flex items-center gap-1 text-primary hover:text-primary/80 transition-colors text-sm"
+            >
+              {showMorePrompts ? (
+                <>
+                  <span>Vis færre forslag</span>
+                  <ChevronUp className="w-4 h-4" />
+                </>
+              ) : (
+                <>
+                  <span>Vis flere forslag</span>
+                  <ChevronDown className="w-4 h-4" />
+                </>
+              )}
+            </button>
+          </div>
           
           {/* Tabbed categorized prompts */}
           {showMorePrompts && (
-            <div className="w-full mb-8 animate-fade-in">
+            <div className="w-full max-w-3xl mx-auto mb-8 animate-fade-in">
               <Tabs defaultValue="all" className="w-full" onValueChange={handleSelectCategory}>
                 <TabsList className="w-full justify-start mb-4 bg-transparent p-0 h-auto overflow-x-auto scrollbar-hidden flex-nowrap">
                   <TabsTrigger value="all" className="data-[state=active]:bg-primary/10">Alle</TabsTrigger>
@@ -169,7 +172,7 @@ const Index = () => {
                 </TabsList>
                 
                 <TabsContent value="all" className="mt-0">
-                  <div className="flex flex-wrap gap-3 w-full">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 w-full">
                     {categorizedPrompts.all.map((prompt) => (
                       <PromptCard
                         key={prompt.id}
@@ -177,14 +180,13 @@ const Index = () => {
                         icon={prompt.icon as any}
                         variant={isMobile ? "compact" : "default"}
                         onClick={() => handlePromptSelect(prompt.text)}
-                        className="w-auto"
                       />
                     ))}
                   </div>
                 </TabsContent>
                 
                 <TabsContent value="work" className="mt-0">
-                  <div className="flex flex-wrap gap-3 w-full">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 w-full">
                     {categorizedPrompts.work.map((prompt) => (
                       <PromptCard
                         key={prompt.id}
@@ -192,14 +194,13 @@ const Index = () => {
                         icon={prompt.icon as any}
                         variant={isMobile ? "compact" : "default"}
                         onClick={() => handlePromptSelect(prompt.text)}
-                        className="w-auto"
                       />
                     ))}
                   </div>
                 </TabsContent>
                 
                 <TabsContent value="creativity" className="mt-0">
-                  <div className="flex flex-wrap gap-3 w-full">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 w-full">
                     {categorizedPrompts.creativity.map((prompt) => (
                       <PromptCard
                         key={prompt.id}
@@ -207,14 +208,13 @@ const Index = () => {
                         icon={prompt.icon as any}
                         variant={isMobile ? "compact" : "default"}
                         onClick={() => handlePromptSelect(prompt.text)}
-                        className="w-auto"
                       />
                     ))}
                   </div>
                 </TabsContent>
                 
                 <TabsContent value="learning" className="mt-0">
-                  <div className="flex flex-wrap gap-3 w-full">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 w-full">
                     {categorizedPrompts.learning.map((prompt) => (
                       <PromptCard
                         key={prompt.id}
@@ -222,7 +222,6 @@ const Index = () => {
                         icon={prompt.icon as any}
                         variant={isMobile ? "compact" : "default"}
                         onClick={() => handlePromptSelect(prompt.text)}
-                        className="w-auto"
                       />
                     ))}
                   </div>
