@@ -3,6 +3,7 @@ import React, { useRef, useEffect } from 'react';
 import { Header } from '@/components/Header';
 import { Sidebar } from '@/components/Sidebar';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { SidebarProvider } from '@/components/ui/sidebar';
 
 interface PageContainerProps {
   children: React.ReactNode;
@@ -70,7 +71,11 @@ export const PageContainer: React.FC<PageContainerProps> = ({
         transition-transform duration-300 ease-in-out
         h-full pointer-events-auto
       `}>
-        {isSidebarOpen && <Sidebar onToggle={toggleSidebar} />}
+        {isSidebarOpen && (
+          <SidebarProvider defaultOpen={true}>
+            <Sidebar onToggle={toggleSidebar} />
+          </SidebarProvider>
+        )}
       </div>
       
       {/* Canvas - where main content is rendered with padding on desktop */}
