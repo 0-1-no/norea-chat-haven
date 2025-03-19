@@ -37,7 +37,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ onToggle }) => {
       <div className="flex-1 overflow-y-auto">
         <SidebarContent />
       </div>
-      <SidebarProfile />
+      <div className="mt-auto">
+        <SidebarProfile />
+      </div>
     </div>
   );
 };

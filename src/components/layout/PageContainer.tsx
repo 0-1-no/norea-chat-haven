@@ -56,7 +56,7 @@ export const PageContainer: React.FC<PageContainerProps> = ({
     <div className="h-screen w-full flex overflow-hidden">
       {/* Sidebar component - positioned as overlay on mobile */}
       <div className={`
-        ${isMobile ? 'fixed z-50 transition-transform duration-300 ease-in-out sidebar-container h-full' : 'sidebar-container'}
+        ${isMobile ? 'fixed inset-y-0 left-0 z-50 transition-transform duration-300 ease-in-out sidebar-container' : 'sidebar-container'}
         ${(isMobile && !isSidebarOpen) ? '-translate-x-full' : 'translate-x-0'}
       `}>
         {isSidebarOpen && <Sidebar onToggle={toggleSidebar} />}
