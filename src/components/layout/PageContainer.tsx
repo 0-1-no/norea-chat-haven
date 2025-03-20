@@ -1,20 +1,11 @@
-
 import React, { useRef } from 'react';
 import { Header } from '@/components/Header';
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarProvider,
-  SidebarTrigger,
-  SidebarFooter,
-  SidebarHeader,
-} from '@/components/ui/sidebar';
+import { Sidebar, SidebarContent, SidebarProvider, SidebarTrigger, SidebarFooter, SidebarHeader } from '@/components/ui/sidebar';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { SidebarNewChat } from '@/components/sidebar/SidebarNewChat';
 import { SidebarContent as SidebarMainContent } from '@/components/sidebar/SidebarContent';
 import { SidebarTestFooter } from '@/components/sidebar/SidebarTestFooter';
 import { Link } from 'react-router-dom';
-
 interface PageContainerProps {
   children: React.ReactNode;
   title: string;
@@ -31,15 +22,14 @@ interface PageContainerProps {
  * 3. Canvas - The main content frame
  * 4. Content Area - The innermost container with proper padding and constraints
  */
-export const PageContainer: React.FC<PageContainerProps> = ({ 
-  children, 
+export const PageContainer: React.FC<PageContainerProps> = ({
+  children,
   title,
   showBackButton = false,
   description
 }) => {
   const isMobile = useIsMobile();
   const contentRef = useRef<HTMLDivElement>(null);
-
   return (
     // Layer 1: SidebarProvider (wraps everything for state management)
     <SidebarProvider defaultOpen={!isMobile}>
@@ -74,10 +64,7 @@ export const PageContainer: React.FC<PageContainerProps> = ({
         </Sidebar>
         
         {/* Layer 3: Canvas - main content frame */}
-        <div 
-          ref={contentRef}
-          className="flex-1 p-0 sm:p-2 flex items-center justify-center overflow-hidden canvas-layer"
-        >
+        <div ref={contentRef} className="flex-1 p-0 sm:p-2 flex items-center justify-center overflow-hidden canvas-layer">
           <div className={`
             w-full h-full 
             bg-canvas 
@@ -88,22 +75,16 @@ export const PageContainer: React.FC<PageContainerProps> = ({
             overflow-hidden
             z-10
           `}>
-            <Header 
-              title={title}
-              showBackButton={showBackButton}
-              className="sticky top-0 z-20 bg-canvas"
-            >
+            <Header title={title} showBackButton={showBackButton} className="sticky top-0 z-20 bg-canvas">
               <SidebarTrigger />
             </Header>
             
             {/* Layer 4: Content Area - inner container with proper constraints */}
             <div className="flex-1 overflow-y-auto overflow-x-hidden flex flex-col content-area-layer">
               <div className="w-full max-w-canvas mx-auto px-3 sm:px-6 md:px-8 lg:px-12 py-6 pb-12 md:py-12 flex-1 flex flex-col">
-                {description && (
-                  <div className="mb-4 w-full">
-                    <p className="text-muted-foreground">{description}</p>
-                  </div>
-                )}
+                {description && <div className="mb-4 w-full">
+                    
+                  </div>}
                 {/* Layer 5: Page Content - where subpage content is rendered */}
                 <div className="w-full flex-1 flex flex-col page-content-layer">
                   {children}
