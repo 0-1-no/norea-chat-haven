@@ -64,7 +64,7 @@ export const Message: React.FC<MessageProps> = ({
   return (
     <div 
       className={cn(
-        "group rounded-lg mb-4 relative", 
+        "group rounded-lg mb-2", // Redusert margin-bottom fra mb-4 til mb-2
         role === 'user' 
           ? "bg-[hsl(var(--user-message-bg))] text-[hsl(var(--user-message-text))] float-right clear-both sm:max-w-[66%] max-w-[80%]" 
           : "bg-[hsl(var(--ai-message-bg))] text-[hsl(var(--ai-message-text))] float-left clear-both sm:max-w-[85%] max-w-full", 
@@ -86,52 +86,54 @@ export const Message: React.FC<MessageProps> = ({
         </div>
       )}
       
-      {/* Content wrapper med justert padding */}
+      {/* Content wrapper med redusert padding */}
       <div className={cn(
-        role === 'user' ? "px-5 py-4" : "px-6 py-5",
+        role === 'user' ? "px-4 py-3" : "px-5 py-4", // Redusert padding
       )}>
         <div className={cn(
           role === 'ai' 
-            ? "prose dark:prose-invert prose-headings:mt-8 prose-headings:mb-4 prose-h1:text-xl prose-h2:text-lg prose-h3:text-base prose-p:my-4 prose-p:leading-relaxed prose-ul:my-4 prose-ol:my-4 prose-li:my-1 prose-li:leading-relaxed prose-table:my-6 prose-pre:bg-muted prose-pre:p-3 prose-pre:rounded prose-strong:font-semibold max-w-none" 
-            : ""
+            ? "prose dark:prose-invert prose-headings:mt-6 prose-headings:mb-3 prose-h1:text-2xl prose-h1:font-bold prose-h2:text-xl prose-h2:font-semibold prose-h3:text-lg prose-h3:font-medium prose-p:my-3 prose-p:leading-relaxed prose-p:tracking-wide prose-ul:my-3 prose-ol:my-3 prose-li:my-1 prose-li:leading-relaxed prose-table:my-5 prose-pre:bg-muted prose-pre:p-3 prose-pre:rounded prose-strong:font-bold max-w-none" 
+            : "tracking-wide"
         )}>
           {role === 'ai' ? (
             <ReactMarkdown 
               remarkPlugins={[remarkGfm]} 
               components={{
-                h1: ({node, ...props}) => <h1 className="text-xl font-bold mt-6 mb-3" {...props} />,
-                h2: ({node, ...props}) => <h2 className="text-lg font-bold mt-5 mb-3" {...props} />,
-                h3: ({node, ...props}) => <h3 className="text-base font-bold mt-4 mb-2" {...props} />,
-                p: ({node, ...props}) => <p className="my-3" {...props} />,
-                ul: ({node, ...props}) => <ul className="my-3 ml-6 list-disc" {...props} />,
-                ol: ({node, ...props}) => <ol className="my-3 ml-6 list-decimal" {...props} />,
-                li: ({node, ...props}) => <li className="my-1" {...props} />,
+                h1: ({node, ...props}) => <h1 className="text-2xl font-bold mt-6 mb-3 tracking-wide" {...props} />,
+                h2: ({node, ...props}) => <h2 className="text-xl font-semibold mt-5 mb-3 tracking-wide" {...props} />,
+                h3: ({node, ...props}) => <h3 className="text-lg font-medium mt-4 mb-2 tracking-wide" {...props} />,
+                p: ({node, ...props}) => <p className="my-3 leading-relaxed tracking-wide" {...props} />,
+                ul: ({node, ...props}) => <ul className="my-3 ml-6 list-disc space-y-1" {...props} />,
+                ol: ({node, ...props}) => <ol className="my-3 ml-6 list-decimal space-y-1" {...props} />,
+                li: ({node, ...props}) => <li className="my-1 pl-1" {...props} />,
                 table: ({node, ...props}) => <div className="overflow-x-auto my-4"><table className="border-collapse w-full" {...props} /></div>,
-                th: ({node, ...props}) => <th className="border border-border px-4 py-2 bg-muted font-medium" {...props} />,
+                th: ({node, ...props}) => <th className="border border-border px-4 py-2 bg-muted font-semibold" {...props} />,
                 td: ({node, ...props}) => <td className="border border-border px-4 py-2" {...props} />,
                 code: ({children, className, ...props}) => {
                   const match = /language-(\w+)/.exec(className || '');
                   const isInline = !className;
                   
                   if (isInline) {
-                    return <code className="bg-muted px-1.5 py-0.5 rounded text-sm" {...props}>{children}</code>;
+                    return <code className="bg-muted px-1.5 py-0.5 rounded text-sm font-medium" {...props}>{children}</code>;
                   }
                   
                   return (
-                    <code className={`block bg-muted p-3 rounded text-sm overflow-x-auto ${className || ''}`} {...props}>
+                    <code className={`block bg-muted p-3 rounded text-sm overflow-x-auto font-medium ${className || ''}`} {...props}>
                       {children}
                     </code>
                   );
                 },
                 pre: ({node, ...props}) => <pre className="bg-muted p-3 rounded overflow-x-auto my-4" {...props} />,
                 blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-primary pl-4 italic my-4" {...props} />,
-                a: ({node, ...props}) => <a className="text-primary underline" {...props} />,
+                a: ({node, ...props}) => <a className="text-primary font-medium underline underline-offset-2" {...props} />,
+                strong: ({node, ...props}) => <strong className="font-bold" {...props} />, // Økt fra semibold til bold
+                em: ({node, ...props}) => <em className="italic tracking-wide" {...props} />,
               }}
             >
               {content}
             </ReactMarkdown>
           ) : (
-            <p className="text-left leading-relaxed">{content}</p>
+            <p className="text-left leading-relaxed tracking-wide">{content}</p>
           )}
         </div>
       </div>
