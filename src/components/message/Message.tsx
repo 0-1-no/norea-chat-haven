@@ -64,7 +64,7 @@ export const Message: React.FC<MessageProps> = ({
   return (
     <div 
       className={cn(
-        "group rounded-lg mb-2 relative", 
+        "group rounded-lg mb-4 relative", 
         role === 'user' 
           ? "bg-[hsl(var(--user-message-bg))] text-[hsl(var(--user-message-text))] float-right clear-both sm:max-w-[66%] max-w-[80%]" 
           : "bg-[hsl(var(--ai-message-bg))] text-[hsl(var(--ai-message-text))] float-left clear-both sm:max-w-[85%] max-w-full", 
@@ -92,11 +92,34 @@ export const Message: React.FC<MessageProps> = ({
       )}>
         <div className={cn(
           role === 'ai' 
-            ? "prose dark:prose-invert prose-headings:mt-8 prose-headings:mb-4 prose-h1:text-xl prose-h2:text-lg prose-h3:text-base prose-p:my-4 prose-p:leading-relaxed prose-ul:my-4 prose-ol:my-4 prose-li:my-1 prose-li:leading-relaxed prose-pre:bg-muted prose-pre:p-3 prose-pre:rounded prose-strong:font-semibold max-w-none" 
+            ? "prose dark:prose-invert prose-headings:mt-8 prose-headings:mb-4 prose-h1:text-xl prose-h2:text-lg prose-h3:text-base prose-p:my-4 prose-p:leading-relaxed prose-ul:my-4 prose-ol:my-4 prose-li:my-1 prose-li:leading-relaxed prose-table:my-6 prose-pre:bg-muted prose-pre:p-3 prose-pre:rounded prose-strong:font-semibold max-w-none" 
             : ""
         )}>
           {role === 'ai' ? (
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+            <ReactMarkdown 
+              remarkPlugins={[remarkGfm]} 
+              components={{
+                h1: ({node, ...props}) => <h1 className="text-xl font-bold mt-6 mb-3" {...props} />,
+                h2: ({node, ...props}) => <h2 className="text-lg font-bold mt-5 mb-3" {...props} />,
+                h3: ({node, ...props}) => <h3 className="text-base font-bold mt-4 mb-2" {...props} />,
+                p: ({node, ...props}) => <p className="my-3" {...props} />,
+                ul: ({node, ...props}) => <ul className="my-3 ml-6 list-disc" {...props} />,
+                ol: ({node, ...props}) => <ol className="my-3 ml-6 list-decimal" {...props} />,
+                li: ({node, ...props}) => <li className="my-1" {...props} />,
+                table: ({node, ...props}) => <div className="overflow-x-auto my-4"><table className="border-collapse w-full" {...props} /></div>,
+                th: ({node, ...props}) => <th className="border border-border px-4 py-2 bg-muted font-medium" {...props} />,
+                td: ({node, ...props}) => <td className="border border-border px-4 py-2" {...props} />,
+                code: ({node, inline, ...props}) => 
+                  inline 
+                    ? <code className="bg-muted px-1.5 py-0.5 rounded text-sm" {...props} />
+                    : <code className="block bg-muted p-3 rounded text-sm overflow-x-auto" {...props} />,
+                pre: ({node, ...props}) => <pre className="bg-muted p-3 rounded overflow-x-auto my-4" {...props} />,
+                blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-primary pl-4 italic my-4" {...props} />,
+                a: ({node, ...props}) => <a className="text-primary underline" {...props} />,
+              }}
+            >
+              {content}
+            </ReactMarkdown>
           ) : (
             <p className="text-left leading-relaxed">{content}</p>
           )}
