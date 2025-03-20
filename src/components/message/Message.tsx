@@ -6,6 +6,7 @@ import ReactMarkdown from 'react-markdown';
 import { Button } from '@/components/ui/button';
 import { toast } from '@/hooks/use-toast';
 import { MemoryIndicator } from './MemoryIndicator';
+import remarkGfm from 'remark-gfm';
 
 export type MessageRole = 'user' | 'ai';
 
@@ -63,7 +64,7 @@ export const Message: React.FC<MessageProps> = ({
   return (
     <div 
       className={cn(
-        "group rounded-lg mb-2 relative", // Redusert mellomrom mellom meldinger
+        "group rounded-lg mb-2 relative", 
         role === 'user' 
           ? "bg-[hsl(var(--user-message-bg))] text-[hsl(var(--user-message-text))] float-right clear-both sm:max-w-[66%] max-w-[80%]" 
           : "bg-[hsl(var(--ai-message-bg))] text-[hsl(var(--ai-message-text))] float-left clear-both sm:max-w-[85%] max-w-full", 
@@ -95,7 +96,7 @@ export const Message: React.FC<MessageProps> = ({
             : ""
         )}>
           {role === 'ai' ? (
-            <ReactMarkdown>{content}</ReactMarkdown>
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
           ) : (
             <p className="text-left leading-relaxed">{content}</p>
           )}
