@@ -1,4 +1,3 @@
-
 import React, { useRef, useEffect } from 'react';
 import { PageContainer } from '@/components/layout/PageContainer';
 import { MessageInput } from "@/components/MessageInput";
@@ -129,7 +128,7 @@ const WeatherChat = () => {
         <div className="flex-1 overflow-y-auto p-6" ref={chatContainerRef}>
           <div className="max-w-3xl mx-auto">
             {conversation.map((message, index) => (
-              <div key={index} className="mb-6 after:content-[''] after:clear-both after:table">
+              <div key={index} className="mb-3 after:content-[''] after:clear-both after:table">
                 {message.role === 'user' ? (
                   <Message
                     role="user"
@@ -138,7 +137,7 @@ const WeatherChat = () => {
                 ) : (
                   <div className="float-left max-w-[85%]">
                     <p className="text-foreground mb-2">{message.content}</p>
-                    <div className="mb-3">
+                    <div className="mb-2">
                       {'weatherCard' in message && message.weatherCard}
                     </div>
                     {'additionalText' in message && <p className="text-foreground mt-2">{message.additionalText}</p>}

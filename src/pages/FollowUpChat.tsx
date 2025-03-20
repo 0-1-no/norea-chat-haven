@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { PageContainer } from '@/components/layout/PageContainer';
 import { Message } from '@/components/message/Message';
@@ -59,7 +58,6 @@ const FollowUpChat: React.FC = () => {
   const [messages, setMessages] = useState<MessageType[]>(initialMessages);
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
-  // Scroll to bottom when messages are added
   useEffect(() => {
     if (chatContainerRef.current) {
       chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
@@ -69,7 +67,6 @@ const FollowUpChat: React.FC = () => {
   const handleSendMessage = (content: string) => {
     if (!content.trim()) return;
     
-    // Add user message
     const userMessage: MessageType = {
       id: `user-${Date.now()}`,
       role: 'user',
@@ -78,11 +75,9 @@ const FollowUpChat: React.FC = () => {
     
     setMessages(prev => [...prev, userMessage]);
     
-    // Simulate AI response based on the question
     setTimeout(() => {
       let aiResponse: MessageType;
       
-      // Custom responses for follow-up questions
       if (content.includes('o1 og GPT-4')) {
         aiResponse = {
           id: `ai-${Date.now()}`,
@@ -160,7 +155,6 @@ o1 viser betydelig reduksjon i:
           ]
         };
       } else {
-        // Default response for other questions
         aiResponse = {
           id: `ai-${Date.now()}`,
           role: 'ai',
