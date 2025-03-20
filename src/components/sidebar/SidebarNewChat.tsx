@@ -11,7 +11,7 @@ export const SidebarNewChat: React.FC = () => {
         variant="outline"
       >
         <Plus className="w-4 h-4" />
-        <span className="text-sm font-medium">Ny samtale</span>
+        <span className="text-base font-medium">Ny samtale</span>
       </Button>
     </div>
   );

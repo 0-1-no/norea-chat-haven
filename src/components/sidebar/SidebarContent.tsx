@@ -16,10 +16,10 @@ export const SidebarContent: React.FC = () => {
   const [activeChat, setActiveChat] = useState<string | null>("Enkel chat-demonstrasjon");
   
   return (
-    <div className="flex-1 overflow-y-auto scrollbar-hidden space-y-0 px-1">
+    <div className="flex-1 overflow-y-auto scrollbar-hidden space-y-2 px-1">
       <SidebarSection 
         title="Rom" 
-        icon={<LayoutDashboard className="w-4 h-4 text-sidebar-foreground/70" />}
+        icon={<LayoutDashboard className="w-5 h-5 text-sidebar-foreground/70" />}
       >
         <SidebarItem 
           title="Alle rom" 
@@ -41,7 +41,7 @@ export const SidebarContent: React.FC = () => {
       
       <SidebarSection 
         title="Karakterer" 
-        icon={<UserCircle className="w-4 h-4 text-sidebar-foreground/70" />}
+        icon={<UserCircle className="w-5 h-5 text-sidebar-foreground/70" />}
       >
         <SidebarItem 
           title="Alle karakterer" 
@@ -55,7 +55,7 @@ export const SidebarContent: React.FC = () => {
       
       <SidebarSection 
         title="Assistenter" 
-        icon={<Bot className="w-4 h-4 text-sidebar-foreground/70" />}
+        icon={<Bot className="w-5 h-5 text-sidebar-foreground/70" />}
       >
         <SidebarItem 
           title="Alle assistenter" 
@@ -69,10 +69,10 @@ export const SidebarContent: React.FC = () => {
       
       <SidebarSection 
         title="Samtaler" 
-        icon={<MessageCircle className="w-4 h-4 text-sidebar-foreground/70" />}
+        icon={<MessageCircle className="w-5 h-5 text-sidebar-foreground/70" />}
         defaultOpen={true}
       >
-        <div className="mt-1 px-3 mb-1">
+        <div className="mt-1 px-3 mb-2">
           <Link to="/archive">
             <Button variant="outline" size="sm" className="w-full flex justify-start gap-2 text-sm bg-transparent">
               <Archive className="w-4 h-4" />
@@ -81,24 +81,24 @@ export const SidebarContent: React.FC = () => {
           </Link>
         </div>
 
-        <div className="space-y-0">
-          <div className="space-y-0">
-            <div className="px-3 py-0.5 text-xs font-medium text-sidebar-foreground/70">I dag</div>
+        <div className="space-y-1">
+          <div className="space-y-1">
+            <div className="px-3 py-1 text-sm font-medium text-sidebar-foreground/70">I dag</div>
             <ChatItem title="Enkel chat-demonstrasjon" to="/chat-demo" />
             <ChatItem title="Minne-demonstrasjon" to="/memory-chat" />
             <ChatItem title="Vær-demonstrasjon" to="/weather-chat" />
             <ChatItem title="Oppfølgingsforslag" to="/followup-chat" />
           </div>
           
-          <div className="space-y-0">
-            <div className="px-3 py-0.5 text-xs font-medium text-sidebar-foreground/70">Siste 7 dager</div>
+          <div className="space-y-1">
+            <div className="px-3 py-1 text-sm font-medium text-sidebar-foreground/70">Siste 7 dager</div>
             <ChatItem title="Hva er linting" to="/chat-demo" />
             <ChatItem title="AI Design System" to="/chat-demo" />
             <ChatItem title="Skismøring og vannkvalitet" to="/chat-demo" />
           </div>
           
-          <div className="space-y-0">
-            <div className="px-3 py-0.5 text-xs font-medium text-sidebar-foreground/70">Eldre</div>
+          <div className="space-y-1">
+            <div className="px-3 py-1 text-sm font-medium text-sidebar-foreground/70">Eldre</div>
             <ChatItem title="Hva er GraphQL" to="/chat-demo" />
             <ChatItem title="Face ID iOS API" to="/chat-demo" />
           </div>
@@ -107,7 +107,7 @@ export const SidebarContent: React.FC = () => {
       
       <SidebarSection 
         title="Design System" 
-        icon={<Layers className="w-4 h-4 text-sidebar-foreground/70" />}
+        icon={<Layers className="w-5 h-5 text-sidebar-foreground/70" />}
       >
         <SidebarItem 
           title="Komponentbibliotek"
@@ -163,7 +163,7 @@ const ChatItem: React.FC<ChatItemProps> = ({ title, to }) => {
   return (
     <div className="group relative sidebar-chat-item">
       <Link to={to}>
-        <div className="px-3 py-0.5 rounded-md text-sm flex justify-between items-center cursor-pointer transition-colors duration-200 hover:bg-sidebar-accent/50 text-sidebar-foreground group-hover:bg-sidebar-accent/30">
+        <div className="px-3 py-1 rounded-md text-base flex justify-between items-center cursor-pointer transition-colors duration-200 hover:bg-sidebar-accent/50 text-sidebar-foreground group-hover:bg-sidebar-accent/30">
           <span className="truncate pr-2">{title}</span>
         </div>
       </Link>

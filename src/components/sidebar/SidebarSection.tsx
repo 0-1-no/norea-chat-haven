@@ -8,7 +8,7 @@ type SidebarSectionProps = {
   icon: React.ReactNode;
   children?: React.ReactNode;
   defaultOpen?: boolean;
-  className?: string;  // Add className prop
+  className?: string;
 };
 
 export const SidebarSection: React.FC<SidebarSectionProps> = ({ 
@@ -21,9 +21,9 @@ export const SidebarSection: React.FC<SidebarSectionProps> = ({
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   return (
-    <div className={cn("mb-2", className)}>
+    <div className={cn("mb-3", className)}>
       <div 
-        className="flex items-center gap-2 px-3 py-2 cursor-pointer text-sm font-medium text-sidebar-foreground"
+        className="flex items-center gap-2 px-3 py-2 cursor-pointer text-base font-medium text-sidebar-foreground"
         onClick={() => setIsOpen(!isOpen)}
       >
         {icon}
@@ -35,7 +35,7 @@ export const SidebarSection: React.FC<SidebarSectionProps> = ({
         )}
       </div>
       {isOpen && (
-        <div className="mt-1 ml-1 space-y-0.5 animate-slide-up">
+        <div className="mt-1 ml-1 space-y-1 animate-slide-up">
           {children}
         </div>
       )}
