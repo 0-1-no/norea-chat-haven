@@ -115,7 +115,7 @@ const TaskDetailModal = ({ task, open, onClose, onSave }: TaskDetailModalProps) 
 
   // Desktop modal with sidebar
   const desktopContent = (
-    <DialogContent className="p-0 sm:max-w-[950px] max-h-[80vh] overflow-hidden">
+    <DialogContent className="p-0 sm:max-w-[950px] max-h-[80vh] overflow-hidden bg-[hsl(var(--task-modal-background))] text-[hsl(var(--task-modal-foreground))]">
       <ResizablePanelGroup direction="horizontal" className="w-full">
         <ResizablePanel defaultSize={65} minSize={50} className="overflow-y-auto">
           <div className="p-6 flex flex-col h-full">
@@ -128,7 +128,7 @@ const TaskDetailModal = ({ task, open, onClose, onSave }: TaskDetailModalProps) 
                 />
                 <DialogTitle className="p-0">
                   <Input
-                    className="border-none text-xl font-semibold px-0 focus-visible:ring-0 h-auto"
+                    className="border-none text-xl font-semibold px-0 focus-visible:ring-0 h-auto bg-transparent"
                     value={editedTask.title}
                     onChange={(e) => setEditedTask({...editedTask, title: e.target.value})}
                     placeholder="Oppgavetittel"
@@ -140,7 +140,7 @@ const TaskDetailModal = ({ task, open, onClose, onSave }: TaskDetailModalProps) 
             <div className="py-4 space-y-6 flex-grow">
               <Textarea
                 placeholder="Her er en beskrivelse"
-                className="resize-none min-h-[80px] border-none focus-visible:ring-0 px-0"
+                className="resize-none min-h-[80px] border-none focus-visible:ring-0 px-0 bg-transparent"
                 value={editedTask.description || ''}
                 onChange={(e) => setEditedTask({...editedTask, description: e.target.value})}
               />
@@ -157,7 +157,7 @@ const TaskDetailModal = ({ task, open, onClose, onSave }: TaskDetailModalProps) 
                           className="mr-2"
                         />
                         <Input 
-                          className="flex-1 border-none focus-visible:ring-0 px-0 h-8"
+                          className="flex-1 border-none focus-visible:ring-0 px-0 h-8 bg-transparent"
                           value={subtask.title}
                           onChange={(e) => {
                             const updatedSubtasks = editedTask.subtasks?.map(st => 
@@ -183,7 +183,7 @@ const TaskDetailModal = ({ task, open, onClose, onSave }: TaskDetailModalProps) 
                 
                 <div className="flex items-center">
                   <Input
-                    className="flex-1 border-x-0 border-t-0 rounded-none focus-visible:ring-0"
+                    className="flex-1 border-x-0 border-t-0 rounded-none focus-visible:ring-0 bg-transparent"
                     placeholder="Legg til underoppgave"
                     value={newSubtask}
                     onChange={(e) => setNewSubtask(e.target.value)}
@@ -208,7 +208,7 @@ const TaskDetailModal = ({ task, open, onClose, onSave }: TaskDetailModalProps) 
                 </div>
                 <div className="flex items-center">
                   <Input
-                    className="flex-1 border-x-0 border-t-0 rounded-none focus-visible:ring-0"
+                    className="flex-1 border-x-0 border-t-0 rounded-none focus-visible:ring-0 bg-transparent"
                     placeholder="Skriv en kommentar..."
                   />
                 </div>
@@ -226,11 +226,11 @@ const TaskDetailModal = ({ task, open, onClose, onSave }: TaskDetailModalProps) 
         
         <ResizableHandle withHandle />
         
-        <ResizablePanel defaultSize={35} minSize={25} className="bg-[#F6F6F7] border-l overflow-y-auto">
+        <ResizablePanel defaultSize={35} minSize={25} className="bg-[hsl(var(--task-modal-sidebar))] border-l overflow-y-auto text-[hsl(var(--task-modal-sidebar-foreground))]">
           <div className="p-4 space-y-4">
             <div className="space-y-1">
               <h3 className="text-sm font-medium mb-2">Prosjekt</h3>
-              <div className="flex items-center justify-between p-2 bg-white rounded-md shadow-sm cursor-pointer hover:bg-gray-50">
+              <div className="flex items-center justify-between p-2 bg-[hsl(var(--task-modal-item-bg))] rounded-md shadow-sm cursor-pointer hover:bg-[hsl(var(--task-modal-item-hover))] transition-colors">
                 <div className="flex items-center">
                   <Hash className="h-4 w-4 mr-2 text-muted-foreground" />
                   <span className="text-sm">{editedTask.project || 'Ingen'}</span>
@@ -241,7 +241,7 @@ const TaskDetailModal = ({ task, open, onClose, onSave }: TaskDetailModalProps) 
             
             <div className="space-y-1">
               <h3 className="text-sm font-medium mb-2">Dato</h3>
-              <div className="flex items-center justify-between p-2 bg-white rounded-md shadow-sm cursor-pointer hover:bg-gray-50">
+              <div className="flex items-center justify-between p-2 bg-[hsl(var(--task-modal-item-bg))] rounded-md shadow-sm cursor-pointer hover:bg-[hsl(var(--task-modal-item-hover))] transition-colors">
                 <div className="flex items-center">
                   <Calendar className="h-4 w-4 mr-2 text-muted-foreground" />
                   <span className="text-sm">{editedTask.dueDate || 'Ingen'}</span>
@@ -254,7 +254,7 @@ const TaskDetailModal = ({ task, open, onClose, onSave }: TaskDetailModalProps) 
             
             <div className="space-y-1">
               <h3 className="text-sm font-medium mb-2">Prioritet</h3>
-              <div className="flex items-center justify-between p-2 bg-white rounded-md shadow-sm cursor-pointer hover:bg-gray-50">
+              <div className="flex items-center justify-between p-2 bg-[hsl(var(--task-modal-item-bg))] rounded-md shadow-sm cursor-pointer hover:bg-[hsl(var(--task-modal-item-hover))] transition-colors">
                 <div className="flex items-center">
                   <Flag className="h-4 w-4 mr-2 text-muted-foreground" />
                   <span className="text-sm">
@@ -268,7 +268,7 @@ const TaskDetailModal = ({ task, open, onClose, onSave }: TaskDetailModalProps) 
             
             <div className="space-y-1">
               <h3 className="text-sm font-medium mb-2">Etiketter</h3>
-              <div className="flex items-center justify-between p-2 bg-white rounded-md shadow-sm cursor-pointer hover:bg-gray-50">
+              <div className="flex items-center justify-between p-2 bg-[hsl(var(--task-modal-item-bg))] rounded-md shadow-sm cursor-pointer hover:bg-[hsl(var(--task-modal-item-hover))] transition-colors">
                 <div className="flex items-center">
                   <Tag className="h-4 w-4 mr-2 text-muted-foreground" />
                   <span className="text-sm">Legg til etiketter</span>
@@ -281,7 +281,7 @@ const TaskDetailModal = ({ task, open, onClose, onSave }: TaskDetailModalProps) 
             
             <div className="space-y-1">
               <h3 className="text-sm font-medium mb-2">Påminnelser</h3>
-              <div className="flex items-center justify-between p-2 bg-white rounded-md shadow-sm cursor-pointer hover:bg-gray-50">
+              <div className="flex items-center justify-between p-2 bg-[hsl(var(--task-modal-item-bg))] rounded-md shadow-sm cursor-pointer hover:bg-[hsl(var(--task-modal-item-hover))] transition-colors">
                 <div className="flex items-center">
                   <Bell className="h-4 w-4 mr-2 text-muted-foreground" />
                   <span className="text-sm">Ingen</span>
@@ -294,7 +294,7 @@ const TaskDetailModal = ({ task, open, onClose, onSave }: TaskDetailModalProps) 
             
             <div className="space-y-1">
               <h3 className="text-sm font-medium mb-2">Sted</h3>
-              <div className="flex items-center justify-between p-2 bg-white rounded-md shadow-sm cursor-pointer hover:bg-gray-50">
+              <div className="flex items-center justify-between p-2 bg-[hsl(var(--task-modal-item-bg))] rounded-md shadow-sm cursor-pointer hover:bg-[hsl(var(--task-modal-item-hover))] transition-colors">
                 <div className="flex items-center">
                   <MapPin className="h-4 w-4 mr-2 text-muted-foreground" />
                   <span className="text-sm">Ingen</span>
@@ -307,7 +307,7 @@ const TaskDetailModal = ({ task, open, onClose, onSave }: TaskDetailModalProps) 
             
             <div className="space-y-1">
               <h3 className="text-sm font-medium mb-2">Tilordnet til</h3>
-              <div className="flex items-center justify-between p-2 bg-white rounded-md shadow-sm cursor-pointer hover:bg-gray-50">
+              <div className="flex items-center justify-between p-2 bg-[hsl(var(--task-modal-item-bg))] rounded-md shadow-sm cursor-pointer hover:bg-[hsl(var(--task-modal-item-hover))] transition-colors">
                 <div className="flex items-center">
                   <User className="h-4 w-4 mr-2 text-muted-foreground" />
                   <span className="text-sm">Tilordne til</span>
@@ -323,9 +323,9 @@ const TaskDetailModal = ({ task, open, onClose, onSave }: TaskDetailModalProps) 
     </DialogContent>
   );
 
-  // Mobile sheet content
+  // Mobile sheet content - updating to use theme variables
   const mobileContent = (
-    <SheetContent className="w-full sm:max-w-lg" side="bottom">
+    <SheetContent className="w-full sm:max-w-lg bg-[hsl(var(--task-modal-background))] text-[hsl(var(--task-modal-foreground))]" side="bottom">
       <SheetHeader className="pb-0">
         <div className="flex items-center">
           <Checkbox 
@@ -335,7 +335,7 @@ const TaskDetailModal = ({ task, open, onClose, onSave }: TaskDetailModalProps) 
           />
           <SheetTitle className="p-0">
             <Input
-              className="border-none text-xl font-semibold px-0 focus-visible:ring-0 h-auto"
+              className="border-none text-xl font-semibold px-0 focus-visible:ring-0 h-auto bg-transparent"
               value={editedTask.title}
               onChange={(e) => setEditedTask({...editedTask, title: e.target.value})}
               placeholder="Oppgavetittel"
@@ -347,7 +347,7 @@ const TaskDetailModal = ({ task, open, onClose, onSave }: TaskDetailModalProps) 
       <div className="py-4 space-y-6">
         <Textarea
           placeholder="Her er en beskrivelse"
-          className="resize-none min-h-[80px] border-none focus-visible:ring-0 px-0"
+          className="resize-none min-h-[80px] border-none focus-visible:ring-0 px-0 bg-transparent"
           value={editedTask.description || ''}
           onChange={(e) => setEditedTask({...editedTask, description: e.target.value})}
         />
@@ -364,7 +364,7 @@ const TaskDetailModal = ({ task, open, onClose, onSave }: TaskDetailModalProps) 
                     className="mr-2"
                   />
                   <Input 
-                    className="flex-1 border-none focus-visible:ring-0 px-0 h-8"
+                    className="flex-1 border-none focus-visible:ring-0 px-0 h-8 bg-transparent"
                     value={subtask.title}
                     onChange={(e) => {
                       const updatedSubtasks = editedTask.subtasks?.map(st => 
@@ -390,7 +390,7 @@ const TaskDetailModal = ({ task, open, onClose, onSave }: TaskDetailModalProps) 
           
           <div className="flex items-center">
             <Input
-              className="flex-1 border-x-0 border-t-0 rounded-none focus-visible:ring-0"
+              className="flex-1 border-x-0 border-t-0 rounded-none focus-visible:ring-0 bg-transparent"
               placeholder="Legg til underoppgave"
               value={newSubtask}
               onChange={(e) => setNewSubtask(e.target.value)}
@@ -408,7 +408,7 @@ const TaskDetailModal = ({ task, open, onClose, onSave }: TaskDetailModalProps) 
           </div>
         </div>
         
-        <Separator />
+        <Separator className="bg-[hsl(var(--border))]" />
         
         <div className="space-y-4">
           <div className="flex items-center justify-between py-1.5 text-sm">

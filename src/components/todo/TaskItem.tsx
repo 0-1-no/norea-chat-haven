@@ -34,9 +34,9 @@ const TaskItem = ({ task, onToggleComplete, onOpenDetail, level = 0 }: TaskItemP
   const hasSubtasks = task.subtasks && task.subtasks.length > 0;
   
   const priorityColors = {
-    high: 'text-red-500',
-    medium: 'text-amber-500',
-    low: 'text-green-500'
+    high: 'text-red-500 dark:text-red-400',
+    medium: 'text-amber-500 dark:text-amber-400',
+    low: 'text-green-500 dark:text-green-400'
   };
 
   return (

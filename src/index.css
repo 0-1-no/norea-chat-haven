@@ -89,6 +89,15 @@
     --interactive-foreground: 0 0% 98%;
     --interactive-hover: 263 70% 50%;
     --interactive-muted: 263 70% 90%;
+    
+    /* Todo task modal colors */
+    --task-modal-background: 0 0% 100%;
+    --task-modal-foreground: 222.2 84% 4.9%;
+    --task-modal-sidebar: 0 0% 98%;
+    --task-modal-sidebar-foreground: 240 5.3% 26.1%;
+    --task-modal-item-bg: 0 0% 100%;
+    --task-modal-item-hover: 0 0% 95%;
+    --task-detail-bg: 0 0% 100%;
   }
 
   .dark {
@@ -161,6 +170,15 @@
     --interactive-foreground: 0 0% 98%;
     --interactive-hover: 263 70% 65%;
     --interactive-muted: 263 55% 25%; /* Adjusted interactive muted */
+    
+    /* Todo task modal colors - dark mode specific */
+    --task-modal-background: 222.2 47% 7%;
+    --task-modal-foreground: 210 40% 98%;
+    --task-modal-sidebar: 222.2 47% 5%;
+    --task-modal-sidebar-foreground: 210 40% 90%;
+    --task-modal-item-bg: 222.2 47% 10%;
+    --task-modal-item-hover: 222.2 47% 15%;
+    --task-detail-bg: 222.2 47% 10%;
   }
   
   /* Add meta tag properties through CSS to prevent mobile zoom */
