@@ -126,7 +126,7 @@ export const Message: React.FC<MessageProps> = ({
                 pre: ({node, ...props}) => <pre className="bg-muted p-3 rounded overflow-x-auto my-4" {...props} />,
                 blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-primary pl-4 italic my-4 text-[#444444]" {...props} />, 
                 a: ({node, ...props}) => <a className="text-primary font-normal underline underline-offset-2" {...props} />,
-                strong: ({node, ...props}) => <strong className="font-medium text-[#222222]" {...props} />, /* Changed from font-bold to font-medium */
+                strong: ({node, ...props}) => <strong className="font-medium text-[#222222]" {...props} />,
                 em: ({node, ...props}) => <em className="italic" {...props} />,
               }}
             >
@@ -138,9 +138,12 @@ export const Message: React.FC<MessageProps> = ({
         </div>
       </div>
       
-      {/* Action buttons - Forbedret posisjonering */}
+      {/* Action buttons - Fixed for correct positioning */}
       {showActions && (
-        <div className="absolute -top-3 right-2 flex bg-background shadow-md rounded-full border border-border">
+        <div className={cn(
+          "absolute -top-3 flex bg-background shadow-md rounded-full border border-border",
+          role === 'user' ? "right-2" : "right-2"
+        )}>
           <Button 
             variant="ghost" 
             size="icon" 
