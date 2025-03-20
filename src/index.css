@@ -98,6 +98,12 @@
     --task-modal-item-bg: 0 0% 100%;
     --task-modal-item-hover: 0 0% 95%;
     --task-detail-bg: 0 0% 100%;
+
+    /* Message component colors */
+    --user-message-bg: 210 40% 96.1%;
+    --user-message-text: 222.2 84% 4.9%;
+    --ai-message-bg: 0 0% 100%;
+    --ai-message-text: 222.2 84% 4.9%;
   }
 
   .dark {
@@ -179,6 +185,12 @@
     --task-modal-item-bg: 222.2 47% 10%;
     --task-modal-item-hover: 222.2 47% 15%;
     --task-detail-bg: 222.2 47% 10%;
+
+    /* Message component colors - dark mode specific */
+    --user-message-bg: 222.2 47% 15%;
+    --user-message-text: 210 40% 98%;
+    --ai-message-bg: 222.2 47% 10%;
+    --ai-message-text: 210 40% 98%;
   }
   
   /* Add meta tag properties through CSS to prevent mobile zoom */

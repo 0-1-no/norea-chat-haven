@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -95,6 +96,17 @@ export default {
 					foreground: 'hsl(var(--interactive-foreground))',
 					hover: 'hsl(var(--interactive-hover))',
 					muted: 'hsl(var(--interactive-muted))',
+				},
+				// Add message-specific color variables
+				message: {
+					user: {
+						bg: 'hsl(var(--user-message-bg))',
+						text: 'hsl(var(--user-message-text))',
+					},
+					ai: {
+						bg: 'hsl(var(--ai-message-bg))',
+						text: 'hsl(var(--ai-message-text))',
+					},
 				},
 			},
 			borderRadius: {

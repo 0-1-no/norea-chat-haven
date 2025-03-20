@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import TodoLayout from '@/layouts/TodoLayout';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -8,6 +9,7 @@ import { Progress } from '@/components/ui/progress';
 import { Separator } from '@/components/ui/separator';
 import TaskItem, { Task } from '@/components/todo/TaskItem';
 import { Tag } from '@/components/ui/tag';
+
 const TodoApp = () => {
   const navigate = useNavigate();
   const [selectedTaskGroup, setSelectedTaskGroup] = useState('today');
@@ -54,46 +56,41 @@ const TodoApp = () => {
 
   // Randomly select a tip to display
   const randomTip = productivityTips[Math.floor(Math.random() * productivityTips.length)];
+  
   const getCompletionPercentage = () => {
     return Math.round(stats.tasks.completed / stats.tasks.total * 100);
   };
+  
   const handleToggleComplete = (taskId: number) => {
     // In a real app, this would update state or call an API
     console.log('Toggle task completion:', taskId);
   };
+  
   const handleOpenTaskDetail = (task: Task) => {
     // In a real app, this would open the task detail modal/view
     console.log('Open task detail:', task);
   };
-  return <TodoLayout>
-      <div className="max-w-2xl mx-auto space-y-8">
-        {/* Productivity coach section */}
-        <Card className="border-none shadow-sm bg-white">
-          
-        </Card>
 
-        {/* Main focus section */}
-        <Card className="border-none shadow-sm bg-white">
+  return (
+    <TodoLayout>
+      <div className="max-w-2xl mx-auto space-y-8">
+        <Card className="border-none shadow-sm bg-card text-card-foreground">
           <CardContent className="p-8">
             <div className="mb-6">
               <h1 className="text-3xl font-bold tracking-tight mb-2">Dagens fokus</h1>
               <div className="flex items-center justify-between">
                 <p className="text-muted-foreground">
                   {new Date().toLocaleDateString('no-NO', {
-                  weekday: 'long',
-                  day: 'numeric',
-                  month: 'long'
-                })}
+                    weekday: 'long',
+                    day: 'numeric',
+                    month: 'long'
+                  })}
                 </p>
-                
               </div>
             </div>
 
-            {/* Progress indicator */}
-            
-
             {/* Focus task (Cal Newport style - single most important task) */}
-            <Card className="mb-8 bg-slate-50 border-none shadow-none">
+            <Card className="mb-8 bg-secondary/50 border-none shadow-none">
               <CardHeader className="pb-2">
                 <CardTitle className="text-lg font-medium">Viktigste oppgave nå</CardTitle>
                 <CardDescription>Fokuser på denne oppgaven for å maksimere produktiviteten din</CardDescription>
@@ -116,22 +113,26 @@ const TodoApp = () => {
               </div>
               
               <div className="space-y-0.5">
-                {todayTasks.map(task => <TaskItem key={task.id} task={task} onToggleComplete={handleToggleComplete} onOpenDetail={handleOpenTaskDetail} />)}
+                {todayTasks.map(task => 
+                  <TaskItem 
+                    key={task.id} 
+                    task={task} 
+                    onToggleComplete={handleToggleComplete} 
+                    onOpenDetail={handleOpenTaskDetail} 
+                  />
+                )}
               </div>
             </div>
             
-            <Button onClick={() => navigate('/assistant/todo/tasks')} className="w-full bg-indigo-600 hover:bg-indigo-700 text-white">
+            <Button onClick={() => navigate('/assistant/todo/tasks')} className="w-full bg-primary hover:bg-primary-hover text-primary-foreground">
               <Plus size={16} className="mr-2" />
               <span>Legg til oppgave</span>
             </Button>
           </CardContent>
         </Card>
-        
-        {/* Weekly review button (Newport advocates for regular reviews) */}
-        <div className="flex justify-center">
-          
-        </div>
       </div>
-    </TodoLayout>;
+    </TodoLayout>
+  );
 };
+
 export default TodoApp;

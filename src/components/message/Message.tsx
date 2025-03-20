@@ -65,8 +65,8 @@ export const Message: React.FC<MessageProps> = ({
       className={cn(
         "group rounded-lg mb-8 relative",
         role === 'user' 
-          ? "bg-gray-100 text-foreground float-right clear-both max-w-[66%]" // Float right for user messages
-          : "bg-background text-foreground float-left clear-both max-w-[85%]", // Float left for AI messages
+          ? "bg-[hsl(var(--user-message-bg))] text-[hsl(var(--user-message-text))] float-right clear-both max-w-[66%]" // Using CSS variables for user messages
+          : "bg-[hsl(var(--ai-message-bg))] text-[hsl(var(--ai-message-text))] float-left clear-both max-w-[85%]", // Using CSS variables for AI messages
         className
       )}
       onMouseEnter={() => setShowActions(true)}
@@ -91,7 +91,7 @@ export const Message: React.FC<MessageProps> = ({
       )}>
         <div className={cn(
           role === 'ai' 
-            ? "prose prose-headings:mt-6 prose-headings:mb-3 prose-p:my-4 prose-p:leading-relaxed prose-ul:my-4 prose-ol:my-4 prose-li:my-2 prose-li:leading-relaxed prose-pre:bg-gray-50 prose-pre:p-3 prose-pre:rounded prose-strong:font-medium" 
+            ? "prose dark:prose-invert prose-headings:mt-6 prose-headings:mb-3 prose-p:my-4 prose-p:leading-relaxed prose-ul:my-4 prose-ol:my-4 prose-li:my-2 prose-li:leading-relaxed prose-pre:bg-muted prose-pre:p-3 prose-pre:rounded prose-strong:font-medium" 
             : ""
         )}>
           {role === 'ai' ? (
