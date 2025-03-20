@@ -29,7 +29,7 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({
   const content = (
     <div
       className={cn(
-        "px-3 py-2 rounded-md text-sm flex justify-between items-center cursor-pointer transition-colors duration-200",
+        "px-3 py-2 rounded-md text-base flex justify-between items-center cursor-pointer transition-colors duration-200",
         activeState 
           ? "bg-sidebar-accent text-sidebar-accent-foreground font-medium" 
           : "hover:bg-sidebar-accent/50 text-sidebar-foreground"

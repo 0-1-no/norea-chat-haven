@@ -1,3 +1,4 @@
+
 import React, { useRef } from 'react';
 import { Header } from '@/components/Header';
 import { Sidebar, SidebarContent, SidebarProvider, SidebarTrigger, SidebarFooter, SidebarHeader } from '@/components/ui/sidebar';
@@ -37,15 +38,15 @@ export const PageContainer: React.FC<PageContainerProps> = ({
       <div className="h-screen w-full flex overflow-hidden backdrop-layer">
         {/* Layer 2: Sidebar - navigation container */}
         <Sidebar className="z-40 sidebar-layer">
-          <SidebarHeader className="px-2 py-2">
+          <SidebarHeader className="px-2 py-3">
             <Link to="/" className="block">
-              <h1 className="text-xl font-semibold text-sidebar-foreground px-2">Norea</h1>
+              <h1 className="text-2xl font-semibold text-sidebar-foreground px-2">Norea</h1>
             </Link>
           </SidebarHeader>
           
           <SidebarContent>
             <div className="flex-1 overflow-y-auto">
-              <div className="px-2 mb-4 w-full">
+              <div className="px-2 mb-5 w-full">
                 {/* New Chat button */}
                 <div className="px-1">
                   <SidebarNewChat />
