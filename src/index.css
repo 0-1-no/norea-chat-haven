@@ -92,36 +92,46 @@
   }
 
   .dark {
+    /* Core colors for dark mode */
     --background: 222.2 47% 5%; /* Darker background */
     --foreground: 210 40% 98%;
 
+    /* Card component colors - darker in dark mode */
     --card: 222.2 47% 7%; /* Darker card bg */
     --card-foreground: 210 40% 98%;
 
+    /* Popover component colors - darker in dark mode */
     --popover: 222.2 47% 5%; /* Darker popover */
     --popover-foreground: 210 40% 98%;
 
-    --primary: 263 70% 58%;
+    /* Primary brand colors - adjusted for dark mode */
+    --primary: 263 70% 58%; /* Keep the same purple but might need to be brighter */
     --primary-foreground: 210 40% 98%;
     --primary-muted: 263 55% 25%; /* Adjusted primary muted */
     --primary-hover: 263 70% 65%;
 
+    /* Secondary colors - darker for dark mode */
     --secondary: 217.2 32.6% 12%; /* Darker secondary */
     --secondary-foreground: 210 40% 98%;
 
+    /* Muted colors - darker for dark mode */
     --muted: 217.2 32.6% 12%; /* Darker muted */
     --muted-foreground: 215 20.2% 75%; /* Lighter muted foreground */
 
+    /* Accent colors - darker for dark mode */
     --accent: 217.2 32.6% 12%; /* Darker accent */
     --accent-foreground: 210 40% 98%;
 
+    /* Destructive colors - adjusted for dark mode */
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
+    /* Border & input colors - darker for dark mode */
     --border: 217.2 32.6% 15%; /* Darker border */
     --input: 217.2 32.6% 15%; /* Darker input */
     --ring: 212.7 26.8% 83.9%;
     
+    /* Sidebar colors - darker in dark mode */
     --sidebar-background: 240 10% 8%; /* Darker sidebar */
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 263 70% 58%;
@@ -131,18 +141,22 @@
     --sidebar-border: 240 7% 13%; /* Darker sidebar border */
     --sidebar-ring: 217.2 91.2% 59.8%;
 
+    /* Canvas colors - darker in dark mode */
     --canvas-background: 222.2 47% 7%; /* Darker canvas */
     --canvas-foreground: 210 40% 98%;
     --canvas-border: 217.2 32.6% 15%; /* Darker canvas border */
 
+    /* Backdrop colors - darker in dark mode */
     --backdrop-background: 240 10% 3.9%; /* Darker backdrop */
     --backdrop-foreground: 0 0% 98%;
 
+    /* Surface colors - darker in dark mode */
     --surface-background: 222.2 47% 7%; /* Darker surface */
     --surface-foreground: 210 40% 98%;
     --surface-hover: 217.2 32.6% 12%; /* Darker surface hover */
     --surface-border: 217.2 32.6% 15%; /* Darker surface border */
 
+    /* Interactive colors - adjusted for dark mode */
     --interactive-background: 263 70% 58%;
     --interactive-foreground: 0 0% 98%;
     --interactive-hover: 263 70% 65%;

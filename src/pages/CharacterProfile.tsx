@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { PageContainer } from '@/components/layout/PageContainer';
@@ -167,26 +168,26 @@ const CharacterProfile = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-8">
             <Card>
-              <CardHeader className="bg-gradient-to-r from-blue-50 to-purple-50">
+              <CardHeader className="bg-gradient-to-r from-primary-muted/10 to-primary-muted/20 dark:from-primary-muted/5 dark:to-primary-muted/10">
                 <div className="flex items-center gap-2">
-                  <BookOpen className="w-5 h-5 text-purple-600" />
+                  <BookOpen className="w-5 h-5 text-primary" />
                   <CardTitle>Scene</CardTitle>
                 </div>
               </CardHeader>
               <CardContent className="pt-6">
-                <p className="text-gray-700 italic">{character?.scene}</p>
+                <p className="text-card-foreground italic">{character?.scene}</p>
               </CardContent>
             </Card>
             
             <Card>
-              <CardHeader className="bg-gradient-to-r from-blue-50 to-purple-50">
+              <CardHeader className="bg-gradient-to-r from-primary-muted/10 to-primary-muted/20 dark:from-primary-muted/5 dark:to-primary-muted/10">
                 <div className="flex items-center gap-2">
-                  <Info className="w-5 h-5 text-purple-600" />
+                  <Info className="w-5 h-5 text-primary" />
                   <CardTitle>Om denne samtalen</CardTitle>
                 </div>
               </CardHeader>
               <CardContent className="pt-6">
-                <div className="prose max-w-none">
+                <div className="prose dark:prose-invert max-w-none">
                   {character?.about.split('\n\n').map((paragraph, index) => (
                     <div key={index}>
                       {paragraph.includes('•') ? (
@@ -207,9 +208,9 @@ const CharacterProfile = () => {
           
           <div>
             <Card>
-              <CardHeader className="bg-gradient-to-r from-blue-50 to-purple-50">
+              <CardHeader className="bg-gradient-to-r from-primary-muted/10 to-primary-muted/20 dark:from-primary-muted/5 dark:to-primary-muted/10">
                 <div className="flex items-center gap-2">
-                  <User className="w-5 h-5 text-purple-600" />
+                  <User className="w-5 h-5 text-primary" />
                   <CardTitle>Karakterer</CardTitle>
                 </div>
               </CardHeader>
@@ -234,15 +235,15 @@ const CharacterProfile = () => {
             </Card>
             
             <Card className="mt-6">
-              <CardHeader className="bg-gradient-to-r from-blue-50 to-purple-50">
+              <CardHeader className="bg-gradient-to-r from-primary-muted/10 to-primary-muted/20 dark:from-primary-muted/5 dark:to-primary-muted/10">
                 <div className="flex items-center gap-2">
-                  <Coffee className="w-5 h-5 text-purple-600" />
+                  <Coffee className="w-5 h-5 text-primary" />
                   <CardTitle>Lignende karakterer</CardTitle>
                 </div>
               </CardHeader>
               <CardContent className="pt-6">
                 <div className="space-y-4">
-                  <div className="group flex gap-4 items-center cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition-colors">
+                  <div className="group flex gap-4 items-center cursor-pointer hover:bg-muted p-2 rounded-lg transition-colors">
                     <div className="w-12 h-12 rounded-full overflow-hidden">
                       <img 
                         src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
@@ -251,12 +252,12 @@ const CharacterProfile = () => {
                       />
                     </div>
                     <div>
-                      <h4 className="font-medium group-hover:text-purple-600">Karriereveilederen</h4>
+                      <h4 className="font-medium group-hover:text-primary">Karriereveilederen</h4>
                       <p className="text-sm text-muted-foreground">Hjelper deg med karrierevalg og jobbsøking</p>
                     </div>
                   </div>
                   
-                  <div className="group flex gap-4 items-center cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition-colors">
+                  <div className="group flex gap-4 items-center cursor-pointer hover:bg-muted p-2 rounded-lg transition-colors">
                     <div className="w-12 h-12 rounded-full overflow-hidden">
                       <img 
                         src="https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
@@ -265,12 +266,12 @@ const CharacterProfile = () => {
                       />
                     </div>
                     <div>
-                      <h4 className="font-medium group-hover:text-purple-600">Livscoachen</h4>
+                      <h4 className="font-medium group-hover:text-primary">Livscoachen</h4>
                       <p className="text-sm text-muted-foreground">Hjelper deg med å finne balanse og mening</p>
                     </div>
                   </div>
                   
-                  <div className="group flex gap-4 items-center cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition-colors">
+                  <div className="group flex gap-4 items-center cursor-pointer hover:bg-muted p-2 rounded-lg transition-colors">
                     <div className="w-12 h-12 rounded-full overflow-hidden">
                       <img 
                         src="https://images.unsplash.com/photo-1560253023-3ec5d502959f?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
@@ -279,15 +280,15 @@ const CharacterProfile = () => {
                       />
                     </div>
                     <div>
-                      <h4 className="font-medium group-hover:text-purple-600">Psykologen</h4>
+                      <h4 className="font-medium group-hover:text-primary">Psykologen</h4>
                       <p className="text-sm text-muted-foreground">Støttende samtalepartner for personlig utvikling</p>
                     </div>
                   </div>
                 </div>
               </CardContent>
-              <CardFooter className="bg-gray-50">
+              <CardFooter className="bg-muted/50 dark:bg-muted/20">
                 <Button variant="outline" className="w-full">
-                  <Sparkles className="w-4 h-4 mr-2 text-purple-500" />
+                  <Sparkles className="w-4 h-4 mr-2 text-primary" />
                   Utforsk flere karakterer
                 </Button>
               </CardFooter>
