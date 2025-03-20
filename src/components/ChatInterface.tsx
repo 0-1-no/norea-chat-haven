@@ -26,6 +26,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
       <MessageInput 
         onSendMessage={handleSendMessage} 
         placeholder="Spør om hva som helst..."
+        className="mb-1"
       />
     </div>
   );

@@ -53,7 +53,7 @@ const ChatDemo = () => {
         <div className="flex-1 overflow-y-auto" ref={chatContainerRef}>
           <div className="max-w-3xl mx-auto">
             {conversation.map((message, index) => (
-              <div key={index} className="mb-2 after:content-[''] after:clear-both after:table">
+              <div key={index} className="mb-1 after:content-[''] after:clear-both after:table">
                 <Message
                   role={message.role}
                   content={message.content}
@@ -63,7 +63,7 @@ const ChatDemo = () => {
           </div>
         </div>
         
-        <div className="p-4 border-t border-border">
+        <div className="p-3 sm:p-4 border-t border-border">
           <MessageInput 
             onSendMessage={handleSendMessage}
             className="max-w-3xl mx-auto"

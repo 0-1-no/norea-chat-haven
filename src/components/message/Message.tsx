@@ -64,7 +64,7 @@ export const Message: React.FC<MessageProps> = ({
   return (
     <div 
       className={cn(
-        "group relative rounded-lg mb-2",
+        "group relative rounded-lg mb-1",
         role === 'user' 
           ? "bg-[hsl(var(--user-message-bg))] text-[#222222] float-right clear-both sm:max-w-[66%] max-w-[80%]" 
           : "bg-[hsl(var(--ai-message-bg))] text-[#222222] float-left clear-both sm:max-w-[85%] max-w-full", 
@@ -88,7 +88,7 @@ export const Message: React.FC<MessageProps> = ({
       
       {/* Content wrapper med redusert padding */}
       <div className={cn(
-        role === 'user' ? "px-4 py-3" : "px-5 py-4", 
+        role === 'user' ? "px-4 py-2 sm:py-2.5" : "px-4 py-3 sm:px-5 sm:py-3.5", 
       )}>
         <div className={cn(
           role === 'ai' 
@@ -140,15 +140,15 @@ export const Message: React.FC<MessageProps> = ({
       
       {/* Action buttons - Forbedret posisjonering */}
       {showActions && (
-        <div className="absolute bottom-2 right-2 flex bg-background shadow-md rounded-full border border-border">
+        <div className="absolute -top-3 right-2 flex bg-background shadow-md rounded-full border border-border">
           <Button 
             variant="ghost" 
             size="icon" 
-            className="h-8 w-8" 
+            className="h-7 w-7" 
             onClick={handleCopy}
             aria-label="Kopier"
           >
-            <Copy className="h-4 w-4" />
+            <Copy className="h-3.5 w-3.5" />
           </Button>
           
           {role === 'ai' && (
@@ -156,21 +156,21 @@ export const Message: React.FC<MessageProps> = ({
               <Button 
                 variant="ghost" 
                 size="icon" 
-                className="h-8 w-8" 
+                className="h-7 w-7" 
                 onClick={handleThumbsUp}
                 aria-label="Nyttig"
               >
-                <ThumbsUp className="h-4 w-4" />
+                <ThumbsUp className="h-3.5 w-3.5" />
               </Button>
               
               <Button 
                 variant="ghost" 
                 size="icon" 
-                className="h-8 w-8" 
+                className="h-7 w-7" 
                 onClick={handleThumbsDown}
                 aria-label="Ikke nyttig"
               >
-                <ThumbsDown className="h-4 w-4" />
+                <ThumbsDown className="h-3.5 w-3.5" />
               </Button>
             </>
           )}
@@ -179,11 +179,11 @@ export const Message: React.FC<MessageProps> = ({
             <Button 
               variant="ghost" 
               size="icon" 
-              className="h-8 w-8" 
+              className="h-7 w-7" 
               onClick={handleEdit}
               aria-label="Rediger"
             >
-              <Pen className="h-4 w-4" />
+              <Pen className="h-3.5 w-3.5" />
             </Button>
           )}
         </div>

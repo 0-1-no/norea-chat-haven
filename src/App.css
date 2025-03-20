@@ -237,9 +237,20 @@
 
 /* Legg til riktig spacing for sidebaren */
 [data-sidebar="menu"] {
-  gap: 0.5rem !important;
+  gap: 0.25rem !important;
 }
 
 .group\/menu-item {
   margin-bottom: 0 !important;
+}
+
+/* Forbedret konsistens i chat-meldings-padding */
+.message-component {
+  margin-bottom: 0.25rem !important;
+}
+
+@media (max-width: 640px) {
+  .message-component {
+    padding: 0.5rem 0.75rem !important;
+  }
 }
