@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Copy, ThumbsUp, ThumbsDown, Pen } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -138,11 +137,10 @@ export const Message: React.FC<MessageProps> = ({
         </div>
       </div>
       
-      {/* Action buttons - Fixed positioning */}
+      {/* Action buttons - Bottom right positioning for both message types */}
       {showActions && (
         <div className={cn(
-          "absolute -top-3 flex bg-background shadow-md rounded-full border border-border",
-          role === 'user' ? "right-2" : "left-2"
+          "absolute bottom-1 right-2 flex bg-background shadow-md rounded-full border border-border"
         )}>
           <Button 
             variant="ghost" 
