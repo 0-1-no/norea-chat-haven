@@ -148,7 +148,7 @@ const MemoryChat = () => {
     {
       id: '17',
       role: 'ai',
-      content: 'Selvfølgelig! Her er det jeg vet om deg:\n\n- Du heter Jonas\n- Du kommer fra Bergen\n- Du jobber som web-utvikler\n- Du liker å drive med fjellklatring på fritiden\n- Din favorittfarge er blå',
+      content: '## Informasjon om Jonas\n\nBasert på vår samtale, her er det jeg vet om deg:\n\n- Du heter **Jonas**\n- Du kommer fra **Bergen**\n- Du jobber som **web-utvikler**\n- Du liker å drive med **fjellklatring** på fritiden\n- Din favorittfarge er **blå**\n\nEr det noe mer du vil at jeg skal huske om deg?',
       memories: [
         {
           type: 'retrieve',
@@ -192,7 +192,7 @@ const MemoryChat = () => {
         <div className="flex-1 overflow-y-auto" ref={chatContainerRef}>
           <div className="max-w-3xl mx-auto">
             {predefinedMessages.map((message) => (
-              <div key={message.id} className="mb-6">
+              <div key={message.id} className="mb-2">
                 <Message
                   role={message.role}
                   content={message.content}

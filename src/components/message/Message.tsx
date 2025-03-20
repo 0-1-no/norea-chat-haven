@@ -63,10 +63,10 @@ export const Message: React.FC<MessageProps> = ({
   return (
     <div 
       className={cn(
-        "group rounded-lg mb-8 relative",
+        "group rounded-lg mb-4 relative", // Redusert mb-8 til mb-4 for mindre mellomrom mellom meldinger
         role === 'user' 
-          ? "bg-[hsl(var(--user-message-bg))] text-[hsl(var(--user-message-text))] float-right clear-both max-w-[66%]" // Using CSS variables for user messages
-          : "bg-[hsl(var(--ai-message-bg))] text-[hsl(var(--ai-message-text))] float-left clear-both max-w-[85%]", // Using CSS variables for AI messages
+          ? "bg-[hsl(var(--user-message-bg))] text-[hsl(var(--user-message-text))] float-right clear-both sm:max-w-[66%] max-w-[80%]" // Økt bredde på mobil
+          : "bg-[hsl(var(--ai-message-bg))] text-[hsl(var(--ai-message-text))] float-left clear-both sm:max-w-[85%] max-w-full", // Full bredde på mobil
         className
       )}
       onMouseEnter={() => setShowActions(true)}
@@ -87,17 +87,17 @@ export const Message: React.FC<MessageProps> = ({
       
       {/* Content wrapper with proper padding */}
       <div className={cn(
-        role === 'user' ? "px-5 py-4" : "px-6 py-5", // More padding for AI messages
+        role === 'user' ? "px-5 py-4" : "px-6 py-5", // Beholdt padding for innhold
       )}>
         <div className={cn(
           role === 'ai' 
-            ? "prose dark:prose-invert prose-headings:mt-6 prose-headings:mb-3 prose-p:my-4 prose-p:leading-relaxed prose-ul:my-4 prose-ol:my-4 prose-li:my-2 prose-li:leading-relaxed prose-pre:bg-muted prose-pre:p-3 prose-pre:rounded prose-strong:font-medium" 
+            ? "prose dark:prose-invert prose-headings:mt-6 prose-headings:mb-3 prose-p:my-4 prose-p:leading-relaxed prose-ul:my-4 prose-ol:my-4 prose-li:my-2 prose-li:leading-relaxed prose-pre:bg-muted prose-pre:p-3 prose-pre:rounded prose-strong:font-medium max-w-none" 
             : ""
         )}>
           {role === 'ai' ? (
             <ReactMarkdown>{content}</ReactMarkdown>
           ) : (
-            <p className="text-right leading-relaxed">{content}</p>
+            <p className="text-left leading-relaxed">{content}</p> // Endret fra text-right til text-left
           )}
         </div>
       </div>

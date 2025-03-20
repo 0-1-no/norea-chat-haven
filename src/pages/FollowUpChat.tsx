@@ -21,20 +21,35 @@ const initialMessages: MessageType[] = [
   {
     id: '2',
     role: 'ai',
-    content: `OpenAI har utviklet flere generasjoner av språkmodeller som har revolusjonert hvordan vi interagerer med kunstig intelligens.
+    content: `# OpenAI språkmodeller
 
-De mest kjente modellene deres inkluderer GPT-serien (Generative Pre-trained Transformer), som har gått gjennom flere iterasjoner, fra GPT-1 til de nyeste GPT-4o og o1 modellene.
+OpenAI har utviklet flere generasjoner av språkmodeller som har revolusjonert hvordan vi interagerer med kunstig intelligens.
 
-Disse modellene er trent på enorme mengder tekst fra internett og bøker, og kan generere menneskelignende tekst, oversette språk, skrive ulike former for kreativt innhold, og svare på spørsmål på en informativ måte.
+## GPT-serien
 
-OpenAI har også utviklet spesialiserte varianter som DALL-E for bildegenerering, Whisper for talegjenkjenning, og Codex som er skreddersydd for kodeforståelse og -generering.
+De mest kjente modellene deres inkluderer GPT-serien (Generative Pre-trained Transformer), som har gått gjennom flere iterasjoner:
+
+- GPT-1: Den første modellen lansert i 2018
+- GPT-2: Lansert i 2019 med betydelig forbedret kapasitet
+- GPT-3: En dramatisk oppskalering lansert i 2020
+- GPT-4: Den nyeste hovedmodellen med multimodal kapasitet
+- GPT-4o: Optimalisert for raskere respons og multimodale oppgaver
+- o1: Den nyeste modellen med forbedrede resoneringsferdigheter
+
+## Andre viktige modeller
+
+OpenAI har også utviklet spesialiserte varianter som:
+
+1. **DALL-E**: For bildegenerering basert på tekstbeskrivelser
+2. **Whisper**: For talegjenkjenning og transkripsjon
+3. **Codex**: Skreddersydd for kodeforståelse og -generering
 
 Med hver nye modell har det vært betydelige forbedringer i evnen til å forstå kontekst, generere mer presise svar, og håndtere mer komplekse oppgaver.`,
     followUpPrompts: [
-      { id: 'fp1', text: 'Hva er hovedforskjellene mellom o1 og o3 modeller?' },
+      { id: 'fp1', text: 'Hva er hovedforskjellene mellom o1 og GPT-4 modeller?' },
       { id: 'fp2', text: 'Hvordan forbedrer o1-modellen seg fra GPT-4o?' },
       { id: 'fp3', text: 'Hvilke spesifikke oppgaver er o1-modellen best egnet for?' },
-      { id: 'fp4', text: 'Hvordan fungerer den simulerte resonneringsprosessen i o3?' },
+      { id: 'fp4', text: 'Hvordan fungerer den simulerte resonneringsprosessen i o1?' },
       { id: 'fp5', text: 'Hva var kodenavnet for o1-modellen før den offisielle lanseringen?' }
     ]
   }
@@ -68,42 +83,77 @@ const FollowUpChat: React.FC = () => {
       let aiResponse: MessageType;
       
       // Custom responses for follow-up questions
-      if (content.includes('o1 og o3')) {
+      if (content.includes('o1 og GPT-4')) {
         aiResponse = {
           id: `ai-${Date.now()}`,
           role: 'ai',
-          content: `Hovedforskjellene mellom o1 og o3 modeller ligger i deres arkitektur, kapasitet, og anvendelsesområder:
+          content: `## Hovedforskjeller mellom o1 og GPT-4 modeller
 
-1. **Arkitektur og størrelse**: o3 er betydelig større enn o1, med flere parametere som gir den mer kapasitet til å håndtere komplekse oppgaver.
+### Arkitektur og ytelse
+- **o1**: Bruker en ny arkitektur optimalisert for resonneringsoppgaver
+- **GPT-4**: Basert på den tradisjonelle Transformer-arkitekturen
 
-2. **Resonneringsevne**: o3 har avanserte mekanismer for simulert resonnering som gjør den i stand til å utføre mer sofistikert problemløsning enn o1.
+### Kapasiteter
+o1 utmerker seg spesielt på:
+- Stegvis resonnering
+- Matematisk problemløsning
+- Kodeforståelse og -generering
+- Konsekvent tankegang
 
-3. **Spesialisering**: Mens o1 er optimalisert for rask og effektiv behandling av vanlige oppgaver, er o3 designet for mer dyptgående analyser og kompleks tenkning.
+### Feilreduksjon
+o1 har betydelig lavere frekvens av:
+- Hallusinasjoner
+- Logiske feil
+- Faktuelle unøyaktigheter
 
-4. **Responstid**: o1 er generelt raskere enn o3 på grunn av sin mindre størrelse, noe som gjør den bedre egnet for sanntidsapplikasjoner.
+### Responsformat
+- **o1**: Produserer mer strukturerte og velbegrunnede svar
+- **GPT-4**: Mer generaliserende og mindre konsekvent i resoneringsmetoder
 
-5. **Ressurskrav**: o3 krever betydelig mer beregningskraft for å kjøre enn o1, noe som påvirker både kostnad og tilgjengelighet.`,
+> "o1 representerer et kvalitativt skift i hvordan AI-modeller håndterer komplekse resonneringsoppgaver" - OpenAI
+
+### Brukssituasjoner
+| Modell | Best egnet for | Mindre egnet for |
+|--------|----------------|------------------|
+| o1     | Komplekse resonneringsoppgaver | Generative kreative oppgaver |
+| GPT-4  | Generell bruk, kreativ skriving | Avansert matematikk, koding |`,
           followUpPrompts: [
-            { id: 'fp6', text: 'Hvordan påvirker størrelsen til o3 dens effektivitet?' },
-            { id: 'fp7', text: 'Hvilke typer oppgaver er o3 best på sammenlignet med o1?' },
-            { id: 'fp8', text: 'Hva er fordelene med å bruke o1 over o3?' }
+            { id: 'fp6', text: 'Hvordan påvirker arkitekturen til o1 dens effektivitet?' },
+            { id: 'fp7', text: 'Hvilke typer oppgaver er o1 best på sammenlignet med GPT-4?' },
+            { id: 'fp8', text: 'Hva er fordelene med å bruke GPT-4 over o1?' }
           ]
         };
       } else if (content.includes('o1-modellen seg fra GPT-4o')) {
         aiResponse = {
           id: `ai-${Date.now()}`,
           role: 'ai',
-          content: `o1-modellen representerer en betydelig forbedring fra GPT-4o på flere områder:
+          content: `# Forbedringer i o1-modellen sammenlignet med GPT-4o
 
-1. **Effektivitet**: o1 er optimalisert for å levere raske svar med mindre ressursbruk, noe som gjør den mer kostnadseffektiv.
+o1-modellen representerer en betydelig forbedring fra GPT-4o på flere områder:
 
-2. **Multimodal forståelse**: Mens GPT-4o hadde noen multimodale evner, har o1 en mer sømløs integrering av tekst, bilde, og kontekstuell forståelse.
+## 1. Resonneringsevne
+- **Stegvis løsning**: o1 er designet for å bryte ned komplekse problemer i logiske steg
+- **Konsistens**: Betydelig mer konsekvent i resonneringsmetoder over forskjellige oppgaver
 
-3. **Redusert hallusinasjon**: o1 viser betydelig reduksjon i tendensen til å generere feilinformasjon eller "hallusinere" fakta sammenlignet med GPT-4o.
+## 2. Tekniske ferdigheter
+o1 viser overlegne ferdigheter innen:
+- Matematisk problemløsning
+- Koding (mer presis og feilfri)
+- Logiske analyser
 
-4. **Instruksjonsfølging**: o1 er mer presis i å følge komplekse instruksjoner og forstå nyanser i brukerforespørsler.
+## 3. Redusert hallusinasjon
+o1 viser betydelig reduksjon i:
+- Faktuell hallusinasjon
+- Selvmotsigende innhold
+- Udokumenterte påstander
 
-5. **Kontekstuell hukommelse**: o1 har forbedret evne til å holde styr på og referere til tidligere deler av samtalen.`,
+## 4. Effektivitet
+- Raskere på visse typer komplekse oppgaver
+- Mer målrettet i problemløsningsprosessen
+
+## 5. Kontekstuell forståelse
+- Bedre til å fastholde viktig informasjon gjennom lange resonnementer
+- Mer presis i å følge komplekse flertrinns instruksjoner`,
           followUpPrompts: [
             { id: 'fp9', text: 'Hvordan ble treningsprosessen forbedret fra GPT-4o til o1?' },
             { id: 'fp10', text: 'Hvilke reelle brukstilfeller viser størst forbedring med o1?' }
@@ -114,13 +164,24 @@ const FollowUpChat: React.FC = () => {
         aiResponse = {
           id: `ai-${Date.now()}`,
           role: 'ai',
-          content: `Takk for spørsmålet ditt om "${content}". 
+          content: `# Svar på spørsmålet ditt
+
+Takk for spørsmålet ditt om "${content}". 
 
 Dette er en demonstrasjon av oppfølgingsspørsmål-funksjonaliteten, så jeg gir deg et generelt svar her.
 
+## Om denne demonstrasjonen
+
 I en fullstendig implementasjon ville dette svaret vært generert av en AI-modell basert på ditt spesifikke spørsmål, og relevante oppfølgingsspørsmål ville blitt foreslått basert på konteksten i samtalen.
 
-Prøv gjerne å trykke på noen av de foreslåtte oppfølgingsspørsmålene for å se hvordan denne funksjonen fungerer!`,
+### Hvordan oppfølgingsspørsmål fungerer
+
+Oppfølgingsspørsmål kan:
+- Hjelpe brukere med å utforske relaterte temaer
+- Oppklare uklarheter fra forrige svar
+- Guide samtalen i en mer produktiv retning
+
+> Prøv gjerne å trykke på noen av de foreslåtte oppfølgingsspørsmålene for å se hvordan denne funksjonen fungerer!`,
           followUpPrompts: [
             { id: `fp-new-1-${Date.now()}`, text: 'Hvordan kan oppfølgingsspørsmål forbedre brukeropplevelsen?' },
             { id: `fp-new-2-${Date.now()}`, text: 'Hvordan genereres relevante oppfølgingsspørsmål?' }
@@ -142,7 +203,7 @@ Prøv gjerne å trykke på noen av de foreslåtte oppfølgingsspørsmålene for 
         <div className="flex-1 overflow-y-auto" ref={chatContainerRef}>
           <div className="max-w-3xl mx-auto">
             {messages.map((message) => (
-              <div key={message.id} className="mb-6 after:content-[''] after:clear-both after:table">
+              <div key={message.id} className="mb-2 after:content-[''] after:clear-both after:table">
                 <Message
                   role={message.role}
                   content={message.content}

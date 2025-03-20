@@ -7,7 +7,7 @@ import { Message } from '@/components/message/Message';
 const ChatDemo = () => {
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
-  // Improved conversation data with better structure for readability
+  // Forbedret samtaledata med rikere markdown-formatering
   const conversation = [
     {
       role: 'user' as const,
@@ -23,7 +23,15 @@ const ChatDemo = () => {
     },
     {
       role: 'ai' as const,
-      content: '# Hvordan kvantedatabehandling vil påvirke vanlige mennesker\n\nKvantedatabehandling vil sannsynligvis påvirke vanlige mennesker på flere områder, både direkte og indirekte:\n\n## Medisin og helse\n\n- **Persontilpasset medisin**: Mer nøyaktig simulering av hvordan legemidler virker i kroppen kan føre til bedre persontilpassede behandlinger\n- **Oppdagelse av nye medisiner**: Raskere utvikling av nye legemidler for sykdommer som i dag er vanskelige å behandle\n- **Diagnostisk presisjon**: Avanserte analyser av medisinske data kan gi tidligere og mer nøyaktige diagnoser\n\n## Dagligliv og teknologi\n\n- **Smartere AI-assistenter**: Mer sofistikerte og naturlige interaksjoner med digitale assistenter\n- **Trafikkoptimalisering**: Bedre trafikkstyring og ruteplanegging som reduserer reisetid\n- **Værprognoser**: Mer nøyaktige langtidsprognoser som kan varsle ekstremvær tidligere\n\n## Økonomiske innvirkninger\n\n- **Nye jobber og industrier**: Fremvekst av kvanteteknologirelaterte karrierer\n- **Finansielle tjenester**: Mer sofistikerte finansielle modeller som kan gi bedre investeringsråd\n- **Forbrukerteknologi**: På lang sikt vil kvanteteknologi sannsynligvis bli integrert i forbrukerelektronikk\n\n## Sikkerhet og personvern\n\n- **Nye krypteringsstandarder**: Overgang til kvantemotstandsdyktig kryptering for å beskytte sensitive data\n- **Bedre cybersikkerhet**: Mer robuste sikkerhetsløsninger for å beskytte mot avanserte trusler\n- **Personvern**: Potensielt både utfordringer og løsninger for digital personvern\n\n## Miljø og bærekraft\n\n- **Nye materialer**: Utvikling av mer energieffektive materialer for alt fra batterier til solceller\n- **Klimamodellering**: Bedre forståelse av komplekse klimasystemer og potensielle løsninger\n- **Ressursoptimalisering**: Mer effektiv bruk av ressurser i produksjon og distribusjon\n\nSelvom mange av disse fordelene ligger noen år frem i tid, vil overgangen til kvanteteknologi sannsynligvis skje gradvis, med stadig flere praktiske anvendelser som blir en del av hverdagen vår.'
+      content: '# Hvordan kvantedatabehandling vil påvirke vanlige mennesker\n\nKvantedatabehandling vil sannsynligvis påvirke vanlige mennesker på flere områder, både direkte og indirekte:\n\n## Medisin og helse\n\n- **Persontilpasset medisin**: Mer nøyaktig simulering av hvordan legemidler virker i kroppen kan føre til bedre persontilpassede behandlinger\n- **Oppdagelse av nye medisiner**: Raskere utvikling av nye legemidler for sykdommer som i dag er vanskelige å behandle\n- **Diagnostisk presisjon**: Avanserte analyser av medisinske data kan gi tidligere og mer nøyaktige diagnoser\n\n## Dagligliv og teknologi\n\n- **Smartere AI-assistenter**: Mer sofistikerte og naturlige interaksjoner med digitale assistenter\n- **Trafikkoptimalisering**: Bedre trafikkstyring og ruteplanegging som reduserer reisetid\n- **Værprognoser**: Mer nøyaktige langtidsprognoser som kan varsle ekstremvær tidligere\n\n## Økonomiske innvirkninger\n\n1. Nye jobber og industrier: Fremvekst av kvanteteknologirelaterte karrierer\n2. Finansielle tjenester: Mer sofistikerte finansielle modeller som kan gi bedre investeringsråd\n3. Forbrukerteknologi: På lang sikt vil kvanteteknologi sannsynligvis bli integrert i forbrukerelektronikk\n\n## Sikkerhet og personvern\n\n```\nNye krypteringsstandarder vil være nødvendige for å beskytte mot kvantecomputing-angrep\nKvanteresistente algoritmer utvikles allerede nå\n```\n\nDu kan lese mer om kvantekryptering [her](https://www.example.com/quantum-encryption).\n\n> Kvantedatabehandling representerer et paradigmeskifte i hvordan vi behandler informasjon, og vil endre mange industrier fundamentalt.\n\n![Quantum Computing Illustration](https://example.com/quantum-illustration.jpg)\n\nSelvom mange av disse fordelene ligger noen år frem i tid, vil overgangen til kvanteteknologi sannsynligvis skje gradvis, med stadig flere praktiske anvendelser som blir en del av hverdagen vår.'
+    },
+    {
+      role: 'user' as const,
+      content: 'Kan du gi meg noen konkrete eksempler på områder der kvantedatabehandling allerede er i bruk?'
+    },
+    {
+      role: 'ai' as const,
+      content: '## Konkrete eksempler på kvantedatabehandling i bruk i dag\n\nSelvom kvantedatabehandling fortsatt er i en tidlig fase, er det flere områder hvor teknologien allerede anvendes eller utforskes aktivt:\n\n### Forskningsområder med aktiv bruk\n\n- **Kryptografi**: Utvikling av kvanteresistente krypteringsalgoritmer og kvantekryptering\n- **Materialsimulering**: Simulering av molekylære strukturer for utvikling av nye materialer\n- **Optimalisering**: Løsning av komplekse optimaliseringsproblemer i logistikk og finans\n\n### Kommersielle anvendelser under utvikling\n\n| Selskap | Anvendelsesområde | Status |\n|---------|-------------------|--------|\n| IBM | Kvantekjemi | Tilgjengelig via cloud |\n| Google | Kvantemekaniske simuleringer | Forskningsstadiet |\n| D-Wave | Optimaliseringsproblemer | Kommersiell bruk |\n| Microsoft | Kvanteprogramvare | Utviklingsstadiet |\n\n### Praktiske eksempler\n\n1. **Farmakologisk forskning**: Selskaper som Biogen bruker kvantecomputing for å simulere proteinfolding, noe som kan akselerere legemiddelutviklingen\n\n2. **Finansiell modellering**: JPMorgan Chase og Goldman Sachs eksperimenterer med kvantealgorithmer for porteføljeoptimalisering og risikoanalyse\n\n3. **Trafikkoptimalisering**: Volkswagen har testet trafikkoptimalisering i byer som Beijing ved hjelp av kvantealgorithmer\n\nDette er bare begynnelsen. Ettersom kvantedatamaskiner blir mer kapable, vil antall praktiske anvendelser øke betydelig.'
     }
   ];
 
@@ -45,7 +53,7 @@ const ChatDemo = () => {
         <div className="flex-1 overflow-y-auto" ref={chatContainerRef}>
           <div className="max-w-3xl mx-auto">
             {conversation.map((message, index) => (
-              <div key={index} className="mb-6 after:content-[''] after:clear-both after:table">
+              <div key={index} className="mb-2 after:content-[''] after:clear-both after:table">
                 <Message
                   role={message.role}
                   content={message.content}
