@@ -119,14 +119,17 @@
 
 .prose h1 {
   font-size: 1.875rem;
+  margin-top: 2em;
 }
 
 .prose h2 {
   font-size: 1.5rem;
+  margin-top: 1.75em;
 }
 
 .prose h3 {
   font-size: 1.25rem;
+  margin-top: 1.5em;
 }
 
 .prose p {
@@ -147,11 +150,13 @@
 }
 
 .prose blockquote {
-  margin: 1em 0;
-  padding-left: 1em;
+  margin: 1.5em 0;
+  padding: 0.75em 1.2em;
   border-left: 4px solid hsl(var(--primary));
   color: hsl(var(--muted-foreground));
   font-style: italic;
+  background-color: hsl(var(--accent)/0.1);
+  border-radius: 0.25em;
 }
 
 .prose code {
@@ -163,7 +168,7 @@
 }
 
 .prose pre {
-  margin: 1em 0;
+  margin: 1.25em 0;
   padding: 1em;
   background-color: hsl(var(--muted));
   border-radius: 0.5em;
@@ -179,13 +184,13 @@
 .prose table {
   width: 100%;
   border-collapse: collapse;
-  margin: 1em 0;
+  margin: 1.5em 0;
   overflow-x: auto;
   display: block;
 }
 
 .prose th, .prose td {
-  padding: 0.5em;
+  padding: 0.75em 1em;
   border: 1px solid hsl(var(--border));
   text-align: left;
 }
@@ -193,4 +198,36 @@
 .prose th {
   background-color: hsl(var(--muted));
   font-weight: 600;
+}
+
+/* Forbedret spacing mellom elementer i markdown */
+.prose > *:first-child {
+  margin-top: 0 !important;
+}
+
+.prose > *:last-child {
+  margin-bottom: 0 !important;
+}
+
+.prose hr {
+  margin: 2em 0;
+  border: 0;
+  border-top: 1px solid hsl(var(--border));
+}
+
+.prose img {
+  max-width: 100%;
+  height: auto;
+  margin: 1.5em 0;
+  border-radius: 0.5em;
+}
+
+.prose a {
+  color: hsl(var(--primary));
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.prose a:hover {
+  text-decoration: none;
 }
