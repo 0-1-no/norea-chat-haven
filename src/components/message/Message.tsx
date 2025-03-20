@@ -142,7 +142,7 @@ export const Message: React.FC<MessageProps> = ({
       {showActions && (
         <div className={cn(
           "absolute -top-3 flex bg-background shadow-md rounded-full border border-border",
-          role === 'user' ? "right-2" : "right-2"
+          role === 'user' ? "right-2" : "left-2"  // Changed to left for AI messages
         )}>
           <Button 
             variant="ghost" 

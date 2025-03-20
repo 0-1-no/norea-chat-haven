@@ -254,6 +254,17 @@
   margin-top: 0.2rem !important;
 }
 
+/* Sidebar chat items spacing */
+.sidebar-chat-item {
+  margin-bottom: 0 !important;
+}
+
+/* Sidebar chat item spacing */
+.px-3.py-0.5.rounded-md.text-sm {
+  padding-top: 0.25rem !important;
+  padding-bottom: 0.25rem !important;
+}
+
 /* Forbedret konsistens i chat-meldings-padding */
 .message-component {
   margin-bottom: 0.25rem !important;

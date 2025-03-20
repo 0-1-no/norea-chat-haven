@@ -11,21 +11,16 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import {
-  SidebarGroup,
-  SidebarGroupLabel,
-  SidebarGroupContent,
-  SidebarMenu,
-  SidebarMenuItem,
-  SidebarMenuButton,
-} from '@/components/ui/sidebar';
 
 export const SidebarContent: React.FC = () => {
   const [activeChat, setActiveChat] = useState<string | null>("Enkel chat-demonstrasjon");
   
   return (
-    <div className="flex-1 overflow-y-auto scrollbar-hidden space-y-0.5 px-1">
-      <SidebarSection title="Rom" icon={<LayoutDashboard className="w-4 h-4 text-sidebar-foreground/70" />} className="sidebar-section">
+    <div className="flex-1 overflow-y-auto scrollbar-hidden space-y-0 px-1">
+      <SidebarSection 
+        title="Rom" 
+        icon={<LayoutDashboard className="w-4 h-4 text-sidebar-foreground/70" />}
+      >
         <SidebarItem 
           title="Alle rom" 
           to="/rooms"
@@ -44,7 +39,10 @@ export const SidebarContent: React.FC = () => {
         />
       </SidebarSection>
       
-      <SidebarSection title="Karakterer" icon={<UserCircle className="w-4 h-4 text-sidebar-foreground/70" />} className="sidebar-section">
+      <SidebarSection 
+        title="Karakterer" 
+        icon={<UserCircle className="w-4 h-4 text-sidebar-foreground/70" />}
+      >
         <SidebarItem 
           title="Alle karakterer" 
           to="/characters"
@@ -55,7 +53,10 @@ export const SidebarContent: React.FC = () => {
         />
       </SidebarSection>
       
-      <SidebarSection title="Assistenter" icon={<Bot className="w-4 h-4 text-sidebar-foreground/70" />} className="sidebar-section">
+      <SidebarSection 
+        title="Assistenter" 
+        icon={<Bot className="w-4 h-4 text-sidebar-foreground/70" />}
+      >
         <SidebarItem 
           title="Alle assistenter" 
           to="/assistants"
@@ -70,7 +71,6 @@ export const SidebarContent: React.FC = () => {
         title="Samtaler" 
         icon={<MessageCircle className="w-4 h-4 text-sidebar-foreground/70" />}
         defaultOpen={true}
-        className="sidebar-section"
       >
         <div className="mt-1 px-3 mb-1">
           <Link to="/archive">
@@ -81,7 +81,7 @@ export const SidebarContent: React.FC = () => {
           </Link>
         </div>
 
-        <div className="space-y-1">
+        <div className="space-y-0">
           <div className="space-y-0">
             <div className="px-3 py-0.5 text-xs font-medium text-sidebar-foreground/70">I dag</div>
             <ChatItem title="Enkel chat-demonstrasjon" to="/chat-demo" />
@@ -105,7 +105,10 @@ export const SidebarContent: React.FC = () => {
         </div>
       </SidebarSection>
       
-      <SidebarSection title="Design System" icon={<Layers className="w-4 h-4 text-sidebar-foreground/70" />} className="sidebar-section">
+      <SidebarSection 
+        title="Design System" 
+        icon={<Layers className="w-4 h-4 text-sidebar-foreground/70" />}
+      >
         <SidebarItem 
           title="Komponentbibliotek"
           to="/components" 
