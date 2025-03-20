@@ -109,10 +109,20 @@ export const Message: React.FC<MessageProps> = ({
                 table: ({node, ...props}) => <div className="overflow-x-auto my-4"><table className="border-collapse w-full" {...props} /></div>,
                 th: ({node, ...props}) => <th className="border border-border px-4 py-2 bg-muted font-medium" {...props} />,
                 td: ({node, ...props}) => <td className="border border-border px-4 py-2" {...props} />,
-                code: ({node, inline, ...props}) => 
-                  inline 
-                    ? <code className="bg-muted px-1.5 py-0.5 rounded text-sm" {...props} />
-                    : <code className="block bg-muted p-3 rounded text-sm overflow-x-auto" {...props} />,
+                code: ({children, className, ...props}) => {
+                  const match = /language-(\w+)/.exec(className || '');
+                  const isInline = !className;
+                  
+                  if (isInline) {
+                    return <code className="bg-muted px-1.5 py-0.5 rounded text-sm" {...props}>{children}</code>;
+                  }
+                  
+                  return (
+                    <code className={`block bg-muted p-3 rounded text-sm overflow-x-auto ${className || ''}`} {...props}>
+                      {children}
+                    </code>
+                  );
+                },
                 pre: ({node, ...props}) => <pre className="bg-muted p-3 rounded overflow-x-auto my-4" {...props} />,
                 blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-primary pl-4 italic my-4" {...props} />,
                 a: ({node, ...props}) => <a className="text-primary underline" {...props} />,
