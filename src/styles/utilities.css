@@ -1,0 +1,35 @@
+
+@layer utilities {
+  .scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .glass-effect {
+    @apply backdrop-blur-sm bg-white/80 border border-white/20 shadow-sm;
+  }
+  
+  .card-hover {
+    @apply hover:shadow-md transition-all duration-200 ease-in-out;
+  }
+
+  .surface {
+    @apply bg-surface text-surface-foreground border-surface-border rounded-md;
+  }
+
+  .interactive-element {
+    @apply bg-interactive text-interactive-foreground hover:bg-interactive-hover transition-colors;
+  }
+  
+  .no-horizontal-scroll {
+    @apply overflow-x-hidden max-w-full;
+  }
+  
+  .content-wrapper {
+    @apply w-full max-w-full overflow-hidden;
+  }
+}
