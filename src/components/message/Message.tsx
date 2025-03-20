@@ -66,8 +66,8 @@ export const Message: React.FC<MessageProps> = ({
       className={cn(
         "group rounded-lg mb-2",
         role === 'user' 
-          ? "bg-[hsl(var(--user-message-bg))] text-[#333333] float-right clear-both sm:max-w-[66%] max-w-[80%]" 
-          : "bg-[hsl(var(--ai-message-bg))] text-[#333333] float-left clear-both sm:max-w-[85%] max-w-full", 
+          ? "bg-[hsl(var(--user-message-bg))] text-[#222222] float-right clear-both sm:max-w-[66%] max-w-[80%]" 
+          : "bg-[hsl(var(--ai-message-bg))] text-[#222222] float-left clear-both sm:max-w-[85%] max-w-full", 
         className
       )}
       onMouseEnter={() => setShowActions(true)}
@@ -92,23 +92,23 @@ export const Message: React.FC<MessageProps> = ({
       )}>
         <div className={cn(
           role === 'ai' 
-            ? "prose dark:prose-invert prose-headings:mt-6 prose-headings:mb-3 prose-h1:text-2xl prose-h1:font-semibold prose-h2:text-xl prose-h2:font-medium prose-h3:text-lg prose-h3:font-normal prose-p:my-3 prose-p:leading-relaxed prose-p:tracking-wider prose-ul:my-3 prose-ol:my-3 prose-li:my-1 prose-li:leading-relaxed prose-table:my-5 prose-pre:bg-muted prose-pre:p-3 prose-pre:rounded prose-strong:font-semibold max-w-none" 
-            : "tracking-wider font-normal"
+            ? "prose dark:prose-invert prose-headings:mt-6 prose-headings:mb-3 prose-h1:text-2xl prose-h1:font-bold prose-h2:text-xl prose-h2:font-semibold prose-h3:text-lg prose-h3:font-medium prose-p:my-3 prose-p:leading-relaxed prose-ul:my-3 prose-ol:my-3 prose-li:my-1 prose-li:leading-relaxed prose-table:my-5 prose-pre:bg-muted prose-pre:p-3 prose-pre:rounded max-w-none" 
+            : "font-normal"
         )}>
           {role === 'ai' ? (
             <ReactMarkdown 
               remarkPlugins={[remarkGfm]} 
               components={{
-                h1: ({node, ...props}) => <h1 className="text-2xl font-semibold mt-6 mb-3 tracking-wider text-[#333333]" {...props} />,
-                h2: ({node, ...props}) => <h2 className="text-xl font-medium mt-5 mb-3 tracking-wider text-[#333333]" {...props} />,
-                h3: ({node, ...props}) => <h3 className="text-lg font-medium mt-4 mb-2 tracking-wider text-[#333333]" {...props} />,
-                p: ({node, ...props}) => <p className="my-3 leading-relaxed tracking-wider text-[#333333]" {...props} />,
-                ul: ({node, ...props}) => <ul className="my-3 ml-6 list-disc space-y-1 text-[#333333]" {...props} />,
-                ol: ({node, ...props}) => <ol className="my-3 ml-6 list-decimal space-y-1 text-[#333333]" {...props} />,
-                li: ({node, ...props}) => <li className="my-1 pl-1 text-[#333333]" {...props} />,
-                table: ({node, ...props}) => <div className="overflow-x-auto my-4"><table className="border-collapse w-full text-[#333333]" {...props} /></div>,
-                th: ({node, ...props}) => <th className="border border-border px-4 py-2 bg-muted font-medium text-[#333333]" {...props} />,
-                td: ({node, ...props}) => <td className="border border-border px-4 py-2 text-[#333333]" {...props} />,
+                h1: ({node, ...props}) => <h1 className="text-2xl font-bold mt-6 mb-3 text-[#222222]" {...props} />,
+                h2: ({node, ...props}) => <h2 className="text-xl font-semibold mt-5 mb-3 text-[#222222]" {...props} />,
+                h3: ({node, ...props}) => <h3 className="text-lg font-medium mt-4 mb-2 text-[#222222]" {...props} />,
+                p: ({node, ...props}) => <p className="my-3 leading-relaxed text-[#222222]" {...props} />,
+                ul: ({node, ...props}) => <ul className="my-3 ml-6 list-disc space-y-1 text-[#222222]" {...props} />,
+                ol: ({node, ...props}) => <ol className="my-3 ml-6 list-decimal space-y-1 text-[#222222]" {...props} />,
+                li: ({node, ...props}) => <li className="my-1 pl-1 text-[#222222]" {...props} />,
+                table: ({node, ...props}) => <div className="overflow-x-auto my-4"><table className="border-collapse w-full text-[#222222]" {...props} /></div>,
+                th: ({node, ...props}) => <th className="border border-border px-4 py-2 bg-muted font-medium text-[#222222]" {...props} />,
+                td: ({node, ...props}) => <td className="border border-border px-4 py-2 text-[#222222]" {...props} />,
                 code: ({children, className, ...props}) => {
                   const match = /language-(\w+)/.exec(className || '');
                   const isInline = !className;
@@ -124,16 +124,16 @@ export const Message: React.FC<MessageProps> = ({
                   );
                 },
                 pre: ({node, ...props}) => <pre className="bg-muted p-3 rounded overflow-x-auto my-4" {...props} />,
-                blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-primary pl-4 italic my-4 text-[#555555]" {...props} />, 
+                blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-primary pl-4 italic my-4 text-[#444444]" {...props} />, 
                 a: ({node, ...props}) => <a className="text-primary font-normal underline underline-offset-2" {...props} />,
-                strong: ({node, ...props}) => <strong className="font-semibold text-[#333333]" {...props} />, // Changed from bold to semibold
-                em: ({node, ...props}) => <em className="italic tracking-wider" {...props} />,
+                strong: ({node, ...props}) => <strong className="font-bold text-[#222222]" {...props} />, // Changed from semibold to bold
+                em: ({node, ...props}) => <em className="italic" {...props} />,
               }}
             >
               {content}
             </ReactMarkdown>
           ) : (
-            <p className="text-left leading-relaxed tracking-wider font-normal">{content}</p>
+            <p className="text-left leading-relaxed font-normal">{content}</p>
           )}
         </div>
       </div>
