@@ -86,9 +86,9 @@ export const Message: React.FC<MessageProps> = ({
         </div>
       )}
       
-      {/* Content wrapper - add padding-bottom to prevent text overlap with action buttons */}
+      {/* Content wrapper */}
       <div className={cn(
-        role === 'user' ? "px-4 py-2 pb-8 sm:py-2.5 sm:pb-8" : "px-4 py-3 pb-8 sm:px-5 sm:py-3.5 sm:pb-8", 
+        role === 'user' ? "px-4 py-2 sm:py-2.5" : "px-4 py-3 sm:px-5 sm:py-3.5", 
       )}>
         <div className={cn(
           role === 'ai' 
@@ -138,11 +138,13 @@ export const Message: React.FC<MessageProps> = ({
         </div>
       </div>
       
-      {/* Action buttons - Bottom right for user messages, bottom left for AI messages */}
+      {/* Action buttons - Position them on the border with a slight indent */}
       {showActions && (
         <div className={cn(
-          "absolute bottom-2 flex bg-background shadow-md rounded-full border border-border z-10",
-          role === 'user' ? "right-2" : "left-2"
+          "absolute flex bg-background shadow-md rounded-full border border-border z-10 transform",
+          role === 'user' 
+            ? "bottom-0 right-3 translate-y-1/2" 
+            : "bottom-0 left-3 translate-y-1/2"
         )}>
           <Button 
             variant="ghost" 
