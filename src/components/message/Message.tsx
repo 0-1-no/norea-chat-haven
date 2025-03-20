@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Copy, ThumbsUp, ThumbsDown, Pen } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -85,9 +86,9 @@ export const Message: React.FC<MessageProps> = ({
         </div>
       )}
       
-      {/* Content wrapper med redusert padding */}
+      {/* Content wrapper - add padding-bottom to prevent text overlap with action buttons */}
       <div className={cn(
-        role === 'user' ? "px-4 py-2 sm:py-2.5" : "px-4 py-3 sm:px-5 sm:py-3.5", 
+        role === 'user' ? "px-4 py-2 pb-8 sm:py-2.5 sm:pb-8" : "px-4 py-3 pb-8 sm:px-5 sm:py-3.5 sm:pb-8", 
       )}>
         <div className={cn(
           role === 'ai' 
@@ -137,10 +138,11 @@ export const Message: React.FC<MessageProps> = ({
         </div>
       </div>
       
-      {/* Action buttons - Bottom right positioning for both message types */}
+      {/* Action buttons - Bottom right for user messages, bottom left for AI messages */}
       {showActions && (
         <div className={cn(
-          "absolute bottom-1 right-2 flex bg-background shadow-md rounded-full border border-border"
+          "absolute bottom-2 flex bg-background shadow-md rounded-full border border-border z-10",
+          role === 'user' ? "right-2" : "left-2"
         )}>
           <Button 
             variant="ghost" 
