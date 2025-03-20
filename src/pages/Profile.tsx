@@ -15,15 +15,9 @@ const Profile: React.FC = () => {
           <ProfileCover coverImage="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=1500&auto=format&fit=crop" profileImage="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=600&auto=format&fit=crop" />
           
           <div className="flex items-center space-x-3 px-8">
-            <Badge variant="outline" className="bg-primary/5 text-primary gap-1.5 flex items-center px-3 py-1">
-              <Briefcase className="w-3.5 h-3.5" /> UX Designer
-            </Badge>
-            <Badge variant="outline" className="bg-primary/5 text-primary gap-1.5 flex items-center px-3 py-1">
-              <MapPin className="w-3.5 h-3.5" /> Oslo, Norge
-            </Badge>
-            <Badge variant="outline" className="bg-primary/5 text-primary gap-1.5 flex items-center px-3 py-1">
-              <Calendar className="w-3.5 h-3.5" /> Medlem siden 2023
-            </Badge>
+            
+            
+            
           </div>
           
           <div className="mt-8 grid md:grid-cols-2 gap-6">
