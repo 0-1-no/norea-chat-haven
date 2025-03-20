@@ -234,3 +234,12 @@
 .prose a:hover {
   text-decoration: none;
 }
+
+/* Legg til riktig spacing for sidebaren */
+[data-sidebar="menu"] {
+  gap: 0.5rem !important;
+}
+
+.group\/menu-item {
+  margin-bottom: 0 !important;
+}

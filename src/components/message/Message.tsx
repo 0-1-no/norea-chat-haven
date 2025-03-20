@@ -64,7 +64,7 @@ export const Message: React.FC<MessageProps> = ({
   return (
     <div 
       className={cn(
-        "group rounded-lg mb-2",
+        "group relative rounded-lg mb-2",
         role === 'user' 
           ? "bg-[hsl(var(--user-message-bg))] text-[#222222] float-right clear-both sm:max-w-[66%] max-w-[80%]" 
           : "bg-[hsl(var(--ai-message-bg))] text-[#222222] float-left clear-both sm:max-w-[85%] max-w-full", 
@@ -138,57 +138,56 @@ export const Message: React.FC<MessageProps> = ({
         </div>
       </div>
       
-      {/* Action buttons - Fixed positioning and visibility */}
-      <div className={cn(
-        "absolute -bottom-3 right-4 flex bg-background shadow-md rounded-full border border-border transition-opacity",
-        showActions ? "opacity-100" : "opacity-0"
-      )}>
-        <Button 
-          variant="ghost" 
-          size="icon" 
-          className="h-8 w-8" 
-          onClick={handleCopy}
-          aria-label="Kopier"
-        >
-          <Copy className="h-4 w-4" />
-        </Button>
-        
-        {role === 'ai' && (
-          <>
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className="h-8 w-8" 
-              onClick={handleThumbsUp}
-              aria-label="Nyttig"
-            >
-              <ThumbsUp className="h-4 w-4" />
-            </Button>
-            
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className="h-8 w-8" 
-              onClick={handleThumbsDown}
-              aria-label="Ikke nyttig"
-            >
-              <ThumbsDown className="h-4 w-4" />
-            </Button>
-          </>
-        )}
-        
-        {role === 'user' && (
+      {/* Action buttons - Forbedret posisjonering */}
+      {showActions && (
+        <div className="absolute bottom-2 right-2 flex bg-background shadow-md rounded-full border border-border">
           <Button 
             variant="ghost" 
             size="icon" 
             className="h-8 w-8" 
-            onClick={handleEdit}
-            aria-label="Rediger"
+            onClick={handleCopy}
+            aria-label="Kopier"
           >
-            <Pen className="h-4 w-4" />
+            <Copy className="h-4 w-4" />
           </Button>
-        )}
-      </div>
+          
+          {role === 'ai' && (
+            <>
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="h-8 w-8" 
+                onClick={handleThumbsUp}
+                aria-label="Nyttig"
+              >
+                <ThumbsUp className="h-4 w-4" />
+              </Button>
+              
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="h-8 w-8" 
+                onClick={handleThumbsDown}
+                aria-label="Ikke nyttig"
+              >
+                <ThumbsDown className="h-4 w-4" />
+              </Button>
+            </>
+          )}
+          
+          {role === 'user' && (
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="h-8 w-8" 
+              onClick={handleEdit}
+              aria-label="Rediger"
+            >
+              <Pen className="h-4 w-4" />
+            </Button>
+          )}
+        </div>
+      )}
     </div>
   );
 };
