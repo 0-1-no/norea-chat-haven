@@ -5,6 +5,11 @@ import { MessageInput } from "@/components/MessageInput";
 import { PageContainer } from '@/components/layout/PageContainer';
 
 const Chatbox = () => {
+  const handleSendMessage = (message: string) => {
+    console.log("Message sent:", message);
+    // In a real application, this would process the message
+  };
+
   return (
     <PageContainer title="Chatbox" showBackButton={false}>
       <div className="space-y-10">
@@ -25,7 +30,11 @@ const Chatbox = () => {
             </p>
             
             <div className="relative max-w-3xl mx-auto">
-              <MessageInput placeholder="Spør om hva som helst..." className="w-full" />
+              <MessageInput 
+                placeholder="Spør om hva som helst..." 
+                className="w-full" 
+                onSendMessage={handleSendMessage}
+              />
             </div>
             
             <div className="mt-4 p-4 bg-gray-50 rounded-lg border max-w-3xl mx-auto">
