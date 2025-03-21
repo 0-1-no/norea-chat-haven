@@ -24,7 +24,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
   return (
     <div className={cn("flex flex-col relative w-full h-full overflow-hidden", className)}>
       {/* Main content area with messages */}
-      <div className="flex-1 overflow-y-auto pb-24">
+      <div className="flex-1 overflow-y-auto pb-4">
         {/* Chat messages would go here */}
       </div>
       

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { cn } from '@/lib/utils';
 type ChatInputContainerProps = {
@@ -14,7 +15,6 @@ export const ChatInputContainer: React.FC<ChatInputContainerProps> = ({
   className
 }) => {
   return <div className={cn("bg-canvas shadow-sm",
-  // Add solid background matching the canvas
   className)}>
       <div className="w-full max-w-canvas mx-auto">
         <div className="max-w-3xl mx-auto p-3 px-0">

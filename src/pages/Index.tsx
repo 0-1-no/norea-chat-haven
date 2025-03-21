@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { PageContainer } from '@/components/layout/PageContainer';
 import { ChatInterface } from '@/components/ChatInterface';
@@ -80,19 +81,17 @@ const Index = () => {
   return (
     <PageContainer title="Norea AI" showBackButton={false}>
       <div className="flex flex-col items-center justify-center flex-1 h-full">
-        <div className="flex flex-col items-center justify-center flex-1 min-h-[500px] w-full max-w-3xl mx-auto space-y-4">
+        <div className="flex flex-col items-center justify-center flex-1 min-h-[500px] w-full max-w-3xl mx-auto">
           <div>
             <NoreaOrb size="medium" interactive={true} />
           </div>
-          <h1 className="text-3xl font-bold text-center mb-2">Hva kan jeg hjelpe med?</h1>
+          <h1 className="text-3xl font-bold text-center mb-4">Hva kan jeg hjelpe med?</h1>
           
-          {/* Chat interface - reduced space by removing the outer div and its width class */}
           <ChatInterface 
             userName="John"
             className="flex-1 w-full"
           />
           
-          {/* Basic prompt cards in a row or carousel */}
           <div className="w-full mt-3">
             {renderBasicPrompts()}
           </div>
