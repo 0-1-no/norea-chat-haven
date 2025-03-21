@@ -5,31 +5,25 @@ import { cn } from '@/lib/utils';
 type ChatInputContainerProps = {
   children: React.ReactNode;
   className?: string;
-  position?: 'fixed' | 'sticky' | 'relative' | 'static';
 };
 
 /**
  * A container component that handles positioning for chat inputs
- * Can be configured to position the input differently depending on the context
+ * Always fixed to the bottom of the viewport
  */
 export const ChatInputContainer: React.FC<ChatInputContainerProps> = ({
   children,
-  className,
-  position = 'sticky'
+  className
 }) => {
   return (
     <div 
       className={cn(
-        "z-10 p-3 bg-canvas/80 backdrop-blur-sm",
-        position === 'fixed' && "fixed bottom-0 left-0 right-0",
-        position === 'sticky' && "sticky bottom-0 left-0 right-0",
-        position === 'relative' && "relative",
-        position === 'static' && "static",
+        "fixed bottom-0 left-0 right-0 z-50 bg-canvas/80 backdrop-blur-sm border-t border-surface-border",
         className
       )}
     >
       <div className="w-full max-w-canvas mx-auto">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-3xl mx-auto p-3">
           {children}
         </div>
       </div>

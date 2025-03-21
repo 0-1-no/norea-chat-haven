@@ -126,8 +126,9 @@ const WeatherChat = () => {
 
   return (
     <PageContainer title="Vær-demonstrasjon" showBackButton={true}>
+      {/* Main content area with padding at the bottom to account for fixed input */}
       <div className="flex-1 overflow-hidden flex flex-col">
-        <div className="flex-1 overflow-y-auto" ref={chatContainerRef}>
+        <div className="flex-1 overflow-y-auto pb-24" ref={chatContainerRef}>
           <div className="max-w-3xl mx-auto">
             {conversation.map((message, index) => (
               <div key={index} className="mb-3 after:content-[''] after:clear-both after:table">
@@ -149,16 +150,16 @@ const WeatherChat = () => {
             ))}
           </div>
         </div>
-        
-        {/* Position the chat input at the bottom */}
-        <ChatInputContainer position="sticky">
-          <MessageInput 
-            onSendMessage={handleSendMessage}
-            className="w-full"
-            placeholder="Spør om været..."
-          />
-        </ChatInputContainer>
       </div>
+      
+      {/* Fixed chat input container at bottom */}
+      <ChatInputContainer>
+        <MessageInput 
+          onSendMessage={handleSendMessage}
+          className="w-full"
+          placeholder="Spør om været..."
+        />
+      </ChatInputContainer>
     </PageContainer>
   );
 };

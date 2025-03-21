@@ -9,13 +9,11 @@ import { ChatInputContainer } from './ChatInputContainer';
 type ChatInterfaceProps = {
   userName?: string;
   className?: string;
-  inputPosition?: 'fixed' | 'sticky' | 'relative' | 'static';
 };
 
 export const ChatInterface: React.FC<ChatInterfaceProps> = ({
   userName = "John",
-  className,
-  inputPosition = 'sticky'
+  className
 }) => {
   const [promptsVisible, setPromptsVisible] = useState(true);
   
@@ -26,11 +24,13 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
   
   return (
     <div className={cn("flex flex-col relative w-full h-full overflow-hidden", className)}>
-      <div className="flex-1 overflow-y-auto">
+      {/* Main content area with padding at the bottom to account for fixed input */}
+      <div className="flex-1 overflow-y-auto pb-24">
         {/* Chat messages would go here */}
       </div>
       
-      <ChatInputContainer position={inputPosition}>
+      {/* Fixed chat input container at bottom */}
+      <ChatInputContainer>
         <MessageInput 
           onSendMessage={handleSendMessage} 
           placeholder="Spør om hva som helst..."
