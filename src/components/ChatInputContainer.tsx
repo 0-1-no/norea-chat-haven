@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { cn } from '@/lib/utils';
+import { useSidebar } from './ui/sidebar';
 
 type ChatInputContainerProps = {
   children: React.ReactNode;
@@ -17,6 +18,9 @@ export const ChatInputContainer: React.FC<ChatInputContainerProps> = ({
   className,
   position = 'fixed'
 }) => {
+  // Get sidebar state to adjust positioning accordingly
+  const { state } = useSidebar();
+  
   return (
     <div 
       className={cn(
