@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { PageContainer } from '@/components/layout/PageContainer';
 import { ChatInterface } from '@/components/ChatInterface';
@@ -87,12 +86,11 @@ const Index = () => {
           </div>
           <h1 className="text-3xl font-bold text-center">Hva kan jeg hjelpe med?</h1>
           
-          {/* Chat interface with static positioning */}
+          {/* Chat interface */}
           <div className="w-full">
             <ChatInterface 
               userName="John"
               className="flex-1"
-              inputPosition="static" // Use static positioning for the index page
             />
           </div>
           

@@ -50,9 +50,9 @@ const ChatDemo = () => {
 
   return (
     <PageContainer title="Forstå kvantedatabehandling" showBackButton={true}>
-      {/* Main content area with padding at the bottom to account for fixed input */}
+      {/* Main content area */}
       <div className="flex-1 overflow-hidden flex flex-col relative">
-        <div className="flex-1 overflow-y-auto pb-24" ref={chatContainerRef}>
+        <div className="flex-1 overflow-y-auto pb-16" ref={chatContainerRef}>
           <div className="max-w-3xl mx-auto">
             {conversation.map((message, index) => (
               <div key={index} className="mb-1 after:content-[''] after:clear-both after:table">
@@ -64,16 +64,16 @@ const ChatDemo = () => {
             ))}
           </div>
         </div>
+        
+        {/* Sticky chat input at bottom */}
+        <ChatInputContainer>
+          <MessageInput 
+            onSendMessage={handleSendMessage}
+            className="w-full"
+            placeholder="Send en melding..."
+          />
+        </ChatInputContainer>
       </div>
-      
-      {/* Fixed chat input container at bottom */}
-      <ChatInputContainer>
-        <MessageInput 
-          onSendMessage={handleSendMessage}
-          className="w-full"
-          placeholder="Send en melding..."
-        />
-      </ChatInputContainer>
     </PageContainer>
   );
 };

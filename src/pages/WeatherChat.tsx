@@ -1,16 +1,14 @@
-
 import React, { useRef, useEffect } from 'react';
 import { PageContainer } from '@/components/layout/PageContainer';
 import { MessageInput } from "@/components/MessageInput";
 import { Message } from '@/components/message/Message';
-import { WeatherCard, type ForecastItem, type WeatherType } from '@/components/ui/weather-card';
+import { WeatherCard } from '@/components/ui/weather-card';
 import { ChatInputContainer } from '@/components/ChatInputContainer';
-import { CloudRain } from 'lucide-react';
 
 const WeatherChat = () => {
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
-  // Mock forecast data
+  // Mock forecast data and conversation
   const weekForecast: ForecastItem[] = [
     { day: 'I dag', date: '15. juni', weatherType: 'sunny', highTemp: 24, lowTemp: 14, precipitation: 0, uvIndex: 8, windSpeed: 3 },
     { day: 'Torsdag', date: '16. juni', weatherType: 'partly-cloudy', highTemp: 22, lowTemp: 13, precipitation: 10, uvIndex: 6, windSpeed: 4 },
@@ -126,9 +124,9 @@ const WeatherChat = () => {
 
   return (
     <PageContainer title="Vær-demonstrasjon" showBackButton={true}>
-      {/* Main content area with padding at the bottom to account for fixed input */}
+      {/* Main content area */}
       <div className="flex-1 overflow-hidden flex flex-col">
-        <div className="flex-1 overflow-y-auto pb-24" ref={chatContainerRef}>
+        <div className="flex-1 overflow-y-auto pb-16" ref={chatContainerRef}>
           <div className="max-w-3xl mx-auto">
             {conversation.map((message, index) => (
               <div key={index} className="mb-3 after:content-[''] after:clear-both after:table">
@@ -150,16 +148,16 @@ const WeatherChat = () => {
             ))}
           </div>
         </div>
+        
+        {/* Sticky chat input at bottom */}
+        <ChatInputContainer>
+          <MessageInput 
+            onSendMessage={handleSendMessage}
+            className="w-full"
+            placeholder="Spør om været..."
+          />
+        </ChatInputContainer>
       </div>
-      
-      {/* Fixed chat input container at bottom */}
-      <ChatInputContainer>
-        <MessageInput 
-          onSendMessage={handleSendMessage}
-          className="w-full"
-          placeholder="Spør om været..."
-        />
-      </ChatInputContainer>
     </PageContainer>
   );
 };

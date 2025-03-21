@@ -9,7 +9,7 @@ type ChatInputContainerProps = {
 
 /**
  * A container component that handles positioning for chat inputs
- * Always fixed to the bottom of the viewport
+ * Sticky to the bottom of the content area, similar to how the header is sticky to the top
  */
 export const ChatInputContainer: React.FC<ChatInputContainerProps> = ({
   children,
@@ -18,7 +18,7 @@ export const ChatInputContainer: React.FC<ChatInputContainerProps> = ({
   return (
     <div 
       className={cn(
-        "fixed bottom-0 left-0 right-0 z-50 bg-canvas/80 backdrop-blur-sm border-t border-surface-border",
+        "sticky bottom-0 left-0 right-0 z-20 bg-canvas",
         className
       )}
     >
