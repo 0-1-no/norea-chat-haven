@@ -26,12 +26,17 @@ export const ChatInputContainer: React.FC<ChatInputContainerProps> = ({
       className={cn(
         "z-10 p-3 w-full",
         position === 'fixed' && "fixed bottom-0",
-        // Apply different left/right positioning based on sidebar state and screen size
-        position === 'fixed' && "left-0 right-0 md:left-auto md:right-auto",
-        // Center the content within the canvas boundaries
-        "flex justify-center",
+        // We don't set left/right positioning here to let the parent container handle it
         className
       )}
+      style={{
+        // When fixed, position relative to the canvas container
+        ...(position === 'fixed' && {
+          left: '50%',
+          transform: 'translateX(-50%)',
+          maxWidth: 'var(--canvas-max-width, 1400px)'
+        })
+      }}
     >
       <div className="w-full max-w-canvas mx-auto">
         <div className="max-w-3xl mx-auto">
