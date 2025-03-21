@@ -1,7 +1,5 @@
-
 import React from 'react';
 import { cn } from '@/lib/utils';
-
 type ChatInputContainerProps = {
   children: React.ReactNode;
   className?: string;
@@ -15,18 +13,13 @@ export const ChatInputContainer: React.FC<ChatInputContainerProps> = ({
   children,
   className
 }) => {
-  return (
-    <div 
-      className={cn(
-        "bg-canvas shadow-sm", // Add solid background matching the canvas
-        className
-      )}
-    >
+  return <div className={cn("bg-canvas shadow-sm",
+  // Add solid background matching the canvas
+  className)}>
       <div className="w-full max-w-canvas mx-auto">
-        <div className="max-w-3xl mx-auto p-3">
+        <div className="max-w-3xl mx-auto p-3 px-0">
           {children}
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
