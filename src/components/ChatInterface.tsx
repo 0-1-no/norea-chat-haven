@@ -22,8 +22,8 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
   };
   
   return (
-    <div className={cn("flex flex-col relative w-full max-w-3xl mx-auto", className)}>
-      <div className="sticky bottom-0 left-0 right-0 py-4 bg-background">
+    <div className={cn("flex flex-col relative w-full max-w-3xl mx-auto h-full", className)}>
+      <div className="absolute bottom-0 left-0 right-0 py-4 bg-background border-t w-full z-10">
         <MessageInput 
           onSendMessage={handleSendMessage} 
           placeholder="Spør om hva som helst..."
