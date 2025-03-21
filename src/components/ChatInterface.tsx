@@ -27,7 +27,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
         {/* Chat messages would go here */}
       </div>
       
-      <div className="absolute bottom-0 z-10 w-full p-3">
+      <div className="sticky bottom-0 z-10 w-full p-3">
         <div className="max-w-3xl mx-auto">
           <MessageInput 
             onSendMessage={handleSendMessage} 
