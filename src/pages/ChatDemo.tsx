@@ -63,8 +63,8 @@ const ChatDemo = () => {
           </div>
         </div>
         
-        <div className="fixed bottom-0 left-0 right-0 p-3 z-10 flex justify-center w-full" style={{ maxWidth: "inherit" }}>
-          <div className="max-w-3xl w-full">
+        <div className="fixed bottom-0 left-0 right-0 p-3 z-10 flex justify-center">
+          <div className="max-w-3xl w-full mx-auto">
             <MessageInput 
               onSendMessage={handleSendMessage}
               className="w-full"
@@ -78,3 +78,4 @@ const ChatDemo = () => {
 };
 
 export default ChatDemo;
+
