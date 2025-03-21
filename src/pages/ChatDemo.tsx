@@ -1,4 +1,3 @@
-
 import React, { useRef, useEffect } from 'react';
 import { PageContainer } from '@/components/layout/PageContainer';
 import { MessageInput } from "@/components/MessageInput";
@@ -63,8 +62,7 @@ const ChatDemo = () => {
           </div>
         </div>
         
-        <div className="fixed bottom-0 z-10 w-full max-w-3xl p-3 mx-auto left-0 right-0" 
-             style={{ maxWidth: "inherit", margin: "0 auto" }}>
+        <div className="absolute bottom-0 z-10 w-full p-3">
           <div className="max-w-3xl mx-auto">
             <MessageInput 
               onSendMessage={handleSendMessage}
