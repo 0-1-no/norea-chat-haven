@@ -1,4 +1,3 @@
-
 import React, { useRef, useEffect } from 'react';
 import { PageContainer } from '@/components/layout/PageContainer';
 import { MessageInput } from "@/components/MessageInput";
@@ -63,14 +62,12 @@ const ChatDemo = () => {
           </div>
         </div>
         
-        <div className="fixed bottom-0 left-0 right-0 p-3 z-10 flex justify-center">
-          <div className="max-w-3xl w-full mx-auto">
-            <MessageInput 
-              onSendMessage={handleSendMessage}
-              className="w-full"
-              placeholder="Send en melding..."
-            />
-          </div>
+        <div className="fixed bottom-0 z-10 w-full max-w-3xl p-3" style={{ left: '50%', transform: 'translateX(-50%)' }}>
+          <MessageInput 
+            onSendMessage={handleSendMessage}
+            className="w-full"
+            placeholder="Send en melding..."
+          />
         </div>
       </div>
     </PageContainer>
@@ -78,4 +75,3 @@ const ChatDemo = () => {
 };
 
 export default ChatDemo;
-

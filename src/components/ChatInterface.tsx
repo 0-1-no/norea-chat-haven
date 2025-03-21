@@ -27,14 +27,13 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
         {/* Chat messages would go here */}
       </div>
       
-      <div className="fixed bottom-0 left-0 right-0 p-3 z-10 flex justify-center">
+      <div className="fixed bottom-0 z-10 w-full max-w-3xl p-3" style={{ left: '50%', transform: 'translateX(-50%)' }}>
         <MessageInput 
           onSendMessage={handleSendMessage} 
           placeholder="Spør om hva som helst..."
-          className="w-full max-w-3xl mx-auto"
+          className="w-full"
         />
       </div>
     </div>
   );
 };
-
