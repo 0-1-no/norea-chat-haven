@@ -1,24 +1,9 @@
-
 import React, { useRef, useEffect } from 'react';
 import { PageContainer } from '@/components/layout/PageContainer';
 import { MessageInput } from "@/components/MessageInput";
 import { Message } from '@/components/message/Message';
-import { WeatherCard } from '@/components/ui/weather-card';
+import { WeatherCard, type WeatherType, type ForecastItem } from '@/components/ui/weather-card';
 import { ChatInputContainer } from '@/components/ChatInputContainer';
-
-// Define the missing ForecastItem type
-type ForecastItem = {
-  day?: string;
-  date?: string;
-  time?: string;
-  weatherType: string;
-  highTemp?: number;
-  lowTemp?: number;
-  precipitation?: number;
-  uvIndex?: number;
-  windSpeed?: number;
-  humidity?: number;
-};
 
 const WeatherChat = () => {
   const chatContainerRef = useRef<HTMLDivElement>(null);
