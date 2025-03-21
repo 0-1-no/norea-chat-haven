@@ -50,8 +50,9 @@ const ChatDemo = () => {
 
   return (
     <PageContainer title="Forstå kvantedatabehandling" showBackButton={true}>
-      {/* Main content area */}
-      <div className="flex-1 overflow-hidden flex flex-col">
+      {/* Main content area with explicit height to contain both scrollable area and fixed input */}
+      <div className="flex-1 flex flex-col relative h-full">
+        {/* Scrollable messages area with bottom padding to prevent overlap with input */}
         <div className="flex-1 overflow-y-auto pb-24" ref={chatContainerRef}>
           <div className="max-w-3xl mx-auto">
             {conversation.map((message, index) => (
@@ -65,14 +66,16 @@ const ChatDemo = () => {
           </div>
         </div>
         
-        {/* Sticky chat input at bottom */}
-        <ChatInputContainer>
-          <MessageInput 
-            onSendMessage={handleSendMessage}
-            className="w-full"
-            placeholder="Send en melding..."
-          />
-        </ChatInputContainer>
+        {/* Fixed position chat input at bottom, anchored to the PageContainer */}
+        <div className="absolute bottom-0 left-0 right-0">
+          <ChatInputContainer>
+            <MessageInput 
+              onSendMessage={handleSendMessage}
+              className="w-full"
+              placeholder="Send en melding..."
+            />
+          </ChatInputContainer>
+        </div>
       </div>
     </PageContainer>
   );
