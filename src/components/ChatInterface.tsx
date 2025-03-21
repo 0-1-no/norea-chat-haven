@@ -27,7 +27,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
         {/* Chat messages would go here */}
       </div>
       
-      <div className="absolute bottom-0 left-0 right-0 p-3 bg-canvas border-t">
+      <div className="absolute bottom-0 left-0 right-0 p-3">
         <MessageInput 
           onSendMessage={handleSendMessage} 
           placeholder="Spør om hva som helst..."
