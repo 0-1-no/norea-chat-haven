@@ -22,7 +22,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
   };
   
   return (
-    <div className={cn("flex flex-col relative w-full max-w-3xl mx-auto", className)}>
+    <div className={cn("flex flex-col relative w-full max-w-full overflow-hidden flex-grow justify-center items-center", className)}>
       <MessageInput 
         onSendMessage={handleSendMessage} 
         placeholder="Spør om hva som helst..."
