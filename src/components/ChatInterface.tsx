@@ -22,12 +22,18 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
   };
   
   return (
-    <div className={cn("flex flex-col relative w-full max-w-full overflow-hidden flex-grow justify-center items-center", className)}>
-      <MessageInput 
-        onSendMessage={handleSendMessage} 
-        placeholder="Spør om hva som helst..."
-        className="mb-1"
-      />
+    <div className={cn("flex flex-col relative w-full h-full overflow-hidden", className)}>
+      <div className="flex-1 overflow-y-auto pb-24">
+        {/* Chat messages would go here */}
+      </div>
+      
+      <div className="absolute bottom-0 left-0 right-0 p-3 bg-canvas border-t">
+        <MessageInput 
+          onSendMessage={handleSendMessage} 
+          placeholder="Spør om hva som helst..."
+          className="w-full max-w-3xl mx-auto"
+        />
+      </div>
     </div>
   );
 };

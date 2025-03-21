@@ -24,11 +24,11 @@ const Chatbox = () => {
               Meldingsinngangkomponenten lar brukere skrive og sende meldinger til AI.
             </p>
             
-            <div className="relative">
-              <MessageInput placeholder="Spør om hva som helst..." />
+            <div className="relative max-w-3xl">
+              <MessageInput placeholder="Spør om hva som helst..." className="w-full" />
             </div>
             
-            <div className="mt-4 p-4 bg-gray-50 rounded-lg border">
+            <div className="mt-4 p-4 bg-gray-50 rounded-lg border max-w-3xl">
               <h3 className="font-medium">Komponenttilstander:</h3>
               <ul className="list-disc list-inside mt-2 text-sm text-gray-600 space-y-1">
                 <li>Standard: Tomt inntastingsfelt med plassholdertekst</li>
