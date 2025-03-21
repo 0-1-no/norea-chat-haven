@@ -60,7 +60,7 @@ export const MessageInput: React.FC<MessageInputProps> = ({
 
   return (
     <div className={cn(
-      "w-full rounded-lg border border-surface-border bg-transparent backdrop-blur-sm shadow-sm max-w-full overflow-hidden",
+      "w-full rounded-lg border border-surface-border bg-background shadow-sm max-w-full overflow-hidden", // Changed bg-transparent to bg-background
       className
     )}>
       <div className="flex items-start p-2 overflow-hidden">
