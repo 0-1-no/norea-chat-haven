@@ -1,3 +1,4 @@
+
 import React, { useRef, useEffect } from 'react';
 import { PageContainer } from '@/components/layout/PageContainer';
 import { MessageInput } from "@/components/MessageInput";
@@ -51,8 +52,8 @@ const ChatDemo = () => {
     <PageContainer title="Forstå kvantedatabehandling" showBackButton={true}>
       {/* Main content area */}
       <div className="flex-1 overflow-hidden flex flex-col">
-        {/* Scrollable messages area with bottom padding to prevent overlap with input */}
-        <div className="flex-1 overflow-y-auto pb-24" ref={chatContainerRef}>
+        {/* Scrollable messages area with reduced bottom padding to remove extra space */}
+        <div className="flex-1 overflow-y-auto pb-4" ref={chatContainerRef}>
           <div className="max-w-3xl mx-auto">
             {conversation.map((message, index) => (
               <div key={index} className="mb-1 after:content-[''] after:clear-both after:table">

@@ -18,7 +18,7 @@ export const ChatInputContainer: React.FC<ChatInputContainerProps> = ({
   return (
     <div 
       className={cn(
-        "bg-canvas border-t border-surface-border",
+        // Remove background and border classes
         className
       )}
     >
