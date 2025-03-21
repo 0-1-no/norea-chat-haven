@@ -52,7 +52,7 @@ const ChatDemo = () => {
     <PageContainer title="Forstå kvantedatabehandling" showBackButton={true}>
       {/* Main content area */}
       <div className="flex-1 overflow-hidden flex flex-col relative">
-        <div className="flex-1 overflow-y-auto pb-16" ref={chatContainerRef}>
+        <div className="flex-1 overflow-y-auto pb-24" ref={chatContainerRef}>
           <div className="max-w-3xl mx-auto">
             {conversation.map((message, index) => (
               <div key={index} className="mb-1 after:content-[''] after:clear-both after:table">

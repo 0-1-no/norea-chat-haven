@@ -1,9 +1,24 @@
+
 import React, { useRef, useEffect } from 'react';
 import { PageContainer } from '@/components/layout/PageContainer';
 import { MessageInput } from "@/components/MessageInput";
 import { Message } from '@/components/message/Message';
 import { WeatherCard } from '@/components/ui/weather-card';
 import { ChatInputContainer } from '@/components/ChatInputContainer';
+
+// Define the missing ForecastItem type
+type ForecastItem = {
+  day?: string;
+  date?: string;
+  time?: string;
+  weatherType: string;
+  highTemp?: number;
+  lowTemp?: number;
+  precipitation?: number;
+  uvIndex?: number;
+  windSpeed?: number;
+  humidity?: number;
+};
 
 const WeatherChat = () => {
   const chatContainerRef = useRef<HTMLDivElement>(null);
@@ -126,7 +141,7 @@ const WeatherChat = () => {
     <PageContainer title="Vær-demonstrasjon" showBackButton={true}>
       {/* Main content area */}
       <div className="flex-1 overflow-hidden flex flex-col">
-        <div className="flex-1 overflow-y-auto pb-16" ref={chatContainerRef}>
+        <div className="flex-1 overflow-y-auto pb-24" ref={chatContainerRef}>
           <div className="max-w-3xl mx-auto">
             {conversation.map((message, index) => (
               <div key={index} className="mb-3 after:content-[''] after:clear-both after:table">
