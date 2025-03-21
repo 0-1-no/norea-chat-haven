@@ -4,15 +4,18 @@ import { RefreshCw } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { PromptCard } from '@/components/ui/prompt-card';
 import { MessageInput } from './MessageInput';
+import { ChatInputContainer } from './ChatInputContainer';
 
 type ChatInterfaceProps = {
   userName?: string;
   className?: string;
+  inputPosition?: 'fixed' | 'relative' | 'static';
 };
 
 export const ChatInterface: React.FC<ChatInterfaceProps> = ({
   userName = "John",
-  className
+  className,
+  inputPosition = 'fixed'
 }) => {
   const [promptsVisible, setPromptsVisible] = useState(true);
   
@@ -23,19 +26,17 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
   
   return (
     <div className={cn("flex flex-col relative w-full h-full overflow-hidden", className)}>
-      <div className="flex-1 overflow-y-auto pb-24">
+      <div className={cn("flex-1 overflow-y-auto", inputPosition === 'fixed' && "pb-24")}>
         {/* Chat messages would go here */}
       </div>
       
-      <div className="fixed bottom-0 left-0 right-0 z-10 p-3">
-        <div className="max-w-3xl mx-auto">
-          <MessageInput 
-            onSendMessage={handleSendMessage} 
-            placeholder="Spør om hva som helst..."
-            className="w-full"
-          />
-        </div>
-      </div>
+      <ChatInputContainer position={inputPosition}>
+        <MessageInput 
+          onSendMessage={handleSendMessage} 
+          placeholder="Spør om hva som helst..."
+          className="w-full"
+        />
+      </ChatInputContainer>
     </div>
   );
 };

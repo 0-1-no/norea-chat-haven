@@ -1,8 +1,8 @@
-
 import React, { useRef, useEffect } from 'react';
 import { PageContainer } from '@/components/layout/PageContainer';
 import { MessageInput } from "@/components/MessageInput";
 import { Message } from '@/components/message/Message';
+import { ChatInputContainer } from '@/components/ChatInputContainer';
 
 const ChatDemo = () => {
   const chatContainerRef = useRef<HTMLDivElement>(null);
@@ -63,15 +63,13 @@ const ChatDemo = () => {
           </div>
         </div>
         
-        <div className="fixed bottom-0 left-0 right-0 z-10 p-3">
-          <div className="max-w-3xl mx-auto">
-            <MessageInput 
-              onSendMessage={handleSendMessage}
-              className="w-full"
-              placeholder="Send en melding..."
-            />
-          </div>
-        </div>
+        <ChatInputContainer position="fixed">
+          <MessageInput 
+            onSendMessage={handleSendMessage}
+            className="w-full"
+            placeholder="Send en melding..."
+          />
+        </ChatInputContainer>
       </div>
     </PageContainer>
   );

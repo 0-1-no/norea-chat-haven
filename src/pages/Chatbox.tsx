@@ -3,6 +3,7 @@ import React from 'react';
 import { Separator } from "@/components/ui/separator";
 import { MessageInput } from "@/components/MessageInput";
 import { PageContainer } from '@/components/layout/PageContainer';
+import { ChatInputContainer } from '@/components/ChatInputContainer';
 
 const Chatbox = () => {
   const handleSendMessage = (message: string) => {
