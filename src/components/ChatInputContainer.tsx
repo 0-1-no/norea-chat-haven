@@ -24,12 +24,14 @@ export const ChatInputContainer: React.FC<ChatInputContainerProps> = ({
   return (
     <div 
       className={cn(
-        "z-10 p-3 w-full",
-        position === 'fixed' && "fixed bottom-0",
+        "z-10 p-3",
+        position === 'fixed' && "fixed bottom-0 left-0 right-0",
         className
       )}
     >
+      {/* This div ensures the content stays aligned with the canvas width */}
       <div className="w-full max-w-canvas mx-auto">
+        {/* This div ensures the content stays within the expected content width */}
         <div className="max-w-3xl mx-auto">
           {children}
         </div>

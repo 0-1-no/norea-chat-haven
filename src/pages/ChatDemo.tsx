@@ -1,3 +1,4 @@
+
 import React, { useRef, useEffect } from 'react';
 import { PageContainer } from '@/components/layout/PageContainer';
 import { MessageInput } from "@/components/MessageInput";
@@ -62,15 +63,16 @@ const ChatDemo = () => {
             ))}
           </div>
         </div>
-        
-        <ChatInputContainer position="fixed">
-          <MessageInput 
-            onSendMessage={handleSendMessage}
-            className="w-full"
-            placeholder="Send en melding..."
-          />
-        </ChatInputContainer>
       </div>
+      
+      {/* Position the chat input at the bottom */}
+      <ChatInputContainer>
+        <MessageInput 
+          onSendMessage={handleSendMessage}
+          className="w-full"
+          placeholder="Send en melding..."
+        />
+      </ChatInputContainer>
     </PageContainer>
   );
 };

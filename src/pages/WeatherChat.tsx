@@ -149,15 +149,16 @@ const WeatherChat = () => {
             ))}
           </div>
         </div>
-        
-        <ChatInputContainer position="fixed">
-          <MessageInput 
-            onSendMessage={handleSendMessage}
-            className="w-full"
-            placeholder="Spør om været..."
-          />
-        </ChatInputContainer>
       </div>
+      
+      {/* Position the chat input at the bottom */}
+      <ChatInputContainer>
+        <MessageInput 
+          onSendMessage={handleSendMessage}
+          className="w-full"
+          placeholder="Spør om været..."
+        />
+      </ChatInputContainer>
     </PageContainer>
   );
 };
