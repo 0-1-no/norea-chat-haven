@@ -25,7 +25,9 @@ const Chatbox = () => {
             </p>
             
             <div className="relative max-w-3xl mx-auto">
-              <MessageInput placeholder="Spør om hva som helst..." />
+              <div className="sticky bottom-0 bg-background">
+                <MessageInput placeholder="Spør om hva som helst..." />
+              </div>
             </div>
             
             <div className="mt-4 p-4 bg-gray-50 rounded-lg border">

@@ -49,7 +49,7 @@ const ChatDemo = () => {
 
   return (
     <PageContainer title="Forstå kvantedatabehandling" showBackButton={true}>
-      <div className="flex-1 overflow-hidden flex flex-col">
+      <div className="flex-1 overflow-hidden flex flex-col h-full">
         <div className="flex-1 overflow-y-auto pb-24" ref={chatContainerRef}>
           <div className="max-w-3xl mx-auto">
             {conversation.map((message, index) => (
@@ -63,7 +63,7 @@ const ChatDemo = () => {
           </div>
         </div>
         
-        <div className="sticky bottom-0 left-0 right-0 py-4 bg-background">
+        <div className="sticky bottom-0 left-0 right-0 py-4 bg-background border-t">
           <div className="max-w-3xl mx-auto">
             <MessageInput 
               onSendMessage={handleSendMessage}
