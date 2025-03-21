@@ -18,7 +18,7 @@ export const ChatInputContainer: React.FC<ChatInputContainerProps> = ({
   return (
     <div 
       className={cn(
-        "sticky bottom-0 left-0 right-0 z-20 bg-canvas border-t border-surface-border",
+        "bg-canvas border-t border-surface-border",
         className
       )}
     >
