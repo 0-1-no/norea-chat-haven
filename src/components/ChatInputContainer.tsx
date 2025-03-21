@@ -14,8 +14,7 @@ export const ChatInputContainer: React.FC<ChatInputContainerProps> = ({
   children,
   className
 }) => {
-  return <div className={cn("bg-canvas shadow-sm",
-  className)}>
+  return <div className={cn("bg-white shadow-sm", className)}>
       <div className="w-full max-w-canvas mx-auto">
         <div className="max-w-3xl mx-auto p-3 px-0">
           {children}
