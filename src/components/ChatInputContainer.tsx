@@ -18,9 +18,6 @@ export const ChatInputContainer: React.FC<ChatInputContainerProps> = ({
   className,
   position = 'fixed'
 }) => {
-  // Get sidebar state to adjust positioning accordingly
-  const { state } = useSidebar();
-  
   return (
     <div 
       className={cn(
@@ -29,9 +26,7 @@ export const ChatInputContainer: React.FC<ChatInputContainerProps> = ({
         className
       )}
     >
-      {/* This div ensures the content stays aligned with the canvas width */}
       <div className="w-full max-w-canvas mx-auto">
-        {/* This div ensures the content stays within the expected content width */}
         <div className="max-w-3xl mx-auto">
           {children}
         </div>

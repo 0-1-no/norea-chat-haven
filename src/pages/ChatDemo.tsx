@@ -63,16 +63,16 @@ const ChatDemo = () => {
             ))}
           </div>
         </div>
+        
+        {/* Position the chat input at the bottom */}
+        <ChatInputContainer position="relative" className="mt-auto">
+          <MessageInput 
+            onSendMessage={handleSendMessage}
+            className="w-full"
+            placeholder="Send en melding..."
+          />
+        </ChatInputContainer>
       </div>
-      
-      {/* Position the chat input at the bottom */}
-      <ChatInputContainer>
-        <MessageInput 
-          onSendMessage={handleSendMessage}
-          className="w-full"
-          placeholder="Send en melding..."
-        />
-      </ChatInputContainer>
     </PageContainer>
   );
 };

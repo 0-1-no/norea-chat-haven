@@ -15,7 +15,7 @@ type ChatInterfaceProps = {
 export const ChatInterface: React.FC<ChatInterfaceProps> = ({
   userName = "John",
   className,
-  inputPosition = 'fixed'
+  inputPosition = 'relative'
 }) => {
   const [promptsVisible, setPromptsVisible] = useState(true);
   
@@ -30,7 +30,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
         {/* Chat messages would go here */}
       </div>
       
-      <ChatInputContainer position={inputPosition}>
+      <ChatInputContainer position={inputPosition} className="mt-auto">
         <MessageInput 
           onSendMessage={handleSendMessage} 
           placeholder="Spør om hva som helst..."

@@ -1,4 +1,3 @@
-
 import React, { useRef, useEffect } from 'react';
 import { PageContainer } from '@/components/layout/PageContainer';
 import { MessageInput } from "@/components/MessageInput";
@@ -149,16 +148,16 @@ const WeatherChat = () => {
             ))}
           </div>
         </div>
+        
+        {/* Position the chat input at the bottom */}
+        <ChatInputContainer position="relative" className="mt-auto">
+          <MessageInput 
+            onSendMessage={handleSendMessage}
+            className="w-full"
+            placeholder="Spør om været..."
+          />
+        </ChatInputContainer>
       </div>
-      
-      {/* Position the chat input at the bottom */}
-      <ChatInputContainer>
-        <MessageInput 
-          onSendMessage={handleSendMessage}
-          className="w-full"
-          placeholder="Spør om været..."
-        />
-      </ChatInputContainer>
     </PageContainer>
   );
 };
