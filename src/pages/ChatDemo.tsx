@@ -51,7 +51,7 @@ const ChatDemo = () => {
   return (
     <PageContainer title="Forstå kvantedatabehandling" showBackButton={true}>
       <div className="flex-1 overflow-hidden flex flex-col relative">
-        <div className="flex-1 overflow-y-auto pb-24" ref={chatContainerRef}>
+        <div className="flex-1 overflow-y-auto" ref={chatContainerRef}>
           <div className="max-w-3xl mx-auto">
             {conversation.map((message, index) => (
               <div key={index} className="mb-1 after:content-[''] after:clear-both after:table">
@@ -65,7 +65,7 @@ const ChatDemo = () => {
         </div>
         
         {/* Position the chat input at the bottom */}
-        <ChatInputContainer position="relative" className="mt-auto">
+        <ChatInputContainer position="sticky">
           <MessageInput 
             onSendMessage={handleSendMessage}
             className="w-full"

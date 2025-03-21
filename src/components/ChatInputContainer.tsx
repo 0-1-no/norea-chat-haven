@@ -1,12 +1,11 @@
 
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { useSidebar } from './ui/sidebar';
 
 type ChatInputContainerProps = {
   children: React.ReactNode;
   className?: string;
-  position?: 'fixed' | 'relative' | 'static';
+  position?: 'fixed' | 'sticky' | 'relative' | 'static';
 };
 
 /**
@@ -16,13 +15,16 @@ type ChatInputContainerProps = {
 export const ChatInputContainer: React.FC<ChatInputContainerProps> = ({
   children,
   className,
-  position = 'fixed'
+  position = 'sticky'
 }) => {
   return (
     <div 
       className={cn(
-        "z-10 p-3",
+        "z-10 p-3 bg-canvas/80 backdrop-blur-sm",
         position === 'fixed' && "fixed bottom-0 left-0 right-0",
+        position === 'sticky' && "sticky bottom-0 left-0 right-0",
+        position === 'relative' && "relative",
+        position === 'static' && "static",
         className
       )}
     >
