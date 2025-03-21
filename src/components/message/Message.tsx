@@ -66,8 +66,8 @@ export const Message: React.FC<MessageProps> = ({
       className={cn(
         "group relative rounded-lg mb-1",
         role === 'user' 
-          ? "bg-[hsl(var(--user-message-bg))] text-[#222222] float-right clear-both sm:max-w-[66%] max-w-[80%]" 
-          : "bg-[hsl(var(--ai-message-bg))] text-[#222222] float-left clear-both sm:max-w-[85%] max-w-full", 
+          ? "bg-[hsl(var(--user-message-bg))] float-right clear-both sm:max-w-[66%] max-w-[80%]" 
+          : "bg-[hsl(var(--ai-message-bg))] float-left clear-both sm:max-w-[85%] max-w-full", 
         className
       )}
       onMouseEnter={() => setShowActions(true)}
@@ -99,41 +99,41 @@ export const Message: React.FC<MessageProps> = ({
             <ReactMarkdown 
               remarkPlugins={[remarkGfm]} 
               components={{
-                h1: ({node, ...props}) => <h1 className="text-2xl font-semibold mt-6 mb-3 text-[#222222]" {...props} />,
-                h2: ({node, ...props}) => <h2 className="text-xl font-medium mt-5 mb-3 text-[#222222]" {...props} />,
-                h3: ({node, ...props}) => <h3 className="text-lg font-medium mt-4 mb-2 text-[#222222]" {...props} />,
-                p: ({node, ...props}) => <p className="my-3 leading-relaxed text-[#222222]" {...props} />,
-                ul: ({node, ...props}) => <ul className="my-3 ml-6 list-disc space-y-1 text-[#222222]" {...props} />,
-                ol: ({node, ...props}) => <ol className="my-3 ml-6 list-decimal space-y-1 text-[#222222]" {...props} />,
-                li: ({node, ...props}) => <li className="my-1 pl-1 text-[#222222]" {...props} />,
-                table: ({node, ...props}) => <div className="overflow-x-auto my-4"><table className="border-collapse w-full text-[#222222]" {...props} /></div>,
-                th: ({node, ...props}) => <th className="border border-border px-4 py-2 bg-muted font-medium text-[#222222]" {...props} />,
-                td: ({node, ...props}) => <td className="border border-border px-4 py-2 text-[#222222]" {...props} />,
+                h1: ({node, ...props}) => <h1 className="text-2xl font-semibold mt-6 mb-3 text-foreground dark:text-foreground" {...props} />,
+                h2: ({node, ...props}) => <h2 className="text-xl font-medium mt-5 mb-3 text-foreground dark:text-foreground" {...props} />,
+                h3: ({node, ...props}) => <h3 className="text-lg font-medium mt-4 mb-2 text-foreground dark:text-foreground" {...props} />,
+                p: ({node, ...props}) => <p className="my-3 leading-relaxed text-foreground dark:text-foreground" {...props} />,
+                ul: ({node, ...props}) => <ul className="my-3 ml-6 list-disc space-y-1 text-foreground dark:text-foreground" {...props} />,
+                ol: ({node, ...props}) => <ol className="my-3 ml-6 list-decimal space-y-1 text-foreground dark:text-foreground" {...props} />,
+                li: ({node, ...props}) => <li className="my-1 pl-1 text-foreground dark:text-foreground" {...props} />,
+                table: ({node, ...props}) => <div className="overflow-x-auto my-4"><table className="border-collapse w-full text-foreground dark:text-foreground" {...props} /></div>,
+                th: ({node, ...props}) => <th className="border border-border px-4 py-2 bg-muted font-medium text-foreground dark:text-foreground" {...props} />,
+                td: ({node, ...props}) => <td className="border border-border px-4 py-2 text-foreground dark:text-foreground" {...props} />,
                 code: ({children, className, ...props}) => {
                   const match = /language-(\w+)/.exec(className || '');
                   const isInline = !className;
                   
                   if (isInline) {
-                    return <code className="bg-muted px-1.5 py-0.5 rounded text-sm font-normal" {...props}>{children}</code>;
+                    return <code className="bg-muted px-1.5 py-0.5 rounded text-sm font-normal text-foreground dark:text-foreground" {...props}>{children}</code>;
                   }
                   
                   return (
-                    <code className={`block bg-muted p-3 rounded text-sm overflow-x-auto font-normal ${className || ''}`} {...props}>
+                    <code className={`block bg-muted p-3 rounded text-sm overflow-x-auto font-normal text-foreground dark:text-foreground ${className || ''}`} {...props}>
                       {children}
                     </code>
                   );
                 },
-                pre: ({node, ...props}) => <pre className="bg-muted p-3 rounded overflow-x-auto my-4" {...props} />,
-                blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-primary pl-4 italic my-4 text-[#444444]" {...props} />, 
+                pre: ({node, ...props}) => <pre className="bg-muted p-3 rounded overflow-x-auto my-4 text-foreground dark:text-foreground" {...props} />,
+                blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-primary pl-4 italic my-4 text-muted-foreground dark:text-muted-foreground" {...props} />, 
                 a: ({node, ...props}) => <a className="text-primary font-normal underline underline-offset-2" {...props} />,
-                strong: ({node, ...props}) => <strong className="font-medium text-[#222222]" {...props} />,
+                strong: ({node, ...props}) => <strong className="font-medium text-foreground dark:text-foreground" {...props} />,
                 em: ({node, ...props}) => <em className="italic" {...props} />,
               }}
             >
               {content}
             </ReactMarkdown>
           ) : (
-            <p className="text-left leading-relaxed font-normal">{content}</p>
+            <p className="text-left leading-relaxed font-normal text-foreground dark:text-foreground">{content}</p>
           )}
         </div>
       </div>
