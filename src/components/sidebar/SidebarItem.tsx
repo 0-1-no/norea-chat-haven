@@ -29,14 +29,14 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({
   const content = (
     <div
       className={cn(
-        "px-3 py-2 rounded-md text-base flex justify-between items-center cursor-pointer transition-colors duration-200",
+        "px-3 py-1.5 rounded-md text-sm flex justify-between items-center cursor-pointer transition-colors duration-200",
         activeState 
           ? "bg-sidebar-accent text-sidebar-accent-foreground font-medium" 
           : "hover:bg-sidebar-accent/50 text-sidebar-foreground"
       )}
       onClick={onClick}
     >
-      <span className="truncate pr-2 flex items-center gap-2">
+      <span className="truncate pr-2 flex items-center gap-2 text-left">
         {icon && icon}
         {title}
       </span>
