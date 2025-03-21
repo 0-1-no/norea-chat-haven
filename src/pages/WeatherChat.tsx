@@ -1,9 +1,9 @@
-
 import React, { useRef, useEffect } from 'react';
 import { PageContainer } from '@/components/layout/PageContainer';
 import { MessageInput } from "@/components/MessageInput";
 import { Message } from '@/components/message/Message';
 import { WeatherCard, type ForecastItem, type WeatherType } from '@/components/ui/weather-card';
+import { ChatInputContainer } from '@/components/ChatInputContainer';
 import { CloudRain } from 'lucide-react';
 
 const WeatherChat = () => {
@@ -149,15 +149,13 @@ const WeatherChat = () => {
           </div>
         </div>
         
-        <div className="fixed bottom-0 left-0 right-0 p-2 sm:p-3 z-10 pointer-events-none">
-          <div className="max-w-3xl mx-auto pointer-events-auto">
-            <MessageInput 
-              onSendMessage={handleSendMessage}
-              className="w-full"
-              placeholder="Spør om været..."
-            />
-          </div>
-        </div>
+        <ChatInputContainer position="fixed">
+          <MessageInput 
+            onSendMessage={handleSendMessage}
+            className="w-full"
+            placeholder="Spør om været..."
+          />
+        </ChatInputContainer>
       </div>
     </PageContainer>
   );

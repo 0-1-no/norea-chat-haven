@@ -25,8 +25,10 @@ export const ChatInputContainer: React.FC<ChatInputContainerProps> = ({
         className
       )}
     >
-      <div className="max-w-3xl mx-auto">
-        {children}
+      <div className="mx-auto max-w-canvas">
+        <div className="max-w-3xl mx-auto">
+          {children}
+        </div>
       </div>
     </div>
   );
