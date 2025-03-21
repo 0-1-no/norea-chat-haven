@@ -4,6 +4,7 @@ import { PageContainer } from '@/components/layout/PageContainer';
 import { Message } from '@/components/message/Message';
 import { FollowUpPrompts } from '@/components/message/FollowUpPrompts';
 import { MessageInput } from '@/components/MessageInput';
+import { ChatInputContainer } from '@/components/ChatInputContainer';
 
 type MessageType = {
   id: string;
@@ -195,10 +196,10 @@ Oppfølgingsspørsmål kan:
   return (
     <PageContainer title="Oppfølgingsforslag Chat" showBackButton={true}>
       <div className="flex-1 overflow-hidden flex flex-col">
-        <div className="flex-1 overflow-y-auto pb-20" ref={chatContainerRef}>
+        <div className="flex-1 overflow-y-auto pb-4" ref={chatContainerRef}>
           <div className="max-w-3xl mx-auto">
             {messages.map((message) => (
-              <div key={message.id} className="mb-2 after:content-[''] after:clear-both after:table">
+              <div key={message.id} className="mb-1 after:content-[''] after:clear-both after:table">
                 <Message
                   role={message.role}
                   content={message.content}
@@ -216,17 +217,16 @@ Oppfølgingsspørsmål kan:
             ))}
           </div>
         </div>
-        
-        <div className="fixed bottom-0 left-0 right-0 p-2 sm:p-3 z-10 pointer-events-none">
-          <div className="max-w-3xl mx-auto pointer-events-auto">
-            <MessageInput 
-              onSendMessage={handleSendMessage}
-              className="w-full"
-              placeholder="Still et spørsmål om språkmodeller..."
-            />
-          </div>
-        </div>
       </div>
+      
+      {/* Sticky chat input at bottom */}
+      <ChatInputContainer className="sticky bottom-0 z-20">
+        <MessageInput 
+          onSendMessage={handleSendMessage}
+          className="w-full"
+          placeholder="Still et spørsmål om språkmodeller..."
+        />
+      </ChatInputContainer>
     </PageContainer>
   );
 };

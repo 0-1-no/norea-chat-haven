@@ -1,9 +1,9 @@
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { PageContainer } from '@/components/layout/PageContainer';
 import { MessageInput } from "@/components/MessageInput";
 import { Message } from '@/components/message/Message';
-import { MemoryIndicator } from '@/components/message/MemoryIndicator';
+import { ChatInputContainer } from '@/components/ChatInputContainer';
 
 // Define the structure for messages
 interface ChatMessage {
@@ -174,7 +174,7 @@ const MemoryChat = () => {
     }
   ];
 
-  // Scroll to bottom when messages are added
+  // Scroll to bottom when messages are loaded
   useEffect(() => {
     if (chatContainerRef.current) {
       chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
@@ -188,11 +188,13 @@ const MemoryChat = () => {
 
   return (
     <PageContainer title="Minne-demonstrasjon" showBackButton={true}>
+      {/* Main content area */}
       <div className="flex-1 overflow-hidden flex flex-col">
-        <div className="flex-1 overflow-y-auto pb-20" ref={chatContainerRef}>
+        {/* Scrollable messages area */}
+        <div className="flex-1 overflow-y-auto pb-4" ref={chatContainerRef}>
           <div className="max-w-3xl mx-auto">
             {predefinedMessages.map((message) => (
-              <div key={message.id} className="mb-2">
+              <div key={message.id} className="mb-1 after:content-[''] after:clear-both after:table">
                 <Message
                   role={message.role}
                   content={message.content}
@@ -202,17 +204,16 @@ const MemoryChat = () => {
             ))}
           </div>
         </div>
-        
-        <div className="fixed bottom-0 left-0 right-0 p-2 sm:p-3 z-10 pointer-events-none">
-          <div className="max-w-3xl mx-auto pointer-events-auto">
-            <MessageInput 
-              onSendMessage={handleSendMessage}
-              className="w-full"
-              placeholder="Send en melding..."
-            />
-          </div>
-        </div>
       </div>
+      
+      {/* Sticky chat input at bottom */}
+      <ChatInputContainer className="sticky bottom-0 z-20">
+        <MessageInput 
+          onSendMessage={handleSendMessage}
+          className="w-full"
+          placeholder="Send en melding..."
+        />
+      </ChatInputContainer>
     </PageContainer>
   );
 };
