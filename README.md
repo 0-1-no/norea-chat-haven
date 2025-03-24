@@ -1,207 +1,140 @@
 
 # Norea Chat Application
 
-## Project info
+## Migrering til Next.js App Router
 
-**URL**: https://lovable.dev/projects/f6979301-ada4-4942-9325-ae2a93cbefcd
+Dette designsystemet er utviklet med React, Vite og Tailwind CSS, men kan migreres til Next.js App Router struktur. Her er viktige instruksjoner for migrering:
 
-## Technical Architecture
+### Mappehierarki og Ruting
 
-### File Structure Overview
+**Nåværende struktur (React/Vite):**
+- `/src/pages/` - Inneholder sidekomponenter
+- `/src/components/` - UI-komponenter
+- `/src/layouts/` - Layout-komponenter
+- React Router DOM for ruting
 
-The application's core files and components are organized as follows:
+**Next.js App Router struktur:**
+- `/app/` - Mappehierarkiet definerer rutene
+- `/app/page.tsx` - Hovedsiden (tilsvarer vår `Index.tsx`)
+- `/app/(chat)/chat-demo/page.tsx` - Chat-demo (tilsvarer vår `ChatDemo.tsx`)
+- `/components/` - UI-komponenter (kan beholdes som er)
 
-- **Layout System**: 
-  - [`src/components/layout/PageContainer.tsx`](src/components/layout/PageContainer.tsx) - Main layout container
-  - [`src/components/layout/LayoutContent.tsx`](src/components/layout/LayoutContent.tsx) - Content area layout
-  - [`src/components/layout/LayoutArchitecture.tsx`](src/components/layout/LayoutArchitecture.tsx) - Layout architecture documentation
-  - [`src/layouts/DefaultLayout.tsx`](src/layouts/DefaultLayout.tsx) - Default layout wrapper
+### Migreringssteg
 
-- **Styling and Design System**:
-  - [`src/index.css`](src/index.css) - CSS variables and base styling
-  - [`tailwind.config.ts`](tailwind.config.ts) - Tailwind configuration
-  - [`src/pages/DesignTokens.tsx`](src/pages/DesignTokens.tsx) - Design tokens visualization
-  - [`src/pages/Typography.tsx`](src/pages/Typography.tsx) - Typography system
-  - [`src/pages/ComponentLibrary.tsx`](src/pages/ComponentLibrary.tsx) - Component showcase
+1. **Layout-komponenter:**
+   - Flytt `src/components/layout/PageContainer.tsx` til `/app/layout.tsx` for å definere root layout
+   - Konverter til Server Component der det er hensiktsmessig
 
-- **Chat Components**:
-  - [`src/components/message/Message.tsx`](src/components/message/Message.tsx) - Message component
-  - [`src/components/MessageInput.tsx`](src/components/MessageInput.tsx) - Input field component
-  - [`src/components/ChatInputContainer.tsx`](src/components/ChatInputContainer.tsx) - Input container
-  - [`src/pages/ChatDemo.tsx`](src/pages/ChatDemo.tsx) - Standard chat implementation
-  - [`src/pages/MemoryChat.tsx`](src/pages/MemoryChat.tsx) - Memory demonstration chat
-  - [`src/pages/WeatherChat.tsx`](src/pages/WeatherChat.tsx) - Weather integrated chat
-  - [`src/pages/FollowUpChat.tsx`](src/pages/FollowUpChat.tsx) - Follow-up questions demo
+2. **Side-komponenter:**
+   - For hver side i `/src/pages/`, opprett tilsvarende mappe i `/app/`
+   - Konverter hver side-komponent til en `page.tsx` fil i den relevante mappen
+   - F.eks. `/src/pages/ChatDemo.tsx` → `/app/chat-demo/page.tsx`
 
-## Layout Architecture
+3. **Ruting:**
+   - Fjern React Router DOM avhengigheter
+   - Erstatt `<Link to="/chat-demo">` med Next.js `<Link href="/chat-demo">`
+   - Dynamiske ruter som `/room/:id` blir `/app/room/[id]/page.tsx` i Next.js
 
-The Norea Chat application follows a well-defined layout architecture consisting of three main areas:
+4. **CSS og Styling:**
+   - CSS-variabler i `src/index.css` kan flyttes til `/app/globals.css`
+   - Tailwind-konfigurasjon kan stort sett forbli uendret
+   - CSS-moduler kan brukes for komponentspesifikk styling
 
-### 1. Backdrop (Root Layer)
-- Implementation file: [`src/components/layout/PageContainer.tsx`](src/components/layout/PageContainer.tsx)
-- CSS variables: `--backdrop-background`, `--backdrop-foreground` (in [`src/index.css`](src/index.css))
-- Functions as the global background surface for the entire application
-- Uses a subtle light gray background in light mode (dark mode available)
-- Provides visual contrast for other layout elements
+## Teknisk Arkitektur
 
-### 2. Sidebar (Navigation Layer)
-- Implementation file: [`src/components/ui/sidebar.tsx`](src/components/ui/sidebar.tsx) and [`src/components/sidebar/SidebarContent.tsx`](src/components/sidebar/SidebarContent.tsx)
-- CSS variables: `--sidebar-background`, `--sidebar-foreground`, `--sidebar-border` (in [`src/index.css`](src/index.css))
-- Contains navigation, recent chats and user profile information
-- Can be minimized to maximize screen space
-- Adapts for mobile: overlay behavior instead of pushing content
-- Automatically collapses on mobile by default
-- Controlled by the SidebarProvider context
+### Layout-systemet
 
-### 3. Canvas (Content Layer)
-- Implementation file: [`src/components/layout/PageContainer.tsx`](src/components/layout/PageContainer.tsx) (inside the second layer div)
-- CSS variables: `--canvas-background`, `--canvas-foreground`, `--canvas-border` (in [`src/index.css`](src/index.css))
-- Main content area where chat interface is rendered
-- Elevated above background with subtle shadows and borders on desktop
-- Takes full width on mobile devices without borders or rounded corners
-- Contains header, chat messages and input components
+Layout-systemet i Norea er bygget opp av flere lag som gir en konsistent brukeropplevelse:
 
-## Design System
+#### 1. Backdrop (Bakgrunnslag)
+- **Implementasjonsfil:** [`src/components/layout/PageContainer.tsx`](src/components/layout/PageContainer.tsx)
+- **CSS-variabler:** `--backdrop-background`, `--backdrop-foreground` (i [`src/index.css`](src/index.css))
+- **Next.js-plassering:** `/app/layout.tsx` 
+- Fungerer som global bakgrunnsflate for hele applikasjonen
+- Bruker en subtil lysegrå bakgrunn i lys modus (mørk modus tilgjengelig)
 
-The application uses a comprehensive design system built on tokens, implemented through CSS variables and Tailwind CSS:
+#### 2. Sidebar (Navigasjonslag)
+- **Implementasjonsfil:** [`src/components/ui/sidebar.tsx`](src/components/ui/sidebar.tsx) og [`src/components/sidebar/SidebarContent.tsx`](src/components/sidebar/SidebarContent.tsx)
+- **CSS-variabler:** `--sidebar-background`, `--sidebar-foreground`, `--sidebar-border`
+- **Next.js-plassering:** `/components/sidebar/` og integreres i `/app/layout.tsx`
+- Kan minimeres for å maksimere skjermplassen
+- Kontrolleres av SidebarProvider-konteksten
+- For mobilvisning: overlay-oppførsel i stedet for å skyve innhold
 
-### Color Tokens
-- Implementation file: [`src/index.css`](src/index.css) (CSS variables) and [`tailwind.config.ts`](tailwind.config.ts) (Tailwind configuration)
-- Primary colors: Purple theme with different shades (`--primary`, `--primary-foreground`, `--primary-muted`)
-- Surface colors: For different UI elements (`--backdrop-background`, `--canvas-background`, `--sidebar-background`)
-- Interactive colors: For buttons and interactive elements (`--interactive-background`, `--interactive-hover`)
-- Semantic colors: For status indication (`--destructive`, `--muted`, etc.)
+#### 3. Canvas (Innholdslag)
+- **Implementasjonsfil:** [`src/components/layout/PageContainer.tsx`](src/components/layout/PageContainer.tsx)
+- **CSS-variabler:** `--canvas-background`, `--canvas-foreground`, `--canvas-border`
+- **Next.js-plassering:** Som en del av layout-strukturen i `/app/layout.tsx`
+- Hevet over bakgrunnen med subtile skygger og kanter på desktop
+- Tar full bredde på mobile enheter uten kanter eller avrundede hjørner
 
-### Spacing Tokens
-- Implementation file: [`tailwind.config.ts`](tailwind.config.ts) (extends the spacing section)
-- Content spacing: Small (0.75rem), Medium (1.25rem), Large (2rem)
-- Component-specific spacing using Tailwind's built-in scale
-- Spacing variables: `--content-spacing-sm`, `--content-spacing-md`, `--content-spacing-lg`
+### Chat-komponenter
 
-### Typography
-- Implementation file: [`src/pages/Typography.tsx`](src/pages/Typography.tsx) (documentation) and [`src/index.css`](src/index.css) (base implementation)
-- Font sizes controlled via Tailwind's built-in scale
-- Consistent text styles across components
-- Text color variables: `--foreground`, `--muted-foreground`, etc.
+Chat-komponentene kan migreres direkte med minimal endring:
 
-### Shadows and Effects
-- Implementation file: [`src/index.css`](src/index.css) (CSS variables) and [`tailwind.config.ts`](tailwind.config.ts) (extensions)
-- Multiple levels of shadows to create depth
-- Surface shadow variables: `--surface-shadow-sm`, `--surface-shadow-md`, `--surface-shadow-lg`
+#### Hovedkomponenter
+- [`src/components/message/Message.tsx`](src/components/message/Message.tsx) - Viser chatmeldinger
+  - Støtter ulike meldingstyper (bruker/AI)
+  - Håndterer markdown-innhold
+  - **Next.js-plassering:** `/components/message/Message.tsx` (samme struktur)
 
-### Animations
-- Implementation file: [`tailwind.config.ts`](tailwind.config.ts) (keyframes and animation extensions)
-- Fade-in, Slide-up, Pulse effects
-- Consistent timing for transitions
-- Animation classes: `animate-fade-in`, `animate-slide-up`, etc.
+- [`src/components/MessageInput.tsx`](src/components/MessageInput.tsx) - Inntastingsfelt
+  - **Next.js-plassering:** `/components/MessageInput.tsx`
+  - Kan forbli som Client Component (krever interaktivitet)
 
-## Responsive Design
+- [`src/components/ChatInputContainer.tsx`](src/components/ChatInputContainer.tsx) - Kontainer for inntastingskomponenter
+  - **Next.js-plassering:** `/components/ChatInputContainer.tsx`
 
-The application is fully responsive across all device sizes:
+### Design-system
+
+Design-systemet bruker CSS-variabler og Tailwind CSS, og kan migreres direkte:
+
+#### Fargetokener
+- **Implementasjonsfil:** [`src/index.css`](src/index.css) og [`tailwind.config.ts`](tailwind.config.ts)
+- **Next.js-plassering:** `/app/globals.css` og `/tailwind.config.ts`
+- Primærfarger: Lilla tema med ulike nyanser (`--primary`, `--primary-foreground`, `--primary-muted`)
+- Overflatefarger: For ulike UI-elementer (`--backdrop-background`, `--canvas-background`)
+
+#### Typografi og Spacing
+- Fontstørrelser via Tailwind's innebygde skala
+- Spacing-variabler: `--content-spacing-sm`, `--content-spacing-md`, `--content-spacing-lg`
+- **Next.js-plassering:** Beholdes i `/app/globals.css` og `/tailwind.config.ts`
+
+## Responsiv Design
+
+Applikasjonen er fullt responsiv på tvers av alle enhetsstørrelser:
 
 ### Breakpoints
-- Implementation file: [`tailwind.config.ts`](tailwind.config.ts) (screens section)
+- **Implementasjonsfil:** [`tailwind.config.ts`](tailwind.config.ts) (screens-seksjonen)
 - Mobile: < 768px
 - Tablet: 768px - 1024px
 - Desktop: > 1024px
-- Max content width: 1400px
 
-### Mobile Adaptations
-- Sidebar becomes an overlay that can be toggled
-- Canvas takes full width without borders/rounded corners
-- Sidebar is hidden by default
-- Touch-friendly tap areas
+### Mobile tilpasninger i Next.js
+- Sidebar blir et overlay som kan vises/skjules
+- Canvas tar full bredde uten kanter/avrundede hjørner
+- Sidebar er skjult som standard
 
-### Tablet Adaptations
-- Similar to desktop, but with adjusted spacing
-- Retains sidebar with option for minimization
+## Viktige implementasjonsdetaljer for Next.js
 
-### Desktop Experience
-- Full layout with visible sidebar by default
-- Canvas with consistent padding and rounded corners
-- Maximum width restrictions for optimal readability
+### Server vs. Client Components
+- Chat-grensesnittet krever klientside-interaktivitet
+- Merk komponenter som krever klientside-funksjonalitet med `"use client"`
+- Statiske UI-elementer kan være Server Components for forbedret ytelse
 
-## Chat Components
+### Dataflyt
+- Erstatt eventuelle React Context-implementasjoner med Next.js sin innebygde state management
+- Vurder å bruke Server Actions for formhåndtering der det er relevant
 
-The application contains a range of specialized chat views:
+### Bildehåndtering
+- Bruk Next.js `<Image>` komponent for optimalisert bildehåndtering
+- Endre bildestier for å støtte Next.js bildeoptimeringsløsning
 
-### Implemented Chat Types
-- Standard chat ([`/chat-demo`](src/pages/ChatDemo.tsx))
-- Memory demonstration ([`/memory-chat`](src/pages/MemoryChat.tsx)) - Shows how AI remembers context
-- Weather demonstration ([`/weather-chat`](src/pages/WeatherChat.tsx)) - Integrates weather forecasts
-- Follow-up chat ([`/followup-chat`](src/pages/FollowUpChat.tsx)) - Shows follow-up questions
+### API-integrasjon
+- Bruk Next.js API-ruter (`/app/api/`) for backend-funksjonalitet
+- Implementer Server Actions for formhåndtering og dataendringer
 
-### Chat Components Structure
-- [`Message`](src/components/message/Message.tsx) - Displays chat messages with support for different content types
-  - Supports user and AI message styles with different background colors
-  - Handles markdown content rendering
-  - Supports memory indicators for context tracking
-- [`MessageInput`](src/components/MessageInput.tsx) - Input field for new messages
-  - Handles text input and submission
-  - Supports auto-resizing
-- [`ChatInputContainer`](src/components/ChatInputContainer.tsx) - Container for input components
-  - Creates a sticky footer for the chat interface
-  - Handles spacing and layout for the input area
+## Bruk av denne dokumentasjonen
 
-## Important Implementation Details
+Denne README.md er designet for å fungere som en migreringsguide for AI-assistenter eller utviklere som skal implementere dette designsystemet i en Next.js App Router-basert applikasjon. Den inneholder detaljerte instruksjoner om strukturelle endringer, komponentplasseringer og tilpasninger som er nødvendige for en vellykket migrering.
 
-### Message Styling
-- User messages: Background color `--user-message-bg`, text color `--user-message-text`
-- AI messages: Background color `--ai-message-bg`, text color `--ai-message-text`
-- Both message types should use `text-foreground dark:text-foreground` for proper dark mode visibility
-
-### Theme Support
-- Light and dark mode support through CSS variables in [`src/index.css`](src/index.css)
-- Theme switching managed by the `next-themes` package
-- Dark mode classes applied with `dark:` prefix in Tailwind
-
-### Layout Responsiveness
-- Mobile-first approach with progressive enhancement
-- Media queries controlled primarily through Tailwind breakpoints
-- Key breakpoint implementation: 
-  - Mobile layout: Default styles (no prefix)
-  - Tablet and up: `sm:` prefix (≥640px)
-  - Desktop: `md:` prefix (≥768px) and `lg:` prefix (≥1024px)
-
-## How to use this project
-
-There are several ways to edit the application.
-
-**Use Lovable**
-
-Visit [Lovable Project](https://lovable.dev/projects/f6979301-ada4-4942-9325-ae2a93cbefcd) and start writing instructions.
-
-Changes made via Lovable will automatically be committed to this repository.
-
-**Use your preferred IDE**
-
-If you want to work locally with your own IDE, you can clone this repository and push changes. Changes that are pushed will also be reflected in Lovable.
-
-The only requirement is to have Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository with the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project folder.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-uploading and instant preview.
-npm run dev
-```
-
-## Technologies Used
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn/ui
-- Tailwind CSS
-- React Router DOM
