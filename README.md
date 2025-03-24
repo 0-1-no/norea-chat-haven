@@ -1,140 +1,402 @@
 
-# Norea Chat Application
+# Norea Chat Application - Next.js Implementeringsveiledning
 
-## Migrering til Next.js App Router
+Dette dokumentet beskriver hvordan designsystemet og komponenter fra vår React/Vite-implementasjon skal migreres til en Next.js App Router-basert applikasjon.
 
-Dette designsystemet er utviklet med React, Vite og Tailwind CSS, men kan migreres til Next.js App Router struktur. Her er viktige instruksjoner for migrering:
+## Mappestruktur og Konvertering
 
-### Mappehierarki og Ruting
+### React/Vite → Next.js App Router
 
-**Nåværende struktur (React/Vite):**
-- `/src/pages/` - Inneholder sidekomponenter
-- `/src/components/` - UI-komponenter
-- `/src/layouts/` - Layout-komponenter
-- React Router DOM for ruting
+| Nåværende (React/Vite) | Next.js App Router | Kommentarer |
+|------------------------|-------------------|-------------|
+| `/src/pages/Index.tsx` | `/app/page.tsx` | Hovedside |
+| `/src/pages/ChatDemo.tsx` | `/app/(chat)/chat-demo/page.tsx` | Chat-side |
+| `/src/pages/MemoryChat.tsx` | `/app/(chat)/memory-chat/page.tsx` | Minne-funksjonalitet |
+| `/src/pages/WeatherChat.tsx` | `/app/(chat)/weather-chat/page.tsx` | Vær-implementasjon |
+| `/src/components/` | `/components/` | Gjenbrukbare komponenter |
+| `/src/layouts/` | `/app/layout.tsx` og grupperinger | Root layout og gruppelayouts |
 
-**Next.js App Router struktur:**
-- `/app/` - Mappehierarkiet definerer rutene
-- `/app/page.tsx` - Hovedsiden (tilsvarer vår `Index.tsx`)
-- `/app/(chat)/chat-demo/page.tsx` - Chat-demo (tilsvarer vår `ChatDemo.tsx`)
-- `/components/` - UI-komponenter (kan beholdes som er)
+## Server vs. Client Komponenter
 
-### Migreringssteg
+### Server Komponenter (default i Next.js)
 
-1. **Layout-komponenter:**
-   - Flytt `src/components/layout/PageContainer.tsx` til `/app/layout.tsx` for å definere root layout
-   - Konverter til Server Component der det er hensiktsmessig
+```tsx
+// app/layout.tsx - Server Component
+import { SidebarProvider } from '@/components/ui/sidebar';
 
-2. **Side-komponenter:**
-   - For hver side i `/src/pages/`, opprett tilsvarende mappe i `/app/`
-   - Konverter hver side-komponent til en `page.tsx` fil i den relevante mappen
-   - F.eks. `/src/pages/ChatDemo.tsx` → `/app/chat-demo/page.tsx`
+export default function RootLayout({ children }) {
+  return (
+    <SidebarProvider>
+      <html lang="no">
+        <body>
+          {children}
+        </body>
+      </html>
+    </SidebarProvider>
+  );
+}
+```
 
-3. **Ruting:**
-   - Fjern React Router DOM avhengigheter
-   - Erstatt `<Link to="/chat-demo">` med Next.js `<Link href="/chat-demo">`
-   - Dynamiske ruter som `/room/:id` blir `/app/room/[id]/page.tsx` i Next.js
+**Server-komponenter:**
+- [`src/components/layout/PageContainer.tsx`](src/components/layout/PageContainer.tsx) → `/app/layout.tsx`
+- [`src/components/sidebar/SidebarContent.tsx`](src/components/sidebar/SidebarContent.tsx) → `/components/sidebar/SidebarContent.tsx`
+- [`src/components/Header.tsx`](src/components/Header.tsx) → `/components/Header.tsx`
+- [`src/components/ui/tag.tsx`](src/components/ui/tag.tsx) → `/components/ui/tag.tsx`
+- Statiske UI-elementer som ikke krever client-side interaktivitet
 
-4. **CSS og Styling:**
-   - CSS-variabler i `src/index.css` kan flyttes til `/app/globals.css`
-   - Tailwind-konfigurasjon kan stort sett forbli uendret
-   - CSS-moduler kan brukes for komponentspesifikk styling
+### Client Komponenter (må merkes med 'use client')
 
-## Teknisk Arkitektur
+```tsx
+// components/MessageInput.tsx - Client Component
+'use client';
 
-### Layout-systemet
+import React, { useState } from 'react';
+// ... resten av komponenten
+```
 
-Layout-systemet i Norea er bygget opp av flere lag som gir en konsistent brukeropplevelse:
+**Client-komponenter:**
+- [`src/components/MessageInput.tsx`](src/components/MessageInput.tsx) → `/components/MessageInput.tsx`
+- [`src/components/ChatInterface.tsx`](src/components/ChatInterface.tsx) → `/components/ChatInterface.tsx`
+- [`src/components/message/Message.tsx`](src/components/message/Message.tsx) → `/components/message/Message.tsx`
+- [`src/components/brand/NoreaOrb.tsx`](src/components/brand/NoreaOrb.tsx) → `/components/brand/NoreaOrb.tsx`
+- Alle komponenter som bruker `useState`, `useEffect` eller andre React hooks
+- Komponenter som håndterer brukerinput eller animasjoner
 
-#### 1. Backdrop (Bakgrunnslag)
-- **Implementasjonsfil:** [`src/components/layout/PageContainer.tsx`](src/components/layout/PageContainer.tsx)
-- **CSS-variabler:** `--backdrop-background`, `--backdrop-foreground` (i [`src/index.css`](src/index.css))
-- **Next.js-plassering:** `/app/layout.tsx` 
-- Fungerer som global bakgrunnsflate for hele applikasjonen
-- Bruker en subtil lysegrå bakgrunn i lys modus (mørk modus tilgjengelig)
+## Avhengighetskart for Komponenter
 
-#### 2. Sidebar (Navigasjonslag)
-- **Implementasjonsfil:** [`src/components/ui/sidebar.tsx`](src/components/ui/sidebar.tsx) og [`src/components/sidebar/SidebarContent.tsx`](src/components/sidebar/SidebarContent.tsx)
-- **CSS-variabler:** `--sidebar-background`, `--sidebar-foreground`, `--sidebar-border`
-- **Next.js-plassering:** `/components/sidebar/` og integreres i `/app/layout.tsx`
-- Kan minimeres for å maksimere skjermplassen
-- Kontrolleres av SidebarProvider-konteksten
-- For mobilvisning: overlay-oppførsel i stedet for å skyve innhold
+```
+PageContainer (Server)
+├── Header (Server)
+│   └── SidebarTrigger (Client)
+├── Sidebar (Client)
+│   ├── SidebarHeader (Server)
+│   ├── SidebarContent (Server)
+│   │   └── SidebarMainContent (Server)
+│   └── SidebarFooter (Server)
+│       └── SidebarTestFooter (Server)
+└── Content Area (Server)
+    ├── ChatInterface (Client)
+    │   ├── Message (Client)
+    │   │   └── MemoryIndicator (Client)
+    │   └── ChatInputContainer (Server)
+    │       └── MessageInput (Client)
+    └── NoreaOrb (Client)
+```
 
-#### 3. Canvas (Innholdslag)
-- **Implementasjonsfil:** [`src/components/layout/PageContainer.tsx`](src/components/layout/PageContainer.tsx)
-- **CSS-variabler:** `--canvas-background`, `--canvas-foreground`, `--canvas-border`
-- **Next.js-plassering:** Som en del av layout-strukturen i `/app/layout.tsx`
-- Hevet over bakgrunnen med subtile skygger og kanter på desktop
-- Tar full bredde på mobile enheter uten kanter eller avrundede hjørner
+### UI vs. Stateful Komponenter
 
-### Chat-komponenter
+**Rene UI-komponenter (tilstandsløse):**
+- [`src/components/ui/button.tsx`](src/components/ui/button.tsx)
+- [`src/components/ui/tag.tsx`](src/components/ui/tag.tsx)
+- [`src/components/ui/separator.tsx`](src/components/ui/separator.tsx)
+- [`src/components/ui/skeleton.tsx`](src/components/ui/skeleton.tsx)
+- [`src/components/ui/carousel.tsx`](src/components/ui/carousel.tsx)
 
-Chat-komponentene kan migreres direkte med minimal endring:
+**Stateful komponenter (med logikk/tilstand):**
+- [`src/components/MessageInput.tsx`](src/components/MessageInput.tsx) - Håndterer meldingsinnhold
+- [`src/components/brand/NoreaOrb.tsx`](src/components/brand/NoreaOrb.tsx) - Håndterer animasjoner og interaktivitet
+- [`src/components/ChatInterface.tsx`](src/components/ChatInterface.tsx) - Håndterer chat-logikk
+- [`src/components/ui/sidebar.tsx`](src/components/ui/sidebar.tsx) - Håndterer sidebar-tilstand
 
-#### Hovedkomponenter
-- [`src/components/message/Message.tsx`](src/components/message/Message.tsx) - Viser chatmeldinger
-  - Støtter ulike meldingstyper (bruker/AI)
-  - Håndterer markdown-innhold
-  - **Next.js-plassering:** `/components/message/Message.tsx` (samme struktur)
+## CSS og Design Tokens
 
-- [`src/components/MessageInput.tsx`](src/components/MessageInput.tsx) - Inntastingsfelt
-  - **Next.js-plassering:** `/components/MessageInput.tsx`
-  - Kan forbli som Client Component (krever interaktivitet)
+### CSS-variabler og Design Tokens
 
-- [`src/components/ChatInputContainer.tsx`](src/components/ChatInputContainer.tsx) - Kontainer for inntastingskomponenter
-  - **Next.js-plassering:** `/components/ChatInputContainer.tsx`
+**Alle design tokens og CSS-variabler bør flyttes til:**
+- `/app/globals.css` (for CSS-variabler og base-stiler)
+- `/tailwind.config.ts` (for Tailwind-integrasjon)
 
-### Design-system
+Fra [`src/index.css`](src/index.css) bør alle CSS-variabler flyttes til `/app/globals.css`:
 
-Design-systemet bruker CSS-variabler og Tailwind CSS, og kan migreres direkte:
+```css
+:root {
+  /* Core colors */
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  
+  /* Primary brand colors */
+  --primary: 263 70% 58%;
+  --primary-foreground: 210 40% 98%;
+  --primary-muted: 263 70% 90%;
+  --primary-hover: 263 70% 50%;
+  
+  /* ... flere variabler ... */
+}
 
-#### Fargetokener
-- **Implementasjonsfil:** [`src/index.css`](src/index.css) og [`tailwind.config.ts`](tailwind.config.ts)
-- **Next.js-plassering:** `/app/globals.css` og `/tailwind.config.ts`
-- Primærfarger: Lilla tema med ulike nyanser (`--primary`, `--primary-foreground`, `--primary-muted`)
-- Overflatefarger: For ulike UI-elementer (`--backdrop-background`, `--canvas-background`)
+.dark {
+  --background: 222.2 47% 5%;
+  --foreground: 210 40% 98%;
+  /* ... mørk-modus variabler ... */
+}
+```
 
-#### Typografi og Spacing
-- Fontstørrelser via Tailwind's innebygde skala
-- Spacing-variabler: `--content-spacing-sm`, `--content-spacing-md`, `--content-spacing-lg`
-- **Next.js-plassering:** Beholdes i `/app/globals.css` og `/tailwind.config.ts`
+### Tailwind Config Migrering
 
-## Responsiv Design
+Fra [`tailwind.config.ts`](tailwind.config.ts) bør konfigurasjon migreres til Next.js-prosjektets tilsvarende fil:
 
-Applikasjonen er fullt responsiv på tvers av alle enhetsstørrelser:
+```ts
+import type { Config } from "tailwindcss";
 
-### Breakpoints
-- **Implementasjonsfil:** [`tailwind.config.ts`](tailwind.config.ts) (screens-seksjonen)
-- Mobile: < 768px
-- Tablet: 768px - 1024px
-- Desktop: > 1024px
+export default {
+  darkMode: ["class"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))',
+          muted: 'hsl(var(--primary-muted))',
+          hover: 'hsl(var(--primary-hover))',
+        },
+        /* ... flere farger ... */
+      },
+      /* ... andre utvidelser ... */
+    }
+  },
+  plugins: [require("tailwindcss-animate")],
+} satisfies Config;
+```
 
-### Mobile tilpasninger i Next.js
-- Sidebar blir et overlay som kan vises/skjules
-- Canvas tar full bredde uten kanter/avrundede hjørner
-- Sidebar er skjult som standard
+## Datamodeller og Props
 
-## Viktige implementasjonsdetaljer for Next.js
+### Sentrale Datamodeller
 
-### Server vs. Client Components
-- Chat-grensesnittet krever klientside-interaktivitet
-- Merk komponenter som krever klientside-funksjonalitet med `"use client"`
-- Statiske UI-elementer kan være Server Components for forbedret ytelse
+**Message Interface:**
+```tsx
+// types/chat.ts
+export interface ChatMessage {
+  id: string;
+  role: 'user' | 'ai';
+  content: string;
+  memories?: {
+    type: 'retrieve' | 'store';
+    content: string;
+  }[];
+}
+```
 
-### Dataflyt
-- Erstatt eventuelle React Context-implementasjoner med Next.js sin innebygde state management
-- Vurder å bruke Server Actions for formhåndtering der det er relevant
+**Weather Card Data:**
+```tsx
+// types/weather.ts
+export type WeatherType = 'sunny' | 'partly-cloudy' | 'cloudy' | 'rainy' | 'drizzle' | 'snow';
 
-### Bildehåndtering
-- Bruk Next.js `<Image>` komponent for optimalisert bildehåndtering
-- Endre bildestier for å støtte Next.js bildeoptimeringsløsning
+export interface ForecastItem {
+  day?: string;
+  date?: string;
+  time?: string;
+  weatherType: WeatherType;
+  highTemp?: number;
+  lowTemp?: number;
+  precipitation?: number;
+  uvIndex?: number;
+  windSpeed?: number;
+}
+```
 
-### API-integrasjon
-- Bruk Next.js API-ruter (`/app/api/`) for backend-funksjonalitet
-- Implementer Server Actions for formhåndtering og dataendringer
+### Prop Interface for Komponenter
 
-## Bruk av denne dokumentasjonen
+**Message Component Props:**
+```tsx
+// components/message/Message.tsx
+export type MessageRole = 'user' | 'ai';
 
-Denne README.md er designet for å fungere som en migreringsguide for AI-assistenter eller utviklere som skal implementere dette designsystemet i en Next.js App Router-basert applikasjon. Den inneholder detaljerte instruksjoner om strukturelle endringer, komponentplasseringer og tilpasninger som er nødvendige for en vellykket migrering.
+interface MessageProps {
+  content: string;
+  role: MessageRole;
+  className?: string;
+  memories?: {
+    type: 'retrieve' | 'store';
+    content: string;
+  }[];
+}
+```
 
+**MessageInput Component Props:**
+```tsx
+// components/MessageInput.tsx
+type MessageInputProps = {
+  onSendMessage?: (message: string) => void;
+  className?: string;
+  placeholder?: string;
+};
+```
+
+## Eksempelimplementasjoner for Next.js App Router
+
+### Root Layout (App Layout)
+
+```tsx
+// app/layout.tsx
+import { SidebarProvider } from '@/components/ui/sidebar';
+import './globals.css';
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="no">
+      <body>
+        <SidebarProvider defaultOpen={true}>
+          <div className="h-screen w-full flex overflow-hidden backdrop-layer">
+            {/* Sidebar implementasjon */}
+            <div className="flex-1 overflow-hidden">
+              {children}
+            </div>
+          </div>
+        </SidebarProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+### Chat Demo Page
+
+```tsx
+// app/(chat)/chat-demo/page.tsx
+import { ChatDemo } from '@/components/pages/ChatDemo';
+
+export const metadata = {
+  title: 'Forstå kvantedatabehandling',
+};
+
+export default function ChatDemoPage() {
+  return <ChatDemo />;
+}
+```
+
+Tilsvarende komponent (`use client`-merket):
+```tsx
+// components/pages/ChatDemo.tsx
+'use client';
+
+import React, { useRef, useEffect } from 'react';
+import { PageContainer } from '@/components/layout/PageContainer';
+import { MessageInput } from "@/components/MessageInput";
+import { Message } from '@/components/message/Message';
+import { ChatInputContainer } from '@/components/ChatInputContainer';
+
+export function ChatDemo() {
+  // ... Implementasjon fra original ChatDemo.tsx
+}
+```
+
+## Server vs. Client Funksjonalitet
+
+### Server-side Funksjonalitet
+
+**API Routes:**
+```tsx
+// app/api/chat/route.ts
+import { NextResponse } from 'next/server';
+
+export async function POST(request: Request) {
+  const body = await request.json();
+  const { message } = body;
+  
+  // Prosesser meldingen på serversiden
+  const response = { message: `Svar på: ${message}` };
+  
+  return NextResponse.json(response);
+}
+```
+
+**Data Fetching:**
+```tsx
+// app/(chat)/weather/page.tsx
+import { WeatherChat } from '@/components/pages/WeatherChat';
+
+// Server-side data fetching
+async function getWeatherData() {
+  // Hent værdata
+  return { /* værdata */ };
+}
+
+export default async function WeatherPage() {
+  const weatherData = await getWeatherData();
+  
+  return <WeatherChat initialData={weatherData} />;
+}
+```
+
+### Client-side Funksjonalitet
+
+**API Kall:**
+```tsx
+// hooks/use-chat.ts
+'use client';
+
+import { useState } from 'react';
+
+export function useChat() {
+  const [messages, setMessages] = useState([]);
+  
+  const sendMessage = async (content: string) => {
+    // Legg til brukermelding
+    setMessages(prev => [...prev, { role: 'user', content }]);
+    
+    // Kall API
+    const response = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: content }),
+    });
+    
+    const data = await response.json();
+    
+    // Legg til AI-melding
+    setMessages(prev => [...prev, { role: 'ai', content: data.message }]);
+  };
+  
+  return { messages, sendMessage };
+}
+```
+
+## Nøkkelkomponenter og Filreferanser
+
+### Sentrale Komponenter i Designsystemet
+
+1. **Layoutsystem:**
+   - [`src/components/layout/PageContainer.tsx`](src/components/layout/PageContainer.tsx) - Hoverlayout-komponent
+   - [`src/layouts/DefaultLayout.tsx`](src/layouts/DefaultLayout.tsx) - Standard sidelayout
+   - [`src/layouts/TodoLayout.tsx`](src/layouts/TodoLayout.tsx) - Todo-spesifikk layout
+
+2. **Chat-komponenter:**
+   - [`src/components/message/Message.tsx`](src/components/message/Message.tsx) - Meldingsvisning med markdown-støtte
+   - [`src/components/MessageInput.tsx`](src/components/MessageInput.tsx) - Inntastingsfelt for meldinger
+   - [`src/components/ChatInputContainer.tsx`](src/components/ChatInputContainer.tsx) - Container for inputfelt
+
+3. **UI-komponenter:**
+   - [`src/components/ui/button.tsx`](src/components/ui/button.tsx) - Knappekomponent
+   - [`src/components/ui/tag.tsx`](src/components/ui/tag.tsx) - Tag-komponent
+   - [`src/components/ui/sidebar.tsx`](src/components/ui/sidebar.tsx) - Sidebar-implementasjon
+   - [`src/components/ui/weather-card.tsx`](src/components/ui/weather-card.tsx) - Værkort-komponent
+
+4. **Visuelle elementer:**
+   - [`src/components/brand/GlowingOrb.tsx`](src/components/brand/GlowingOrb.tsx) - Glødende orb-effekt
+   - [`src/components/brand/NoreaOrb.tsx`](src/components/brand/NoreaOrb.tsx) - Interaktiv Norea-orb
+
+### CSS og Stiler
+
+- [`src/index.css`](src/index.css) - CSS-variabler og globale stiler
+- [`tailwind.config.ts`](tailwind.config.ts) - Tailwind-konfigurasjon
+
+## Konklusjon
+
+Ved å følge disse retningslinjene for migrering til Next.js App Router-struktur, vil Norea AI-designsystemet kunne implementeres effektivt i en Next.js-applikasjon, med riktig fordeling mellom server- og client-komponenter for optimal ytelse og brukeropplevelse.
+
+De viktigste punktene å huske:
+1. Server-komponenter brukes for statiske UI-elementer og datahenting
+2. Client-komponenter merket med `'use client'` for interaktive elementer
+3. CSS-variabler og design-tokens migreres til globals.css
+4. API-ruter implementeres i `/app/api/`-strukturen
+5. Komponenthierarkiet beholdes, men tilpasses App Router-strukturen
+
+Denne migreringsstrukturen sikrer at designsystemet bevares akkurat som det er, samtidig som det drar nytte av Next.js-funksjonalitet for forbedret ytelse og brukeropplevelse.
